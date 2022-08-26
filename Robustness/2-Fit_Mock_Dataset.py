@@ -60,8 +60,8 @@ print("...." * 20)
 
 pos_frozen = True
 spatial_model_type = "pointsource_center"
-outputfolder = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/publication/Robustness/output/data_asimov_tests'
-
+outputfolder = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Robustness/output/data_asimov_tests'
+inputfolder = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Robustness'
 
 
 if spatial_model_type == "pointsource_center":
@@ -150,7 +150,7 @@ def compute_K_matrix(l_deg, sigma, ndim_spatial_nui, ndim_spectral_nui,geom_down
         corr_matrix_spectral[e, e] = sigma[e] ** 2
     return np.kron(corr_matrix_spectral, corr_matrix_spatial)
 
-with open('0_estimate_sys_per_ebin.yml', "r") as ymlfile:
+with open(inputfolder+'/0_estimate_sys_per_ebin.yml', "r") as ymlfile:
     sys_read = yaml.load(ymlfile, Loader=yaml.FullLoader)
 mus = sys_read['mus']
 stds = sys_read['stds']
@@ -184,7 +184,7 @@ bg = dataset_N_sys_ex.background
 bg_e = bg.data.sum(axis=2).sum(axis=1)
 amount_free_par = ndim_spatial_nui
 
-models = Models.read("1a-Source_models.yaml")
+models = Models.read(inputfolder+"/1a-Source_models.yaml")
 model_asimov = models[spatial_model_type]
 model_asimov.parameters['amplitude'].value = amplitude.value
 print(model_asimov)
