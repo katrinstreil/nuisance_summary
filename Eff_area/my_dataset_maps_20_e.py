@@ -287,7 +287,10 @@ class MapDataset(Dataset):
         str_ += "\t{:32}: {} \n".format("Number of models", n_models)
         str_ += "\t{:32}: {}\n".format("Number of parameters", n_pars)
         str_ += "\t{:32}: {}\n\n".format("Number of free parameters", n_free_pars)
-
+        if self.N_parameters is not None:
+            str_ += "\t{:32}: {}\n\n".format("Number of free Nui parameters", len(self.N_parameters))
+            
+        
         if self.models is not None:
             str_ += "\t" + "\n\t".join(str(self.models).split("\n")[2:])
 

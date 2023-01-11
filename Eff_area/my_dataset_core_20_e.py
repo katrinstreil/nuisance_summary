@@ -139,14 +139,15 @@ class Datasets(collections.abc.MutableSequence):
     def __init__(self, datasets=None):
         if datasets is None:
             datasets = []
-
+        import MapDatasetNuisanceE
         if isinstance(datasets, Datasets):
             datasets = datasets._datasets
         elif isinstance(datasets, Dataset):
             datasets = [datasets]
+        elif isinstance(datasets, MapDatasetNuisanceE.MapDatasetNuisanceE):
+            datasets = [datasets]
         elif not isinstance(datasets, list):
             raise TypeError(f"Invalid type: {datasets!r}")
-
         unique_names = []
         for dataset in datasets:
             if dataset.name in unique_names:
@@ -169,6 +170,10 @@ class Datasets(collections.abc.MutableSequence):
                     parameters.append(dataset.N_parameters)
         parameters = Parameters.from_stack(parameters)
         return parameters
+    
+    @property
+    def N_parameters(self):
+        return self._datasets[0].N_parameters
 
     @property
     def models(self):

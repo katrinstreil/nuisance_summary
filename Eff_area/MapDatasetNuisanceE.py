@@ -169,8 +169,8 @@ class MapDatasetNuisanceE(MapDataset):
     def stat_sum(self):
         """Total likelihood given the current model parameters."""
         counts, npred = self.counts.data.astype(float), self.npred().data
-        if self.penalty_sigma:
-            penalty = self.N_parameters.value**2 / self.penalty_sigma 
+        if self.penalty_sigma and self.penalty_sigma>0:
+            penalty = self.N_parameters[0].value**2 / self.penalty_sigma **2
         else:
             penalty = 0
         #print('penalty', penalty)
@@ -178,3 +178,70 @@ class MapDatasetNuisanceE(MapDataset):
             return cash_sum_cython(counts[self.mask.data], npred[self.mask.data])  +penalty
         else:
             return cash_sum_cython(counts.ravel(), npred.ravel()) +penalty
+        
+        
+    def slice_by_idx(self, slices, name=None):
+        """Slice sub dataset.
+
+        The slicing only applies to the maps that define the corresponding axes.
+
+        Parameters
+        ----------
+        slices : dict
+            Dict of axes names and integers or `slice` object pairs. Contains one
+            element for each non-spatial dimension. For integer indexing the
+            corresponding axes is dropped from the map. Axes not specified in the
+            dict are kept unchanged.
+        name : str
+            Name of the sliced dataset.
+
+        Returns
+        -------
+        dataset : `MapDataset` or `SpectrumDataset`
+            Sliced dataset
+
+        Examples
+        --------
+        >>> from gammapy.datasets import MapDataset
+        >>> dataset = MapDataset.read("$GAMMAPY_DATA/cta-1dc-gc/cta-1dc-gc.fits.gz")
+        >>> slices = {"energy": slice(0, 3)} #to get the first 3 energy slices
+        >>> sliced = dataset.slice_by_idx(slices)
+        >>> print(sliced.geoms["geom"])
+        WcsGeom
+                axes       : ['lon', 'lat', 'energy']
+                shape      : (320, 240, 3)
+                ndim       : 3
+                frame      : galactic
+                projection : CAR
+                center     : 0.0 deg, 0.0 deg
+                width      : 8.0 deg x 6.0 deg
+                wcs ref    : 0.0 deg, 0.0 deg
+        """
+        name = make_name(name)
+        kwargs = {"gti": self.gti, "name": name, "meta_table": self.meta_table}
+
+        if self.counts is not None:
+            kwargs["counts"] = self.counts.slice_by_idx(slices=slices)
+
+        if self.exposure is not None:
+            kwargs["exposure"] = self.exposure.slice_by_idx(slices=slices)
+
+        if self.background is not None and self.stat_type == "cash":
+            kwargs["background"] = self.background.slice_by_idx(slices=slices)
+
+        if self.edisp is not None:
+            kwargs["edisp"] = self.edisp.slice_by_idx(slices=slices)
+
+        if self.psf is not None:
+            kwargs["psf"] = self.psf.slice_by_idx(slices=slices)
+
+        if self.mask_safe is not None:
+            kwargs["mask_safe"] = self.mask_safe.slice_by_idx(slices=slices)
+
+        if self.mask_fit is not None:
+            kwargs["mask_fit"] = self.mask_fit.slice_by_idx(slices=slices)
+            
+        if self.N_parameters is not None:
+            kwargs["N_parameters"] = self.N_parameters
+
+        return self.__class__(**kwargs)

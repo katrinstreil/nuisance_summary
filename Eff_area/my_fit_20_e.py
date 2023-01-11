@@ -141,7 +141,7 @@ class Fit:
     @staticmethod
     def _parse_datasets(datasets):
         #from gammapy.datasets import Datasets
-        from  my_dataset_core_20 import Datasets
+        from  my_dataset_core_20_e import Datasets
 
         datasets = Datasets(datasets)
         return datasets, datasets.parameters
