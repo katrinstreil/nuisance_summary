@@ -32,8 +32,8 @@ class sys_dataset():
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = model_spectrum,
                                name = "Source")    
-        source_model.parameters['lon_0'].frozen = True
-        source_model.parameters['lat_0'].frozen = True
+        #source_model.parameters['lon_0'].frozen = True
+        #source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
         return models
     
@@ -71,8 +71,8 @@ class sys_dataset():
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = model_spectrum,
                                name = "SourceN")  
-        source_model.parameters['lon_0'].frozen = True
-        source_model.parameters['lat_0'].frozen = True
+        #source_model.parameters['lon_0'].frozen = True
+        #source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
         return models
 
