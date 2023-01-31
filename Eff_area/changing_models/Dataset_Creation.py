@@ -32,8 +32,8 @@ class sys_dataset():
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = model_spectrum,
                                name = "Source")    
-        #source_model.parameters['lon_0'].frozen = True
-        #source_model.parameters['lat_0'].frozen = True
+        source_model.parameters['lon_0'].frozen = True
+        source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
         return models
     
@@ -42,7 +42,7 @@ class sys_dataset():
         exposure = dataset.exposure.copy()
         exposure.data *= (1-self.factor)
         background = dataset.background.copy()
-        background.data *= (1-self.factor)
+        #background.data *= (1-self.factor)
         dataset.exposure = exposure
         dataset.background = background
         if self.rnd:
@@ -71,14 +71,14 @@ class sys_dataset():
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = model_spectrum,
                                name = "SourceN")  
-        #source_model.parameters['lon_0'].frozen = True
-        #source_model.parameters['lat_0'].frozen = True
+        source_model.parameters['lon_0'].frozen = True
+        source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
         return models
 
 
 
-    def create_dataset_N(self, sigma):
+    def create_dataset_N(self):
         dataset_ = self.create_dataset()
         dataset_N = MapDataset(
                 counts=dataset_.counts.copy(),
@@ -90,13 +90,13 @@ class sys_dataset():
                 gti=dataset_.gti.copy(),
                 name='dataset N')
         models = self.set_model_N()
-        bkg_spectralmodel = PowerLawNormNuisanceSpectralModel(
-                    tilt=1,
-                    norm=1,
-                    norm_nuisance=0
-        )
+        #bkg_spectralmodel = PowerLawNormNuisanceSpectralModel(
+        #            tilt=1,
+        #            norm=1,
+        #            norm_nuisance=0
+        #)
         bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name,
-                                      spectral_model = bkg_spectralmodel)
+                                      )#spectral_model = bkg_spectralmodel)
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
         dataset_N.models = models
