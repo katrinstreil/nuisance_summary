@@ -3,9 +3,13 @@ from gammapy.modeling.models import (
     Models, 
     FoVBackgroundModel,
     PowerLawSpectralModel,
-    SkyModel)
-from MapDatasetNuisanceE import MapDatasetNuisanceE
+    SkyModel,
+    PowerLawNuisanceSpectralModel,
+    PowerLawNormNuisanceSpectralModel)
+#from MapDatasetNuisanceE import MapDatasetNuisanceE
 from gammapy.modeling import Parameter, Parameters
+from gammapy.datasets import MapDataset
+
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
 
 
@@ -14,10 +18,12 @@ path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summ
 class sys_dataset():
     def __init__(self, 
                  dataset_asimov,
-                 factor,
+                 shift,
+                 tilt,
                  rnd):
         self.dataset_asimov = dataset_asimov
-        self.factor = factor
+        self.shift = shift
+        self.tilt = tilt
         self.rnd = rnd
         
     def set_model(self):
@@ -28,15 +34,26 @@ class sys_dataset():
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = model_spectrum,
                                name = "Source")    
+        source_model.parameters['lon_0'].frozen = True
+        source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
         return models
+    
+    def rel (self, x, t,s  ):
+        return -t * x + (1+s) 
+    
+    def rel_3d (self, data, t, s ):
+        rel_ = self.rel(x = np.arange(data.shape[0]), t = t, s =s)
+        rel_3d = rel_[:,np.newaxis][:,np.newaxis]
+        return data * rel_3d
+
     
     def create_dataset(self):
         dataset = self.dataset_asimov.copy()
         exposure = dataset.exposure.copy()
-        exposure.data *= (1-self.factor)
+        exposure.data = self.rel_3d(data = exposure.data , t =  self.tilt, s = self.shift)
         background = dataset.background.copy()
-        background.data *= (1-self.factor)
+        #background.data = self.rel_3d(data = background.data , t =  self.tilt, s = self.shift)
         dataset.exposure = exposure
         dataset.background = background
         if self.rnd:
@@ -53,11 +70,29 @@ class sys_dataset():
         return dataset
     
     
-    def create_dataset_N(self, sigma):
+    def set_model_N(self):
+        models = Models.read(f"{path_crab}/standard_model.yml").copy()
+        model_spectrum  = PowerLawNuisanceSpectralModel(
+            index=2.3,
+            index_nuisance = 0,
+            amplitude="1e-12 TeV-1 cm-2 s-1",  
+            amplitude_nuisance = 0)
+        print(len(model_spectrum.parameters))
+        print(len(model_spectrum.default_parameters))
+
+        source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
+                               spectral_model = model_spectrum,
+                               name = "SourceN")  
+        source_model.parameters['lon_0'].frozen = True
+        source_model.parameters['lat_0'].frozen = True
+        models = Models(source_model)
+        return models
+
+
+
+    def create_dataset_N(self):
         dataset_ = self.create_dataset()
-        N_parameter = Parameter(name = "effarea", value = 0)
-        N_parameters = Parameters([N_parameter])
-        dataset_N = MapDatasetNuisanceE (
+        dataset_N = MapDataset(
                 counts=dataset_.counts.copy(),
                 exposure=dataset_.exposure.copy(),
                 background=dataset_.background.copy(),
@@ -65,11 +100,10 @@ class sys_dataset():
                 edisp=dataset_.edisp.copy(),
                 mask_safe=dataset_.mask_safe.copy(),
                 gti=dataset_.gti.copy(),
-                name='dataset N',
-                N_parameters=N_parameters,
-                penalty_sigma= sigma)
-        models = self.set_model()
-        bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name)
+                name='dataset N')
+        models = self.set_model_N()
+        bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name,
+                                      )#spectral_model = bkg_spectralmodel)
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
         dataset_N.models = models
