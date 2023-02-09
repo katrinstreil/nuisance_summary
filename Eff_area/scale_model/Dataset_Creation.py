@@ -15,53 +15,25 @@ path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summ
 from gammapy.modeling.models import SpectralModel
 
 class NuisanceNorm(SpectralModel):
-    
-    eff_area = Parameter("eff_area", 0.,  is_penalised = True)
 
     def __init__(self, model):
         self.eff_area = Parameter("eff_area", value =  0.,  is_penalised = True)
-
         self.model = model
         self.norm =[p for p in model.parameters if p.is_norm]
     
     @property    
     def parameters(self):
-        return  Parameters.from_stack([self.model.parameters, Parameters([self.eff_area])])
-       
+        return  Parameters.from_stack([Parameters([self.eff_area]),  self.model.parameters])
         
     # maybe self here is wrong:?    
+    #@staticmethod
     def evaluate(self, energy, **kwargs):
-        print(kwargs)
         eff_area_ = kwargs.pop('eff_area')
-        print(eff_area_)
-        self.model.parameters[self.norm[0].name].value *= (1.+eff_area_)
+        # todo extract is_norm parameter name
+        for norm_parameter in self.norm:
+            kwargs[norm_parameter.name] *= (1.+eff_area_)
         return self.model.evaluate(energy, **kwargs) 
     
-class NuisanceNorm2(SpectralModel):
-    
-    index = Parameter("index", 2.0)
-    index_nuisance = Parameter("index_nuisance", 0, is_penalised=True)
-    amplitude = Parameter(
-        "amplitude",
-        "1e-12 cm-2 s-1 TeV-1",
-        scale_method="scale10",
-        interp="log",
-        is_norm=True,
-    )
-    reference = Parameter("reference", "1 TeV", frozen=True)
-    eff_area = Parameter("eff_area", 0, is_penalised=True)
-
-    @staticmethod
-    def evaluate(
-        energy, index, index_nuisance, amplitude, reference, eff_area
-    ):
-        """Evaluate the model (static function)."""
-        return (
-            (1 + eff_area)
-            * amplitude
-            * np.power((energy / reference), -(index))
-        )
-
     
 
 class sys_dataset():
@@ -128,9 +100,6 @@ class sys_dataset():
         from gammapy.modeling import Fit,  Parameters, Covariance , Parameter
 
         norm_nuisance._covariance = Covariance(norm_nuisance.parameters)
-        ### change here:
-        #norm_nuisance = NuisanceNorm2()
-        #norm_nuisance.parameters['index_nuisance'].frozen = True
         
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                                spectral_model = norm_nuisance,
