@@ -5,24 +5,44 @@ from gammapy.modeling.models import (
     PowerLawSpectralModel,
     SkyModel,
     PowerLawNuisanceSpectralModel,
-    PowerLawNormNuisanceSpectralModel,
-    PowerLawNuisanceESpectralModel)
+    PowerLawNormNuisanceSpectralModel)
 #from MapDatasetNuisanceE import MapDatasetNuisanceE
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
 
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
 
+from gammapy.modeling.models import SpectralModel
 
+class E_Reco(SpectralModel):
 
+    def __init__(self, model):
+        self.e_reco = Parameter("e_reco", value =  0.,  is_penalised = True)
+        self.model = model
+        
+    
+    @property    
+    def parameters(self):
+        return  Parameters.from_stack([Parameters([self.e_reco]),  self.model.parameters])
+        
+    # maybe self here is wrong:?    
+    #@staticmethod
+    def evaluate(self, energy, **kwargs):
+        e_reco_ = kwargs.pop('e_reco')
+        energy *= (1+e_reco_)
+        return self.model.evaluate(energy, **kwargs) 
+    
+    
 
 class sys_dataset():
     def __init__(self, 
                  dataset_asimov,
-                 eshift,
+                 shift,
+                 tilt,
                  rnd):
         self.dataset_asimov = dataset_asimov
-        self.eshift = eshift
+        self.shift = shift
+        self.tilt = tilt
         self.rnd = rnd
         
     def set_model(self):
@@ -49,14 +69,16 @@ class sys_dataset():
     
     def create_dataset(self):
         dataset = self.dataset_asimov.copy()
-        models_setup = self.set_model_N()
-        models_setup.parameters['energy_nuisance'].value = self.eshift
-        dataset.models = models_setup
-        dataset.counts = dataset.npred()
+        exposure = dataset.exposure.copy()
+        #exposure.data = self.rel_3d(data = exposure.data , t =  self.tilt, s = self.shift)
+        background = dataset.background.copy()
+        #background.data = self.rel_3d(data = background.data , t =  self.tilt, s = self.shift)
+        dataset.exposure = exposure
+        dataset.background = background
         if self.rnd:
-            counts_data = np.random.poisson(dataset.counts.data)
+            counts_data = np.random.poisson(self.dataset_asimov.counts.data)
         else:
-            counts_data = dataset.counts.data
+            counts_data = self.dataset_asimov.counts.data
 
         dataset.counts.data = counts_data
         models = self.set_model()
@@ -69,14 +91,16 @@ class sys_dataset():
     
     def set_model_N(self):
         models = Models.read(f"{path_crab}/standard_model.yml").copy()
-        model_spectrum  = PowerLawNuisanceESpectralModel(
-            index=2.3,
-            index_nuisance = 0,
-            amplitude="1e-12 TeV-1 cm-2 s-1",  
-            energy_nuisance = 0)
+        powerlaw = PowerLawSpectralModel(index=2.3,
+                                         amplitude="1e-12 TeV-1 cm-2 s-1",  
+                                         name = "Source")
+        norm_nuisance = E_Reco(model = powerlaw)
+        from gammapy.modeling import Fit,  Parameters, Covariance , Parameter
 
+        norm_nuisance._covariance = Covariance(norm_nuisance.parameters)
+        
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
-                               spectral_model = model_spectrum,
+                               spectral_model = norm_nuisance,
                                name = "SourceN")  
         source_model.parameters['lon_0'].frozen = True
         source_model.parameters['lat_0'].frozen = True
