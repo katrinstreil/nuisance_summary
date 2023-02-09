@@ -12,8 +12,31 @@ from gammapy.datasets import MapDataset
 
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
 
+from gammapy.modeling.models import SpectralModel
 
+class Eff_Area(SpectralModel):
 
+    def __init__(self, model):
+        self.eff_area_shift = Parameter("eff_area_shift", value =  0.,  is_penalised = True)
+        self.model = model
+        self.norm =[p for p in model.parameters if p.is_norm]
+        
+    
+    @property    
+    def parameters(self):
+        return  Parameters.from_stack([Parameters([self.eff_area_shift]),  self.model.parameters])
+        
+    # maybe self here is wrong:?    
+    #@staticmethod
+    def evaluate(self, energy, **kwargs):
+        eff_area_shift_ = kwargs.pop('eff_area_shift')
+        # todo extract is_norm parameter name
+        for norm_parameter in self.norm:
+            kwargs[norm_parameter.name] *= (1.+eff_area_shift_)
+            
+        return self.model.evaluate(energy, **kwargs) 
+    
+    
 
 class sys_dataset():
     def __init__(self, 
@@ -37,14 +60,11 @@ class sys_dataset():
         models = Models(source_model)
         return models
     
+    
     def create_dataset(self):
         dataset = self.dataset_asimov.copy()
-        exposure = dataset.exposure.copy()
-        exposure.data *= (1-self.factor)
-        background = dataset.background.copy()
-        #background.data *= (1-self.factor)
+        exposure = dataset.exposure.copy()  * (1-self.factor)
         dataset.exposure = exposure
-        dataset.background = background
         if self.rnd:
             counts_data = np.random.poisson(self.dataset_asimov.counts.data)
         else:
@@ -61,15 +81,16 @@ class sys_dataset():
     
     def set_model_N(self):
         models = Models.read(f"{path_crab}/standard_model.yml").copy()
-        model_spectrum  = PowerLawNuisanceSpectralModel(
-            index=2.3,
-            amplitude="1e-12 TeV-1 cm-2 s-1",  
-            amplitudeN = 0)
-        print(len(model_spectrum.parameters))
-        print(len(model_spectrum.default_parameters))
+        powerlaw = PowerLawSpectralModel(index=2.3,
+                                         amplitude="1e-12 TeV-1 cm-2 s-1",  
+                                         name = "Source")
+        norm_nuisance = Eff_Area(model = powerlaw)
+        from gammapy.modeling import Fit,  Parameters, Covariance , Parameter
 
+        norm_nuisance._covariance = Covariance(norm_nuisance.parameters)
+        
         source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
-                               spectral_model = model_spectrum,
+                               spectral_model = norm_nuisance,
                                name = "SourceN")  
         source_model.parameters['lon_0'].frozen = True
         source_model.parameters['lat_0'].frozen = True
@@ -90,11 +111,6 @@ class sys_dataset():
                 gti=dataset_.gti.copy(),
                 name='dataset N')
         models = self.set_model_N()
-        #bkg_spectralmodel = PowerLawNormNuisanceSpectralModel(
-        #            tilt=1,
-        #            norm=1,
-        #            norm_nuisance=0
-        #)
         bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name,
                                       )#spectral_model = bkg_spectralmodel)
         bkg_model.parameters['tilt'].frozen  = False
