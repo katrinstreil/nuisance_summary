@@ -17,21 +17,29 @@ from gammapy.modeling.models import SpectralModel
 class NuisanceNorm(SpectralModel):
 
     def __init__(self, model):
-        self.eff_area = Parameter("eff_area", value =  0.,  is_penalised = True)
+        self.eff_area_shift = Parameter("eff_area_shift", value =  0.,  is_penalised = True)
+        self.eff_area_tilt = Parameter("eff_area_tilt", value =  0.,  is_penalised = True)
+        
         self.model = model
         self.norm =[p for p in model.parameters if p.is_norm]
+        self.tilt =[p for p in model.parameters if p.name == 'index']
+        print(self.tilt)
+        
     
     @property    
     def parameters(self):
-        return  Parameters.from_stack([Parameters([self.eff_area]),  self.model.parameters])
+        return  Parameters.from_stack([Parameters([self.eff_area_shift, self.eff_area_tilt]),  self.model.parameters])
         
     # maybe self here is wrong:?    
     #@staticmethod
     def evaluate(self, energy, **kwargs):
-        eff_area_ = kwargs.pop('eff_area')
+        eff_area_shift_ = kwargs.pop('eff_area_shift')
+        eff_area_tilt_ = kwargs.pop('eff_area_tilt')
         # todo extract is_norm parameter name
         for norm_parameter in self.norm:
-            kwargs[norm_parameter.name] *= (1.+eff_area_)
+            kwargs[norm_parameter.name] *= (1.+eff_area_shift_)
+        kwargs[self.tilt[0].name] *= (1.+eff_area_tilt_)
+            
         return self.model.evaluate(energy, **kwargs) 
     
     
