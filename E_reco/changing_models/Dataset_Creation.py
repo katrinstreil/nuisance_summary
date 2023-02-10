@@ -19,14 +19,11 @@ class E_Reco(SpectralModel):
     def __init__(self, model):
         self.e_reco = Parameter("e_reco", value =  0.,  is_penalised = True)
         self.model = model
-        
     
     @property    
     def parameters(self):
         return  Parameters.from_stack([Parameters([self.e_reco]),  self.model.parameters])
-        
-    # maybe self here is wrong:?    
-    #@staticmethod
+
     def evaluate(self, energy, **kwargs):
         e_reco_ = kwargs.pop('e_reco')
         energy *= (1+e_reco_)
