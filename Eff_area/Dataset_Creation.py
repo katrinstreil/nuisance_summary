@@ -4,8 +4,9 @@ from gammapy.modeling.models import (
     FoVBackgroundModel,
     PowerLawSpectralModel,
     SkyModel,
-    PowerLawNuisanceSpectralModel,
-    PowerLawNormNuisanceSpectralModel)
+    #PowerLawNuisanceSpectralModel,
+    #PowerLawNormNuisanceSpectralModel)
+    )
 #from MapDatasetNuisanceE import MapDatasetNuisanceE
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
@@ -13,29 +14,8 @@ from gammapy.datasets import MapDataset
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
 
 from gammapy.modeling.models import SpectralModel
+from gammapy.modeling.models.cube import IRFModel
 
-class Eff_Area(SpectralModel):
-
-    def __init__(self, model):
-        self.eff_area_shift = Parameter("eff_area_shift", value =  0.,  is_penalised = True)
-        self.eff_area_tilt = Parameter("eff_area_tilt", value =  0.,  is_penalised = True)
-        self.model = model
-        self.norm =[p for p in model.parameters if p.is_norm]
-        self.tilt =[p for p in model.parameters if p.name == 'index']
-    
-    @property    
-    def parameters(self):
-        return  Parameters.from_stack([Parameters([self.eff_area_tilt, self.eff_area_shift]),  self.model.parameters])
-        
-    def evaluate(self, energy, **kwargs):
-        eff_area_shift_ = kwargs.pop('eff_area_shift')
-        eff_area_tilt_ = kwargs.pop('eff_area_tilt')
-        for norm_parameter in self.norm:
-            kwargs[norm_parameter.name] *= (1.+eff_area_shift_)
-        kwargs[self.tilt[0].name] *= (1.+eff_area_tilt_)
-        return self.model.evaluate(energy, **kwargs) 
-    
-    
 
 class sys_dataset():
     def __init__(self, 
@@ -59,58 +39,42 @@ class sys_dataset():
         source_model.parameters['lon_0'].frozen = True
         source_model.parameters['lat_0'].frozen = True
         models = Models(source_model)
+        
+        
         return models
     
-    def rel (self, x, t,s  ):
-        return -t * x + (1+s) 
-    
-    def rel_3d (self, data, t, s ):
-        rel_ = self.rel(x = np.arange(data.shape[0]), t = t, s =s)
-        rel_3d = rel_[:,np.newaxis][:,np.newaxis]
-        return data * rel_3d
-
     
     def create_dataset(self):
         dataset = self.dataset_asimov.copy()
-        exposure = dataset.exposure.copy()
-        exposure.data = self.rel_3d(data = exposure.data , t =  self.tilt, s = self.shift)
-        background = dataset.background.copy()
-        #background.data = self.rel_3d(data = background.data , t =  self.tilt, s = self.shift)
-        dataset.exposure = exposure
-        dataset.background = background
-        if self.rnd:
-            counts_data = np.random.poisson(self.dataset_asimov.counts.data)
-        else:
-            counts_data = self.dataset_asimov.counts.data
-
-        dataset.counts.data = counts_data
         models = self.set_model()
+        #bkg model
         bkg_model = FoVBackgroundModel(dataset_name=dataset.name)
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
+        #irf model
+        IRFmodel = IRFModel(dataset_name = dataset.name)
+        IRFmodel.parameters['tilt_nuisance'].frozen  = False
+        models.append(IRFmodel)
+        
         dataset.models = models
+        dataset.models.parameters['norm_nuisance'].value  = self.shift
+        dataset.models.parameters['tilt_nuisance'].value  = self.tilt
+        
+        if self.rnd:
+            counts_data = np.random.poisson(dataset.npred().data)
+        else:
+            counts_data = dataset.npred().data
+
+        dataset.counts.data = counts_data
+        # set models without the IRF model
+        models = self.set_model()
+        models.append(bkg_model)
+        dataset.models = models
+        
+        
         return dataset
     
     
-    def set_model_N(self):
-        models = Models.read(f"{path_crab}/standard_model.yml").copy()
-        powerlaw = PowerLawSpectralModel(index=2.3,
-                                         amplitude="1e-12 TeV-1 cm-2 s-1",  
-                                         name = "Source")
-        norm_nuisance = Eff_Area(model = powerlaw)
-        from gammapy.modeling import Fit,  Parameters, Covariance , Parameter
-
-        norm_nuisance._covariance = Covariance(norm_nuisance.parameters)
-        
-        source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
-                               spectral_model = norm_nuisance,
-                               name = "SourceN")  
-        source_model.parameters['lon_0'].frozen = True
-        source_model.parameters['lat_0'].frozen = True
-        models = Models(source_model)
-        return models
-
-
 
     def create_dataset_N(self):
         dataset_ = self.create_dataset()
@@ -123,10 +87,14 @@ class sys_dataset():
                 mask_safe=dataset_.mask_safe.copy(),
                 gti=dataset_.gti.copy(),
                 name='dataset N')
-        models = self.set_model_N()
-        bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name,
-                                      )#spectral_model = bkg_spectralmodel)
+        models = self.set_model()
+        #bkg model
+        bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name)
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
+        #irf model
+        IRFmodel = IRFModel(dataset_name = dataset_N.name)
+        IRFmodel.parameters['tilt_nuisance'].frozen  = False
+        models.append(IRFmodel)
         dataset_N.models = models
         return dataset_N
