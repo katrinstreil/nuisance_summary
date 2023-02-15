@@ -64,7 +64,7 @@ class sys_dataset():
         dataset.models.parameters['norm_nuisance'].value  = self.shift
         dataset.models.parameters['tilt_nuisance'].value  = self.tilt
         dataset.models.parameters['bias'].value  = self.bias
-        dataset.models.parameters['sigma'].value  = self.sigma
+        dataset.models.parameters['resolution'].value  = self.sigma
         dataset.npred_edisp()
         
         if self.rnd:
