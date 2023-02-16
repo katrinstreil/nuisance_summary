@@ -12,6 +12,9 @@ from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
 
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
+path_local = '/home/katrin/Documents/Crab'
+
+
 
 from gammapy.modeling.models import SpectralModel
 from gammapy.modeling.models.cube import IRFModel
@@ -33,7 +36,11 @@ class sys_dataset():
         self.rnd = rnd
         
     def set_model(self):
-        models = Models.read(f"{path_crab}/standard_model.yml").copy()
+        try:
+            models = Models.read(f"{path_crab}/standard_model.yml").copy()
+        except:
+            models = Models.read(f"{path_local}/standard_model.yml").copy()
+            
         model_spectrum  = PowerLawSpectralModel(
             index=2.3,
             amplitude="1e-12 TeV-1 cm-2 s-1",    )
