@@ -55,17 +55,9 @@ class sys_dataset():
         bkg_model = FoVBackgroundModel(dataset_name=dataset.name)
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
-        #irf model
-        IRFmodel = IRFModel(dataset_name = dataset.name)
-        IRFmodel.parameters['tilt_nuisance'].frozen  = False
-        models.append(IRFmodel)
-        
         dataset.models = models
-        dataset.models.parameters['norm_nuisance'].value  = self.shift
-        dataset.models.parameters['tilt_nuisance'].value  = self.tilt
-        dataset.models.parameters['bias'].value  = self.bias
-        dataset.models.parameters['resolution'].value  = self.sigma
-        dataset.npred_edisp()
+        
+       
         
         if self.rnd:
             counts_data = np.random.poisson(dataset.npred().data)
@@ -73,6 +65,19 @@ class sys_dataset():
             counts_data = dataset.npred().data
 
         dataset.counts.data = counts_data
+        
+         #irf model
+        IRFmodel = IRFModel(dataset_name = dataset.name)
+        IRFmodel.parameters['tilt_nuisance'].frozen  = False
+        models.append(IRFmodel)
+        dataset.models = models
+        dataset.models.parameters['norm_nuisance'].value  = self.shift
+        dataset.models.parameters['tilt_nuisance'].value  = self.tilt
+        dataset.models.parameters['bias'].value  = self.bias
+        dataset.models.parameters['resolution'].value  = self.sigma
+        dataset.edisp = dataset.npred_edisp()
+        dataset.exposure = dataset.npred_exposure()
+        
         # set models without the IRF model
         models = self.set_model()
         models.append(bkg_model)
