@@ -49,6 +49,8 @@ class sys_dataset():
                                name = "Source")    
         source_model.parameters['lon_0'].frozen = True
         source_model.parameters['lat_0'].frozen = True
+        #source_model.parameters['sigma'].frozen = True
+        
         models = Models(source_model)
         
         
