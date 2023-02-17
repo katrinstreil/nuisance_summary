@@ -48,11 +48,17 @@ from Dataset_Creation import sys_dataset
 source = 'Crab'
 path = '/home/vault/caph/mppi062h/repositories/HESS_3Dbkg_syserror/2-error_in_dataset'
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
+path_local = '/home/katrin/Documents'
 
+try:
+    models = Models.read(f"{path_crab}/standard_model.yml")
+    dataset_standard = MapDataset.read(f'{path}/{source}/stacked.fits')
 
-dataset_standard = MapDataset.read(f'{path}/{source}/stacked.fits')
+except:
+    models = Models.read(f"{path_local}/{source}/standard_model.yml")
+    dataset_standard = MapDataset.read(f'{path_local}/{source}/stacked.fits')
+
 dataset_standard = dataset_standard.downsample(4)
-models = Models.read(f"{path_crab}/standard_model.yml")
 model_spectrum  = PowerLawSpectralModel(
     index=2.3,
     amplitude="1e-12 TeV-1 cm-2 s-1",    )
@@ -101,8 +107,8 @@ rnd = False
 
 for n in range(N):
     print(n)
-    resolution_rnd = np.random.normal(0, resolution, 1)
-    bias_rnd = np.random.normal(0, bias, 1)
+    resolution_rnd = np.random.uniform(resolution, 3*resolution, 1)
+    bias_rnd = np.random.uniform(-3*bias, -bias, 1)
     print(f"bias_rnd:, {bias_rnd}, resolution_rnd: {resolution_rnd}" )
     sys_d_cor = sys_dataset(dataset_asimov= dataset_asimov,
                     shift = 0, 
@@ -117,8 +123,9 @@ for n in range(N):
     np.fill_diagonal(penalising_invcovmatrix, [1/zero**2, 1/zero**2, 1/bias_rnd**2, 1/resolution_rnd**2])
     dataset_N.penalising_invcovmatrix= penalising_invcovmatrix
     fit_cor = Fit(store_trace=False)
-    result_cor = fit_cor.run([dataset])
-    result_cor = fit_cor.run([dataset_N])
+    if resolution_rnd >0:
+        result_cor = fit_cor.run([dataset])
+        result_cor = fit_cor.run([dataset_N])
 
 
     if save:
