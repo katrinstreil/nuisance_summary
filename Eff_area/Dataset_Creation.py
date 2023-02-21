@@ -12,7 +12,7 @@ from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
 
 path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
-path_crab = '/home/katrin/Documents/Crab'
+#path_crab = '/home/katrin/Documents/Crab'
 
 from gammapy.modeling.models import SpectralModel
 from gammapy.modeling.models.cube import IRFModel

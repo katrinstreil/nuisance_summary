@@ -95,7 +95,7 @@ bias = 0.1
 resolution = 0.8
 
 
-N = 500
+N = 20
 shift = 0
 tilt = 0
 
@@ -103,13 +103,20 @@ save = True
 save_flux = True
 rnd = False
 
+resolution_rnds = np.linspace(1e-2,1, 20)
 
 
 for n in range(N):
     print(n)
-    resolution_rnd = np.random.uniform(resolution, 3*resolution, 1)
-    bias_rnd = np.random.uniform(-3*bias, -bias, 1)
+    #resolution_rnd = np.random.uniform(resolution, 3*resolution, 1)
+    #bias_rnd = np.random.uniform(-3*bias, -bias, 1)
+    bias_rnd = 0
+    resolution_rnd = resolution_rnds[n]
+    
     print(f"bias_rnd:, {bias_rnd}, resolution_rnd: {resolution_rnd}" )
+    
+    
+    
     sys_d_cor = sys_dataset(dataset_asimov= dataset_asimov,
                     shift = 0, 
                     tilt = 0,
@@ -120,7 +127,12 @@ for n in range(N):
     dataset_N = sys_d_cor.create_dataset_N()
     zero = 1e-2
     penalising_invcovmatrix = np.zeros((4, 4))
-    np.fill_diagonal(penalising_invcovmatrix, [1/zero**2, 1/zero**2, 1/bias_rnd**2, 1/resolution_rnd**2])
+    if bias_rnd == 0:
+        b_ = zero
+    else:
+        b_ = bias_rnd
+    
+    np.fill_diagonal(penalising_invcovmatrix, [1/zero**2, 1/zero**2, 1/b_**2, 1/resolution_rnd**2])
     dataset_N.penalising_invcovmatrix= penalising_invcovmatrix
     fit_cor = Fit(store_trace=False)
     if resolution_rnd >0:
