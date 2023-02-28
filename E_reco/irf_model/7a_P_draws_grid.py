@@ -110,17 +110,22 @@ grid = np.meshgrid(rnd_res, rnd_bias)
 
 
 for n in range(N* N):
-    print(n)
     resolution_rnd = grid[0].flatten()[n]
     bias_rnd = grid[1].flatten()[n]  
     
-    
-    print(f"bias_rnd:, {bias_rnd}, resolution_rnd: {resolution_rnd}" )
-    
-    
     infos = np.loadtxt("data/7a_gridd_P_draw_info.txt")
-    if ((resolution_rnd not in  infos) and (bias_rnd not in infos)):
-
+    fitting = True
+    if resolution_rnd in infos:
+        idx = np.where(infos[:,0] == resolution_rnd)[0][0]
+        if bias_rnd in infos[idx]:
+            print('both')
+            print(f"bias_rnd:, {bias_rnd}, resolution_rnd: {resolution_rnd}" )
+            fitting = False
+            
+    if fitting:
+        print("not found, fitting ...")
+        print(f"bias_rnd:, {bias_rnd}, resolution_rnd: {resolution_rnd}" )
+        
         sys_d_cor = sys_dataset(dataset_asimov= dataset_asimov,
                         shift = 0, 
                         tilt = 0,

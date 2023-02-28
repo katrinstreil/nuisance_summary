@@ -1,0 +1,65 @@
+components:
+-   name: Source
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.300604973685528
+            error: 0.08237283980462756
+            is_penalised: false
+        -   name: amplitude
+            value: 9.922061423222682e-13
+            unit: cm-2 s-1 TeV-1
+            error: 1.0079513943699025e-13
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 83.6306047271155
+            unit: deg
+            frozen: true
+            is_penalised: false
+        -   name: lat_0
+            value: 22.01814057644107
+            unit: deg
+            frozen: true
+            is_penalised: false
+        -   name: sigma
+            value: 0.020055985743757342
+            unit: deg
+            error: 0.012343609122986501
+            is_penalised: false
+        -   name: e
+            value: 0.0
+            is_penalised: false
+        -   name: phi
+            value: 0.0
+            unit: deg
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - rLPO4ffF
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 0.9999957935846752
+            error: 0.002112703902960387
+            is_penalised: false
+        -   name: tilt
+            value: 2.7082762817458373e-06
+            error: 0.002302946985766887
+            frozen: false
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+covariance: 1a_dataset_0.011111111111111113_0.001666666666666667_covariance.dat
