@@ -1,0 +1,79 @@
+components:
+-   name: Source
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3349138728782526
+            error: 0.11131637727942471
+            is_penalised: false
+        -   name: amplitude
+            value: 1.030026115358822e-12
+            unit: cm-2 s-1 TeV-1
+            error: 1.1075197866704334e-13
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 83.6306047271155
+            unit: deg
+            frozen: true
+            is_penalised: false
+        -   name: lat_0
+            value: 22.01814057644107
+            unit: deg
+            frozen: true
+            is_penalised: false
+        -   name: sigma
+            value: 0.020145048900767012
+            unit: deg
+            error: 0.013000727145943093
+            is_penalised: false
+        -   name: e
+            value: 0.0
+            is_penalised: false
+        -   name: phi
+            value: 0.0
+            unit: deg
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - Qk_bwc09
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0000623332756022
+            error: 0.002068333875575499
+            is_penalised: false
+        -   name: tilt
+            value: 8.734074648007921e-05
+            error: 0.001966216419335946
+            frozen: false
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+-   name: Qk_bwc09-irf
+    type: IRFModels
+    datasets_names: Qk_bwc09
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -0.04000000581348651
+            error: 0.07564044311143041
+            is_penalised: true
+        -   name: resolution
+            value: 0.0
+            frozen: true
+            is_penalised: true
+covariance: 2_model_nui_0.1_sigma_0_covariance.dat
