@@ -9,10 +9,10 @@ from gammapy.modeling.models import (
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
 from gammapy.modeling.models import SpectralModel
-from gammapy.modeling.models.IRF import IRFModel, ERecoIRFModel, IRFModels
+from gammapy.modeling.models.IRF import IRFModel, ERecoIRFModel, IRFModels, EffAreaIRFModel
 
 import json
-with open("../config.json") as json_data_file:
+with open("/home/katrin/Documents/nuisance_summary/config.json") as json_data_file:
     config = json.load(json_data_file)
 
 path = config['local']["path"]
@@ -50,10 +50,14 @@ def load_dataset_N(dataset_empty, path):
     for m in models_load:
         if m.type=='irf':
             irf = IRFModels(e_reco_model = ERecoIRFModel(),
+                            eff_area_model = EffAreaIRFModel(),
                            datasets_names = dataset_read.name)
             for p in irf.parameters:
-                p.value = models_load.parameters[p.name].value
-                p.error = models_load.parameters[p.name].error     
+                try:
+                    p.value = models_load.parameters[p.name].value
+                    p.error = models_load.parameters[p.name].error     
+                except:
+                    print(p.name, "not found")
             models.append(irf)
     models.append(bkg)
     dataset_read.models = models
