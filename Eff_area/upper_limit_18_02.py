@@ -131,6 +131,21 @@ class upper_limit():
         #except:
         #    print("An exception occurred") 
         #    return float('nan'), float('nan'),float('nan')
+        
+    def likelihood_error_asymmetric (self) :
+        f, xnew = self.interpolate()
+        i_min = np.where(f(xnew) == f(xnew).min())
+        i_min = i_min[0]
+        i_error_neg = i_min[0]
+        i_error_pos = i_min[0]
+        while (f(xnew)[i_error_pos]< (f(xnew)[i_min]+1.)):
+            i_error_pos = i_error_pos +1
+        while (f(xnew)[i_error_neg]< (f(xnew)[i_min]+1.)):
+            i_error_neg = i_error_neg -1
+        if i_error_neg <0:
+            i_error_neg =0
+            print("Caution: Neg Error not found! Set to min value!")
+        return xnew[i_min],xnew[i_min] -  xnew[i_error_neg] ,  xnew[i_error_pos]- xnew[i_min]
 
     def plot_upper_limit(self, from_0 = False):
         fig , ax= plt.subplots(1,1)

@@ -4,6 +4,7 @@ from gammapy.modeling.models import (
     FoVBackgroundModel,
     PowerLawSpectralModel,
     SkyModel,
+    ExpCutoffPowerLawSpectralModel
     )
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset

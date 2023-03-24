@@ -20,13 +20,19 @@ path_crab = config['local']["path_crab"]
 figformat = config['figformat']
 source = 'Crab'
 
-def create_asimov():
+def create_asimov(cutoff = False):
     models = Models.read(f"{path_crab}/standard_model.yml")
     dataset_asimov = MapDataset.read(f'{path}/{source}/stacked.fits')
     dataset_asimov = dataset_asimov.downsample(4)
-    model_spectrum  = PowerLawSpectralModel(
-        index=2.3,
-        amplitude="1e-12 TeV-1 cm-2 s-1",    )
+    if cutoff:
+        model_spectrum = ExpCutoffPowerLawSpectralModel(
+                index=2.3,
+                amplitude="1e-12 TeV-1 cm-2 s-1",
+                lambda_ = "0.1 TeV-1")
+    else:
+        model_spectrum  = PowerLawSpectralModel(
+                index=2.3,
+                amplitude="1e-12 TeV-1 cm-2 s-1",    )
     source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                            spectral_model = model_spectrum,
                            name = "Source")    
@@ -40,7 +46,7 @@ def create_asimov():
 
 
 def load_dataset_N(dataset_empty, path):
-    models_load =  Models.read(path)
+    models_load =  Models.read(path).copy()
     models = Models(models_load["Source"].copy())
     dataset_read = dataset_empty.copy()
     bkg = FoVBackgroundModel( dataset_name = dataset_read.name)
