@@ -1,10 +1,13 @@
 import numpy as np
+import operator
 from gammapy.modeling.models import (
     Models, 
     FoVBackgroundModel,
     PowerLawSpectralModel,
     SkyModel,
-    ExpCutoffPowerLawSpectralModel
+    ExpCutoffPowerLawSpectralModel,
+    GaussianSpectralModel,
+    CompoundSpectralModel
     )
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
@@ -12,18 +15,19 @@ from gammapy.datasets import MapDataset
 #path_crab = '/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/nuisance_summary/Crab'
 path_crab = '/home/katrin/Documents/Crab'
 from gammapy.modeling.models import SpectralModel
-from gammapy.modeling.models.IRF import IRFModel, ERecoIRFModel, IRFModels, EffAreaIRFModel
+from gammapy.modeling.models.IRF import ERecoIRFModel, IRFModels, EffAreaIRFModel #,IRFModel
 
 class sys_dataset():
     def __init__(self, 
-                 dataset_asimov,
-                 shift,
-                 tilt,
-                 bias,
-                 resolution,
-                 rnd,
-                 e_reco_creation,
-                 cutoff = False):
+                 dataset_asimov=None,
+                 shift=0,
+                 tilt=0,
+                 bias=0,
+                 resolution=0,
+                 rnd=False,
+                 e_reco_creation=10,
+                 cutoff = False,
+                 gun = False):
         self.dataset_asimov = dataset_asimov
         self.shift = shift
         self.tilt = tilt
@@ -32,32 +36,11 @@ class sys_dataset():
         self.rnd = rnd
         self.e_reco_creation = e_reco_creation
         self.cutoff = cutoff
+        self.gun = gun
         
-    def set_model(self):
-        models = Models.read(f"{path_crab}/standard_model.yml").copy()
-        if self.cutoff:
-            model_spectrum = ExpCutoffPowerLawSpectralModel(
-                index=2.3,
-                amplitude="1e-12 TeV-1 cm-2 s-1",
-                lambda_ = "0.1 TeV-1")
-        else:
-            model_spectrum  = PowerLawSpectralModel(
-                index=2.3,
-                amplitude="1e-12 TeV-1 cm-2 s-1",    )
-        source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
-                               spectral_model = model_spectrum,
-                               name = "Source")    
-        source_model.parameters['lon_0'].frozen = True
-        source_model.parameters['lat_0'].frozen = True
-        models = Models(source_model)
-        
-        
-        return models
-    
-    
     def create_dataset(self):
         dataset = self.dataset_asimov.copy()
-        models = self.set_model()
+        models = Models(self.dataset_asimov.models.copy())
         #bkg model
         bkg_model = FoVBackgroundModel(dataset_name=dataset.name)
         bkg_model.parameters['tilt'].frozen  = False
@@ -88,7 +71,7 @@ class sys_dataset():
         dataset.edisp = dataset.npred_edisp()
 
         # set models without the IRF model
-        models = self.set_model()
+        models = Models(self.dataset_asimov.models.copy())
         models.append(bkg_model)
         dataset.models = models
         
@@ -107,7 +90,7 @@ class sys_dataset():
                 mask_safe=dataset_.mask_safe.copy(),
                 gti=dataset_.gti.copy(),
                 name='dataset N')
-        models = self.set_model()
+        models = Models(self.dataset_asimov.models.copy())
         #bkg model
         bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name)
         bkg_model.parameters['tilt'].frozen  = False

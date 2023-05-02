@@ -1,15 +1,19 @@
 import numpy as np
+import operator
 from gammapy.modeling.models import (
     Models, 
     FoVBackgroundModel,
     PowerLawSpectralModel,
     SkyModel,
-    ExpCutoffPowerLawSpectralModel
+    ExpCutoffPowerLawSpectralModel,
+    GaussianSpectralModel,
+    CompoundSpectralModel
     )
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
 from gammapy.modeling.models import SpectralModel
-from gammapy.modeling.models.IRF import IRFModel, ERecoIRFModel, IRFModels, EffAreaIRFModel
+from gammapy.modeling.models.IRF import ERecoIRFModel, IRFModels, EffAreaIRFModel #,IRFModel
+import Dataset_Creation
 
 import json
 with open("/home/katrin/Documents/nuisance_summary/config.json") as json_data_file:
@@ -20,23 +24,11 @@ path_crab = config['local']["path_crab"]
 figformat = config['figformat']
 source = 'Crab'
 
-def create_asimov(cutoff = False):
+def create_asimov(cutoff = False, gun = False):
     models = Models.read(f"{path_crab}/standard_model.yml")
     dataset_asimov = MapDataset.read(f'{path}/{source}/stacked.fits')
     dataset_asimov = dataset_asimov.downsample(4)
-    if cutoff:
-        model_spectrum = ExpCutoffPowerLawSpectralModel(
-                index=2.3,
-                amplitude="1e-12 TeV-1 cm-2 s-1",
-                lambda_ = "0.1 TeV-1")
-    else:
-        model_spectrum  = PowerLawSpectralModel(
-                index=2.3,
-                amplitude="1e-12 TeV-1 cm-2 s-1",    )
-    source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
-                           spectral_model = model_spectrum,
-                           name = "Source")    
-    models = Models(source_model)
+    models = set_model(cutoff = cutoff, gun = gun)
     bkg_model = FoVBackgroundModel(dataset_name=dataset_asimov.name)
     bkg_model.parameters['tilt'].frozen  = False
     models.append(bkg_model)
@@ -44,6 +36,36 @@ def create_asimov(cutoff = False):
     dataset_asimov.counts = dataset_asimov.npred()
     return dataset_asimov
 
+def set_model(cutoff = False, gun = False):
+    models = Models.read(f"{path_crab}/standard_model.yml").copy()
+    if cutoff:
+        model_spectrum = ExpCutoffPowerLawSpectralModel(
+            index=2.3,
+            amplitude="1e-12 TeV-1 cm-2 s-1",
+            lambda_ = "0.1 TeV-1")
+    else:
+        model_spectrum  = PowerLawSpectralModel(
+            index=2.3,
+            amplitude="1e-12 TeV-1 cm-2 s-1",    )
+    if gun:
+        pwl = PowerLawSpectralModel(
+            index=2.3, 
+            amplitude="1e-12 cm-2 s-1 TeV-1", 
+            reference="1 TeV")
+        gaus = GaussianSpectralModel(norm="1e-2 cm-2 s-1", 
+                                 mean="2 TeV", 
+                                 sigma="0.2 TeV")
+        model_spectrum = CompoundSpectralModel(pwl, gaus, operator.add)
+
+    source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
+                           spectral_model = model_spectrum,
+                           name = "Source")    
+    source_model.parameters['lon_0'].frozen = True
+    source_model.parameters['lat_0'].frozen = True
+    models = Models(source_model)
+
+
+    return models
 
 def load_dataset_N(dataset_empty, path):
     models_load =  Models.read(path).copy()
