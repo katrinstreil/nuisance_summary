@@ -2,20 +2,28 @@ components:
 -   name: Source
     type: SkyModel
     spectral:
-        type: PowerLawSpectralModel
+        type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.301434252292477
-            error: 0.06340496401938163
+            value: 2.3096084362399
+            error: 0.15745030796911547
             is_penalised: false
         -   name: amplitude
-            value: 1.0022810650266331e-12
+            value: 1.003115182081057e-12
             unit: cm-2 s-1 TeV-1
-            error: 9.236434952195404e-14
+            error: 1.2284901546217165e-13
             is_penalised: false
         -   name: reference
             value: 1.0
             unit: TeV
+            is_penalised: false
+        -   name: lambda_
+            value: 0.09827705938009294
+            unit: TeV-1
+            error: 0.04721254928685928
+            is_penalised: false
+        -   name: alpha
+            value: 1.0
             is_penalised: false
     spatial:
         type: GaussianSpatialModel
@@ -32,9 +40,9 @@ components:
             frozen: true
             is_penalised: false
         -   name: sigma
-            value: 0.019176938549909563
+            value: 0.0191686499133889
             unit: deg
-            error: 0.011826978191063478
+            error: 0.015641046144593964
             is_penalised: false
         -   name: e
             value: 0.0
@@ -45,17 +53,17 @@ components:
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - l_hAj28Z
+    - 9JX-1NIJ
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.0000032624813013
-            error: 0.002066933483770286
+            value: 1.000002189458687
+            error: 0.002066519219148667
             is_penalised: false
         -   name: tilt
-            value: 3.7672051126331288e-06
-            error: 0.001961977708738984
+            value: 2.4340636854444323e-06
+            error: 0.001961570312521184
             frozen: false
             is_penalised: false
         -   name: reference
