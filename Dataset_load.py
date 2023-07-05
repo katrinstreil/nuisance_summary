@@ -51,14 +51,10 @@ def set_model(cutoff = False, gun = False):
             index=2.3,
             amplitude="1e-12 TeV-1 cm-2 s-1",    )
     if gun:
-        pwl = PowerLawSpectralModel(
-            index=2.3, 
-            amplitude="1e-12 cm-2 s-1 TeV-1", 
-            reference="1 TeV")
         gaus = GaussianSpectralModel(norm="1e-2 cm-2 s-1", 
                                  mean="2 TeV", 
                                  sigma="0.2 TeV")
-        model_spectrum = CompoundSpectralModel(pwl, gaus, operator.add)
+        model_spectrum = CompoundSpectralModel(model_spectrum, gaus, operator.add)
 
     source_model = SkyModel(spatial_model = models['main source'].spatial_model ,
                            spectral_model = model_spectrum,
