@@ -14,13 +14,16 @@ from gammapy.datasets import MapDataset
 from gammapy.modeling.models import SpectralModel
 from gammapy.modeling.models.IRF import ERecoIRFModel, IRFModels, EffAreaIRFModel #,IRFModel
 import Dataset_Creation
-
 import json
-with open("/home/katrin/Documents/nuisance_summary/config.json") as json_data_file:
-    config = json.load(json_data_file)
-
-path = config['local']["path"]
-path_crab = config['local']["path_crab"]
+import os 
+path = os.getcwd()
+substring = 'nuisance_summary'
+path = path[:path.find(substring)] + substring +'/' 
+with open(path+'config.json') as json_file:
+    config = json.load(json_file)
+case = config['case']
+path = config[case]["path"]
+path_crab = config[case]["path_crab"]
 figformat = config['figformat']
 source = 'Crab'
 

@@ -7,13 +7,13 @@ components:
             type: PowerLawSpectralModel
             parameters:
             -   name: index
-                value: 2.3030451942219186
-                error: 0.07314700779755631
+                value: 2.303045934798816
+                error: 0.07276513487440496
                 is_penalised: false
             -   name: amplitude
-                value: 1.0072085658672448e-12
+                value: 1.0072000956007064e-12
                 unit: cm-2 s-1 TeV-1
-                error: 1.5441774283861998e-13
+                error: 1.5099220207025102e-13
                 is_penalised: false
             -   name: reference
                 value: 1.0
@@ -23,19 +23,19 @@ components:
             type: GaussianSpectralModel
             parameters:
             -   name: amplitude_
-                value: 9.962311682729138e-13
+                value: 9.964383823437495e-13
                 unit: cm-2 s-1
-                error: 1.1330030968959068e-13
+                error: 1.1086339016535696e-13
                 is_penalised: false
             -   name: mean
-                value: 2.0004353936900343
+                value: 2.000060905098268
                 unit: TeV
-                error: 0.06863640345247121
+                error: 0.06834314367437608
                 is_penalised: false
             -   name: sigma
-                value: 0.19964347216590161
+                value: 0.19980936583203793
                 unit: TeV
-                error: 0.08985162046872343
+                error: 0.06839210216311536
                 is_penalised: false
         operator: add
     spatial:
@@ -53,9 +53,9 @@ components:
             frozen: true
             is_penalised: false
         -   name: sigma
-            value: 0.019173041305332338
+            value: 0.019173041870196868
             unit: deg
-            error: 0.0067436744271253315
+            error: 0.006744463499213505
             is_penalised: false
         -   name: e
             value: 0.0
@@ -66,71 +66,21 @@ components:
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - dataset N
+    - 7_728lHU
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.000002671498829
-            error: 0.0020668663505624286
+            value: 1.0000016726293806
+            error: 0.0020668634323964727
             is_penalised: false
         -   name: tilt
-            value: 3.095961144145826e-06
-            error: 0.0019617830756336586
+            value: 2.3438587275260837e-06
+            error: 0.0019617794591796998
             frozen: false
             is_penalised: false
         -   name: reference
             value: 1.0
             unit: TeV
-            is_penalised: false
--   name: dataset N-irf
-    type: IRFModels
-    datasets_names: dataset N
-    e_reco_model:
-        type: ERecoIRFModel
-        parameters:
-        -   name: bias
-            value: 0.0
-            frozen: true
-            is_penalised: true
-        -   name: resolution
-            value: -0.00048503479561703327
-            error: 0.07005873287670139
-            is_penalised: true
-    eff_area_model:
-        type: EffAreaIRFModel
-        parameters:
-        -   name: norm_nuisance
-            value: 0.0
-            unit: ''
-            error: 0.0
-            min: .nan
-            max: .nan
-            frozen: true
-            interp: log
-            scale_method: scale10
-            is_norm: true
-            is_penalised: true
-        -   name: tilt_nuisance
-            value: 0.0
-            unit: ''
-            error: 0.0
-            min: .nan
-            max: .nan
-            frozen: true
-            interp: lin
-            scale_method: scale10
-            is_norm: false
-            is_penalised: true
-        -   name: reference
-            value: 1.0
-            unit: TeV
-            error: 0.0
-            min: .nan
-            max: .nan
-            frozen: true
-            interp: lin
-            scale_method: scale10
-            is_norm: false
             is_penalised: false
 covariance: 2_model_bias_0_0.0_simga_0.2_covariance.dat
