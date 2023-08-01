@@ -1,0 +1,55 @@
+components:
+-   name: ZH5SBO2i
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3007202013072914
+            error: .nan
+            is_penalised: false
+        -   name: amplitude
+            value: 0.0
+            unit: cm-2 s-1 TeV-1
+            frozen: true
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6799977863821
+            unit: deg
+            error: .nan
+            min: 328.67999999999995
+            max: 330.67999999999995
+            is_penalised: false
+        -   name: lat_0
+            value: -30.22166553522396
+            unit: deg
+            error: .nan
+            min: -31.221666666666664
+            max: -29.221666666666664
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - PdDPP31w
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.2695653991645588
+            error: .nan
+            is_penalised: false
+        -   name: tilt
+            value: 2.0040557657637622e-05
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+covariance: 8_model_H0_0.0_tilt_0_livetime_100.0_covariance.dat

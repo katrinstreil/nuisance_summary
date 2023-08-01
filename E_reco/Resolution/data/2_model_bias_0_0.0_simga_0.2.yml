@@ -7,32 +7,22 @@ components:
             type: ExpCutoffPowerLawSpectralModel
             parameters:
             -   name: index
-<<<<<<< HEAD
-                value: 2.303045934798816
-                error: 0.07276513487440496
+                value: 2.3003393544150375
+                error: 0.07805478170825328
                 is_penalised: false
             -   name: amplitude
-                value: 1.0072000956007064e-12
+                value: 1.0020972530868932e-12
                 unit: cm-2 s-1 TeV-1
-                error: 1.5099220207025102e-13
-=======
-                value: 2.2999219644450077
-                error: 0.06799432091361324
-                is_penalised: false
-            -   name: amplitude
-                value: 1.000161545467152e-12
-                unit: cm-2 s-1 TeV-1
-                error: 4.512893946884294e-14
->>>>>>> effc9ecb415ad5502c014525ce5a3d3b12e42998
+                error: 5.001073416598957e-14
                 is_penalised: false
             -   name: reference
                 value: 1.0
                 unit: TeV
                 is_penalised: false
             -   name: lambda_
-                value: 0.0999637693129434
+                value: 0.0996711659983735
                 unit: TeV-1
-                error: 0.014683598431341921
+                error: 0.015945718221029085
                 is_penalised: false
             -   name: alpha
                 value: 1.0
@@ -41,35 +31,19 @@ components:
             type: GaussianSpectralModel
             parameters:
             -   name: amplitude_
-<<<<<<< HEAD
-                value: 9.964383823437495e-13
+                value: 9.999810239162041e-13
                 unit: cm-2 s-1
-                error: 1.1086339016535696e-13
+                error: 3.2994143451959244e-14
                 is_penalised: false
             -   name: mean
-                value: 2.000060905098268
+                value: 5.001857204456479
                 unit: TeV
-                error: 0.06834314367437608
+                error: 0.7991785982080695
                 is_penalised: false
             -   name: sigma
-                value: 0.19980936583203793
+                value: 0.1983578977563818
                 unit: TeV
-                error: 0.06839210216311536
-=======
-                value: 9.999997175349266e-13
-                unit: cm-2 s-1
-                error: 2.8467655362712896e-14
-                is_penalised: false
-            -   name: mean
-                value: 5.001043571309499
-                unit: TeV
-                error: 1.1550632435647974
-                is_penalised: false
-            -   name: sigma
-                value: 0.19903646959050758
-                unit: TeV
-                error: 0.6999944006576992
->>>>>>> effc9ecb415ad5502c014525ce5a3d3b12e42998
+                error: 0.7630990307672926
                 is_penalised: false
         operator: add
     spatial:
@@ -87,15 +61,9 @@ components:
             frozen: true
             is_penalised: false
         -   name: sigma
-<<<<<<< HEAD
-            value: 0.019173041870196868
+            value: 0.01917167882297176
             unit: deg
-            error: 0.006744463499213505
-=======
-            value: 0.01917372408015436
-            unit: deg
-            error: 0.002077074142905387
->>>>>>> effc9ecb415ad5502c014525ce5a3d3b12e42998
+            error: 0.0022126557593498256
             is_penalised: false
         -   name: e
             value: 0.0
@@ -106,34 +74,23 @@ components:
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - 7_728lHU
+    - dataset N
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-<<<<<<< HEAD
-            value: 1.0000016726293806
-            error: 0.0020668634323964727
+            value: 1.0000033793853795
+            error: 0.000731510077117684
             is_penalised: false
         -   name: tilt
-            value: 2.3438587275260837e-06
-            error: 0.0019617794591796998
-=======
-            value: 1.0000062302945547
-            error: 0.0006853779691048615
-            is_penalised: false
-        -   name: tilt
-            value: 7.014180228910167e-06
-            error: 0.0006517236703047528
->>>>>>> effc9ecb415ad5502c014525ce5a3d3b12e42998
+            value: 1.1803852036112217e-06
+            error: 0.0006955915295512552
             frozen: false
             is_penalised: false
         -   name: reference
             value: 1.0
             unit: TeV
             is_penalised: false
-<<<<<<< HEAD
-=======
 -   name: dataset N-irf
     type: IRFModels
     datasets_names: dataset N
@@ -141,12 +98,12 @@ components:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -0.00016909517419345645
-            error: 0.17839268022447302
+            value: 0.0
+            frozen: true
             is_penalised: true
         -   name: resolution
-            value: -0.00040663139543774664
-            error: 0.0412488572401881
+            value: -3.263470065097262e-05
+            error: 0.027330878331978233
             is_penalised: true
     eff_area_model:
         type: EffAreaIRFModel
@@ -184,5 +141,4 @@ components:
             scale_method: scale10
             is_norm: false
             is_penalised: false
->>>>>>> effc9ecb415ad5502c014525ce5a3d3b12e42998
 covariance: 2_model_bias_0_0.0_simga_0.2_covariance.dat

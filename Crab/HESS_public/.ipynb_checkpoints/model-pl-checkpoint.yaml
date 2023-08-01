@@ -1,0 +1,31 @@
+components:
+-   name: GPL
+    type: SkyModel
+    spectral:
+        type: GaussianSpectralModel
+        parameters:
+        -   name: amplitude_
+            value: 1.0e-12
+            unit: cm-2 s-1
+            is_penalised: false
+        -   name: mean
+            value: 5.0
+            unit: TeV
+            is_penalised: false
+        -   name: sigma
+            value: 0.2
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 83.63
+            unit: deg
+            is_penalised: false
+        -   name: lat_0
+            value: 22.01
+            unit: deg
+            is_penalised: false
+covariance: model-pl_covariance.dat
