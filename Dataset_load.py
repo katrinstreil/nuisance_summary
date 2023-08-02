@@ -16,30 +16,42 @@ from gammapy.datasets import MapDataset
 from gammapy.modeling.models import SpectralModel
 from gammapy.modeling.models.IRF import ERecoIRFModel, IRFModels, EffAreaIRFModel #,IRFModel
 import Dataset_Creation
-import json
-import os 
-path = os.getcwd()
-substring = 'nuisance_summary'
-path = path[:path.find(substring)] + substring +'/' 
-with open(path+'config.json') as json_file:
-    config = json.load(json_file)
+
+def load_config():
+    import json
+    import os 
+    path = os.getcwd()
+    substring = 'nuisance_summary'
+    path = path[:path.find(substring)] + substring +'/' 
+    with open(path+'config.json') as json_file:
+        config = json.load(json_file)
+    return config
+
+config = load_config()
 case = config['case']
 path = config[case]["path"]
 path_crab = config[case]["path_crab"]
 figformat = config['figformat']
 path_pks = config[case]["path_pks"]
+path_pksflare = config[case]["path_pksflare"]
 
-
+def get_path(source):
+    if source == "Crab":
+        return  path_crab
+    if source == "PKS":
+        return  path_pks
+    if source == "PKSflare":
+        return path_pksflare
+    
 def create_asimov(model, source , parameters=None, livetime = None ):
-    models = set_model(source, model)
-      
+    path =  get_path(source)
+    models = set_model(path, model)
+    
     if livetime is not None:
         model = livetime
-    if source == "Crab":
-        dataset = MapDataset.read(f'{path_crab}/HESS_public/dataset-simulated-{model}.fits.gz')
-    if source == "PKS":
-        dataset = MapDataset.read(f'{path_pks}/HESS_public/dataset-simulated-{model}.fits.gz')
-        
+    dataset = MapDataset.read(f'{path}/HESS_public/dataset-simulated-{model}.fits.gz')
+    print("loaded dataset:")
+    print(f'{path}/HESS_public/dataset-simulated-{model}.fits.gz')
     if parameters is not None:
         for p in parameters:
             models.parameters[p.name].value = p.value
@@ -53,11 +65,8 @@ def create_asimov(model, source , parameters=None, livetime = None ):
     return dataset
     
 
-def set_model(source, model):
-    if source == "Crab":
-        return Models.read(f'{path_crab}/HESS_public/model-{model}.yaml').copy()
-    if source == "PKS":
-        return Models.read(f'{path_pks}/HESS_public/model-{model}.yaml').copy()
+def set_model(path, model):
+    return Models.read(f'{path}/HESS_public/model-{model}.yaml').copy()
 
 def load_dataset_N(dataset_empty, path, bkg_sys = False):
     models_load =  Models.read(path).copy()
