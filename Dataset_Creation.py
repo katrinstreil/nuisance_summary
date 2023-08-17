@@ -7,7 +7,10 @@ from gammapy.modeling.models import (
     SkyModel,
     ExpCutoffPowerLawSpectralModel,
     GaussianSpectralModel,
-    CompoundSpectralModel
+    CompoundSpectralModel,
+    CompoundNormSpectralModel,
+    PowerLawNormSpectralModel,
+    PowerLawNormPenSpectralModel
     )
 from gammapy.modeling import Parameter, Parameters
 from gammapy.datasets import MapDataset
@@ -24,6 +27,8 @@ class sys_dataset():
                  tilt=0,
                  bias=0,
                  resolution=0,
+                 bkg_norm=None, 
+                 bkg_tilt=None,
                  rnd=False,
                  e_reco_creation=10,
                  cutoff = False,
@@ -33,6 +38,8 @@ class sys_dataset():
         self.tilt = tilt
         self.bias = bias
         self.resolution = resolution
+        self.bkg_norm = bkg_norm
+        self.bkg_tilt = bkg_tilt
         self.rnd = rnd
         self.e_reco_creation = e_reco_creation
         self.cutoff = cutoff
@@ -72,7 +79,8 @@ class sys_dataset():
 
         # set models without the IRF model
         models = Models(self.dataset_asimov.models.copy())
-        models.append(bkg_model)
+        models.append(FoVBackgroundModel(dataset_name=dataset.name))
+        models.parameters['tilt'].frozen = False
         dataset.models = models
         
         return dataset
@@ -92,7 +100,23 @@ class sys_dataset():
                 name='dataset N')
         models = Models(self.dataset_asimov.models.copy())
         #bkg model
-        bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name)
+        if self.bkg_norm is not None or self.bkg_tilt is not None:
+            import operator
+            model2 = PowerLawNormPenSpectralModel()
+            compoundnorm  = CompoundNormSpectralModel(model1  = PowerLawNormSpectralModel(),
+                                                     model2 = model2,
+                                                     operator =  operator.mul)
+            
+            bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name,
+                                    spectral_model = compoundnorm)
+            if self.bkg_norm is not None: 
+                bkg_model.parameters['norm_nuisance'].value  = self.bkg_norm
+            if self.bkg_tilt is not None:
+                bkg_model.parameters['tilt_nuisance'].value  = self.bkg_tilt
+
+        else:
+            bkg_model = FoVBackgroundModel(dataset_name=dataset_N.name)
+            
         bkg_model.parameters['tilt'].frozen  = False
         models.append(bkg_model)
         #irf model

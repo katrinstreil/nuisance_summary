@@ -1,0 +1,107 @@
+components:
+-   name: aEaZD8Bs
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.284081238808901
+            error: 0.045521236165285674
+            is_penalised: false
+        -   name: amplitude
+            value: 9.343611576474767e-13
+            unit: cm-2 s-1 TeV-1
+            error: 1.1469437569149047e-13
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6799985020094
+            unit: deg
+            error: 0.0025930426630354437
+            min: 328.67999999999995
+            max: 330.67999999999995
+            is_penalised: false
+        -   name: lat_0
+            value: -30.221663744952636
+            unit: deg
+            error: 0.002239914170364547
+            min: -31.221666666666664
+            max: -29.221666666666664
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0000004190630518
+            error: 0.001565046826948004
+            is_penalised: false
+        -   name: tilt
+            value: 2.7540852333938544e-06
+            error: 0.0016903746824066452
+            frozen: false
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+-   name: dataset N-irf
+    type: IRFModels
+    datasets_names: dataset N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: 6.249997777258069e-45
+            error: 1.0000000000219102e-24
+            is_penalised: true
+        -   name: resolution
+            value: 6.249997777258069e-45
+            error: 1.0000000000219102e-24
+            is_penalised: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        parameters:
+        -   name: norm_nuisance
+            value: 1.2096419616724987e-05
+            unit: ''
+            error: 0.11000099111474317
+            min: .nan
+            max: .nan
+            frozen: false
+            interp: log
+            scale_method: scale10
+            is_norm: true
+            is_penalised: true
+        -   name: tilt_nuisance
+            value: 0.0
+            unit: ''
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: true
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: false
+covariance: 5_model_nui_covariance.dat

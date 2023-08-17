@@ -1,0 +1,63 @@
+components:
+-   name: TQLL36So
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3012881709929487
+            error: 0.07353367443029077
+            is_penalised: false
+        -   name: amplitude
+            value: 1.0289125759188007e-12
+            unit: cm-2 s-1 TeV-1
+            error: 5.698745558093512e-14
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+        -   name: lambda_
+            value: 0.02507032766683956
+            unit: TeV-1
+            error: 0.01639416539038112
+            is_penalised: false
+        -   name: alpha
+            value: 1.0
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6799940536916
+            unit: deg
+            error: 0.0027896758444882195
+            min: 328.67999999999995
+            max: 330.67999999999995
+            is_penalised: false
+        -   name: lat_0
+            value: -30.22166365515641
+            unit: deg
+            error: 0.0024084087903629334
+            min: -31.221666666666664
+            max: -29.221666666666664
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - S4WN7Hzj
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.000006537782094
+            error: 0.0015603984659725112
+            is_penalised: false
+        -   name: tilt
+            value: 0.0
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+covariance: 2_model_0.0_cutoff_40_covariance.dat

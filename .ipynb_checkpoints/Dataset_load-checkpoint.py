@@ -85,6 +85,8 @@ def load_dataset_N(dataset_empty, path, bkg_sys = False):
       
     else:
         bkg = FoVBackgroundModel( dataset_name = dataset_read.name)
+    models.append(bkg)
+        
     for p in bkg.parameters:
         p.value = models_load.parameters[p.name].value
         p.error = models_load.parameters[p.name].error    
@@ -103,7 +105,6 @@ def load_dataset_N(dataset_empty, path, bkg_sys = False):
                 except:
                     print(p.name, "not found")
             models.append(irf)
-    models.append(bkg)
     dataset_read.models = models
     return dataset_read
 

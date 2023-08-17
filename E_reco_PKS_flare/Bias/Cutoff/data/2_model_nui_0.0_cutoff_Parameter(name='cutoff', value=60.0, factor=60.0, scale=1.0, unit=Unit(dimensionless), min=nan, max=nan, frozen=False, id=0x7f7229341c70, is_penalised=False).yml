@@ -1,0 +1,117 @@
+components:
+-   name: TQLL36So
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3000000000003165
+            error: 0.19559953935427468
+            is_penalised: false
+        -   name: amplitude
+            value: 1.0275000000002302e-12
+            unit: cm-2 s-1 TeV-1
+            error: 6.039399204764971e-14
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+        -   name: lambda_
+            value: 0.0166666666666858
+            unit: TeV-1
+            error: 0.014467972351990557
+            is_penalised: false
+        -   name: alpha
+            value: 1.0
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            error: 0.0027368332988842877
+            min: 328.67999999999995
+            max: 330.67999999999995
+            is_penalised: false
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            error: 0.002356811216930182
+            min: -31.221666666666664
+            max: -29.221666666666664
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0000000000000016
+            error: 0.0015651299742163265
+            is_penalised: false
+        -   name: tilt
+            value: 1.331987453325524e-15
+            error: 0.0016936612766051467
+            frozen: false
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+-   name: dataset N-irf
+    type: IRFModels
+    datasets_names: dataset N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -1.8562777436428395e-13
+            error: 0.09394496354702349
+            is_penalised: true
+        -   name: resolution
+            value: 0.0
+            error: 0.17794211676895766
+            is_penalised: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        parameters:
+        -   name: norm_nuisance
+            value: 0.0
+            unit: ''
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: log
+            scale_method: scale10
+            is_norm: true
+            is_penalised: true
+        -   name: tilt_nuisance
+            value: 0.0
+            unit: ''
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: true
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: false
+covariance: 2_model_nui_0.0_cutoff_Parameter(name='cutoff', value=60.0, factor=60.0,
+    scale=1.0, unit=Unit(dimensionless), min=nan, max=nan, frozen=False, id=0x7f7229341c70,
+    is_penalised=False)_covariance.dat
