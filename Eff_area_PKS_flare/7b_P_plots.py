@@ -26,16 +26,10 @@ from gammapy.modeling.models import Models
 # %%
 from matplotlib import rc
 
-import Dataset_load
-from Dataset_Creation import sys_dataset
-
-# sys.path.append(
-#    "/home/hpc/caph/mppi045h/3D_analysis/N_parameters_in_L/syserror_3d_bkgmodel/4-Fitting_nuisance_and_model_parameters"
-# )
-# from my_dataset_maps_20 import MapDatasetNuisance
-# from MapDatasetNuisanceE import MapDatasetNuisanceE
-# from  my_fit_20 import Fit
 sys.path.append("../")
+import Dataset_load  # noqa: E402
+from Dataset_Creation import sys_dataset  # noqa: E402
+
 rc("font", **{"family": "serif", "serif": ["Computer Modern"]})
 rc("text", usetex=True)
 pyximport.install()
