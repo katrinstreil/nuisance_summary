@@ -5,8 +5,8 @@ components:
         type: PowerLawSpectralModel
         parameters:
         -   name: index
-            value: -4.3098501917163
-            error: 0.22711581593967145
+            value: 2.3
+            frozen: true
             is_penalised: false
         -   name: amplitude
             value: 1.0e-24
@@ -22,18 +22,18 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.68042386818894
+            value: 329.67999999999995
             unit: deg
-            error: 0.036088789316238976
             min: 328.67999999999995
             max: 330.67999999999995
+            frozen: true
             is_penalised: false
         -   name: lat_0
-            value: -30.221707633724748
+            value: -30.221666666666664
             unit: deg
-            error: 0.031984875252221705
             min: -31.221666666666664
             max: -29.221666666666664
+            frozen: true
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
@@ -44,12 +44,12 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 1.0032308531784264
-                error: 0.10031769371916101
+                value: 1.0015564192227355
+                error: 0.09996648988332539
                 is_penalised: false
             -   name: tilt
-                value: -0.000706297169801383
-                error: 0.019455256748398403
+                value: -0.0003903421367296966
+                error: 0.01945530405247096
                 frozen: false
                 is_penalised: false
             -   name: reference
@@ -60,12 +60,12 @@ components:
             type: PowerLawNormPenSpectralModel
             parameters:
             -   name: norm_nuisance
-                value: -4.421084722083324e-05
-                error: 0.0999339453700094
+                value: 0.0015537856119423525
+                error: 0.09990981509156535
                 is_penalised: true
             -   name: tilt_nuisance
-                value: -1.8527507968520233e-06
-                error: 0.019142892378377598
+                value: -0.00036995889889022065
+                error: 0.019142975732925116
                 frozen: false
                 is_penalised: true
             -   name: reference
@@ -80,20 +80,20 @@ components:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -0.06667882979088037
-            error: 0.059431122757236075
+            value: 1.7504988867629494e-12
+            error: 0.09999999999196472
             is_penalised: true
         -   name: resolution
-            value: 1.1418318362721636e-06
-            error: 0.06836887604387573
+            value: 0.0
+            error: 0.0999999999927652
             is_penalised: true
     eff_area_model:
         type: EffAreaIRFModel
         parameters:
         -   name: norm_nuisance
-            value: 0.0008044358481534455
+            value: 1.7504988867629494e-12
             unit: ''
-            error: 0.09979074307984634
+            error: 0.09999999999196472
             min: .nan
             max: .nan
             frozen: false
@@ -102,9 +102,9 @@ components:
             is_norm: true
             is_penalised: true
         -   name: tilt_nuisance
-            value: -2.591311691144128e-05
+            value: -1.9144550169504583e-13
             unit: ''
-            error: 0.01498761617206706
+            error: 0.014999999999600179
             min: .nan
             max: .nan
             frozen: false

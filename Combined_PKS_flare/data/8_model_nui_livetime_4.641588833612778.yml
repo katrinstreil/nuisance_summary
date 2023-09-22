@@ -1,17 +1,17 @@
 components:
--   name: 0kvMLojh
+-   name: aEaZD8Bs
     type: SkyModel
     spectral:
         type: PowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.3013302818976626
-            error: 0.21112615916561325
+            value: 2.3
+            error: 0.2307473341562052
             is_penalised: false
         -   name: amplitude
-            value: 1.0292532034959114e-12
+            value: 1.0e-12
             unit: cm-2 s-1 TeV-1
-            error: 2.579567665068975e-13
+            error: 2.558846511112878e-13
             is_penalised: false
         -   name: reference
             value: 1.0
@@ -22,33 +22,35 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6799982701513
+            value: 329.67999999999995
             unit: deg
-            error: 0.01212255890932248
+            error: 0.012286424062465258
             min: 328.67999999999995
             max: 330.67999999999995
             is_penalised: false
         -   name: lat_0
-            value: -30.221665960588503
+            value: -30.221666666666664
             unit: deg
-            error: 0.010403855845997177
+            error: 0.010603048980682756
             min: -31.221666666666664
             max: -29.221666666666664
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - lI8uVXRQ
+    - dataset N
     spectral:
         type: CompoundNormSpectralModel
         model1:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 1.0000038468649706
-                error: 0.11661015247908393
+                value: 1.0
+                error: 0.10026005006027076
                 is_penalised: false
             -   name: tilt
-                value: 3.152191362916254e-19
+                value: 0.0
+                error: 0.021147651589931638
+                frozen: false
                 is_penalised: false
             -   name: reference
                 value: 1.0
@@ -58,12 +60,12 @@ components:
             type: PowerLawNormPenSpectralModel
             parameters:
             -   name: norm_nuisance
-                value: -8.593426950547955e-07
-                error: 0.11640241973434949
+                value: 0.0
+                error: 0.09999661098086166
                 is_penalised: true
             -   name: tilt_nuisance
-                value: 1.4765853192514892e-07
-                error: 0.007303114988141248
+                value: 0.0
+                error: 0.0196869892088565
                 frozen: false
                 is_penalised: true
             -   name: reference
@@ -71,27 +73,27 @@ components:
                 unit: TeV
                 is_penalised: false
         operator: mul
--   name: lI8uVXRQ-irf
+-   name: dataset N-irf
     type: IRFModels
-    datasets_names: lI8uVXRQ
+    datasets_names: dataset N
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: 2.602211566827078e-07
-            error: 3.352503699175638e-05
+            value: 0.0
+            error: 0.0945432714797155
             is_penalised: true
         -   name: resolution
-            value: 9.491640651876202e-06
-            error: 0.09952056271827323
+            value: 0.0
+            error: 0.09944241184595638
             is_penalised: true
     eff_area_model:
         type: EffAreaIRFModel
         parameters:
         -   name: norm_nuisance
-            value: -7.250420406146118e-07
+            value: 0.0
             unit: ''
-            error: 0.10042852287794422
+            error: 0.1005769422523138
             min: .nan
             max: .nan
             frozen: false
@@ -100,9 +102,9 @@ components:
             is_norm: true
             is_penalised: true
         -   name: tilt_nuisance
-            value: 3.577790743255862e-08
+            value: 0.0
             unit: ''
-            error: 0.0149953622089235
+            error: 0.014995301485889536
             min: .nan
             max: .nan
             frozen: false

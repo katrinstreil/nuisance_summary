@@ -1,17 +1,17 @@
 components:
--   name: PnAxJPZr
+-   name: aEaZD8Bs
     type: SkyModel
     spectral:
         type: PowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.3013668666380314
-            error: 2.950557588826015
+            value: 2.3000000000066882
+            error: 0.46375858528682185
             is_penalised: false
         -   name: amplitude
-            value: 1.0292335768717628e-12
+            value: 1.000000000009731e-12
             unit: cm-2 s-1 TeV-1
-            error: 4.857208204583166e-13
+            error: 5.124870055079316e-13
             is_penalised: false
         -   name: reference
             value: 1.0
@@ -22,33 +22,35 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6799969537834
+            value: 329.67999999999995
             unit: deg
-            error: 0.024187109121415733
+            error: 0.026468450069403012
             min: 328.67999999999995
             max: 330.67999999999995
             is_penalised: false
         -   name: lat_0
-            value: -30.221665538280803
+            value: -30.221666666666653
             unit: deg
-            error: 0.02047581732850895
+            error: 0.022849560987900707
             min: -31.221666666666664
             max: -29.221666666666664
             is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - hhtJExSF
+    - dataset N
     spectral:
         type: CompoundNormSpectralModel
         model1:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 1.0000033102475068
-                error: 0.025057904578412313
+                value: 1.0000000000000175
+                error: 0.10121254768654982
                 is_penalised: false
             -   name: tilt
-                value: 2.048969741662661e-14
+                value: 1.8458224247615716e-14
+                error: 0.02611253385129692
+                frozen: false
                 is_penalised: false
             -   name: reference
                 value: 1.0
@@ -58,12 +60,12 @@ components:
             type: PowerLawNormPenSpectralModel
             parameters:
             -   name: norm_nuisance
-                value: -3.8494576257886136e-07
-                error: 0.0247606702506052
+                value: 1.7045543794523615e-14
+                error: 0.0999956257521025
                 is_penalised: true
             -   name: tilt_nuisance
-                value: 4.736980850482344e-08
-                error: 0.012046936281835478
+                value: 9.936302821817338e-15
+                error: 0.01994427498420691
                 frozen: false
                 is_penalised: true
             -   name: reference
@@ -71,27 +73,27 @@ components:
                 unit: TeV
                 is_penalised: false
         operator: mul
--   name: hhtJExSF-irf
+-   name: dataset N-irf
     type: IRFModels
-    datasets_names: hhtJExSF
+    datasets_names: dataset N
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: 9.49147258913348e-08
-            error: 0.0053784374658876295
+            value: 1.0029473599355226e-14
+            error: 0.09949088906578492
             is_penalised: true
         -   name: resolution
-            value: 1.0781053307576082e-06
-            error: 1.1746467402426852
+            value: 0.0
+            error: 0.09991510267276676
             is_penalised: true
     eff_area_model:
         type: EffAreaIRFModel
         parameters:
         -   name: norm_nuisance
-            value: -1.2964860456033992e-07
+            value: 3.3535543274027996e-13
             unit: ''
-            error: 0.09081522435656317
+            error: 0.10011928694633836
             min: .nan
             max: .nan
             frozen: false
@@ -100,9 +102,9 @@ components:
             is_norm: true
             is_penalised: true
         -   name: tilt_nuisance
-            value: -4.759536067132557e-09
+            value: 1.9928753029626955e-15
             unit: ''
-            error: 0.014120151115867105
+            error: 0.014998853353803864
             min: .nan
             max: .nan
             frozen: false
