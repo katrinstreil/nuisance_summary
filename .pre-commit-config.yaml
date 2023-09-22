@@ -1,4 +1,13 @@
 repos:
+
+  - repo: https://github.com/mwouts/jupytext
+    rev: v1.14.7  # CURRENT_TAG/COMMIT_HASH
+    hooks:
+    - id: jupytext
+      args: [--sync, --pipe, black, isort, flake8]
+      additional_dependencies:
+        - black==23.3.0 # Matches hook
+
   # https://pycqa.github.io/isort/docs/configuration/black_compatibility.html#integration-with-pre-commit
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
