@@ -40,7 +40,6 @@ picformat = "png"
 
 shift = 0.1
 tilt = 0.02
-print(shift)
 # %% [markdown]
 # ## Read dataset
 
