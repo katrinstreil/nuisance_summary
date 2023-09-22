@@ -22,8 +22,6 @@ import numpy as np
 import pyximport
 from gammapy.modeling import Fit, Parameter, Parameters
 from gammapy.modeling.models import Models
-
-# %%
 from matplotlib import rc
 
 sys.path.append("../")
@@ -33,17 +31,20 @@ from Dataset_Creation import sys_dataset  # noqa: E402
 rc("font", **{"family": "serif", "serif": ["Computer Modern"]})
 rc("text", usetex=True)
 pyximport.install()
-
-
-# %%
 config = Dataset_load.load_config()
 colors = config["colors"]["one"]
 
+# %%
+savefig = True
+picformat = "png"
+
+shift = 0.1
+tilt = 0.02
+print(shift)
 # %% [markdown]
 # ## Read dataset
 
 # %%
-
 scaled_amplitude = Parameter("amplitude", value=1e-12)
 dataset_asimov = Dataset_load.create_asimov(
     model="pl", source="PKSflare", parameters=Parameters([scaled_amplitude])
@@ -53,17 +54,6 @@ dataset_asimov = Dataset_load.create_asimov(
 # Varying the Exposure
 
 # %%
-savefig = True
-picformat = "png"
-
-shift = 0.1
-tilt = 0.02
-print(tilt)
-
-
-# %%
-
-
 sys_ = sys_dataset(
     dataset_asimov=dataset_asimov,
     shift=0,
@@ -142,9 +132,6 @@ indices = pars[:N_max, 2:4]
 norms = pars[:N_max, 4:6]
 tilts = pars[:N_max, 6:8]
 
-
-# %%
-len(flux[0])
 
 # %%
 fig, (axs, ax1) = plt.subplots(1, 2, figsize=(2 * 4, 7 / 3))
@@ -341,85 +328,6 @@ within_index = [
 withins = [within_norm, within_amplitude, within_index]
 
 # %%
-fig, axs = plt.subplots(3, 1, figsize=(4, 7))
-xlabels = ["Best Fit BKG Norm", "Best Fit Amplitude", "Best Fit Index"]
-
-axs[2].errorbar(
-    x=np.mean(indices[:, 0]),
-    y=50,
-    xerr=np.std(indices[:, 0]),
-    fmt="o",
-    color="navy",
-    label="$\\mu$, $\\sigma$",
-)
-axs[1].errorbar(
-    x=np.mean(amplitudes[:, 0]),
-    y=50,
-    xerr=np.std(amplitudes[:, 0]),
-    fmt="o",
-    color="navy",
-    label="$\\mu$, $\\sigma$",
-)
-axs[0].errorbar(
-    x=np.mean(norms[:, 0]),
-    y=50,
-    xerr=np.std(norms[:, 0]),
-    fmt="o",
-    color="navy",
-    label="$\\mu$, $\\sigma$",
-)
-
-
-for i, v in enumerate(valuies):
-    axs[i].hist(v[1:, 0], color="steelblue")
-    ylim = axs[i].get_ylim()
-    delta_ylim = 15
-
-    axs[i].vlines(
-        valuies_asimov_N[i][0],
-        ylim[0],
-        ylim[1] + delta_ylim,
-        color="green",
-        linestyle="dashed",
-    )
-    axs[i].fill_between(
-        [
-            valuies_asimov_N[i][0] - valuies_asimov_N[i][1],
-            valuies_asimov_N[i][0] + valuies_asimov_N[i][1],
-        ],
-        ylim[0],
-        ylim[1] + delta_ylim,
-        alpha=0.3,
-        color="green",
-        label=f"Nuisance: \n 1$\\sigma$: {withins[i][1]*100 :.3}%",
-    )
-    axs[i].vlines(valuies_asimov[i][0], ylim[0], ylim[1], color="red")
-    axs[i].fill_between(
-        [
-            valuies_asimov[i][0] - valuies_asimov[i][1],
-            valuies_asimov[i][0] + valuies_asimov[i][1],
-        ],
-        ylim[0],
-        ylim[1],
-        alpha=0.4,
-        color="red",
-        label=f"Standard: \n 1$\\sigma$: {withins[i][0]*100 :.3}%",
-    )
-
-    axs[i].legend(loc="upper right")
-    axs[i].set_xlabel(xlabels[i])
-
-    x = axs[i].get_xlim()
-    deltax = np.max([valuies_asimov[i][0] - x[0], x[1] - valuies_asimov[i][0]])
-    axs[i].set_xlim(valuies_asimov[i][0] - deltax, valuies_asimov[i][0] + deltax)
-
-
-plt.tight_layout()
-
-if savefig:
-    fig.savefig(f"plots/7b_histo_{shift}." + picformat)
-
-# %%
 fig, axs = plt.subplots(1, 2, figsize=(7, 3))
 xlabels = ["Best Fit Amplitude", "Best Fit Index"]
 
@@ -560,8 +468,6 @@ def compute_precision(N):
     Z = 1.645
     return Z / np.sqrt(N)
 
-
-# %%
 
 # %%
 true_energy = dataset_asimov.exposure.geom.axes[0].center.value
