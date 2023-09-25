@@ -8,8 +8,11 @@ from gammapy.maps import MapAxis
 from gammapy.modeling import Fit, Parameter, Parameters
 from gammapy.modeling.models.spectral import scale_plot_flux
 
-import Dataset_load
-from Dataset_Creation import sys_dataset
+sys.path.append("/home/katrin/Documents/nuisance_summary/")
+sys.path.append("../")
+
+import Dataset_load  # noqa: E402
+from Dataset_Creation import sys_dataset  # noqa: E402
 
 pyximport.install()
 
@@ -17,8 +20,6 @@ print(f"loaded gammapy version: {gammapy.__version__} ")
 print("Supposed to be 1.0 (21-12-2022)")
 # get_ipython().system('jupyter nbconvert --to script 1-Nui_Par_Fitting.ipynb')
 
-sys.path.append("/home/katrin/Documents/nuisance_summary/")
-sys.path.append("../")
 
 scaled_amplitude = Parameter("amplitude", value=1e-12)
 dataset_asimov = Dataset_load.create_asimov(
@@ -34,7 +35,7 @@ shift = +0.1
 tilt = 0.02
 
 
-N = 700
+N = 200
 sigma_a = shift
 sigma_i = tilt
 
