@@ -9,13 +9,12 @@ from gammapy.maps import MapAxis
 from gammapy.modeling import Fit, Parameter, Parameters
 from gammapy.modeling.models.spectral import scale_plot_flux
 
-import Dataset_load
-from Dataset_Creation import sys_dataset
-
 pyximport.install()
 
 sys.path.append("/home/katrin/Documents/nuisance_summary/")
-sys.path.append("../")
+sys.path.append("../../../")
+import Dataset_load  # noqa: E402
+from Dataset_Creation import sys_dataset  # noqa: E402
 
 print(f"loaded gammapy version: {gammapy.__version__} ")
 print("Supposed to be 1.0 (21-12-2022)")
@@ -44,7 +43,7 @@ save = True
 save_flux = True
 
 
-path = os.getcwd() + "/Bias/Cutoff/"
+path = os.getcwd()  # + "/Bias/Cutoff/"
 print(path)
 
 
@@ -72,7 +71,7 @@ for n in range(N):
     result_cor = fit_cor.run([dataset])
 
     if save:
-        with open(path + "data/7a_P_draw_info.txt", "a") as myfile:
+        with open(path + "/data/7a_P_draw_info.txt", "a") as myfile:
             myfile.write(
                 str(float(bias_rnd))
                 + "    "
@@ -83,7 +82,7 @@ for n in range(N):
             )
 
     stri = ""
-    for p in ["lambda_", "index", "norm", "tilt"]:
+    for p in ["amplitude", "index", "lambda_", "norm", "tilt"]:
         stri += (
             str(dataset.models.parameters[p].value)
             + "   "
@@ -92,7 +91,7 @@ for n in range(N):
         )
     print(stri)
     if save:
-        with open(path + "data/7a_P_draw_par.txt", "a") as myfile:
+        with open(path + "/data/7a_P_draw_par.txt", "a") as myfile:
             myfile.write(stri + "\n")
 
     fluxes = []
@@ -105,7 +104,7 @@ for n in range(N):
         ff += str(f) + "  "
     # print(ff)
     if save:
-        with open(path + "data/7a_P_draw_flux.txt", "a") as myfile:
+        with open(path + "/data/7a_P_draw_flux.txt", "a") as myfile:
             myfile.write(ff + "\n")
 
     energy_bounds = (ebins[0], ebins[-1]) * u.TeV
@@ -127,7 +126,7 @@ for n in range(N):
     for f in fluxe2:
         ff += str(f) + "  "
     if save:
-        with open(path + "data/7a_P_draw_flux2e.txt", "a") as myfile:
+        with open(path + "/data/7a_P_draw_flux2e.txt", "a") as myfile:
             myfile.write(ff + "\n")
 
     energy_edges = dataset.geoms["geom"].axes[0].edges

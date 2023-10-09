@@ -133,51 +133,6 @@ tilts = pars[:N_max, 6:8]
 
 
 # %%
-fig, (axs, ax1) = plt.subplots(1, 2, figsize=(2 * 4, 7 / 3))
-nbins = 30
-count, bins, ignored = axs.hist(shift_rnds, nbins, density=True, color="steelblue")
-sigma = shift
-mu = 0
-axs.plot(
-    bins,
-    1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-((bins - mu) ** 2) / (2 * sigma**2)),
-    linewidth=2,
-    color="r",
-    label=f"$\\mu = {mu}; \\sigma = {sigma}$",
-)
-
-axs.set_xlabel("Systematic on Amplitude [%]")
-axs.legend()
-
-x = axs.get_xlim()
-deltax = np.max([mu - x[0], x[1] - mu])
-axs.set_xlim(mu - deltax, mu + deltax)
-
-
-count, bins, ignored = ax1.hist(index_rnds, nbins, density=True, color="steelblue")
-sigma = tilt
-mu = 0
-ax1.plot(
-    bins,
-    1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-((bins - mu) ** 2) / (2 * sigma**2)),
-    linewidth=2,
-    color="r",
-    label=f"$\\mu = {mu}; \\sigma = {sigma:.3}$",
-)
-
-ax1.set_xlabel("Systematic on Index [%]")
-ax1.set_title(f"N = {N}")
-ax1.legend()
-
-x = axs.get_xlim()
-deltax = np.max([mu - x[0], x[1] - mu])
-axs.set_xlim(mu - deltax, mu + deltax)
-plt.tight_layout()
-if savefig:
-    fig.savefig(f"plots/7b_rnd_sys_{shift}." + picformat)
-
-
-# %%
 fig, axs = plt.subplots(3, 1)
 
 axs[0].set_title("BKG Norm")
@@ -455,9 +410,14 @@ dataset_asimov.models[0].spectral_model.plot(
     label="Input",
     color="black",
 )
+
+
 axs.legend()
 axs.set_xlabel("Energy [TeV]")
 plt.tight_layout()
+
+
+axs.set_xlim(0.3, 100)
 # if savefig:
 #    fig.savefig(f"plots/7b_rnd_spectra_{shift}_{N}." + picformat)
 
