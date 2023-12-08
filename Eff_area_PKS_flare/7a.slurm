@@ -6,7 +6,7 @@
 # allocate nodes for 6 hours
 #SBATCH --time=24:00:00
 # job name 
-#SBATCH --job-name=7a
+#SBATCH --job-name=7a-eff
 # do not export environment variables
 #SBATCH --export=NONE
 

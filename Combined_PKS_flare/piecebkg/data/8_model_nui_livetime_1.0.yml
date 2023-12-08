@@ -1,0 +1,230 @@
+components:
+-   name: auymsCLX
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.300000000003076
+            error: 0.45830109156642584
+            is_penalised: false
+        -   name: amplitude
+            value: 1.0000000000071978e-12
+            unit: cm-2 s-1 TeV-1
+            error: 5.062301733519498e-13
+            is_penalised: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            is_penalised: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6799999999999
+            unit: deg
+            error: 0.02627956818546762
+            min: 328.67999999999995
+            max: 330.67999999999995
+            is_penalised: false
+        -   name: lat_0
+            value: -30.221666666666653
+            unit: deg
+            error: 0.02268730418981618
+            min: -31.221666666666664
+            max: -29.221666666666664
+            is_penalised: false
+-   type: FoVBackgroundModel
+    datasets_names:
+    - IExkEtWg
+    spectral:
+        type: CompoundNormSpectralModel
+        model1:
+            type: PiecewiseNormSpectralModel
+            parameters:
+            -   name: norm0
+                value: 0.0
+                is_penalised: true
+            -   name: norm1
+                value: 0.0
+                is_penalised: true
+            -   name: norm2
+                value: 0.0
+                is_penalised: true
+            -   name: norm3
+                value: 0.0
+                is_penalised: true
+            -   name: norm4
+                value: -2.653820333858514e-18
+                error: 0.004856625097068489
+                is_penalised: true
+            -   name: norm5
+                value: 6.281357531273224e-18
+                error: 0.005063946759674448
+                is_penalised: true
+            -   name: norm6
+                value: 1.6720033240495518e-18
+                error: 0.004167301372735417
+                is_penalised: true
+            -   name: norm7
+                value: 2.2085165467679942e-18
+                error: 0.0035597088006834652
+                is_penalised: true
+            -   name: norm8
+                value: 5.097313691417557e-19
+                error: 0.0031946049014522793
+                is_penalised: true
+            -   name: norm9
+                value: 1.3730284385535245e-19
+                error: 0.002962006375770961
+                is_penalised: true
+            -   name: norm10
+                value: 8.595920375092221e-20
+                error: 0.0028197884968144513
+                is_penalised: true
+            -   name: norm11
+                value: 9.584390873287115e-20
+                error: 0.002753334784331469
+                is_penalised: true
+            -   name: norm12
+                value: -1.545319674959308e-20
+                error: 0.0027548859325209215
+                is_penalised: true
+            -   name: norm13
+                value: 8.651174888669869e-20
+                error: 0.0028236180697841914
+                is_penalised: true
+            -   name: norm14
+                value: -1.9868595649124694e-20
+                error: 0.00296976162390653
+                is_penalised: true
+            -   name: norm15
+                value: -5.130653684653051e-20
+                error: 0.0032176914691412237
+                is_penalised: true
+            -   name: norm16
+                value: -8.719441611658034e-20
+                error: 0.0036134780520564558
+                is_penalised: true
+            -   name: norm17
+                value: -1.2886473787068717e-19
+                error: 0.004244610404947276
+                is_penalised: true
+            -   name: norm18
+                value: -1.2313771185377214e-19
+                error: 0.005288085452406019
+                is_penalised: true
+            -   name: norm19
+                value: 2.04862091076142e-18
+                error: 0.007130559516857662
+                is_penalised: true
+            -   name: norm20
+                value: 2.8340062599603532e-18
+                error: 0.010709071994719812
+                is_penalised: true
+            -   name: norm21
+                value: 5.47411168732359e-18
+                error: 0.018799178746830153
+                is_penalised: true
+            -   name: norm22
+                value: 1.573729011633406e-17
+                error: 0.04280380189997201
+                is_penalised: true
+            -   name: norm23
+                value: 5.744007298792625e-16
+                error: 0.10492076260558285
+                is_penalised: true
+            energy:
+                data:
+                - 0.11547819846894583
+                - 0.1539926526059492
+                - 0.20535250264571459
+                - 0.27384196342643613
+                - 0.36517412725483767
+                - 0.48696752516586306
+                - 0.6493816315762113
+                - 0.8659643233600653
+                - 1.1547819846894583
+                - 1.539926526059492
+                - 2.0535250264571463
+                - 2.7384196342643614
+                - 3.651741272548377
+                - 4.869675251658631
+                - 6.493816315762111
+                - 8.659643233600653
+                - 11.547819846894583
+                - 15.399265260594923
+                - 20.535250264571477
+                - 27.384196342643627
+                - 36.51741272548378
+                - 48.69675251658631
+                - 64.93816315762122
+                - 86.59643233600663
+                unit: TeV
+        model2:
+            type: PowerLawNormSpectralModel
+            parameters:
+            -   name: norm
+                value: 1.0
+                frozen: true
+                is_penalised: false
+            -   name: tilt
+                value: 0.0
+                is_penalised: false
+            -   name: reference
+                value: 1.0
+                unit: TeV
+                is_penalised: false
+        operator: add
+-   name: IExkEtWg-irf
+    type: IRFModels
+    datasets_names: IExkEtWg
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: 7.325964443456081e-14
+            error: 0.09870923282670406
+            is_penalised: true
+        -   name: resolution
+            value: 0.0
+            frozen: true
+            is_penalised: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        parameters:
+        -   name: norm_nuisance
+            value: 2.234227372866319e-13
+            unit: ''
+            error: 0.09938112520963417
+            min: .nan
+            max: .nan
+            frozen: false
+            interp: log
+            scale_method: scale10
+            is_norm: true
+            is_penalised: true
+        -   name: tilt_nuisance
+            value: -4.2570875913090495e-15
+            unit: ''
+            error: 0.019861834992738418
+            min: .nan
+            max: .nan
+            frozen: false
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: true
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            error: 0.0
+            min: .nan
+            max: .nan
+            frozen: true
+            interp: lin
+            scale_method: scale10
+            is_norm: false
+            is_penalised: false
+covariance: 8_model_nui_livetime_1.0_covariance.dat

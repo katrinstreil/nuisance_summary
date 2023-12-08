@@ -83,10 +83,13 @@ class sys_dataset:
 
         return dataset
 
-    def create_dataset_N(self, e_reco_n):
+    def create_dataset_N(self, e_reco_n, counts=None):
         dataset_ = self.create_dataset()
+        # this is to ensure the same Poission statistic
+        if counts is None:
+            counts = dataset_.counts.copy()
         dataset_N = MapDataset(
-            counts=dataset_.counts.copy(),
+            counts=counts,
             exposure=dataset_.exposure.copy(),
             background=dataset_.background.copy(),
             psf=dataset_.psf.copy(),
