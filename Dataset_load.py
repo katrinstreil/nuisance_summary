@@ -1,9 +1,7 @@
 from gammapy.datasets import MapDataset
 from gammapy.modeling.models import (
-    CompoundNormSpectralModel,
     FoVBackgroundModel,
     Models,
-    PowerLawNormPenSpectralModel,
     PowerLawNormSpectralModel,
 )
 from gammapy.modeling.models.IRF import (  # ,IRFModel
@@ -28,19 +26,12 @@ def load_config():
 config = load_config()
 case = config["case"]
 path = config[case]["path"]
-path_crab = config[case]["path_crab"]
 figformat = config["figformat"]
-path_pks = config[case]["path_pks"]
 path_pksflare = config[case]["path_pksflare"]
 
 
 def get_path(source):
-    if source == "Crab":
-        return path_crab
-    if source == "PKS":
-        return path_pks
-    if source == "PKSflare":
-        return path_pksflare
+    return path_pksflare
 
 
 def create_asimov(model, source, parameters=None, livetime=None):
