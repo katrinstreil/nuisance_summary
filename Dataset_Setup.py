@@ -5,7 +5,8 @@ from gammapy.modeling.models import (
     PiecewiseNormSpectralModel,
     Models,
     PowerLawNormSpectralModel,
-    MultiVariantePrior
+    MultiVariantePrior,
+    GaussianPrior
 )
 from gammapy.modeling.models.IRF import (  
     EffAreaIRFModel,
@@ -13,11 +14,10 @@ from gammapy.modeling.models.IRF import (
     IRFModels,
 )
 from gammapy.modeling import Parameters, Parameter
-
 from scipy.stats import norm
 from scipy.linalg import inv
 
-class Covariance_matrix:
+class GaussianCovariance_matrix:
     def __init__(
         self,
         magnitude,  # in percent
@@ -65,10 +65,15 @@ class Setup:
         e_reco_creation=10,
     ):
         self.dataset_input = dataset_input
+        # set the sys parameters here and use npred as counts
+        self.dataset_helper = self.set_up_dataset()
+
         self.rnd = rnd
         self.e_reco_creation = e_reco_creation
         self._irf_sys= False
         self._bkg_sys = False
+        
+         
         
     def set_up_irf_sys(self, bias, resolution, norm, tilt):
         """
@@ -106,22 +111,19 @@ class Setup:
         dataset, dataset_N = self.set_up_dataset(), self.set_up_dataset()
         # adding systematics if set before and setting irf/piecewise model to the dataset_N
         if self._irf_sys:
-            self.add_irf_systematic(dataset, self.bias, self.resolution, self.norm, self.tilt)
-            self.add_irf_systematic(dataset_N, self.bias, self.resolution, self.norm, self.tilt)
+            self.add_irf_systematic(self.bias, self.resolution, self.norm, self.tilt)
             self.set_irf_model(dataset_N)
-            
         if self._bkg_sys:
             # sets the counts
-            self.add_bkg_systematic(dataset, self.magnitude, self.corrlength, self.seed)
-            self.add_bkg_systematic(dataset_N, self.magnitude, self.corrlength, self.seed)
+            self.add_bkg_systematic(self.magnitude, self.corrlength, self.seed)
             self.set_piecewise_bkg_model(dataset_N)
-            self.set_simple_bkg_model(dataset)
             
-        else:
+        else:            
             self.set_simple_bkg_model(dataset_N)
-            self.set_simple_bkg_model(dataset)
-            self.add_counts(dataset)
-            self.add_counts(dataset_N)
+        
+        self.set_simple_bkg_model(dataset)
+        self.add_counts(dataset)
+        self.add_counts(dataset_N)
         
         return dataset, dataset_N
         
@@ -169,14 +171,17 @@ class Setup:
        
         # irf model
         IRFmodels = IRFModels(
-            eff_area_model=EffAreaIRFModel(), 
+            eff_area_model=EffAreaIRFModel(spectral_model = PowerLawNormSpectralModel()), 
             e_reco_model=ERecoIRFModel(), 
             datasets_names=dataset.name
         )
+        # +1 in evaluation 
+        IRFmodels.parameters['norm'].value = 0.
         models = Models(dataset.models.copy())
-        models.append(bkg_model)
+        models.append(IRFmodels)
         dataset.models = models
-    
+         
+    	
     def unset_model(self, dataset, modeltype):
         """
         unset the modeltype from all models attached to the dataset
@@ -188,71 +193,81 @@ class Setup:
                 models.append(m)
         dataset.models = models
 
-    def add_irf_systematic(self, dataset, bias, resolution, norm, tilt):
+    def add_irf_systematic(self, bias, resolution, norm, tilt):
         """
         sets IRF model , sets the model parameters as the input, sets the exposure and the edisp according to input
         removes the IRF model again
         """
        
-        self.set_irf_model(dataset.name)
-        dataset.irf_model.parameters['bias'].value = bias
-        dataset.irf_model.parameters['resolution'].value = resolution
-        dataset.irf_model.parameters['norm_nuisance'].value = norm
-        dataset.irf_model.parameters['tilt_nuisance'].value = tilt
-        dataset.exposure = dataset.npred_exposure()
-        dataset.edisp = dataset.npred_edisp()
-        self.unset_model(dataset, IRFModels)  
+        self.set_irf_model(self.dataset_helper)
+        self.dataset_helper.irf_model.parameters['bias'].value = bias
+        self.dataset_helper.irf_model.parameters['resolution'].value = resolution
+        self.dataset_helper.irf_model.parameters['norm'].value = norm
+        self.dataset_helper.irf_model.parameters['tilt'].value = tilt
+        
         
     def emask(self):
-        return self.dataset_input.mask.data.sum(axis=2).sum(axis=1)>0
+        return self.dataset_helper.mask.data.sum(axis=2).sum(axis=1)>0
     
-    def add_bkg_systematic(self, dataset, magnitude, corrlength, seed ):
+    def add_bkg_systematic(self, magnitude, corrlength, seed ):
         """
         sets piece wiese model, sets the model parameters as a draw from the cov. matrix
         computes the npred and sets as counts
         removes the piece wise model
         """
        
-        Cov = Covariance_matrix(size = len(self.emask()),
+        Cov = GaussianCovariance_matrix(size = len(self.emask()),
                                 magnitude = magnitude, 
                                 corrlength = corrlength)
         cov  = Cov.cov()
         values = Cov.draw(seed)
-        self.set_piecewise_bkg_model(dataset)
+        self.set_piecewise_bkg_model(self.dataset_helper)
         
-        for n , v in zip(dataset.background_model.parameters.free_parameters[self.emask()],
+        for n , v in zip(self.dataset_helper.background_model.parameters.free_parameters[self.emask()],
                          values[self.emask()]):
             n.value = v
-        self.add_counts(dataset)
-        #dataset.background.data = dataset.npred_background().data.copy()
-        self.unset_model(dataset, FoVBackgroundModel)  
         
-
+    
+    
+    	
     def add_counts(self, dataset):
         """
         setting counts from the npred() with or without P. stat
         """
-       
+        npred = self.dataset_helper.npred()
+
         if self.rnd:
-            counts_data = np.random.poisson(dataset.npred().data)
+            counts_data = np.random.poisson(npred.data)
         else:
-            counts_data = dataset.npred().data
+            counts_data = npred.data
 
         dataset.counts.data = counts_data
         
-    def set_prior(self, dataset_asimov_N):
+    def set_bkg_prior(self, dataset_asimov_N, magnitude, corrlength):
         """
         sets up multidim. prior for the piece wise bkg model
         """
-        if self._bkg_sys:
-            modelparameters = dataset_asimov_N.models[1].parameters
-            modelparameters = Parameters([m for m in modelparameters if m.name != "_norm"])
-            Cov = Covariance_matrix(size = len(self.emask()),
-                                            magnitude = self.magnitude, 
-                                            corrlength = self.corrlength)
-            inv_cov  = Cov.inv_cov()
-            multi_prior = MultiVariantePrior(modelparameters =modelparameters,
-                                 covariance_matrix = inv_cov,
-                                  name = "bkgsys"
-                                )
+        modelparameters = dataset_asimov_N.background_model.parameters
+        modelparameters = Parameters([m for m in modelparameters if m.name != "_norm"])
+        Cov = GaussianCovariance_matrix(size = len(self.emask()),
+                                        magnitude = magnitude, 
+                                        corrlength = corrlength)
+        inv_cov  = Cov.inv_cov()
+        multi_prior = MultiVariantePrior(modelparameters =modelparameters,
+                             covariance_matrix = inv_cov,
+                              name = "bkgsys"
+                            )
+
+    def set_irf_prior(self, dataset_asimov_N, bias, resolution, norm, tilt):
+        """
+        sets up Gaussian Priors for the IRF model parameters
+        """
+        simgas = {"bias":bias, "resolution":resolution, "norm":norm, "tilt":tilt}
+        modelparameters = dataset_asimov_N.irf_model.parameters.free_parameters
+        modelparameters = Parameters([m for m in modelparameters if m.name != "reference"])
+
+        for m in modelparameters:
+            GaussianPrior(modelparameters = m, mu = 0., sigma = simgas[m.name])
+
+
         
