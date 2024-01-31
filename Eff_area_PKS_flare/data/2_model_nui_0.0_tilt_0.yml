@@ -7,7 +7,6 @@ components:
         -   name: index
             value: 2.299062001149006
             error: 0.05006344522830877
-            is_penalised: false
         -   name: amplitude
             value: 1.0000146253992263e-12
             unit: cm-2 s-1 TeV-1
@@ -16,7 +15,6 @@ components:
         -   name: reference
             value: 1.0
             unit: TeV
-            is_penalised: false
     spatial:
         type: PointSpatialModel
         frame: icrs
@@ -27,14 +25,12 @@ components:
             error: 0.0026439916723712824
             min: 328.67999999999995
             max: 330.67999999999995
-            is_penalised: false
         -   name: lat_0
             value: -30.22166701677976
             unit: deg
             error: 0.0022838034329801765
             min: -31.221666666666664
             max: -29.221666666666664
-            is_penalised: false
 -   type: FoVBackgroundModel
     datasets_names:
     - dataset N
@@ -44,16 +40,13 @@ components:
         -   name: norm
             value: 0.999998904429196
             error: 0.0015650159932837277
-            is_penalised: false
         -   name: tilt
             value: 3.0354256239059374e-06
             error: 0.0016903431882838047
             frozen: false
-            is_penalised: false
         -   name: reference
             value: 1.0
             unit: TeV
-            is_penalised: false
 -   name: dataset N-irf
     type: IRFModels
     datasets_names: dataset N
@@ -63,11 +56,9 @@ components:
         -   name: bias
             value: 0.0
             frozen: true
-            is_penalised: true
         -   name: resolution
             value: 0.0
             frozen: true
-            is_penalised: true
     eff_area_model:
         type: EffAreaIRFModel
         parameters:
@@ -81,7 +72,6 @@ components:
             interp: log
             scale_method: scale10
             is_norm: true
-            is_penalised: true
         -   name: tilt_nuisance
             value: -9.590190336086909e-05
             unit: ''
@@ -92,7 +82,6 @@ components:
             interp: lin
             scale_method: scale10
             is_norm: false
-            is_penalised: true
         -   name: reference
             value: 1.0
             unit: TeV
@@ -103,5 +92,4 @@ components:
             interp: lin
             scale_method: scale10
             is_norm: false
-            is_penalised: false
 covariance: 2_model_nui_0.0_tilt_0_covariance.dat
