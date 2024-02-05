@@ -13,6 +13,10 @@
 #     name: python3
 # ---
 
+# %% [markdown]
+# ## Runnning with gammapy-dev/IRF_model
+#
+
 # %%
 import sys
 
@@ -29,17 +33,27 @@ from gammapy.modeling.models import FoVBackgroundModel, Model, Models
 from matplotlib import rc
 from scipy.interpolate import interp2d
 
-# import random
-sys.path.append("/home/katrin/Documents/nuisance_summary/")
-sys.path.append("../../../")
-import Dataset_load  # noqa: E402
-from Dataset_Creation import sys_dataset  # noqa: E402
+sys.path.append('../../../')
+import Dataset_load 
+
+from  Dataset_Setup import Setup, GaussianCovariance_matrix
 
 print(f"loaded gammapy version: {gammapy.__version__} ")
 print("Supposed to be 1.0 (21-12-2022)")
 rc("font", **{"family": "serif", "serif": ["Computer Modern"]})
 rc("text", usetex=True)
 pyximport.install()
+
+# %%
+config = Dataset_load.load_config()
+colors = config['colors']['three']
+
+colors
+import ast
+
+colors[1] = ast.literal_eval(colors[1])
+colors[2] = ast.literal_eval(colors[2])
+colors[3] = ast.literal_eval(colors[3])
 
 # %% [markdown]
 # ## Read dataset
@@ -51,42 +65,25 @@ lambda_ = Parameter("lambda_", value=1 / 60)
 dataset_asimov = Dataset_load.create_asimov(
     model="ecpl", source="PKSflare", parameters=Parameters([scaled_amplitude, lambda_])
 )
-dataset_input = Dataset_load.create_asimov(
-    model="ecpl", source="PKSflare", parameters=Parameters([scaled_amplitude, lambda_])
-)
 
-shift = 0.0
+# %%
+norm = 0.0
 tilt = 0.0
 bias = 0.1
-resolution = 0.1
+resolution = 0.0
 
-sys_ = sys_dataset(
-    dataset_asimov=dataset_asimov,
-    shift=0,
-    tilt=0,
-    bias=0,
-    resolution=0,
-    rnd=False,
-    e_reco_creation=10,
-)
-dataset_asimov = sys_.create_dataset()
-dataset_asimov_N = sys_.create_dataset_N(e_reco_n=10)
-zero = 1e-24
-# addional parameter bias and resolution (ereco) but are frozen
-penalising_invcovmatrix = np.zeros((4, 4))
-# 'bias', 'resolution', 'norm_nuisance',  'tilt_nuisance',
-np.fill_diagonal(
-    penalising_invcovmatrix,
-    [1 / bias**2, 1 / zero**2, 1 / zero**2, 1 / zero**2],
-)
-dataset_asimov_N.penalising_invcovmatrix = penalising_invcovmatrix
-dataset_asimov_N.irf_model.eff_area_model.parameters.freeze_all()
-dataset_asimov_N.irf_model.parameters["resolution"].frozen = True
-dataset_asimov_N.irf_model.parameters["bias"].frozen = False
+# %%
+setup = Setup(dataset_input=dataset_asimov)
+#setup.set_up_irf_sys(bias, resolution, norm, tilt)
+dataset_asimov, dataset_asimov_N = setup.run()
+# irf model
+setup.set_irf_model(dataset_asimov_N)
+dataset_asimov_N.models.parameters['resolution'].frozen = True
+dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
+dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-
-a_unit = dataset_asimov_N.models.parameters["amplitude"].unit
-
+# %%
 datasets = Datasets(dataset_asimov)
 datasets_N = Datasets(dataset_asimov_N)
 
@@ -114,8 +111,8 @@ def read(name):
     return data_loaded
 
 
-asimov_model = Models.read("data/1_model.yml")
-asimov_model_N = Models.read("data/1_model_N.yml")
+#asimov_model = Models.read("data/1_model.yml")
+#asimov_model_N = Models.read("data/1_model_N.yml")
 
 
 def plot_best_fit(ax, par1, par2, factor1=1, factor2=1):
@@ -186,7 +183,7 @@ c = fit.minuit.draw_mncontour(
 # %%
 # %%time
 
-fitting = 1
+fitting = 0
 if fitting:
     c = fit.minuit.draw_mncontour(
         "par_000_index",
