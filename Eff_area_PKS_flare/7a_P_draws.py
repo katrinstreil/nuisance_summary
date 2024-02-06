@@ -21,6 +21,31 @@ def save():
         myfile.write(ffN + "\n")
     with open("data/7aP_N_P_draw_flux2e.txt", "a") as myfile:
         myfile.write(ffN2 + "\n")
+        
+def simple_save():
+    
+    with open("data/7aP_s_draw_info.txt", "a") as myfile:
+        myfile.write(
+            str(float(shift_rnd))
+            + "    "
+            + str(float(tilt_rnd))
+            + "    "
+            + str(float(dataset.stat_sum()))
+            + "\n"
+        )
+    with open("data/7aP_s_draw_par.txt", "a") as myfile:
+        myfile.write(stri + "\n")
+    with open("data/7aP_s_draw_flux.txt", "a") as myfile:
+        myfile.write(ff + "\n")
+    with open("data/7aP_s_draw_flux2e.txt", "a") as myfile:
+        myfile.write(ff2 + "\n")
+
+    with open("data/7aP_N_s_draw_par.txt", "a") as myfile:
+        myfile.write(stri_N + "\n")
+    with open("data/7aP_N_s_draw_flux.txt", "a") as myfile:
+        myfile.write(ffN + "\n")
+    with open("data/7aP_N_s_draw_flux2e.txt", "a") as myfile:
+        myfile.write(ffN2 + "\n")
 
 
 def make_writeable(cc):
@@ -82,8 +107,9 @@ sigma_i = tilt
 
 save_flux = True
 dataset_N = True
-advanced = True
-compute_fluxpoints = True
+advanced = False
+compute_fluxpoints = False
+simple = True
 
 for n in range(N):
     print()
@@ -99,8 +125,8 @@ for n in range(N):
     )
     dataset = sys_d_cor.create_dataset()
     fit_cor = Fit(store_trace=False)
-    minuit_opts = {"tol": 0.001, "strategy": 2}
-    fit_cor.optimize_opts = minuit_opts
+    #minuit_opts = {"tol": 0.001, "strategy": 2}
+    #fit_cor.optimize_opts = minuit_opts
     result_cor = fit_cor.run([dataset])
 
     stri = ""
@@ -268,6 +294,8 @@ for n in range(N):
         save_countour(
             c_N_39, f"data/contours/6P_039_N_{shift_rnd[0]:.6}_{tilt_rnd[0]:.6}.json"
         )
-
-    if result_cor.success and result_cor_N.success:
+    if simple==False and result_cor.success and result_cor_N.success:
         save()
+    if simple:
+        simple_save()
+        
