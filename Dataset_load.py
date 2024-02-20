@@ -89,15 +89,15 @@ def load_dataset_N(dataset_empty, path, bkg_sys=False):
     for m in models_load:
         if m.type == "irf":
             irf = IRFModels(
-                e_reco_model=ERecoIRFModel(),
-                eff_area_model=EffAreaIRFModel(),
-                datasets_names=dataset_read.name,
-            )
-            for p in irf.parameters:
-                p.frozen = False
-                p.value = models_load.parameters[p.name].value
-                p.error = models_load.parameters[p.name].error
-                p.frozen = models_load.parameters[p.name].frozen
+                    e_reco_model=m.e_reco_model,
+                    eff_area_model=m.eff_area_model,
+                    datasets_names=dataset_read.name,
+                )
+            #for p in irf.parameters:
+            #    p.frozen = False
+            #    p.value = models_load.parameters[p.name].value
+            #    p.error = models_load.parameters[p.name].error
+            #    p.frozen = models_load.parameters[p.name].frozen
 
             models.append(irf)
     dataset_read.models = models

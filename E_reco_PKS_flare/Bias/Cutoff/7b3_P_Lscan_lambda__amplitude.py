@@ -1,59 +1,35 @@
-# ---
-# jupyter:
-#   jupytext:
-#     formats: ipynb,py:percent
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#       format_version: '1.3'
-#       jupytext_version: 1.15.2
-#   kernelspec:
-#     display_name: Python 3 (ipykernel)
-#     language: python
-#     name: python3
-# ---
-
-# %%
-import sys
-
-# %%
-import gammapy
-import matplotlib.pylab as plt
+import matplotlib.pyplot as plt
 import numpy as np
-import pyximport
-import yaml
-from gammapy.datasets import Datasets
-from gammapy.modeling import Fit, Parameter, Parameters
-from gammapy.modeling.models import FoVBackgroundModel, Models
+import astropy.units as u
+from gammapy.maps import Map
+from astropy.coordinates import SkyCoord, Angle
+from gammapy.modeling import Fit,  Parameters, Covariance , Parameter
+from gammapy.datasets import MapDataset ,Datasets, FluxPointsDataset
+from gammapy.modeling.models import (
+    PowerLawSpectralModel,
+    SkyModel,
+    PointSpatialModel,
+    PowerLawNormSpectralModel,
+    Models,
+    SpatialModel,
+    FoVBackgroundModel,
+    PiecewiseNormSpectralModel,
+)
+from gammapy.estimators import TSMapEstimator, ExcessMapEstimator
+from gammapy.estimators import FluxPoints, FluxPointsEstimator
 
-# %%
-from matplotlib import rc
+from regions import CircleSkyRegion, RectangleSkyRegion
+import yaml
+import sys
+sys.path.append('../../../')
+import Dataset_load 
 from scipy.interpolate import interp2d
 
-# import random
-sys.path.append("/home/katrin/Documents/nuisance_summary/")
-sys.path.append("../../../")
-import Dataset_load  # noqa: E402
-from Dataset_Creation import sys_dataset  # noqa: E402
-
-print(f"loaded gammapy version: {gammapy.__version__} ")
-print("Supposed to be 1.0 (21-12-2022)")
-rc("font", **{"family": "serif", "serif": ["Computer Modern"]})
-rc("text", usetex=True)
-pyximport.install()
-
-# %%
+from  Dataset_Setup import Setup, GaussianCovariance_matrix
 savefig = 1
 picformat = "png"
 fig, a_fake = plt.subplots(1, 1, figsize=(5.0, 5.0))
 
-
-# %% [markdown]
-# ## Methods
-#
-
-
-# %%
 def compute_fraction(Ls_new, x_new, y_new, threshold, plot=False):
     tot_int = np.sum(Ls_new)
     offset = Ls_new.min() + threshold
@@ -119,8 +95,8 @@ def plot_L(
 
     ax.plot(ampli_best, index_best, "x", color=color)
 
+    ax.set_xlabel("Lambda [1/TeV]")
     ax.set_ylabel(f"Amplitude [{a_unit}]")
-    ax.set_xlabel("Index []")
     return CS
 
 
@@ -211,14 +187,6 @@ def fraction_within(lower_lim, upper_lim, data):
 
     return np.count_nonzero(is_within) / len(data)
 
-
-# %% [markdown]
-# ## Import
-
-# %% [markdown]
-# ### Datasets
-
-# %%
 scaled_amplitude = Parameter("amplitude", value=1e-12)
 lambda_ = Parameter("lambda_", value=1 / 60)
 
@@ -226,60 +194,32 @@ dataset_asimov = Dataset_load.create_asimov(
     model="ecpl", source="PKSflare", parameters=Parameters([scaled_amplitude, lambda_])
 )
 
-shift = 0.0
+
+norm = 0.0
 tilt = 0.0
 bias = 0.1
 resolution = 0.0
 
-sys_ = sys_dataset(
-    dataset_asimov=dataset_asimov,
-    shift=0,
-    tilt=0,
-    bias=0,
-    resolution=0,
-    rnd=False,
-    e_reco_creation=10,
-)
-dataset_asimov = sys_.create_dataset()
-dataset_input = sys_.create_dataset()
-dataset_asimov_N = sys_.create_dataset_N(e_reco_n=10)
-zero = 1e-24
-# addional parameter bias and resolution (ereco) but are frozen
-penalising_invcovmatrix = np.zeros((4, 4))
-# 'bias', 'resolution', 'norm_nuisance',  'tilt_nuisance',
-np.fill_diagonal(
-    penalising_invcovmatrix,
-    [1 / bias**2, 1 / zero**2, 1 / zero**2, 1 / zero**2],
-)
-dataset_asimov_N.penalising_invcovmatrix = penalising_invcovmatrix
-dataset_asimov_N.irf_model.eff_area_model.parameters.freeze_all()
-dataset_asimov_N.irf_model.parameters["resolution"].frozen = True
-dataset_asimov_N.irf_model.parameters["bias"].frozen = False
 
+setup = Setup(dataset_input=dataset_asimov)
+#setup.set_up_irf_sys(bias, resolution, norm, tilt)
+dataset_asimov, dataset_asimov_N = setup.run()
+# irf model
+setup.set_irf_model(dataset_asimov_N)
+dataset_asimov_N.models.parameters['resolution'].frozen = True
+dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
+dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-a_unit = dataset_asimov_N.models.parameters["amplitude"].unit
-
-datasets = Datasets(dataset_asimov)
-datasets_N = Datasets(dataset_asimov_N)
-
-# %%
-m = Models.read("data/1_model.yml")
-dataset_asimov.models = Models(
-    [
-        m[0],
-        FoVBackgroundModel(dataset_name=dataset_asimov.name),
-    ]
-)
 path = "data/1_model_N.yml"
 dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path)
-dataset_asimov_N.models.parameters["tilt_nuisance"].frozen = True
-dataset_asimov_N.models.parameters["norm_nuisance"].frozen = True
-dataset_asimov_N.models.parameters["resolution"].frozen = True
+#dataset_asimov_N.models.parameters["norm_nuisance"].frozen = True
 
-# %% [markdown]
-# ### Results
 
-# %%
+m  = Models.read("data/1_model.yml")
+dataset_asimov.models = Models([m[0], FoVBackgroundModel(dataset_name=dataset_asimov.name), ])
+
+
 valuies_asimov = [
     [
         1,  # dataset_asimov.models[1].parameters['norm'].value,
@@ -319,26 +259,20 @@ valuies_asimov_N = [
     ],
 ]
 print(valuies_asimov_N)
-
-# %% [markdown]
-# # Likelihood Contours
-
-# %% [markdown]
-# ### Without Nuisance Parameters
-
-# %%
-# %%time
-computing = 0
+ 
+%%time
+computing = 1
+nn = 6
 if computing:
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run([dataset_asimov])
     print(result_cor)
-    x = dataset_asimov.models.parameters["lambda_"]
-    y = dataset_asimov.models.parameters["index"]
+    x = dataset_asimov.models.parameters["amplitude"]
+    y = dataset_asimov.models.parameters["lambda_"]
     x.scan_n_sigma = 5
     y.scan_n_sigma = 2
-    x.scan_n_values = 6
-    y.scan_n_values = 5
+    x.scan_n_values = nn
+    y.scan_n_values = nn-1
     contour = fit_cor.stat_surface([dataset_asimov], x, y, reoptimize=True)
 
     contour_write = dict()
@@ -347,25 +281,31 @@ if computing:
         if k != "fit_results":
             contour_write[k] = contour[k].tolist()
 
-    with open("data/7c_contour_index_labda_.yml", "w") as outfile:
+    with open(f"data/7c_contour_lambda__amplitude_{nn}.yml", "w") as outfile:
         yaml.dump(contour_write, outfile, default_flow_style=False)
 
 else:
-    with open("data/7c_contour_index_labda_.yml", "r") as stream:
+    with open(f"data/7c_contour_lambda__amplitude_{nn}.yml", "r") as stream:
         contour = yaml.safe_load(stream)
-source = list(contour.keys())[0][:-20]
-amplix__ = contour[f"{source}.spectral.lambda__scan"]
-indexy__ = contour[f"{source}.spectral.index_scan"]
+source = list(contour.keys())[0][:-24]
+amplix__ = contour[f"{source}.spectral.amplitude_scan"]
+indexy__ = contour[f"{source}.spectral.lambda__scan"]
 N_new = 110
 N_new_y = 100
 amplix__new = np.linspace(amplix__[0], amplix__[-1], N_new)
 indexy__new = np.linspace(indexy__[0], indexy__[-1], N_new_y)
+#deltaTS = np.sqrt(contour["stat_scan"])
+deltaTS = np.array(contour["stat_scan"])
 
+deltaTS -= deltaTS.min()
+print(np.shape(indexy__),
+    np.shape(amplix__),
+    np.shape(deltaTS))
 
 f = interp2d(
     x=indexy__,
     y=amplix__,
-    z=contour["stat_scan"],
+    z=deltaTS,
     kind="cubic",
     fill_value=None,
     bounds_error=False,
@@ -373,20 +313,17 @@ f = interp2d(
 data_contour = f(indexy__new, amplix__new)
 
 
-# %%
 fig, (ax1, ax) = plt.subplots(1, 2, figsize=(14, 5))
 
-im = ax1.pcolormesh(indexy__, amplix__, contour["stat_scan"])
-dddd = np.array(contour["stat_scan"])
+im = ax1.pcolormesh(indexy__, amplix__, deltaTS)
+dddd = np.array(deltaTS)
 ampli_best = amplix__[np.where(dddd == dddd.min())[0][0]]
 index_best = indexy__[np.where(dddd == dddd.min())[1][0]]
 
 ax1.plot(index_best, ampli_best, "x")
 fig.colorbar(im, ax=ax1)
 ax1.set_ylabel("amplitude")
-ax1.set_xlabel(
-    "index",
-)
+ax1.set_xlabel("lambda")
 ax1.set_title("Likelihood")
 
 
@@ -400,14 +337,12 @@ print("min amplitude:", ampli_best)
 ax.plot(index_best, ampli_best, "x")
 fig.colorbar(im, ax=ax)
 ax.set_ylabel("amplitude")
-ax.set_xlabel(
-    "index",
-)
+ax.set_xlabel("lambda")
 ax.set_title("Likelihood")
 
-# %%
-threshold_contour = 1
 
+threshold_contour = 1
+a_unit = dataset_asimov.models.parameters['amplitude'].unit
 (
     ampli_min_asimov,
     ampli_max_asimov,
@@ -416,7 +351,7 @@ threshold_contour = 1
     ampli_best_asimov,
     index_best_asimov,
 ) = compute_errors(
-    data_contour, indexy__new, amplix__new, threshold_contour, find_min=True
+    data_contour, indexy__new, amplix__new, threshold_contour, find_min=False
 )
 CS = plot_L(
     data_contour,
@@ -429,22 +364,21 @@ CS = plot_L(
 
 dat = CS.allsegs[0][0]
 
-# %% [markdown]
-# ### With Nuisance Parameters
 
-# %%
-# %%time
+%%time
+
 if computing:
     fit_N = Fit(store_trace=False)
     result_cor = fit_N.run([dataset_asimov_N])
 
     x_N = dataset_asimov_N.models.parameters["amplitude"]
-    y_N = dataset_asimov_N.models.parameters["index"]
+    y_N = dataset_asimov_N.models.parameters["lambda_"]
+    
 
     x_N.scan_values = x.scan_values
     y_N.scan_values = y.scan_values
 
-    contour_N = fit_N.stat_surface([dataset_asimov_N], x_N, y_N, reoptimize=True)
+    contour_N = fit_N.stat_surface([dataset_asimov_N], x_N, y_N, reoptimize=False)
 
     contour_write = dict()
     for k in contour_N.keys():
@@ -452,18 +386,18 @@ if computing:
         if k != "fit_results":
             contour_write[k] = contour_N[k].tolist()
 
-    with open("data/7c_contour_N.yml", "w") as outfile:
+    with open(f"data/7c_contour_lambda__amplitude_N_{nn}.yml", "w") as outfile:
         yaml.dump(contour_write, outfile, default_flow_style=False)
 
 else:
-    with open("data/7c_contour_N.yml", "r") as stream:
+    with open(f"data/7c_contour_lambda__amplitude_N_{nn}.yml", "r") as stream:
         contour_N = yaml.safe_load(stream)
 
 # print(contour_N)
 source_N = list(contour_N.keys())[0][:-24]
 
 amplix___N = contour_N[f"{source_N}.spectral.amplitude_scan"]
-indexy___N = contour_N[f"{source_N}.spectral.index_scan"]
+indexy___N = contour_N[f"{source_N}.spectral.lambda__scan"]
 amplix__new_N = np.linspace(amplix___N[0], amplix___N[-1], N_new)
 indexy__new_N = np.linspace(indexy___N[0], indexy___N[-1], N_new_y)
 
@@ -478,7 +412,7 @@ f = interp2d(
 )
 data_contour_N = f(indexy__new_N, amplix__new_N)
 
-# %%
+
 fig, (ax1, ax) = plt.subplots(1, 2, figsize=(14, 5))
 
 im = ax1.pcolormesh(indexy___N, amplix___N, contour_N["stat_scan"])
@@ -508,6 +442,7 @@ ax.set_ylabel("amplitude")
 ax.set_xlabel(
     "index",
 )
+cmap = "viridis"
 ax.set_title("Likelihood")
 CS_N = plot_L(
     data_contour_N,
@@ -519,7 +454,7 @@ CS_N = plot_L(
     cmap=cmap,
 )
 
-# %%
+
 (
     ampli_min_asimov_N,
     ampli_max_asimov_N,
@@ -567,7 +502,4 @@ plt.plot(index_best_asimov_N, ampli_best_asimov_N, "x", color="yellow")
 plt.plot(index_best_asimov, ampli_best_asimov, "x", color="lightblue")
 fig = plt.gcf()
 if savefig:
-    fig.savefig(f"plots/7c_L_contour_{shift}." + picformat)
-
-
-# %%
+    fig.savefig(f"plots/7b3_L_contour_{nn}." + picformat)
