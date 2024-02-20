@@ -260,9 +260,8 @@ valuies_asimov_N = [
 ]
 print(valuies_asimov_N)
  
-%%time
 computing = 1
-nn = 6
+nn = 25
 if computing:
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run([dataset_asimov])
@@ -365,7 +364,6 @@ CS = plot_L(
 dat = CS.allsegs[0][0]
 
 
-%%time
 
 if computing:
     fit_N = Fit(store_trace=False)
@@ -378,7 +376,7 @@ if computing:
     x_N.scan_values = x.scan_values
     y_N.scan_values = y.scan_values
 
-    contour_N = fit_N.stat_surface([dataset_asimov_N], x_N, y_N, reoptimize=False)
+    contour_N = fit_N.stat_surface([dataset_asimov_N], x_N, y_N, reoptimize=True)
 
     contour_write = dict()
     for k in contour_N.keys():

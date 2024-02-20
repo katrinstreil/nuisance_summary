@@ -1,3 +1,19 @@
+# ---
+# jupyter:
+#   jupytext:
+#     formats: ipynb,py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.15.2
+#   kernelspec:
+#     display_name: Python 3 (ipykernel)
+#     language: python
+#     name: python3
+# ---
+
+# %%
 import matplotlib.pyplot as plt
 import numpy as np
 import astropy.units as u
@@ -30,6 +46,8 @@ savefig = 1
 picformat = "png"
 fig, a_fake = plt.subplots(1, 1, figsize=(5.0, 5.0))
 
+
+# %%
 def compute_fraction(Ls_new, x_new, y_new, threshold, plot=False):
     tot_int = np.sum(Ls_new)
     offset = Ls_new.min() + threshold
@@ -188,7 +206,7 @@ def fraction_within(lower_lim, upper_lim, data):
     return np.count_nonzero(is_within) / len(data)
 
 
-
+# %%
 scaled_amplitude = Parameter("amplitude", value=1e-12)
 lambda_ = Parameter("lambda_", value=1 / 60)
 
@@ -220,6 +238,8 @@ dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path)
 m  = Models.read("data/1_model.yml")
 dataset_asimov.models = Models([m[0], FoVBackgroundModel(dataset_name=dataset_asimov.name), ])
    
+
+# %%
     
     
 valuies_asimov = [
@@ -262,10 +282,9 @@ valuies_asimov_N = [
 ]
 print(valuies_asimov_N)
 
-
-%%time
-computing = 0
-nn = 6
+# %%
+computing = 1
+nn = 25
 if computing:
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run([dataset_asimov])
@@ -290,6 +309,10 @@ if computing:
 else:
     with open(f"data/7c_contour_index_amplitude_{nn}.yml", "r") as stream:
         contour = yaml.safe_load(stream)
+        
+        
+
+# %%
 source = list(contour.keys())[0][:-24]
 amplix__ = contour[f"{source}.spectral.amplitude_scan"]
 indexy__ = contour[f"{source}.spectral.index_scan"]
@@ -312,6 +335,7 @@ f = interp2d(
 )
 data_contour = f(indexy__new, amplix__new)
 
+# %%
 fig, (ax1, ax) = plt.subplots(1, 2, figsize=(14, 5))
 
 im = ax1.pcolormesh(indexy__, amplix__, deltaTS)
@@ -366,9 +390,7 @@ CS = plot_L(
 
 dat = CS.allsegs[0][0]
 
-
-%%time
-
+# %%
 if computing:
     fit_N = Fit(store_trace=False)
     result_cor = fit_N.run([dataset_asimov_N])
@@ -394,6 +416,7 @@ else:
     with open(f"data/7c_contour_index_amplitude_N_{nn}.yml", "r") as stream:
         contour = yaml.safe_load(stream)
 
+# %%
 # print(contour_N)
 source_N = list(contour_N.keys())[0][:-24]
 
@@ -503,3 +526,5 @@ plt.plot(index_best_asimov, ampli_best_asimov, "x", color="lightblue")
 fig = plt.gcf()
 if savefig:
     fig.savefig(f"plots/7c_L_contour_{bias}." + picformat)
+
+# %%
