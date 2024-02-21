@@ -260,7 +260,7 @@ print(valuies_asimov_N)
 
 
 computing = 1
-nn = 25
+nn = 6
 
 if computing:
     print("computing surface without nuisance")

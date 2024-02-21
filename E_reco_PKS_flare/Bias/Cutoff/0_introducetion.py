@@ -231,11 +231,13 @@ for i, d in enumerate(datasets):
     npred_s = npred_s.get_spectrum().data.flatten()
     ax.plot(d._geom.axes[0].center.value, npred_s, label = f"Bias: {bias_values[i]}",
            color = colors[i])
-    
-    npred_s = datasets_N[i].npred_signal(dataset_asimov_N.models[0].name)
-    npred_s = npred_s.get_spectrum().data.flatten()
-    ax.plot(d._geom.axes[0].center.value, npred_s, linestyle = 'dashed', label = f"Bias: {bias_values[i]}",
-           color = colors[i])
+    try:
+        npred_s = datasets_N[i].npred_signal(dataset_asimov_N.models[0].name)
+        npred_s = npred_s.get_spectrum().data.flatten()
+        ax.plot(d._geom.axes[0].center.value, npred_s, linestyle = 'dashed', label = f"Bias: {bias_values[i]}",
+               color = colors[i])
+    except:
+        print(p)
     
     dataset_asimov_N.models.parameters['bias'].value = bias_values[i]
     npred_s =     dataset_asimov_N.npred_signal(dataset_asimov_N.models[0].name)
