@@ -27,6 +27,7 @@ from scipy.interpolate import interp2d
 
 from  Dataset_Setup import Setup, GaussianCovariance_matrix
 savefig = 1
+nn = 20
 picformat = "png"
 fig, a_fake = plt.subplots(1, 1, figsize=(5.0, 5.0))
 def compute_fraction(Ls_new, x_new, y_new, threshold, plot=False):
@@ -260,7 +261,7 @@ print(valuies_asimov_N)
 
 
 computing = 1
-nn = 6
+
 
 if computing:
     print("computing surface without nuisance")
