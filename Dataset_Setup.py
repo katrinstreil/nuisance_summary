@@ -123,7 +123,10 @@ class Setup:
         
         self.set_simple_bkg_model(dataset)
         self.add_counts(dataset)
-        self.add_counts(dataset_N)
+        if self.rnd:
+            dataset_N.counts = dataset.counts
+        else:
+            self.add_counts(dataset_N)
         
         return dataset, dataset_N
         

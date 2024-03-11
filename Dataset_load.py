@@ -3,6 +3,7 @@ from gammapy.modeling.models import (
     FoVBackgroundModel,
     Models,
     PowerLawNormSpectralModel,
+    SkyModel,
 )
 from gammapy.modeling.models.IRF import (  # ,IRFModel
     EffAreaIRFModel,
@@ -57,7 +58,17 @@ def create_asimov(model, source, parameters=None, livetime=None):
 
 
 def set_model(path, model):
-    return Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()
+    if model == 'crab':
+        from gammapy.modeling.models import ExpCutoffPowerLawSpectralModel, create_crab_spectral_model
+        model_crab =create_crab_spectral_model(reference="hess_ecpl")
+        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
+                            spectral_model = model_crab,
+                            name = "Crab")])
+    else:
+        skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()
+        
+    return skymodel
 
 
 def load_dataset_N(dataset_empty, path, bkg_sys=False):
