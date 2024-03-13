@@ -12,15 +12,29 @@ from gammapy.modeling.models.IRF import (  # ,IRFModel
 )
 
 
-def load_config():
-    import json
-    import os
 
+def load_config():
+    import yaml
+    import os
+    from pathlib import Path
     path = os.getcwd()
     substring = "nuisance_summary"
     path = path[: path.find(substring)] + substring + "/"
-    with open(path + "config.json") as json_file:
-        config = json.load(json_file)
+    config = yaml.safe_load(Path(path + "config.yaml").read_text()) 
+    
+    
+    colors = config['colors']
+    # asimov without
+    awo = [tuple(colors[0][0]), tuple(colors[0][1])]
+    # asimov with 
+    aw = [tuple(colors[1][0]), tuple(colors[1][1])]
+    # example without
+    ewo = [tuple(colors[2][0]), tuple(colors[2][1])]
+    # example with 
+    ew = [tuple(colors[3][0]), tuple(colors[3][1])]
+    config['_colors']  = [awo, aw, ewo, ew]
+    config['folder'] = config['sys']+"_"+ config['source']+"_" +config['model'] 
+    
     return config
 
 
@@ -65,6 +79,21 @@ def set_model(path, model):
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crab")])
+    elif model == "crab_break":
+        from gammapy.modeling.models import SmoothBrokenPowerLawSpectralModel
+        import astropy.units as u
+        
+        model_crab = SmoothBrokenPowerLawSpectralModel(amplitude = 3.35e-10 *u.Unit(" 1 / (cm2 s TeV)"), 
+                                              index1 = 1.61, 
+                                              index2 = 2.95, 
+                                               ebreak = 0.33*u.TeV,
+                                               beta = 1.73
+                                              )
+        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
+                            spectral_model = model_crab,
+                            name = "Crabbreak")])
+        
     else:
         skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()
         

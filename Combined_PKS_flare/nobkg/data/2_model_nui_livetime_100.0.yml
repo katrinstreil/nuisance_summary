@@ -5,19 +5,19 @@ components:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.3934208270295856
-            error: 0.012358385357243831
+            value: 2.393421170109115
+            error: 0.012358377876334769
         -   name: amplitude
-            value: 3.7615161439115956e-11
-            unit: TeV-1 s-1 cm-2
-            error: 4.522979908143354e-12
+            value: 3.761515828276404e-11
+            unit: cm-2 s-1 TeV-1
+            error: 4.523152860039562e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: lambda_
-            value: 0.06961189351244361
+            value: 0.06961177723757042
             unit: TeV-1
-            error: 0.004980705831675936
+            error: 0.004980701312120703
         -   name: alpha
             value: 1.0
     spatial:
@@ -25,36 +25,36 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.68000091986136
+            value: 329.68000091672855
             unit: deg
-            error: 0.000333071943301351
+            error: 0.00033307232199204204
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.221667002299064
+            value: -30.22166700140241
             unit: deg
-            error: 0.000288381209456526
+            error: 0.00028838141412289704
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - BDVFjHa4
+    - xeL5Oh-a
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.0000065724311769
-            error: 0.0015766537603986947
+            value: 1.0000065763960886
+            error: 0.001576653327570278
         -   name: tilt
-            value: 8.255631575742527e-06
-            error: 0.001700636850584679
+            value: 8.2602277560419e-06
+            error: 0.0017006366462465712
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: BDVFjHa4-irf
+-   name: xeL5Oh-a-irf
     type: IRFModels
-    datasets_names: BDVFjHa4
+    datasets_names: xeL5Oh-a
     e_reco_model:
         type: ERecoIRFModel
         parameters:
@@ -70,8 +70,8 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 0.00038343464279838157
-                error: 0.1198097379389599
+                value: 0.0003833445504746454
+                error: 0.11981431359795677
                 prior:
                     type: GaussianPrior
                     parameters:
@@ -86,8 +86,8 @@ components:
                     - norm
                     dimension: 1
             -   name: tilt
-                value: 2.9074271608119003e-06
-                error: 0.020000140210836004
+                value: 2.909474835462215e-06
+                error: 0.02000014017798368
                 frozen: false
                 prior:
                     type: GaussianPrior

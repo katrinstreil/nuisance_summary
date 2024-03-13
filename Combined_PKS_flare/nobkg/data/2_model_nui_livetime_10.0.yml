@@ -5,19 +5,19 @@ components:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.3933505276686384
-            error: 0.03837756175201032
+            value: 2.393350615870036
+            error: 0.0383775611705012
         -   name: amplitude
-            value: 3.7619357297315284e-11
-            unit: TeV-1 s-1 cm-2
-            error: 4.027250176976701e-12
+            value: 3.761935728858208e-11
+            unit: cm-2 s-1 TeV-1
+            error: 4.027267878010254e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: lambda_
-            value: 0.06964263259287623
+            value: 0.06964262903490005
             unit: TeV-1
-            error: 0.015448154636043704
+            error: 0.015448158569898215
         -   name: alpha
             value: 1.0
     spatial:
@@ -25,36 +25,36 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6800008993234
+            value: 329.6800008990386
             unit: deg
-            error: 0.00105326623012372
+            error: 0.0010532653610847622
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.22166699777366
+            value: -30.221666997746045
             unit: deg
-            error: 0.0009119309534019916
+            error: 0.0009119319055651554
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - 1xZBFOMa
+    - bGuNI_xU
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.000006137360932
-            error: 0.004985662104778569
+            value: 1.0000061480076403
+            error: 0.004985661350515378
         -   name: tilt
-            value: 3.1807482419423685e-06
-            error: 0.0053777269357442375
+            value: 3.1819360620485224e-06
+            error: 0.005377727224425311
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: 1xZBFOMa-irf
+-   name: bGuNI_xU-irf
     type: IRFModels
-    datasets_names: 1xZBFOMa
+    datasets_names: bGuNI_xU
     e_reco_model:
         type: ERecoIRFModel
         parameters:
@@ -70,8 +70,8 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 0.00030433601424017224
-                error: 0.10312585336437097
+                value: 0.0003043285534143489
+                error: 0.10312630803184776
                 prior:
                     type: GaussianPrior
                     parameters:
@@ -86,8 +86,8 @@ components:
                     - norm
                     dimension: 1
             -   name: tilt
-                value: 8.732613258014576e-08
-                error: 0.020000006664764848
+                value: 8.772072703805209e-08
+                error: 0.020000006130704243
                 frozen: false
                 prior:
                     type: GaussianPrior
