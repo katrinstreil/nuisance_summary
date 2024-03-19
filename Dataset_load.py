@@ -4,7 +4,14 @@ from gammapy.modeling.models import (
     Models,
     PowerLawNormSpectralModel,
     SkyModel,
+    LogParabolaSpectralModel,
+    SmoothBrokenPowerLawSpectralModel,
+    ExpCutoffPowerLawSpectralModel, 
+    create_crab_spectral_model
 )
+
+import astropy.units as u
+        
 from gammapy.modeling.models.IRF import (  # ,IRFModel
     EffAreaIRFModel,
     ERecoIRFModel,
@@ -73,16 +80,13 @@ def create_asimov(model, source, parameters=None, livetime=None):
 
 def set_model(path, model):
     if model == 'crab':
-        from gammapy.modeling.models import ExpCutoffPowerLawSpectralModel, create_crab_spectral_model
         model_crab =create_crab_spectral_model(reference="hess_ecpl")
         skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crab")])
-    elif model == "crab_break":
-        from gammapy.modeling.models import SmoothBrokenPowerLawSpectralModel
-        import astropy.units as u
-        
+    elif "crab_break" in model:
+       
         model_crab = SmoothBrokenPowerLawSpectralModel(amplitude = 3.35e-10 *u.Unit(" 1 / (cm2 s TeV)"), 
                                               index1 = 1.61, 
                                               index2 = 2.95, 
@@ -93,6 +97,21 @@ def set_model(path, model):
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crabbreak")])
+        if model == "crab_break_1f":
+            skymodel.parameters['index1'].frozen = True
+        if model == "crab_break_ef":
+            skymodel.parameters['index1'].frozen = True
+            skymodel.parameters['ebreak'].frozen = True
+            skymodel.parameters['beta'].frozen = False
+    elif model == "crab_log":
+        model_crab = LogParabolaSpectralModel(amplitude = 3.85e-11*u.Unit(" 1 / (cm2 s TeV)"),
+                                   alpha = 2.51,
+                                   beta = 0.24,
+                                   reference = 1*u.TeV)
+        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
+                            spectral_model = model_crab,
+                            name = "Crablog")])
         
     else:
         skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()

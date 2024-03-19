@@ -6,7 +6,7 @@
 # allocate nodes for 6 hours
 #SBATCH --time=24:00:00
 # job name 
-#SBATCH --job-name=7a-eff
+#SBATCH --job-name=logfiles/0
 # do not export environment variables
 #SBATCH --export=NONE
 
@@ -21,7 +21,7 @@ module load python/3.8-anaconda
 source activate /home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev
 
 
-srun --mpi=pmi2  python 2_livetime_comparison_bias.py
+srun --mpi=pmi2  python 0_asimov_livetime.py
 
 
 # log into tiny

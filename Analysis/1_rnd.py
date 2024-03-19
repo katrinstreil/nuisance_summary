@@ -18,6 +18,32 @@ def save():
         myfile.write( ffN + '\n')
     with open(f"{path}/data/1_N_P_draw_flux2e.txt", "a") as myfile:
         myfile.write( ffN2 + '\n')
+        
+def computing_contour(dataset):
+    print("compute contour")
+    results = []
+    for parname1, parname2 in parameter_names :
+        print( parname1, parname2)
+        result = fit_cor.stat_contour(dataset,
+                             dataset.models.parameters[parname1],
+                             dataset.models.parameters[parname2],
+                            )
+        results.append(result)
+    return results
+
+def save_contour(results ,note):
+    i = 0
+    for parname1, parname2 in parameter_names :
+        result = results[i]
+        contour_write = dict()
+        for k in result.keys():
+            print(k)
+            if k != "success":
+                contour_write[k] = result[k].tolist()
+        import yaml
+        with open(f"{path}/data/contours/{note}_{parname1}_{parname2}.yml", "w") as outfile:
+            yaml.dump(contour_write, outfile, default_flow_style=False)
+        i +=1
 
 
 import gammapy 
@@ -44,14 +70,17 @@ awo, aw, ewo, ew = c['_colors']
 livetimes = c['livetimes']
 livetime = c['livetime']
 sys = c['sys']
-norm = 0.5 #c['norm'] 
+norm = c['norm'] 
 tilt = c['tilt'] 
 bias = c['bias'] 
 resolution = c['resolution'] 
 path = f"../{c['folder']}"
+parameter_names = c['parameter_names']        
+print(parameter_names)
+
 
 #for live in livetimes:
-for live in [livetime]:
+for live in [livetime, livetime, livetime, livetime, livetime]:
 
     dataset_asimov = Dataset_load.create_asimov(
         model=c['model'], source=c['source'], parameters=None,
@@ -64,9 +93,10 @@ for live in [livetime]:
 
     N = 1
     save_flux = True
-    save_fluxpoints = 1
-    save_fluxpoints_N = 1
+    save_fluxpoints = 0
+    save_fluxpoints_N = 0
     dataset_N = True
+    contour = True
 
 
     for n in range(N):
@@ -97,8 +127,10 @@ for live in [livetime]:
 
         stri = ""
         parameters =  ['amplitude', 'index', 'lambda_', 'norm', 'tilt']
-        if c['model'] == "crab_break":
+        if "crab_break" in c['model']:
             parameters =  ['amplitude', 'index1', 'index2', 'ebreak', 'beta', 'norm', 'tilt']
+        if "crab_log" in c['model']:
+            parameters =  ['amplitude', 'alpha', 'beta', 'norm', 'tilt']
             
         for p in parameters:
             stri += str(dataset.models.parameters[p].value)  + '   ' +  str(dataset.models.parameters[p].error)  + '   '
@@ -176,15 +208,28 @@ for live in [livetime]:
             dataset.models.parameters['amplitude'].scan_n_sigma  = 5
             dataset_N.models.parameters['amplitude'].scan_n_sigma  = 5
             
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = "all")
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, 
+                                        selection_optional =  "all"
+                                       )
             fluxpoints = esti.run([dataset])
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = "all")
+            # freeze all but IRF for fp and reopt = True
+            dataset_N.models[0].parameters.freeze_all()
+            dataset_N.models[0].parameters['amplitude'].frozen = False
+            dataset_N.background_model.parameters.freeze_all()
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = None,
+                                       reoptimize=True)
             fluxpoints_N = esti.run([dataset_N])
             fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}.fits')
             dataset_N.models.write(f'{path}/data/fluxpoints/1P_model_N_{live}_{rnds}.yaml')
             fluxpoints.write(f'{path}/data/fluxpoints/1P_fluxpoints_{live}_{rnds}.fits')
             dataset.models.write(f'{path}/data/fluxpoints/1P_model_{live}_{rnds}.yaml')
-
+        if contour:
+            results = computing_contour(dataset)
+            results_N = computing_contour(dataset_N )
+            save_contour(results, rnds)
+            save_contour(results_N, "N"+rnds)
+            
+            
         save()
 
         import matplotlib.pyplot as plt
@@ -205,9 +250,9 @@ for live in [livetime]:
                                                      energy_power = ep)
         dataset.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:blue',
                                                    energy_power = ep)
-
-        fluxpoints_N.plot(ax =ax,energy_power = ep )
-        fluxpoints.plot(ax =ax, energy_power = ep)
+        if save_fluxpoints:
+            fluxpoints_N.plot(ax =ax,energy_power = ep )
+            fluxpoints.plot(ax =ax, energy_power = ep)
         ax.legend(title = f"live: {live} hr norm:{shift_rnd[0]:.3} tilt:{tilt_rnd[0]:.3}")
         fig = plt.gcf()
         fig.savefig(f"{path}/data/plots/{live}_{rnds}.png")
