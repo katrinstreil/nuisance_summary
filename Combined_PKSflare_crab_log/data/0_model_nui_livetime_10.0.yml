@@ -5,59 +5,59 @@ components:
         type: LogParabolaSpectralModel
         parameters:
         -   name: amplitude
-            value: 3.8504580395131994e-11
+            value: 3.851026774084566e-11
             unit: cm-2 s-1 TeV-1
-            error: 1.4501127211220322e-11
+            error: 4.107593984111508e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: alpha
-            value: 2.5161308989467863
-            error: 1.4155141963115834
+            value: 2.515238735808902
+            error: 0.06033610400129411
         -   name: beta
-            value: 0.23903370743887262
-            error: 0.14148191441141478
+            value: 0.23914025452915047
+            error: 0.03408914732949218
     spatial:
         type: PointSpatialModel
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.68000152601024
+            value: 329.6800015832283
             unit: deg
-            error: 1.4152104471326357
+            error: 0.0010796460790182358
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.22166726043281
+            value: -30.22166721998639
             unit: deg
-            error: 1.4152103425908804
+            error: 0.0009343842823635257
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - AnodRKHe
+    - 19GxpUCo
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.0000064801586168
-            error: 1.4152187307503528
+            value: 1.0000030773585555
+            error: 0.0049853688524499114
         -   name: tilt
-            value: 3.847559252946792e-06
-            error: 1.4152201059990555
+            value: 1.5922372223007559e-06
+            error: 0.005372824064722312
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: AnodRKHe-irf
+-   name: 19GxpUCo-irf
     type: IRFModels
-    datasets_names: AnodRKHe
+    datasets_names: 19GxpUCo
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: 2.46547280379321e-13
-            error: 1.0000009999995
+            value: 1.6985704251470333e-13
+            error: 4.758776240484426e-12
             prior:
                 type: GaussianPrior
                 parameters:
@@ -80,8 +80,8 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 6.463943743451856e-05
-                error: 1.4174846638512473
+                value: 3.428810384207984e-05
+                error: 0.10308876460592876
                 prior:
                     type: GaussianPrior
                     parameters:
@@ -96,8 +96,8 @@ components:
                     - norm
                     dimension: 1
             -   name: tilt
-                value: -4.735602547716844e-08
-                error: 1.4153497141756222
+                value: -5.468822649301266e-08
+                error: 0.020000013851281962
                 frozen: false
                 prior:
                     type: GaussianPrior
