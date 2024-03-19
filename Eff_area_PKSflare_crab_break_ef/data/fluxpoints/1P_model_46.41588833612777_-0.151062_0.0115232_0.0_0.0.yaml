@@ -1,0 +1,60 @@
+components:
+-   name: Crabbreak
+    type: SkyModel
+    spectral:
+        type: SmoothBrokenPowerLawSpectralModel
+        parameters:
+        -   name: index1
+            value: 1.61
+            frozen: true
+        -   name: index2
+            value: 2.9009242311355963
+            error: 0.04224439779031287
+        -   name: amplitude
+            value: 2.701287244694308e-10
+            unit: cm-2 s-1 TeV-1
+            error: 4.678424170018077e-11
+        -   name: ebreak
+            value: 0.33
+            unit: TeV
+            frozen: true
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: beta
+            value: 1.4313095507744666
+            error: 0.24309341356386283
+            frozen: false
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.68034512903034
+            unit: deg
+            error: 0.00045888022013958104
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.22171384983773
+            unit: deg
+            error: 0.0003972697483170735
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   type: FoVBackgroundModel
+    datasets_names:
+    - m1SyoGcd
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 0.9997544787372233
+            error: 0.00231491416724493
+        -   name: tilt
+            value: 0.0031308445641637355
+            error: 0.002501165439549796
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+covariance: 1P_model_46.41588833612777_-0.151062_0.0115232_0.0_0.0_covariance.dat
