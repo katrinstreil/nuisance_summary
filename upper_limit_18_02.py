@@ -34,7 +34,7 @@ class upper_limit:
 
     def interpolate(self):
         xnew = np.linspace(
-            self.likelihood[self.name][0], self.likelihood["scale_scan"][-1], 3000
+            self.likelihood[self.name][0], self.likelihood[self.name][-1], 3000
         )
         f = interp1d(
             self.likelihood[self.name], self.likelihood["stat_scan"], kind="cubic"
@@ -174,7 +174,7 @@ class upper_limit:
             label="Minimum at {:.3} pm {:.3}".format(x_min[0], dx_min[0]),
         )
         f, xnew = self.interpolate()
-        values = self.likelihood["scale_scan"]
+        values = self.likelihood[self.name]
         likelihood_values = self.likelihood["stat_scan"]
         plt.plot(
             xnew,

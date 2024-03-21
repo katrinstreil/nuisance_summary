@@ -62,7 +62,7 @@ sys = c['sys']
 folder = c['folder']
 nbidx = 0
 
-livetimes = livetimes[7:]
+livetimes = livetimes[9:]
 # %%time
 datasets_input = []
 for l in livetimes:
@@ -121,7 +121,7 @@ for d in datasets_input:
 print(datasets[0].models)
 
 # %%time
-fitting = 1
+fitting = 0
 if fitting:
     for i, d in enumerate(datasets):
         print(i)

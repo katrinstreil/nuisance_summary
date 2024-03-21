@@ -72,6 +72,7 @@ class Setup:
         self.e_reco_creation = e_reco_creation
         self._irf_sys= False
         self._bkg_sys = False
+        self._bkg_sys_V = False
         
          
         
@@ -100,6 +101,13 @@ class Setup:
         self.corrlength = corrlength
         self.seed= seed
         self._bkg_sys = True
+        
+    def set_up_bkg_sys_V(self, index1, index2, breake, magnitude):
+        self.index1 = index1
+        self.index2 = index2
+        self.breake = breake
+        self.magnitude = magnitude
+        self._bkg_sys_V = True
                
         
     def run(self):
@@ -116,6 +124,9 @@ class Setup:
         if self._bkg_sys:
             # sets the counts
             self.add_bkg_systematic(self.magnitude, self.corrlength, self.seed)
+            self.set_piecewise_bkg_model(dataset_N)
+        elif self._bkg_sys_V:
+            self.add_bkg_systematic_V( self.index1, self.index2, self.breake, self.magnitude)
             self.set_piecewise_bkg_model(dataset_N)
             
         else:            
@@ -229,10 +240,21 @@ class Setup:
         for n , v in zip(self.dataset_helper.background_model.parameters.free_parameters[self.emask()],
                          values[self.emask()]):
             n.value = v
-        
+            
+      
+    def add_bkg_systematic_V(self, index1, index2, breake, magnitude):
+        self.set_piecewise_bkg_model(self.dataset_helper)
+        N = len(self.dataset_helper.background_model.parameters.free_parameters[self.emask()])
+        x_values = np.linspace(0, N-1,N)  
+        values = [np.abs (x - breake)* index1 if x < breake else np.abs (x - breake)* index2 for x in x_values ]
+        values /= np.max(values)
+        values *= magnitude * 1e-2
+        for n , v in zip(self.dataset_helper.background_model.parameters.free_parameters[self.emask()],
+                         values):
+            n.value = v
+
     
     
-    	
     def add_counts(self, dataset):
         """
         setting counts from the npred() with or without P. stat
