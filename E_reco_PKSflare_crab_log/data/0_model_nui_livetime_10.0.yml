@@ -1,0 +1,77 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: LogParabolaSpectralModel
+        parameters:
+        -   name: amplitude
+            value: 3.851324119343033e-11
+            unit: TeV-1 s-1 cm-2
+            error: 1.0199359049007354e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: alpha
+            value: 2.5135532071314084
+            error: 0.292583739588687
+        -   name: beta
+            value: 0.23972002050530322
+            error: 0.029102194660729754
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.68000078861576
+            unit: deg
+            error: 0.0009789812186121476
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.221666929613452
+            unit: deg
+            error: 0.0008404152754355957
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   type: FoVBackgroundModel
+    datasets_names:
+    - CD1N0vBU
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0000007628375596
+            error: 0.0044798548112761905
+        -   name: tilt
+            value: 2.4660578580389116e-06
+            error: 0.004860090565931026
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+-   name: CD1N0vBU-irf
+    type: IRFModels
+    datasets_names: CD1N0vBU
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: 9.218216114449602e-06
+            error: 0.005742058635449222
+        -   name: resolution
+            value: 0.00018032834614074372
+            error: 0.6333406372082245
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormSpectralModel
+            parameters:
+            -   name: norm
+                value: 0.00034392631602463375
+                error: 0.026491904983295726
+            -   name: tilt
+                value: 0.0
+            -   name: reference
+                value: 1.0
+                unit: TeV
+covariance: 0_model_nui_livetime_10.0_covariance.dat

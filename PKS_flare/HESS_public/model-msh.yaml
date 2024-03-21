@@ -1,0 +1,33 @@
+components:
+-   name: msh
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.26
+        -   name: amplitude
+            value: 2.58e-12
+            unit: TeV-1 s-1 cm-2
+        -   name: reference
+            value: 1.0
+            unit: TeV
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+        -   name: sigma
+            value: 0.145
+            unit: deg
+        -   name: e
+            value: 0.0
+        -   name: phi
+            value: 0.0
+            unit: deg
+covariance: model-msh_covariance.dat
