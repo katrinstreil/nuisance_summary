@@ -101,12 +101,13 @@ for live in [livetime]:
         tilt_rnd = np.random.normal(0, tilt, 1)
         zero_sys = 1
         if zero_sys:
-            shift_rnd, tilt_rnd = [0.], [0.]
-            bias_rnd, res_rnd = [0.], [0.]
+            shift_rnd, tilt_rnd = np.array([0.]), np.array([0.])
+            bias_rnd, res_rnd = np.array([0.]), np.array([0.])
         
         print(f"shift {shift_rnd}, tilt {tilt_rnd}  bias {bias_rnd}, res {res_rnd}")
         setup = Setup(dataset_input=dataset_asimov, rnd = True)
-        setup.set_up_irf_sys(bias, resolution, norm, tilt)
+        setup.set_up_irf_sys(bias_rnd, res_rnd, shift_rnd, tilt_rnd)
+
         dataset, dataset_N = setup.run()
         # irf model
         # happens in set_up_irf_sys
