@@ -84,8 +84,8 @@ for live in [livetime]:
 
     N = 10
     save_flux = True
-    save_fluxpoints = 1
-    save_fluxpoints_N = 1
+    save_fluxpoints = 0
+    save_fluxpoints_N = 0
     dataset_N = True
     contour = 0
 
@@ -101,12 +101,13 @@ for live in [livetime]:
         tilt_rnd = np.random.normal(0, tilt, 1)
         zero_sys = 1
         if zero_sys:
-            shift_rnd, tilt_rnd = [0.], [0.]
-            bias_rnd, res_rnd = [0.], [0.]
+            shift_rnd, tilt_rnd = np.array([0.]), np.array([0.])
+            bias_rnd, res_rnd = np.array([0.]), np.array([0.])
         
-        print(f"shift {shift_rnd}, tilt {tilt_rnd}  bias {bias_rnd}, res {res_rnd}")
+        print(f"shift {shift_rnd}, tilt {tilt_rnd},  bias {bias_rnd}, res {res_rnd}")
         setup = Setup(dataset_input=dataset_asimov, rnd = True)
-        setup.set_up_irf_sys(bias, resolution, norm, tilt)
+        setup.set_up_irf_sys(bias_rnd, res_rnd, shift_rnd, tilt_rnd)
+
         dataset, dataset_N = setup.run()
         # irf model
         # happens in set_up_irf_sys
@@ -219,7 +220,7 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = "all",
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = None,#"all",
                                        reoptimize=True)
             fluxpoints_N = esti.run([dataset_N])
             fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}.fits',
@@ -234,8 +235,8 @@ for live in [livetime]:
             computing_contour(dataset, rnds)
             computing_contour(dataset_N, "N"+rnds)
 
-
-        save()
+        if zero_sys is False: # else only the fluxpoints and models are saved but not the info
+            save()
         plotting = 0
         if plotting:
             import matplotlib.pyplot as plt

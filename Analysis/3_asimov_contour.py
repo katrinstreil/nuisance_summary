@@ -89,7 +89,12 @@ if sys == "Eff_area":
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-
+if sys == "E_reco":
+    dataset_asimov_N.models.parameters['resolution'].frozen = True
+    dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
 ######################################################################
 # Minos
