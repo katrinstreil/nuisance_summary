@@ -6,17 +6,17 @@ components:
         parameters:
         -   name: amplitude
             value: 3.8500000000017e-11
-            unit: TeV-1 s-1 cm-2
-            error: 3.372137562791816e-13
+            unit: cm-2 s-1 TeV-1
+            error: 3.3721432479411463e-13
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: alpha
             value: 2.5100000000013023
-            error: 0.13598930738844658
+            error: 0.1359893569682351
         -   name: beta
             value: 0.23999999999998614
-            error: 0.009543878410029297
+            error: 0.009543881011544884
     spatial:
         type: PointSpatialModel
         frame: icrs
@@ -24,51 +24,51 @@ components:
         -   name: lon_0
             value: 329.67999999999995
             unit: deg
-            error: 0.0004736279653063778
+            error: 0.00047362932115185163
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
             value: -30.221666666666657
             unit: deg
-            error: 0.0004070310436820794
+            error: 0.0004070320705516555
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - xt1_pUkm
+    - R_PdmLFL
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
             value: 0.999999999999999
-            error: 0.002166016465562527
+            error: 0.00216601653982965
         -   name: tilt
-            value: 5.130546838153019e-15
-            error: 0.002487412928401361
+            value: 5.1306020897283934e-15
+            error: 0.0024874144246521458
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: xt1_pUkm-irf
+-   name: R_PdmLFL-irf
     type: IRFModels
-    datasets_names: xt1_pUkm
+    datasets_names: R_PdmLFL
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -1.975014193999225e-13
-            error: 0.0022841002237888766
+            value: -1.9750167235232623e-13
+            error: 0.002284100021179567
         -   name: resolution
             value: 0.0
-            error: 0.43459889109993916
+            error: 0.4345987787980217
     eff_area_model:
         type: EffAreaIRFModel
         spectral:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 4.413901879870771e-13
-                error: 0.008758809921274563
+                value: 4.4139064625942815e-13
+                error: 0.008758823794221294
             -   name: tilt
                 value: 0.0
             -   name: reference

@@ -97,7 +97,7 @@ if sys == "Eff_area":
 # 
 
         
-numpoints = 20
+numpoints = 50
 
 def computing_contour(dataset, note):
         

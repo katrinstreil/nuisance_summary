@@ -127,15 +127,15 @@ def load_dataset_N(dataset_empty, path, bkg_sys=False):
 
     if bkg_sys:
         import operator
-
-        compoundnorm = CompoundNormSpectralModel(
-            model1=PowerLawNormSpectralModel(),
-            model2=PowerLawNormPenSpectralModel(),
-            operator=operator.mul,
-        )
+        piecewise = PiecewiseNormSpectralModel()
+        #compoundnorm = CompoundNormSpectralModel(
+        #    model1=PowerLawNormSpectralModel(),
+        #    model2=PowerLawNormPenSpectralModel(),
+        #    operator=operator.mul,
+        #)
 
         bkg = FoVBackgroundModel(
-            dataset_name=dataset_read.name, spectral_model=compoundnorm
+            dataset_name=dataset_read.name, spectral_model=piecewise
         )
 
     else:

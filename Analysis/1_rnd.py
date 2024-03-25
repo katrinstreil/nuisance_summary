@@ -19,8 +19,8 @@ def save():
     with open(f"{path}/data/1_N_P_draw_flux2e.txt", "a") as myfile:
         myfile.write( ffN2 + '\n')
         
-def computing_contour(dataset):
-    print("compute contour")
+def computing_contour(dataset, note):
+        
     results = []
     for parname1, parname2 in parameter_names :
         print( parname1, parname2)
@@ -28,13 +28,7 @@ def computing_contour(dataset):
                              dataset.models.parameters[parname1],
                              dataset.models.parameters[parname2],
                             )
-        results.append(result)
-    return results
 
-def save_contour(results ,note):
-    i = 0
-    for parname1, parname2 in parameter_names :
-        result = results[i]
         contour_write = dict()
         for k in result.keys():
             print(k)
@@ -43,7 +37,7 @@ def save_contour(results ,note):
         import yaml
         with open(f"{path}/data/contours/{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
-        i +=1
+
 
 
 import gammapy 
@@ -76,11 +70,9 @@ bias = c['bias']
 resolution = c['resolution'] 
 path = f"../{c['folder']}"
 parameter_names = c['parameter_names']        
-print(parameter_names)
 
-
-#for live in livetimes:
-for live in [livetime, livetime, livetime, livetime, livetime]:
+for live in livetimes[:8]:
+#for live in [livetime]:
 
     dataset_asimov = Dataset_load.create_asimov(
         model=c['model'], source=c['source'], parameters=None,
@@ -93,10 +85,10 @@ for live in [livetime, livetime, livetime, livetime, livetime]:
 
     N = 1
     save_flux = True
-    save_fluxpoints = 0
-    save_fluxpoints_N = 0
+    save_fluxpoints = 1
+    save_fluxpoints_N = 1
     dataset_N = True
-    contour = True
+    contour = 0
 
 
     for n in range(N):
@@ -108,7 +100,11 @@ for live in [livetime, livetime, livetime, livetime, livetime]:
         bias_rnd =  np.random.normal(0, bias, 1)
         shift_rnd = np.random.normal(0, norm, 1)
         tilt_rnd = np.random.normal(0, tilt, 1)
-
+        zero_sys = True
+        if zero_sys:
+            shift_rnd, tilt_rnd = [0.], [0.]
+            bias_rnd, res_rnd = [0.], [0.]
+        
         print(f"shift {shift_rnd}, tilt {tilt_rnd}  bias {bias_rnd}, res {res_rnd}")
         setup = Setup(dataset_input=dataset_asimov, rnd = True)
         #setup.set_up_irf_sys(bias, resolution, norm, tilt)
@@ -120,6 +116,13 @@ for live in [livetime, livetime, livetime, livetime, livetime]:
             dataset_N.models.parameters['bias'].frozen = True
             dataset_N.irf_model.parameters['tilt'].frozen = False
             dataset_N.irf_model.parameters['norm'].frozen = False
+            
+        if sys == "E_reco":
+            dataset_N.models.parameters['resolution'].frozen = True
+            dataset_N.models.parameters['bias'].frozen = False
+            dataset_N.irf_model.parameters['tilt'].frozen = True
+            dataset_N.irf_model.parameters['norm'].frozen = True
+            
         setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
         fit_cor = Fit(store_trace=False)
         result_cor = fit_cor.run([dataset])
@@ -224,10 +227,8 @@ for live in [livetime, livetime, livetime, livetime, livetime]:
             fluxpoints.write(f'{path}/data/fluxpoints/1P_fluxpoints_{live}_{rnds}.fits')
             dataset.models.write(f'{path}/data/fluxpoints/1P_model_{live}_{rnds}.yaml')
         if contour:
-            results = computing_contour(dataset)
-            results_N = computing_contour(dataset_N )
-            save_contour(results, rnds)
-            save_contour(results_N, "N"+rnds)
+            computing_contour(dataset, rnds)
+            computing_contour(dataset_N, "N"+rnds)
             
             
         save()
@@ -250,9 +251,9 @@ for live in [livetime, livetime, livetime, livetime, livetime]:
                                                      energy_power = ep)
         dataset.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:blue',
                                                    energy_power = ep)
-        if save_fluxpoints:
-            fluxpoints_N.plot(ax =ax,energy_power = ep )
-            fluxpoints.plot(ax =ax, energy_power = ep)
+
+        fluxpoints_N.plot(ax =ax,energy_power = ep )
+        fluxpoints.plot(ax =ax, energy_power = ep)
         ax.legend(title = f"live: {live} hr norm:{shift_rnd[0]:.3} tilt:{tilt_rnd[0]:.3}")
         fig = plt.gcf()
         fig.savefig(f"{path}/data/plots/{live}_{rnds}.png")

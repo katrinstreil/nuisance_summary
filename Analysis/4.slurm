@@ -20,7 +20,7 @@ module load python/3.8-anaconda
 source activate /home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev
 
 
-srun --mpi=pmi2  python 4_asimov_surface.py
+srun --mpi=pmi2  python 4_asimov_scan.py
 
 
 # log into tiny

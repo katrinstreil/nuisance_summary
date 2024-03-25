@@ -87,6 +87,14 @@ if sys == "Eff_area":
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    
+    
+if sys == "E_reco":
+    dataset_asimov_N.models.parameters['resolution'].frozen = True
+    dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
 
 
@@ -95,31 +103,22 @@ if sys == "Eff_area":
 # -----
 # 
 
-if c['model'] == "crab_break_1f":
-    parameter_names = [("amplitude", "index2"),
-                   ("amplitude", "ebreak"),
-                   ("index2", "ebreak"),
-                  ]
-if c['model'] == "crab_break_ef":
-     parameter_names = [("amplitude", "index2"),
-                   ("amplitude", "beta"),
-                   ("beta","index2",),
-                  ]
-source = 'Crabbreak'
-scan_n_sigma = 3
+parameter_names = c['parameter_names']
+source = 'Crablog'
+scan_n_sigma = 2
 
 
-def computing_surface(dataset, note):
+def computing_surface(dataset, note, idx):
         
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run(dataset)
     print(dataset_asimov.models[0])
     
     results = []
-    for parname1, parname2 in parameter_names :
+    for parname1, parname2 in parameter_names[idx:idx+1] :
         print( parname1, parname2)
         dataset_asimov.models.parameters[parname1].scan_n_sigma  = scan_n_sigma  
-        dataset_asimov.models.parameters[parname2].scan_n_sigma  = scan_n_sigma
+        dataset_asimov.models.parameters[parname2].scan_n_sigma  = scan_n_sigma    
         if dataset_asimov.models.parameters[parname1].scan_min <0:
             dataset_asimov.models.parameters[parname1].scan_min = 1e-15
         if dataset_asimov.models.parameters[parname2].scan_min <0:
@@ -136,6 +135,7 @@ def computing_surface(dataset, note):
                 contour_write[k] =[float(_) for _ in np.array(result[k]).flatten()]#.tolist()
 
         with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}.yml", "w") as outfile:
+        #with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
         results.append(result)
     return results
@@ -144,6 +144,7 @@ def read_in_surface(note):
     results = []
     for parname1, parname2 in parameter_names :
         with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}.yml", "r") as stream:
+        #with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}.yml", "r") as stream:
             contour = yaml.safe_load(stream)
         a = contour[f"{source}.spectral.{parname1}_scan"]
         b = contour[f"{source}.spectral.{parname2}_scan"]
@@ -153,7 +154,7 @@ def read_in_surface(note):
     return results
 
 # %%time
-computing = 1
+computing = 0
 if computing:
     results = computing_surface(dataset_asimov, "2.15h", )
 else:
@@ -164,9 +165,11 @@ else:
 # %%time
 computing = 1
 if computing:
-    results_N = computing_surface(dataset_asimov_N, "N_2.15h")
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
+    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 2)
 else:
-    results_N = read_in_surface("2.15h")
+    results_N = read_in_surface("N_2.15h")
 
 def compute_errors(Ls_new, x_new, y_new, threshold, find_min):
     offset = Ls_new.min() + threshold
@@ -198,19 +201,19 @@ def compute_errors(Ls_new, x_new, y_new, threshold, find_min):
 
 
 def plot_surface(contour, parname1, parname2,
-                source = "Crabbreak", note = ""):
+                source = "Crabbreak", note = "", plot_orig = True):
     amplix__ = contour[f"{source}.spectral.{parname1}_scan"]
     indexy__ = contour[f"{source}.spectral.{parname2}_scan"]
     N_new = 110
     N_new_y = 100
     amplix__new = np.linspace(amplix__[0], amplix__[-1], N_new)
     indexy__new = np.linspace(indexy__[0], indexy__[-1], N_new_y)
-
+    stat_scan = contour["stat_scan"] - np.min(contour["stat_scan"])
 
     f = interp2d(
         x=indexy__,
         y=amplix__,
-        z=contour["stat_scan"],
+        z=stat_scan,
         kind="cubic",
         fill_value=None,
         bounds_error=False,
@@ -218,22 +221,24 @@ def plot_surface(contour, parname1, parname2,
     data_contour = f(indexy__new, amplix__new)
     
     
-    fig, (ax1, ax) = plt.subplots(1, 2, figsize=(14, 5))
 
-    im = ax1.pcolormesh(indexy__, amplix__, contour["stat_scan"])
     dddd = np.array(contour["stat_scan"])
     ampli_best = amplix__[np.where(dddd == dddd.min())[0][0]]
     index_best = indexy__[np.where(dddd == dddd.min())[1][0]]
-
-    ax1.plot(index_best, ampli_best, "x")
-    fig.colorbar(im, ax=ax1)
-    ax1.set_ylabel(parname1)
-    ax1.set_xlabel(parname2)
-    ax1.set_title("Likelihood")
-    ax1.plot(dataset_input.models.parameters[parname2].value, 
-            dataset_input.models.parameters[parname1].value,
-            "+", color = 'white')
-
+    if plot_orig:
+        fig, (ax1, ax) = plt.subplots(1, 2, figsize=(14, 5))
+        im = ax1.pcolormesh(indexy__, amplix__, stat_scan)
+        
+        ax1.plot(index_best, ampli_best, "x")
+        fig.colorbar(im, ax=ax1)
+        ax1.set_ylabel(parname1)
+        ax1.set_xlabel(parname2)
+        ax1.set_title("Likelihood")
+        ax1.plot(dataset_input.models.parameters[parname2].value, 
+                dataset_input.models.parameters[parname1].value,
+                "+", color = 'white')
+    else:
+        fig, ax = plt.subplots(1,1)
     im = ax.pcolormesh(indexy__new, amplix__new, data_contour)
     dddd = np.array(data_contour)
     ampli_best = amplix__new[np.where(dddd == dddd.min())[0][0]]
@@ -242,9 +247,11 @@ def plot_surface(contour, parname1, parname2,
     print("min amplitude:", ampli_best)
 
     ax.plot(index_best, ampli_best, "x")
-    ax.plot(dataset_input.models.parameters[parname2].value, 
+    ax.errorbar(dataset_input.models.parameters[parname2].value, 
             dataset_input.models.parameters[parname1].value,
-            "+", color = 'white')
+                xerr = dataset_input.models.parameters[parname2].error, 
+                yerr = dataset_input.models.parameters[parname1].error, 
+           fmt =  "+", color = 'white')
     
     fig.colorbar(im, ax=ax)
     ax.set_ylabel(parname1)
@@ -261,18 +268,21 @@ def plot_surface(contour, parname1, parname2,
         indexy__new, amplix__new, data_contour,
         colors=('white',), levels=[data_contour.min() + threshold]
     )
-    return CS
+    return CS, fig
 
+
+if c['model'] =="crab_log":
+    source = "Crablog"
 
 CSs, CS_Ns  = [] , []
 for i in range(len(parameter_names)):
-    CS = plot_surface(results[i], parameter_names[i][0], 
-             parameter_names[i][1], source = "Crabbreak",)
-    
+    CS, fig  = plot_surface(results[i], parameter_names[i][0], 
+             parameter_names[i][1], source = source,plot_orig=1)
+    fig.savefig(f"../{c['folder']}/plots/3_surface_{i}.pdf")
     CSs.append(CS)
     
     CS_N = plot_surface(results_N[i], parameter_names[i][0], 
-             parameter_names[i][1], source = "Crabbreak",)
+             parameter_names[i][1], source = source,plot_orig=1)
     
     CS_Ns.append(CS_N)
 
@@ -311,18 +321,5 @@ ax = dataset_asimov.models[0].spectral_model.plot((0.1, 100)*u.TeV)
 dataset_asimov.models[0].spectral_model.plot_error((0.1, 100)*u.TeV, ax = ax)
 
 
-fig,axs = plt.subplots(2,2)
-axs = axs.T.flatten()
-for i,p in enumerate(parameter_names):
-    a = results_N[i][f'Crabbreak.spectral.{p[0]}']    
-    b = results_N[i][f'Crabbreak.spectral.{p[1]}']
-    axs[i].plot(a, b)
-    
-    a = results[i][f'Crabbreak.spectral.{p[0]}']    
-    b = results[i][f'Crabbreak.spectral.{p[1]}']
-    axs[i].plot(a, b)
-    axs[i].set_xlabel(p[0])
-    axs[i].set_ylabel(p[1])  
-plt.tight_layout()
-plt.savefig(f"../{c['folder']}/plots/3_contours.pdf")
+results_N[0]
 

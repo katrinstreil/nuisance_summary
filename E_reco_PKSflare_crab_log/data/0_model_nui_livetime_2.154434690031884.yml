@@ -5,70 +5,83 @@ components:
         type: LogParabolaSpectralModel
         parameters:
         -   name: amplitude
-            value: 3.85198736263448e-11
-            unit: TeV-1 s-1 cm-2
-            error: 1.2400875218762162e-12
+            value: 3.850000000002142e-11
+            unit: cm-2 s-1 TeV-1
+            error: 8.438610130284865e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: alpha
-            value: 2.51008516919378
-            error: 0.5548567246532261
+            value: 2.5100000000016363
+            error: 0.8454624839787285
         -   name: beta
-            value: 0.24020453513519305
-            error: 0.035774033959453534
+            value: 0.23999999999999183
+            error: 0.2810277657207356
     spatial:
         type: PointSpatialModel
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6799629836155
+            value: 329.67999999999995
             unit: deg
-            error: 0.0017031151352260164
+            error: 0.002308957534817835
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.221669454058127
+            value: -30.221666666666664
             unit: deg
-            error: 0.0014595788457485459
+            error: 0.001973602704073357
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - EH0o_VRf
+    - yTcixtnh
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.0000173460483475
-            error: 0.007777931059866076
+            value: 1.0000000000000018
+            error: 0.010536353735358191
         -   name: tilt
-            value: -2.7705053529992637e-05
-            error: 0.008831535186557805
+            value: 5.283915877525491e-15
+            error: 0.011361257496659909
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: EH0o_VRf-irf
+-   name: yTcixtnh-irf
     type: IRFModels
-    datasets_names: EH0o_VRf
+    datasets_names: yTcixtnh
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -2.0738015051276437e-13
-            error: 1.6856290661845936e-07
+            value: -1.8809799409544818e-13
+            error: 0.01822457894338472
+            prior:
+                type: GaussianPrior
+                parameters:
+                -   name: mu
+                    value: 0.0
+                    unit: ''
+                -   name: sigma
+                    value: 0.1
+                    unit: ''
+                weight: 1
+                modelparameters:
+                - bias
+                dimension: 1
         -   name: resolution
             value: 0.0
-            error: 1.3265301458417273
+            frozen: true
     eff_area_model:
         type: EffAreaIRFModel
         spectral:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 0.0005136650073533476
-                error: 0.03221003300886344
+                value: 0.0
+                frozen: true
             -   name: tilt
                 value: 0.0
             -   name: reference
