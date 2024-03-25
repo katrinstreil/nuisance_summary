@@ -6,3 +6,157 @@ tput: No value for $TERM and no -T specified
 tput: No value for $TERM and no -T specified
 tput: No value for $TERM and no -T specified
 tput: No value for $TERM and no -T specified
+2.154434690031884
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : LogParabolaSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    amplitude                     :   3.85e-11   +/- 1.8e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    alpha                         :      2.510   +/-    0.06             
+    beta                          :      0.240   +/-    0.06             
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+
+amplitude beta
+Traceback (most recent call last):
+  File "5_asimov_surface.py", line 169, in <module>
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
+  File "5_asimov_surface.py", line 126, in computing_surface
+    result = fit_cor.stat_surface([dataset],
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 461, in stat_surface
+    result = self.optimize(datasets=datasets)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 223, in optimize
+    factors, info, optimizer = compute(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 79, in optimize_iminuit
+    minuit.migrad(**migrad_opts)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/iminuit/minuit.py", line 702, in migrad
+    fm = migrad(ncall, self._tolerance)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 25, in fcn
+    total_stat = self.function()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/core.py", line 235, in stat_sum
+    stat_sum += dataset.stat_sum()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 1241, in stat_sum
+    counts, npred = self.counts.data.astype(float), self.npred().data
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 459, in npred
+    npred_total = self.npred_signal()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 607, in wrapper
+    return function(*args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 643, in npred_signal
+    evaluator.update(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/evaluator.py", line 188, in update
+    self.edisp = edisp.get_edisp_kernel(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/irf/edisp/map.py", line 359, in get_edisp_kernel
+    kernel_map = self.edisp_map.to_region_nd_map(region=position)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/wcs/ndmap.py", line 602, in to_region_nd_map
+    coords = geom.get_coord()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 322, in get_coord
+    coords["skycoord"] = self.center_skydir.reshape((1, 1))
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 841, in __get__
+    val = self.fget(obj)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 210, in center_skydir
+    return self._rectangle_bbox.center
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 841, in __get__
+    val = self.fget(obj)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 141, in _rectangle_bbox
+    bbox = regions_pix[0].bounding_box
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/regions/shapes/point.py", line 97, in bounding_box
+    return RegionBoundingBox.from_float(self.center.x, self.center.x,
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/regions/core/bounding_box.py", line 118, in from_float
+    ixmin = int(np.floor(xmin + 0.5))
+ValueError: cannot convert float NaN to integer
+2.154434690031884
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : LogParabolaSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    amplitude                     :   3.85e-11   +/- 1.8e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    alpha                         :      2.510   +/-    0.06             
+    beta                          :      0.240   +/-    0.06             
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+
+amplitude beta
+Traceback (most recent call last):
+  File "5_asimov_surface.py", line 169, in <module>
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
+  File "5_asimov_surface.py", line 126, in computing_surface
+    result = fit_cor.stat_surface([dataset],
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 461, in stat_surface
+    result = self.optimize(datasets=datasets)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 223, in optimize
+    factors, info, optimizer = compute(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 79, in optimize_iminuit
+    minuit.migrad(**migrad_opts)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/iminuit/minuit.py", line 702, in migrad
+    fm = migrad(ncall, self._tolerance)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 25, in fcn
+    total_stat = self.function()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/core.py", line 235, in stat_sum
+    stat_sum += dataset.stat_sum()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 1241, in stat_sum
+    counts, npred = self.counts.data.astype(float), self.npred().data
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 459, in npred
+    npred_total = self.npred_signal()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 607, in wrapper
+    return function(*args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 643, in npred_signal
+    evaluator.update(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/evaluator.py", line 188, in update
+    self.edisp = edisp.get_edisp_kernel(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/irf/edisp/map.py", line 359, in get_edisp_kernel
+    kernel_map = self.edisp_map.to_region_nd_map(region=position)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/wcs/ndmap.py", line 602, in to_region_nd_map
+    coords = geom.get_coord()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 322, in get_coord
+    coords["skycoord"] = self.center_skydir.reshape((1, 1))
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 841, in __get__
+    val = self.fget(obj)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 210, in center_skydir
+    return self._rectangle_bbox.center
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 841, in __get__
+    val = self.fget(obj)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/maps/region/geom.py", line 141, in _rectangle_bbox
+    bbox = regions_pix[0].bounding_box
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/regions/shapes/point.py", line 97, in bounding_box
+    return RegionBoundingBox.from_float(self.center.x, self.center.x,
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/regions/core/bounding_box.py", line 118, in from_float
+    ixmin = int(np.floor(xmin + 0.5))
+ValueError: cannot convert float NaN to integer
+srun: error: tf076: task 0: Exited with exit code 1
+srun: Terminating StepId=392203.0
+srun: error: tf076: task 1: Exited with exit code 1
+=== JOB_STATISTICS ===
+=== current date     : Mon 25 Mar 2024 10:52:49 AM CET
+= Job-ID             : 392203 on tinyfat
+= Job-Name           : logfiles/5<
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/5.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 00:29:56
+= Total RAM usage    : 3.5 GiB of requested  GiB (%)   
+= Node list          : tf076
+= Subm/Elig/Start/End: 2024-03-25T10:22:53 / 2024-03-25T10:22:53 / 2024-03-25T10:22:53 / 2024-03-25T10:52:49
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.3G   104.9G   209.7G        N/A     119K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+======================

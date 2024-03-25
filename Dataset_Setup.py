@@ -66,7 +66,7 @@ class Setup:
     ):
         self.dataset_input = dataset_input
         # set the sys parameters here and use npred as counts
-        self.dataset_helper = self.set_up_dataset()
+        self.dataset_helper = self.set_up_dataset(name = "helper")
 
         self.rnd = rnd
         self.e_reco_creation = e_reco_creation
@@ -116,7 +116,7 @@ class Setup:
         both set up with the according models and filled with systematic
         """
         # set up datasets
-        dataset, dataset_N = self.set_up_dataset(), self.set_up_dataset()
+        dataset, dataset_N = self.set_up_dataset(name = "dataset"), self.set_up_dataset(name = "dataset_N")
         # adding systematics if set before and setting irf/piecewise model to the dataset_N
         if self._irf_sys:
             self.add_irf_systematic(self.bias, self.resolution, self.norm, self.tilt)
@@ -141,11 +141,12 @@ class Setup:
         
         return dataset, dataset_N
         
-    def set_up_dataset(self):
+    def set_up_dataset(self, name=None):
         """
         Returns dataset which is a copy of the input and the source model is set as model.
         """
-        dataset = self.dataset_input.copy()
+        
+        dataset = self.dataset_input.copy(name = name)
         models = Models(self.dataset_input.models.copy())
         dataset.models= models
         return dataset
@@ -182,7 +183,6 @@ class Setup:
         """
         sets the IRF model to the rest of the models
         """
-       
         # irf model
         IRFmodels = IRFModels(
             eff_area_model=EffAreaIRFModel(spectral_model = PowerLawNormSpectralModel()), 

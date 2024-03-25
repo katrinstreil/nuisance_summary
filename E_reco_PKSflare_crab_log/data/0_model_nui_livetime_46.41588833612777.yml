@@ -5,18 +5,18 @@ components:
         type: LogParabolaSpectralModel
         parameters:
         -   name: amplitude
-            value: 3.8500000000014776e-11
+            value: 3.850000000001441e-11
             unit: cm-2 s-1 TeV-1
-            error: 2.0991671993063162e-13
+            error: 1.7993840599920006e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: alpha
-            value: 2.5100000000011335
-            error: 0.07498899225330923
+            value: 2.510000000001105
+            error: 0.18183765898810375
         -   name: beta
-            value: 0.23999999999998614
-            error: 0.005771655639879452
+            value: 0.23999999999998645
+            error: 0.06044891021621764
     spatial:
         type: PointSpatialModel
         frame: icrs
@@ -24,51 +24,64 @@ components:
         -   name: lon_0
             value: 329.67999999999995
             unit: deg
-            error: 0.00029078834948727896
+            error: 0.0004949443574773627
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
             value: -30.221666666666657
             unit: deg
-            error: 0.00025033362779751687
+            error: 0.00042362747261113175
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - KAwHep7R
+    - 4X9D5Iw8
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
             value: 0.9999999999999997
-            error: 0.001331147461294027
+            error: 0.0022605307656353847
         -   name: tilt
-            value: 4.723879798013146e-15
-            error: 0.0015320727885925188
+            value: 4.60510212076322e-15
+            error: 0.0024386290638988384
             frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
--   name: KAwHep7R-irf
+-   name: 4X9D5Iw8-irf
     type: IRFModels
-    datasets_names: KAwHep7R
+    datasets_names: 4X9D5Iw8
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -2.0453579960211982e-13
-            error: 0.0009172468380705534
+            value: -1.9920970859949003e-13
+            error: 0.001128184840855567
+            prior:
+                type: GaussianPrior
+                parameters:
+                -   name: mu
+                    value: 0.0
+                    unit: ''
+                -   name: sigma
+                    value: 0.1
+                    unit: ''
+                weight: 1
+                modelparameters:
+                - bias
+                dimension: 1
         -   name: resolution
             value: 0.0
-            error: 0.29551807293307897
+            frozen: true
     eff_area_model:
         type: EffAreaIRFModel
         spectral:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 3.843486180653093e-13
-                error: 0.005452388799798667
+                value: 0.0
+                frozen: true
             -   name: tilt
                 value: 0.0
             -   name: reference
