@@ -66,7 +66,7 @@ sys = c['sys']
 norm = c['norm'] 
 tilt = c['tilt'] 
 bias =  c['bias'] 
-resolution = c['zero']#c['resolution'] 
+resolution = c['resolution'] 
 path = f"../{c['folder']}"
 parameter_names = c['parameter_names']        
 
@@ -82,11 +82,7 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-<<<<<<< HEAD
     N = 20
-=======
-    N = 100
->>>>>>> 7f145af84126f85360833f4a84b68c4cb81f7867
     save_flux = True
     save_fluxpoints = 0
     save_fluxpoints_N = 0
@@ -127,7 +123,13 @@ for live in [livetime]:
             dataset_N.models.parameters['bias'].frozen = False
             dataset_N.irf_model.parameters['tilt'].frozen = True
             dataset_N.irf_model.parameters['norm'].frozen = True
-            
+        
+        if sys == "E_reco":
+            dataset_N.models.parameters['resolution'].frozen = True
+            dataset_N.models.parameters['bias'].frozen = False
+            dataset_N.irf_model.parameters['tilt'].frozen = False
+            dataset_N.irf_model.parameters['norm'].frozen = False
+        
         setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
         fit_cor = Fit(store_trace=False)
         dataset.plot_residuals()
