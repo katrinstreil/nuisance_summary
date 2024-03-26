@@ -113,6 +113,14 @@ def set_model(path, model):
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crablog")])
+    elif model == "crab_cutoff":
+        model_crab = ExpCutoffPowerLawSpectralModel(amplitude =  3.85e-11*u.Unit(" 1 / (cm2 s TeV)"),
+                                             index = 2.3,
+                                             cutoff = 1/10 /u.TeV)
+        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
+                            spectral_model = model_crab,
+                            name = "Crablog")])
         
     else:
         skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()

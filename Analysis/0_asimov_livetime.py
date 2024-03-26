@@ -62,7 +62,7 @@ sys = c['sys']
 folder = c['folder']
 nbidx = 0
 
-livetimes = livetimes[9:]
+livetimes = livetimes[8:]
 # %%time
 datasets_input = []
 for l in livetimes:
