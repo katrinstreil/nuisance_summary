@@ -5,63 +5,47 @@ components:
         type: LogParabolaSpectralModel
         parameters:
         -   name: amplitude
-            value: 3.9699342457600125e-11
+            value: 3.8258221063296144e-11
             unit: cm-2 s-1 TeV-1
-            error: 1.871378690438956e-12
+            error: 1.816623376366378e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: alpha
-            value: 2.3939542525218642
-            error: 0.09442765331790762
+            value: 2.5252119906389363
+            error: 0.06248686169356842
             frozen: true
         -   name: beta
-            value: 0.2595272894365866
-            error: 0.06120165982756683
+            value: 0.22849236442337145
+            error: 0.05935155271825228
             frozen: true
     spatial:
         type: PointSpatialModel
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.68166803560223
+            value: 329.6774533845173
             unit: deg
-            error: 0.0023206246760459296
+            error: 0.0022548691546196427
             min: 328.67999999999995
             max: 330.67999999999995
             frozen: true
         -   name: lat_0
-            value: -30.21885971283613
+            value: -30.224029032287
             unit: deg
-            error: 0.0019940155901468303
+            error: 0.002065475035585891
             min: -31.221666666666664
             max: -29.221666666666664
             frozen: true
--   type: FoVBackgroundModel
-    datasets_names:
-    - Qgu1DjlC
-    spectral:
-        type: PowerLawNormSpectralModel
-        parameters:
-        -   name: norm
-            value: 0.9983431641618837
-            error: 0.010737420007043095
-            frozen: true
-        -   name: tilt
-            value: -0.004616497880358415
-            error: 0.011554171722199254
-        -   name: reference
-            value: 1.0
-            unit: TeV
--   name: Qgu1DjlC-irf
+-   name: dataset_N-irf
     type: IRFModels
-    datasets_names: Qgu1DjlC
+    datasets_names: dataset_N
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: 0.003129884738290579
-            error: 0.031121711870470768
+            value: 0.0030032393924316237
+            error: 0.008361383095685246
             prior:
                 type: GaussianPrior
                 parameters:
@@ -91,4 +75,20 @@ components:
             -   name: reference
                 value: 1.0
                 unit: TeV
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 0.9956968195168485
+            error: 0.010718312875755573
+            frozen: true
+        -   name: tilt
+            value: -0.004754539130153364
+            error: 0.011569536892511986
+        -   name: reference
+            value: 1.0
+            unit: TeV
 covariance: 1P_model_N_2.154434690031884_0.0_0.0_0.0_0.0_covariance.dat

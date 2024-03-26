@@ -66,7 +66,7 @@ sys = c['sys']
 norm = c['norm'] 
 tilt = c['tilt'] 
 bias =  c['bias'] 
-resolution = c['resolution'] 
+resolution = c['zero']#c['resolution'] 
 path = f"../{c['folder']}"
 parameter_names = c['parameter_names']        
 
@@ -82,7 +82,7 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 10
+    N = 20
     save_flux = True
     save_fluxpoints = 0
     save_fluxpoints_N = 0
