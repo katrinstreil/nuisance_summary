@@ -82,7 +82,11 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
+<<<<<<< HEAD
     N = 20
+=======
+    N = 100
+>>>>>>> 7f145af84126f85360833f4a84b68c4cb81f7867
     save_flux = True
     save_fluxpoints = 0
     save_fluxpoints_N = 0
@@ -99,7 +103,7 @@ for live in [livetime]:
         bias_rnd =  np.random.normal(0, bias, 1)
         shift_rnd = np.random.normal(0, norm, 1)
         tilt_rnd = np.random.normal(0, tilt, 1)
-        zero_sys = 1
+        zero_sys = 0
         if zero_sys:
             shift_rnd, tilt_rnd = np.array([0.]), np.array([0.])
             bias_rnd, res_rnd = np.array([0.]), np.array([0.])

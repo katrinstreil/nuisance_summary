@@ -7,7 +7,8 @@ from gammapy.modeling.models import (
     LogParabolaSpectralModel,
     SmoothBrokenPowerLawSpectralModel,
     ExpCutoffPowerLawSpectralModel, 
-    create_crab_spectral_model
+    create_crab_spectral_model,
+    PiecewiseNormSpectralModel
 )
 
 import astropy.units as u
@@ -119,15 +120,15 @@ def set_model(path, model):
     return skymodel
 
 
-def load_dataset_N(dataset_empty, path, bkg_sys=False):
+def load_dataset_N(dataset_empty, path, bkg_sys=False, energy = None):
     models_load = Models.read(path).copy()
     Source = models_load.names[0]
     models = Models(models_load[Source].copy())
     dataset_read = dataset_empty.copy()
-
+    print("models_load", models_load)
     if bkg_sys:
         import operator
-        piecewise = PiecewiseNormSpectralModel()
+        piecewise = PiecewiseNormSpectralModel(energy = energy)
         #compoundnorm = CompoundNormSpectralModel(
         #    model1=PowerLawNormSpectralModel(),
         #    model2=PowerLawNormPenSpectralModel(),
