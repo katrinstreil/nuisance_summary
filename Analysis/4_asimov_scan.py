@@ -98,14 +98,22 @@ if sys == "E_reco":
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = True
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    
+    
+    
+if sys == "Combined":
+    dataset_asimov_N.models.parameters['resolution'].frozen = True
+    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
+    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 ######################################################################
 # Minos
 # -----
 # 
 
-numpoints = 20
 
 def computing_scan(dataset, note):
         
@@ -143,8 +151,10 @@ def read_in_scan(note):
     return results
 
 # %%time
+numpoints = 20
 computing = 0
 if computing:
+    
     results = computing_scan(dataset_asimov, "2.15h")
 else:
     results = read_in_scan("2.15h")
@@ -155,8 +165,11 @@ else:
 
 # %%time
 computing = 1
+numpoints = 4
 
 if computing:
+    dataset_asimov_N.models.parameters['lon_0'].frozen = True
+    dataset_asimov_N.models.parameters['lat_0'].frozen = True
     results_N = computing_scan(dataset_asimov_N, "N_2.15h")
 else:
     results_N = read_in_scan("N_2.15h")

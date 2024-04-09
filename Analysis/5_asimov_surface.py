@@ -96,7 +96,13 @@ if sys == "E_reco":
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-
+    
+if sys == "Combined":
+    dataset_asimov_N.models.parameters['resolution'].frozen = True
+    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
+    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = False
+    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
 ######################################################################
 # Minos
@@ -154,9 +160,11 @@ def read_in_surface(note):
     return results
 
 # %%time
-computing = 0
+computing = 1
 if computing:
-    results = computing_surface(dataset_asimov, "2.15h", )
+    results = computing_surface(dataset_asimov, "2.15h", 0)
+    results = computing_surface(dataset_asimov, "2.15h", 1)
+    results = computing_surface(dataset_asimov, "2.15h", 2)
 else:
     results = read_in_surface("2.15h")
     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
