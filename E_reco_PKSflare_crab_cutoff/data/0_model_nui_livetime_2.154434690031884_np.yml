@@ -1,0 +1,99 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3000000000013103
+            error: 0.7154485253704447
+            error_n: 0.09160794722982679
+            error_p: 0.08874519887889498
+        -   name: amplitude
+            value: 3.850000000002148e-11
+            unit: cm-2 s-1 TeV-1
+            error: 6.217642052139297e-12
+            error_n: 2.0317736615860406e-12
+            error_p: 2.255683412046538e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: lambda_
+            value: 0.10000000000010201
+            unit: TeV-1
+            error: 0.0940300513064601
+            error_n: 0.01718188333309109
+            error_p: 0.018310620194389005
+        -   name: alpha
+            value: 1.0
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            error: 0.002298514558244974
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            error: 0.0019681049134145177
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0000000000000013
+            error: 0.01070900689252869
+        -   name: tilt
+            value: 5.5429570408598736e-15
+            error: 0.01153325779832777
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+-   name: dataset_N-irf
+    type: IRFModels
+    datasets_names: dataset_N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -2.555787088328052e-13
+            error: 0.022438971283552718
+            prior:
+                type: GaussianPrior
+                parameters:
+                -   name: mu
+                    value: 0.0
+                    unit: ''
+                -   name: sigma
+                    value: 0.1
+                    unit: ''
+                weight: 1
+                modelparameters:
+                - bias
+                dimension: 1
+        -   name: resolution
+            value: 0.0
+            frozen: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormSpectralModel
+            parameters:
+            -   name: norm
+                value: 0.0
+                frozen: true
+            -   name: tilt
+                value: 0.0
+            -   name: reference
+                value: 1.0
+                unit: TeV
+covariance: 0_model_nui_livetime_2.154434690031884_np_covariance.dat

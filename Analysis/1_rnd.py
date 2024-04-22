@@ -82,7 +82,7 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 20
+    N = 100
     save_flux = True
     save_fluxpoints = 0
     save_fluxpoints_N = 0
@@ -124,7 +124,7 @@ for live in [livetime]:
             dataset_N.irf_model.parameters['tilt'].frozen = True
             dataset_N.irf_model.parameters['norm'].frozen = True
         
-        if sys == "E_reco":
+        if sys == "Combined":
             dataset_N.models.parameters['resolution'].frozen = True
             dataset_N.models.parameters['bias'].frozen = False
             dataset_N.irf_model.parameters['tilt'].frozen = False
@@ -226,7 +226,7 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional = None,#"all",
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional ="all",
                                        reoptimize=True)
             fluxpoints_N = esti.run([dataset_N])
             fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}.fits',
@@ -241,7 +241,7 @@ for live in [livetime]:
             computing_contour(dataset, rnds)
             computing_contour(dataset_N, "N"+rnds)
 
-        if zero_sys is False: # else only the fluxpoints and models are saved but not the info
+        if zero_sys == False: # else only the fluxpoints and models are saved but not the info
             save()
         plotting = 0
         if plotting:

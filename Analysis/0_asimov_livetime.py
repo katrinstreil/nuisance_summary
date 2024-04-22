@@ -62,7 +62,7 @@ sys = c['sys']
 folder = c['folder']
 nbidx = 0
 
-livetimes = livetimes[8:]
+livetimes = livetimes
 # %%time
 datasets_input = []
 for l in livetimes:
@@ -99,6 +99,7 @@ def set_up(dataset_input):
         
     if sys == "Combined":
         dataset_asimov_N.models.parameters['resolution'].frozen = True
+        dataset_asimov_N.irf_model.parameters['bias'].frozen = False
         dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
         dataset_asimov_N.irf_model.parameters['bias'].frozen = False
         setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
@@ -128,7 +129,7 @@ for d in datasets_input:
 print(datasets[0].models)
 
 # %%time
-fitting = 0
+fitting = 1
 if fitting:
     for i, d in enumerate(datasets):
         print(i)

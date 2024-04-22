@@ -1,0 +1,141 @@
+### Starting TaskPrologue of job 392337 on tf067 at Tue 26 Mar 2024 12:22:53 PM CET
+Running on cores 18-19,82-83 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-4.641588833612778-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-10.0-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-21.544346900318832-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-46.41588833612777-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-100.0-hr.fits.gz
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.300   +/-    0.00             
+    amplitude                     :   3.85e-11   +/- 0.0e+00 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.100   +/-    0.00 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      1.000   +/-    0.00             
+    tilt                          :      0.000   +/-    0.00             
+    reference             (frozen):      1.000       TeV         
+
+
+read
+0
+Traceback (most recent call last):
+  File "0_asimov_livetime.py", line 148, in <module>
+    datasets[i].models = Models.read(path)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/core.py", line 436, in read
+    yaml_str = make_path(filename).read_text()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1236, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1222, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1078, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '../Combined_PKSflare_crab_cutoff/data/0_model_livetime_4.641588833612778.yml'
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-4.641588833612778-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-10.0-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-21.544346900318832-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-46.41588833612777-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-100.0-hr.fits.gz
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.300   +/-    0.00             
+    amplitude                     :   3.85e-11   +/- 0.0e+00 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.100   +/-    0.00 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      1.000   +/-    0.00             
+    tilt                          :      0.000   +/-    0.00             
+    reference             (frozen):      1.000       TeV         
+
+
+read
+0
+Traceback (most recent call last):
+  File "0_asimov_livetime.py", line 148, in <module>
+    datasets[i].models = Models.read(path)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/core.py", line 436, in read
+    yaml_str = make_path(filename).read_text()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1236, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1222, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/pathlib.py", line 1078, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '../Combined_PKSflare_crab_cutoff/data/0_model_livetime_4.641588833612778.yml'
+srun: error: tf067: tasks 0-1: Exited with exit code 1
+srun: Terminating StepId=392337.0
+=== JOB_STATISTICS ===
+=== current date     : Tue 26 Mar 2024 12:23:53 PM CET
+= Job-ID             : 392337 on tinyfat
+= Job-Name           : logfiles/0
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/0.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 00:01:01
+= Total RAM usage    : 2.1 GiB of requested  GiB (%)   
+= Node list          : tf067
+= Subm/Elig/Start/End: 2024-03-26T12:22:51 / 2024-03-26T12:22:51 / 2024-03-26T12:22:52 / 2024-03-26T12:23:53
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.3G   104.9G   209.7G        N/A     120K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+    /home/saturn       920.7G     0.0K     0.0K        N/A  20,963                           N/A    
+======================
