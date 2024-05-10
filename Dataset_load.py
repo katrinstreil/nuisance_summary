@@ -10,7 +10,7 @@ from gammapy.modeling.models import (
     create_crab_spectral_model,
     PiecewiseNormSpectralModel
 )
-
+from gammapy.modeling import Parameter, Parameters
 import astropy.units as u
         
 from gammapy.modeling.models.IRF import (  # ,IRFModel
@@ -133,19 +133,16 @@ def load_dataset_N(dataset_empty, path, bkg_sys=False, energy = None):
     Source = models_load.names[0]
     models = Models(models_load[Source].copy())
     dataset_read = dataset_empty.copy()
-    print("models_load", models_load)
     if bkg_sys:
         import operator
-        piecewise = PiecewiseNormSpectralModel(energy = energy)
-        #compoundnorm = CompoundNormSpectralModel(
-        #    model1=PowerLawNormSpectralModel(),
-        #    model2=PowerLawNormPenSpectralModel(),
-        #    operator=operator.mul,
-        #)
-
-        bkg = FoVBackgroundModel(
-            dataset_name=dataset_read.name, spectral_model=piecewise
-        )
+        
+        l = len(energy)
+        norms = Parameters([Parameter ("norm"+str(i), value = 0, frozen = False) for i in range(l)])
+        piece = PiecewiseNormSpectralModel(energy = energy,
+                                  norms = norms,
+                                  interp="lin")
+        bkg = FoVBackgroundModel(spectral_model = piece,
+                                       dataset_name=dataset_read.name)
 
     else:
         bkg = FoVBackgroundModel(dataset_name=dataset_read.name)

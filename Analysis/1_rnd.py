@@ -84,8 +84,8 @@ for live in [livetime]:
 
     N = 100
     save_flux = True
-    save_fluxpoints = 0
-    save_fluxpoints_N = 0
+    save_fluxpoints = 1
+    save_fluxpoints_N = 1
     dataset_N = True
     contour = 0
 
@@ -99,7 +99,10 @@ for live in [livetime]:
         bias_rnd =  np.random.normal(0, bias, 1)
         shift_rnd = np.random.normal(0, norm, 1)
         tilt_rnd = np.random.normal(0, tilt, 1)
-        zero_sys = 0
+        nn = np.random.randint(0,100)
+        print("nn", nn)
+        
+        zero_sys = 1
         if zero_sys:
             shift_rnd, tilt_rnd = np.array([0.]), np.array([0.])
             bias_rnd, res_rnd = np.array([0.]), np.array([0.])
@@ -117,6 +120,7 @@ for live in [livetime]:
             dataset_N.models.parameters['bias'].frozen = True
             dataset_N.irf_model.parameters['tilt'].frozen = False
             dataset_N.irf_model.parameters['norm'].frozen = False
+            dataset_N.e_reco_n = 10
             
         if sys == "E_reco":
             dataset_N.models.parameters['resolution'].frozen = True
@@ -134,7 +138,9 @@ for live in [livetime]:
         fit_cor = Fit(store_trace=False)
         dataset.plot_residuals()
         result_cor = fit_cor.run([dataset])
-        
+        print("fit w/o nui ended:")
+        print(result_cor)
+        print(dataset.models)
 
         stri = ""
         parameters =  ['amplitude', 'index', 'lambda_', 'norm', 'tilt']
@@ -179,6 +185,11 @@ for live in [livetime]:
 
         fit_cor = Fit(store_trace=False)
         result_cor = fit_cor.run([dataset_N])
+        print()
+        print("fit with nui ended:")
+        print(result_cor)
+        print(dataset_N.models)
+
 
         stri_N = ""
         [parameters.append(p) for p in ['norm', 'tilt', 'bias', 'resolution']]
@@ -215,6 +226,7 @@ for live in [livetime]:
 
         rnds = f"{shift_rnd[0]:.6}_{tilt_rnd[0]:.6}_{bias_rnd[0]:.6}_{res_rnd[0]:.6}"
         if save_fluxpoints:
+            print("computing Fluxpoints")
             dataset.models.parameters['amplitude'].scan_n_sigma  = 5
             dataset_N.models.parameters['amplitude'].scan_n_sigma  = 5
 
@@ -226,17 +238,19 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional ="all",
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional =["errn-errp", "ul"],#"all",
                                        reoptimize=True)
             fluxpoints_N = esti.run([dataset_N])
-            fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}.fits',
+            fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}_{nn}.fits',
                               overwrite = True)
-            dataset_N.models.write(f'{path}/data/fluxpoints/1P_model_N_{live}_{rnds}.yaml',
+            dataset_N.models.write(f'{path}/data/fluxpoints/1P_model_N_{live}_{rnds}_{nn}.yaml',
                                   overwrite = True)
-            fluxpoints.write(f'{path}/data/fluxpoints/1P_fluxpoints_{live}_{rnds}.fits',
+            fluxpoints.write(f'{path}/data/fluxpoints/1P_fluxpoints_{live}_{rnds}_{nn}.fits',
                             overwrite = True)
-            dataset.models.write(f'{path}/data/fluxpoints/1P_model_{live}_{rnds}.yaml',
+            dataset.models.write(f'{path}/data/fluxpoints/1P_model_{live}_{rnds}_{nn}.yaml',
                                 overwrite = True)
+            with open(f"{path}/data/fluxpoints/1P_draw_fluxpoints.txt", "a") as myfile:
+                myfile.write(str(nn) + '\n')
         if contour:
             computing_contour(dataset, rnds)
             computing_contour(dataset_N, "N"+rnds)
@@ -264,11 +278,13 @@ for live in [livetime]:
             dataset.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:blue',
                                                        energy_power = ep)
             try:
-                fluxpoints_N.plot(ax =ax,energy_power = ep )
                 fluxpoints.plot(ax =ax, energy_power = ep)
+                fluxpoints_N.plot(ax =ax,energy_power = ep )
+                
             except:
                 kk = 0
-            ax.legend(title = f"live: {live} hr norm:{shift_rnd[0]:.3} tilt:{tilt_rnd[0]:.3}")
+            ax.legend(title = f"live: {live:.3} hr norm:{shift_rnd[0]:.3} tilt:{tilt_rnd[0]:.3} norm:{bias_rnd[0]:.3}")
+            
             fig = plt.gcf()
-            fig.savefig(f"{path}/data/plots/{live}_{rnds}.png")
+            fig.savefig(f"{path}/data/fluxpoints/plots/{live}_{rnds}_{nn}.png")
             plt.close()

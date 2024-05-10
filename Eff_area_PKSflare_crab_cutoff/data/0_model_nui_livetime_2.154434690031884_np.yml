@@ -1,27 +1,27 @@
 components:
--   name: Crablog
+-   name: AktIWulQ
     type: SkyModel
     spectral:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.3022247768799105
-            error: 0.08868116543410548
+            value: 2.302959889762127
+            error: 0.08859719688970333
             error_n: 0.09616243747639608
             error_p: 0.0904849503929186
         -   name: amplitude
-            value: 3.853046439010181e-11
+            value: 3.85359174061083e-11
             unit: cm-2 s-1 TeV-1
-            error: 4.633276014869912e-12
+            error: 4.635390455569888e-12
             error_n: 4.245495994952514e-12
             error_p: 5.1477411408958364e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: lambda_
-            value: 0.10019769337901384
+            value: 0.09985375055095534
             unit: TeV-1
-            error: 0.03829993793893544
+            error: 0.03822689878344942
             error_n: 0.037137785770731666
             error_p: 0.04377865530332467
         -   name: alpha
@@ -31,36 +31,35 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6799974896845
+            value: 329.68000017170596
             unit: deg
-            error: 0.0022834356199009764
+            error: 0.0022834081588851488
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.221665510138305
+            value: -30.221666685093012
             unit: deg
-            error: 0.0019770467799457765
+            error: 0.001977040335157217
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
     datasets_names:
-    - dataset_N
+    - Krv8Pu66
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 1.0000011489629426
-            error: 0.01074016011538145
+            value: 1.0000046222191505
+            error: 0.010740201932096754
         -   name: tilt
-            value: 7.724179390743377e-06
-            error: 0.011584507511891048
-            frozen: false
+            value: 1.095739332249145e-06
+            error: 0.011584438887236688
         -   name: reference
             value: 1.0
             unit: TeV
--   name: dataset_N-irf
+-   name: Krv8Pu66-irf
     type: IRFModels
-    datasets_names: dataset_N
+    datasets_names: Krv8Pu66
     e_reco_model:
         type: ERecoIRFModel
         parameters:
@@ -76,8 +75,8 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: 0.0006586894947330149
-                error: 0.10074793642458472
+                value: 6.132790945333234e-05
+                error: 0.10077114206688886
                 prior:
                     type: GaussianPrior
                     parameters:
@@ -92,8 +91,8 @@ components:
                     - norm
                     dimension: 1
             -   name: tilt
-                value: 1.9285294400933994e-08
-                error: 0.02000000322348155
+                value: -2.3984928225000184e-09
+                error: 0.020000000816553457
                 frozen: false
                 prior:
                     type: GaussianPrior

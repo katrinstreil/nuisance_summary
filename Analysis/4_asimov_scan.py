@@ -92,15 +92,14 @@ if sys == "Eff_area":
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-
-
+    
 if sys == "E_reco":
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     dataset_asimov_N.irf_model.parameters['norm'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    
+
     
     
 if sys == "Combined":
@@ -109,37 +108,40 @@ if sys == "Combined":
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+
+
+
 ######################################################################
 # Minos
 # -----
 # 
 
-
 def computing_scan(dataset, note):
         
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run(dataset)
-    print(dataset_asimov.models[0])
+    print(dataset_asimov.models)
     
     results = []
     for parname1 in parameter_names_1 :
-        print( parname1)
-        dataset.models.parameters[parname1].scan_n_values=numpoints
-        result = fit_cor.stat_profile(dataset,
-                             dataset.models.parameters[parname1],
-                            reoptimize = True
-                            )
+        if parname1 == 'lambda_':
+            print( parname1)
+            dataset.models.parameters[parname1].scan_n_values=numpoints
+            result = fit_cor.stat_profile(dataset,
+                                 dataset.models.parameters[parname1],
+                                reoptimize = True
+                                )
 
-        contour_write = dict()
-        for k in result.keys():
-            print(k)
-            if k != "fit_results":
-                contour_write[k] = [float(_) for _ in result[k]]#.tolist()
-        print(contour_write)
-        with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}_{numpoints}.yml", "w") as outfile:
-            yaml.dump(contour_write, outfile, default_flow_style=False)
+            contour_write = dict()
+            for k in result.keys():
+                print(k)
+                if k != "fit_results":
+                    contour_write[k] = [float(_) for _ in result[k]]#.tolist()
+            print(contour_write)
+            with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}_{numpoints}.yml", "w") as outfile:
+                yaml.dump(contour_write, outfile, default_flow_style=False)
 
-        results.append(result)
+            results.append(result)
     return results
         
 def read_in_scan(note):
@@ -154,7 +156,6 @@ def read_in_scan(note):
 numpoints = 20
 computing = 0
 if computing:
-    
     results = computing_scan(dataset_asimov, "2.15h")
 else:
     results = read_in_scan("2.15h")
@@ -165,11 +166,12 @@ else:
 
 # %%time
 computing = 1
-numpoints = 4
+numpoints = 20
 
 if computing:
     dataset_asimov_N.models.parameters['lon_0'].frozen = True
     dataset_asimov_N.models.parameters['lat_0'].frozen = True
+    
     results_N = computing_scan(dataset_asimov_N, "N_2.15h")
 else:
     results_N = read_in_scan("N_2.15h")
@@ -215,6 +217,12 @@ for i, p in enumerate(parameter_names_1):
                     label = f'1$\sigma$ error = -{er_neg:.2} +{er_pos:.2} \n({amplitude_err_N:.2})')
     ax.vlines(amplitude_N-amplitude_err_N, ylim[0], ylim[1],color = aw[0] )
     ax.vlines(amplitude_N+amplitude_err_N, ylim[0], ylim[1],color = aw[0] )
+    nn = 2
+    ax.set_xlim(amplitude_N-amplitude_err_N*nn, 
+               amplitude_N+amplitude_err_N*nn)
+    ax.set_ylim(np.min(stat_profile['stat_scan'])-2,
+                np.min(stat_profile['stat_scan'])+ 10)
+                
     
     ax.vlines(amplitude-amplitude_err, ylim[0], ylim[1], color = awo[0], linestyle ='dashed')
     ax.vlines(amplitude+amplitude_err, ylim[0], ylim[1], color = awo[0], linestyle ='dashed')

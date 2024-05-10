@@ -42,6 +42,11 @@ class GaussianCovariance_matrix:
                 gau = norm.pdf(range(self.size) , loc = i , scale = self.corrlength )
                 cov[i,:] = gau / np.max(gau) * sys_percentage[i] / 100 
                 cov[i,:] += [zero] * (self.size)
+        #carefull here it is hardcoded that the first 4 energybins are frozen
+        idx = 4
+        cov[:idx, :idx] = np.eye(idx)
+        cov[idx:, :idx] = 0
+        cov[:idx, idx:] = 0
         return cov
     
     def inv_cov(self):
@@ -73,6 +78,7 @@ class Setup:
         self._irf_sys= False
         self._bkg_sys = False
         self._bkg_sys_V = False
+        self._bkg_pl_sys_V = False
         
          
         
@@ -108,6 +114,13 @@ class Setup:
         self.breake = breake
         self.magnitude = magnitude
         self._bkg_sys_V = True
+        
+    def set_up_bkg_pl_sys_V(self, index1, index2, breake, magnitude):
+        self.index1 = index1
+        self.index2 = index2
+        self.breake = breake
+        self.magnitude = magnitude
+        self._bkg_pl_sys_V = True
                
         
     def run(self):
@@ -128,7 +141,9 @@ class Setup:
         elif self._bkg_sys_V:
             self.add_bkg_systematic_V( self.index1, self.index2, self.breake, self.magnitude)
             self.set_piecewise_bkg_model(dataset_N)
-            
+        elif self._bkg_pl_sys_V:
+            self.add_bkg_systematic_V( self.index1, self.index2, self.breake, self.magnitude)
+            self.set_piecewise_pl_bkg_model(dataset_N)
         else:            
             self.set_simple_bkg_model(dataset_N)
         
@@ -174,6 +189,30 @@ class Setup:
                                   norms = norms,
                                   interp="lin")
         bkg_model = FoVBackgroundModel(spectral_model = piece,
+                                       dataset_name=dataset.name)
+        models = Models(dataset.models.copy())
+        models.append(bkg_model)
+        dataset.models = models
+        
+        
+        
+    def set_piecewise_pl_bkg_model(self, dataset):
+        """
+        sets the FOVbkgmodel with the piece wise model as the spectral model to the rest of the models for the dataset
+        """
+       
+        energy = dataset.geoms['geom'].axes[0].center
+        l = len(energy)
+        norms = Parameters([Parameter ("norm"+str(i), value = 0, frozen = False) for i in range(l)])
+        piece = PiecewiseNormSpectralModel(energy = energy,
+                                  norms = norms,
+                                  interp="lin")
+        compoundnorm = CompoundNormSpectralModel(
+            model1=PowerLawNormSpectralModel(),
+            model2=piece,
+            operator=operator.mul,
+        )
+        bkg_model = FoVBackgroundModel(spectral_model = compoundnorm,
                                        dataset_name=dataset.name)
         models = Models(dataset.models.copy())
         models.append(bkg_model)

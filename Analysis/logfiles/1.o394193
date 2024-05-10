@@ -1,0 +1,91 @@
+### Starting TaskPrologue of job 394193 on tf092 at Mon 22 Apr 2024 06:44:48 PM CEST
+Running on cores 20-21,84-85 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+shift [0.04283581], tilt [0.03145172],  bias [0.07240106], res [0.]
+4.493687694655567e-11   3.491830158776547e-12   1.998506472606312   0.10432323633367847   0.204949223028161   0.05138301560491509   0.9964228128153136   0.010713215432006908   0.0125603663975459   0.01167363879605203   2.154434690031884  
+4.245082078834881e-11   5.491009940237424e-12   2.269902050066088   0.10400096276418082   0.15730504213839572   0.05261534386348699   -5.020055453450634e-05   0.10071543846563542   -5.99384096486433e-06   0.0200004787261164   -5.020055453450634e-05   0.10071543846563542   -5.99384096486433e-06   0.0200004787261164   0.0937035909838365   0.006244993183610607   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+1
+========================================================================================================================
+shift [0.02937567], tilt [-0.00634291],  bias [0.07287376], res [0.]
+4.1341723064000795e-11   2.6090815508239245e-12   2.052323665976414   0.08941527535644868   0.14315719534913282   0.03784614153775801   0.9822283420199703   0.010649536080299128   -0.015477696239704412   0.01158928284281975   2.154434690031884  
+3.9640692315981556e-11   4.629206524073729e-12   2.3232313587632123   0.08902258174801239   0.10345126433163974   0.038646904048778574   9.015438229415386e-05   0.09855815854154422   -6.917769746165181e-06   0.020000343854635106   9.015438229415386e-05   0.09855815854154422   -6.917769746165181e-06   0.020000343854635106   0.10484659606168384   6.705203099666402e-05   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+2
+========================================================================================================================
+shift [-0.10326582], tilt [0.00026224],  bias [-0.09669174], res [0.]
+2.945567328793248e-11   1.5914823498998135e-12   2.6474708724917346   0.07395930257570352   0.009094250518410577   0.023578435955666586   1.0038717685691794   0.010750675558863255   0.01836729432604195   0.011682337406087552   2.154434690031884  
+Traceback (most recent call last):
+  File "1_rnd.py", line 181, in <module>
+    result_cor = fit_cor.run([dataset_N])
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 176, in run
+    optimize_result = self.optimize(datasets=datasets)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 223, in optimize
+    factors, info, optimizer = compute(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 79, in optimize_iminuit
+    minuit.migrad(**migrad_opts)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/iminuit/minuit.py", line 702, in migrad
+    fm = migrad(ncall, self._tolerance)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 25, in fcn
+    total_stat = self.function()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/core.py", line 235, in stat_sum
+    stat_sum += dataset.stat_sum()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 1241, in stat_sum
+    counts, npred = self.counts.data.astype(float), self.npred().data
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 459, in npred
+    npred_total = self.npred_signal()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 607, in wrapper
+    return function(*args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 639, in npred_signal
+    edisp = self.npred_edisp()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 525, in npred_edisp
+    gaussian = self.irf_model.e_reco_model(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 172, in __call__
+    return self.evaluate(energy_axis, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 227, in evaluate
+    idx = int(bias.value / np.mean(deltae))
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/units/quantity.py", line 1336, in __int__
+    return int(self.to_value(dimensionless_unscaled))
+ValueError: cannot convert float NaN to integer
+srun: error: tf092: task 1: Exited with exit code 1
+srun: Terminating StepId=394193.0
+slurmstepd-tf092: error: *** STEP 394193.0 ON tf092 CANCELLED AT 2024-04-22T19:50:21 ***
+srun: error: tf092: task 0: Terminated
+srun: Force Terminated StepId=394193.0
+=== JOB_STATISTICS ===
+=== current date     : Mon 22 Apr 2024 07:50:21 PM CEST
+= Job-ID             : 394193 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 01:05:35
+= Total RAM usage    : 3.9 GiB of requested  GiB (%)   
+= Node list          : tf092
+= Subm/Elig/Start/End: 2024-04-22T18:44:44 / 2024-04-22T18:44:44 / 2024-04-22T18:44:46 / 2024-04-22T19:50:21
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.4G   104.9G   209.7G        N/A     122K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+======================

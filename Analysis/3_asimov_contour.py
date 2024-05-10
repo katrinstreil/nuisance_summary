@@ -64,6 +64,7 @@ folder = c['folder']
 parameter_names = c['parameter_names']        
 nbidx = 0
 print(livetime)
+print(sys)
 
 # %%time
 dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['source'], 
@@ -95,22 +96,51 @@ if sys == "E_reco":
     dataset_asimov_N.irf_model.parameters['norm'].frozen = True
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    
+if sys == "Combined":
+    dataset_asimov_N.models.parameters['resolution'].frozen = True
+    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
+    dataset_asimov_N.irf_model.parameters['norm'].frozen = False
+    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    
+if sys == "BKG":
+
+    # piece wise model
+    # remove old bkg model
+    setup.set_up_bkg_sys_V( breake = 10,
+                        index1 = 2,
+                        index2 = 1.5, 
+                        magnitude = magnitude )
+
+    dataset_asimov, dataset_asimov_N = setup.run()
+
+    setup.unset_model(dataset_asimov_N, FoVBackgroundModel)
+    setup.set_piecewise_bkg_model(dataset_asimov_N)
+    # energy of the following parameters smaller than ethrshold
+    dataset_asimov_N.background_model.parameters['norm0'].frozen = True
+    dataset_asimov_N.background_model.parameters['norm1'].frozen = True
+    dataset_asimov_N.background_model.parameters['norm2'].frozen = True
+    dataset_asimov_N.background_model.parameters['norm3'].frozen = True
+    setup.set_bkg_prior(dataset_asimov_N, magnitude, corrlength)
+    
 ######################################################################
 # Minos
 # -----
 # 
 
         
-numpoints = 50
+numpoints = 20
+e_reco_n = int(3000)
 
-def computing_contour(dataset, note):
+def computing_contour(dataset, note, idx):
         
     fit_cor = Fit(store_trace=False)
     result_cor = fit_cor.run(dataset)
     print(dataset_asimov.models[0])
     
     results = []
-    for parname1, parname2 in parameter_names :
+    for parname1, parname2 in parameter_names[idx:idx+1] :
         print( parname1, parname2)
         result = fit_cor.stat_contour(dataset,
                              dataset.models.parameters[parname1],
@@ -124,7 +154,7 @@ def computing_contour(dataset, note):
             if k != "success":
                 contour_write[k] = result[k].tolist()
 
-        with open(f"../{c['folder']}/data/3_contour_{note}_{parname1}_{parname2}_{numpoints}.yml", "w") as outfile:
+        with open(f"../{c['folder']}/data/3_contour_{note}_{parname1}_{parname2}_{numpoints}_{e_reco_n}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
 
         fig = plt.figure()
@@ -143,19 +173,29 @@ def read_in_contour(note):
 # %%time
 computing = 1
 if computing:
-    results = computing_contour(dataset_asimov, "2.15h")
+    results = computing_contour(dataset_asimov, "2.15h",0)
+    results = computing_contour(dataset_asimov, "2.15h",1)
+    results = computing_contour(dataset_asimov, "2.15h",2)
 else:
     results = read_in_contour("2.15h")
-    path = f'../{folder}/data/0_model_livetime_{livetime}_{numpoints}.yml'
+    path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
     dataset_asimov.models = Models.read(path)
     
+dataset_asimov_N.e_reco_n = e_reco_n 
+print()
+print("e reco N", dataset_asimov_N.e_reco_n)
+print()
 
 
 # %%time
 computing = 1
 
 if computing:
-    results_N = computing_contour(dataset_asimov_N, "N_2.15h")
+    print("starting the contour")
+    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",0)
+    results_N = computing_contour(dataset_asimov_N, "N_2.15h",1)
+    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",2)
+    
 else:
     results_N = read_in_contour("N_2.15h")
     path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
