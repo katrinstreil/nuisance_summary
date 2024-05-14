@@ -63,9 +63,14 @@ def create_asimov(model, source, parameters=None, livetime=None):
 
     if livetime is not None:
         model = livetime
-    dataset = MapDataset.read(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
-    print("loaded dataset:")
-    print(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
+    if source == "MSH":
+        dataset = MapDataset.read(f"{path}/HESS_public/dataset-msh-simulated-{model}.fits.gz")
+        print("loaded dataset:")
+        print(f"{path}/HESS_public/dataset-MSH-simulated-{model}.fits.gz")
+    if source == "PKSflare":
+        dataset = MapDataset.read(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
+        print("loaded dataset:")
+        print(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
     if parameters is not None:
         for p in parameters:
             models.parameters[p.name].value = p.value
@@ -121,7 +126,6 @@ def set_model(path, model):
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crablog")])
-        
     else:
         skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()
         

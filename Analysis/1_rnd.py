@@ -36,6 +36,7 @@ def computing_contour(dataset, note):
         import yaml
         with open(f"{path}/data/contours/{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
+        
 
 
 
@@ -84,10 +85,11 @@ for live in [livetime]:
 
     N = 100
     save_flux = True
-    save_fluxpoints = 1
-    save_fluxpoints_N = 1
+    save_fluxpoints = 0
+    save_fluxpoints_N = 0
     dataset_N = True
-    contour = 0
+    contour = 1
+    zero_sys = 0
 
 
     for n in range(N):
@@ -102,7 +104,6 @@ for live in [livetime]:
         nn = np.random.randint(0,100)
         print("nn", nn)
         
-        zero_sys = 1
         if zero_sys:
             shift_rnd, tilt_rnd = np.array([0.]), np.array([0.])
             bias_rnd, res_rnd = np.array([0.]), np.array([0.])
@@ -238,7 +239,7 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional =["errn-errp", "ul"],#"all",
+            esti  = FluxPointsEstimator(energy_edges= energy_edges, selection_optional =[ "ul"],# "errn-errp", "all",
                                        reoptimize=True)
             fluxpoints_N = esti.run([dataset_N])
             fluxpoints_N.write(f'{path}/data/fluxpoints/1P_fluxpoints_N_{live}_{rnds}_{nn}.fits',
@@ -253,21 +254,33 @@ for live in [livetime]:
                 myfile.write(str(nn) + '\n')
         if contour:
             computing_contour(dataset, rnds)
+            print("N")
             computing_contour(dataset_N, "N"+rnds)
+            with open(f"{path}/data/contours/1_P_draw_info.txt", "a") as myfile:
+                info = str(float(shift_rnd[0])) + '    '+ str(float(tilt_rnd[0])) + '    '
+                info += str(float(bias_rnd[0])) + '    '+ str(float(res_rnd[0])) + '    '
+                info +=  str(float(dataset.stat_sum())) + '\n'
+                myfile.write(info)
+            with open(f"{path}/data/contours/1_P_draw_par.txt", "a") as myfile:
+                myfile.write(stri + '\n')
 
-        if zero_sys == False: # else only the fluxpoints and models are saved but not the info
+            with open(f"{path}/data/contours/1_N_P_draw_par.txt", "a") as myfile:
+                myfile.write(stri_N + '\n')
+
+        if zero_sys == False and contour ==False: # else only the fluxpoints and models are saved but not the info
             save()
         plotting = 0
         if plotting:
+            print("in Plotting")
             import matplotlib.pyplot as plt
 
             ep = 2
-            ax = dataset.models[0].spectral_model.plot((0.1,100)*u.TeV, color = 'tab:blue',
+            ax = dataset_asimov.models[0].spectral_model.plot((0.1,100)*u.TeV, color = 'tab:blue',
                                                       label = "without nui",
                                                       energy_power = ep)
 
 
-            dataset_asimov.models[0].spectral_model.plot((0.1,100)*u.TeV,ax = ax, color = 'black',
+            dataset.models[0].spectral_model.plot((0.1,100)*u.TeV,ax = ax, color = 'black',
                                                         energy_power = ep)
 
             dataset_N.models[0].spectral_model.plot((0.1,100)*u.TeV,ax = ax, color = 'tab:orange',
@@ -275,16 +288,14 @@ for live in [livetime]:
                                                    energy_power = ep)
             dataset_N.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:orange',
                                                          energy_power = ep)
-            dataset.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:blue',
-                                                       energy_power = ep)
+            #dataset.models[0].spectral_model.plot_error((0.1,100)*u.TeV,ax = ax, facecolor = 'tab:blue',
+            #                                           energy_power = ep)
             try:
                 fluxpoints.plot(ax =ax, energy_power = ep)
                 fluxpoints_N.plot(ax =ax,energy_power = ep )
-                
             except:
                 kk = 0
-            ax.legend(title = f"live: {live:.3} hr norm:{shift_rnd[0]:.3} tilt:{tilt_rnd[0]:.3} norm:{bias_rnd[0]:.3}")
-            
+            ax.legend(title = f"live: {live:.3} hr\n norm:{shift_rnd[0]:.3}\n tilt:{tilt_rnd[0]:.3}\n bias:{bias_rnd[0]:.3}")
             fig = plt.gcf()
             fig.savefig(f"{path}/data/fluxpoints/plots/{live}_{rnds}_{nn}.png")
-            plt.close()
+            #plt.close()

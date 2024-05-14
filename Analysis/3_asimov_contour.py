@@ -130,8 +130,8 @@ if sys == "BKG":
 # 
 
         
-numpoints = 20
-e_reco_n = int(3000)
+numpoints = 50
+e_reco_n = int(2000)
 
 def computing_contour(dataset, note, idx):
         
@@ -149,6 +149,7 @@ def computing_contour(dataset, note, idx):
                             )
 
         contour_write = dict()
+        print(result)
         for k in result.keys():
             print(k)
             if k != "success":
@@ -193,8 +194,8 @@ computing = 1
 if computing:
     print("starting the contour")
     #results_N = computing_contour(dataset_asimov_N, "N_2.15h",0)
-    results_N = computing_contour(dataset_asimov_N, "N_2.15h",1)
-    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",2)
+    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",1)
+    results_N = computing_contour(dataset_asimov_N, "N_2.15h",2)
     
 else:
     results_N = read_in_contour("N_2.15h")

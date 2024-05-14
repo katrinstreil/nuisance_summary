@@ -1,0 +1,164 @@
+### Starting TaskPrologue of job 401001 on tf073 at Mon 13 May 2024 11:29:07 AM CEST
+Running on cores 0-1,64-65 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+nn 38
+shift [0.07834116], tilt [0.01011663],  bias [0.13328068], res [0.]
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 218
+	total stat : 89503.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.008   +/-    0.09             
+    amplitude                     :   4.18e-11   +/- 2.4e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.129   +/-    0.03 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.225   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.999   +/-    0.01             
+    tilt                          :     -0.009   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.1802451699758654e-11   2.4291210394258383e-12   2.007944254898911   0.08517770562967396   0.1289238642687682   0.033631368813813116   0.999408750079251   0.010744366546328274   -0.008822847800197845   0.01153480660845901   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 541
+	total stat : 89498.19
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.257   +/-    0.09             
+    amplitude                     :   4.08e-11   +/- 4.8e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.096   +/-    0.03 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.225   +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.104   +/-    0.00             
+    resolution            (frozen):      0.000                   
+    norm                          :     -0.000   +/-    0.10             
+    tilt                          :     -0.000   +/-    0.02             
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      1.000   +/-    0.01             
+    tilt                          :     -0.009   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.077137999373806e-11   4.762697244560502e-12   2.2571765819894414   0.08550581660326471   0.09609953771530916   0.034607262994773305   -3.834189648509439e-06   0.10059366036066576   -6.848749455988714e-07   0.019999959164239498   -3.834189648509439e-06   0.10059366036066576   -6.848749455988714e-07   0.019999959164239498   0.10440039594223235   0.0001676033930305531   0.0   0.0   2.154434690031884  
+amplitude index
+Crablog.spectral.amplitude
+Crablog.spectral.index
+success
+Traceback (most recent call last):
+  File "1_rnd.py", line 256, in <module>
+    computing_contour(dataset, rnds)
+  File "1_rnd.py", line 37, in computing_contour
+    with open(f"{path}/data/contours/{note}_{parname1}_{parname2}.yml", "w") as outfile:
+FileNotFoundError: [Errno 2] No such file or directory: '../Combined_PKSflare_crab_cutoff/data/contours/0.0783412_0.0101166_0.133281_0.0_amplitude_index.yml'
+srun: error: tf073: task 1: Exited with exit code 1
+srun: Terminating StepId=401001.0
+slurmstepd-tf073: error: *** STEP 401001.0 ON tf073 CANCELLED AT 2024-05-13T11:54:07 ***
+srun: error: tf073: task 0: Terminated
+srun: Force Terminated StepId=401001.0
+=== JOB_STATISTICS ===
+=== current date     : Mon 13 May 2024 11:54:07 AM CEST
+= Job-ID             : 401001 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 00:25:13
+= Total RAM usage    : 2.8 GiB of requested  GiB (%)   
+= Node list          : tf073
+= Subm/Elig/Start/End: 2024-05-13T11:28:53 / 2024-05-13T11:28:53 / 2024-05-13T11:28:54 / 2024-05-13T11:54:07
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.5G   104.9G   209.7G        N/A     128K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+======================

@@ -1,0 +1,55 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.31420609065443
+            error: 0.0827486998173954
+        -   name: amplitude
+            value: 3.308412016813321e-11
+            unit: cm-2 s-1 TeV-1
+            error: 1.939190678969046e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: lambda_
+            value: 0.06977795326567865
+            unit: TeV-1
+            error: 0.030430181089752532
+        -   name: alpha
+            value: 1.0
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.68334805249634
+            unit: deg
+            error: 0.0023523775854765263
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.22256565532278
+            unit: deg
+            error: 0.0020675164079784667
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.000693456722028
+            error: 0.010730094400418928
+        -   name: tilt
+            value: 0.022153676556170822
+            error: 0.011719369052889408
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+covariance: 1P_model_2.154434690031884_0.0_0.0_0.0_0.0_2_covariance.dat
