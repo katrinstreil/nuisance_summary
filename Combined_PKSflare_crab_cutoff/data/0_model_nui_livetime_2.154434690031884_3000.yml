@@ -5,19 +5,19 @@ components:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.299039615917437
-            error: 0.13361432953443494
+            value: 2.2999690521556797
+            error: 0.11420211667999394
         -   name: amplitude
-            value: 3.852030788032412e-11
+            value: 3.84918723334306e-11
             unit: cm-2 s-1 TeV-1
-            error: 4.696434263383022e-12
+            error: 4.725293748625646e-12
         -   name: reference
             value: 1.0
             unit: TeV
         -   name: lambda_
-            value: 0.09985217542615224
+            value: 0.09975982155129223
             unit: TeV-1
-            error: 0.04009744485677684
+            error: 0.04123070434596266
         -   name: alpha
             value: 1.0
     spatial:
@@ -25,15 +25,15 @@ components:
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.67999832128464
+            value: 329.6799979564546
             unit: deg
-            error: 0.0022829300920944725
+            error: 0.002282169266893792
             min: 328.67999999999995
             max: 330.67999999999995
         -   name: lat_0
-            value: -30.22166696379667
+            value: -30.221666065997596
             unit: deg
-            error: 0.001976208943443807
+            error: 0.0019758192042290275
             min: -31.221666666666664
             max: -29.221666666666664
 -   type: FoVBackgroundModel
@@ -43,11 +43,11 @@ components:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 0.999989608387139
-            error: 0.010740626213340692
+            value: 1.0002825148740202
+            error: 0.037646634309574246
         -   name: tilt
-            value: 5.70167339772259e-06
-            error: 0.011584720602378739
+            value: -0.00022803514357832837
+            error: 0.04626359869994974
             frozen: false
         -   name: reference
             value: 1.0
@@ -59,8 +59,8 @@ components:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -0.0015384981046143921
-            error: 0.04806149486437769
+            value: -0.0012646130696981326
+            error: 0.03747572236863295
             prior:
                 type: GaussianPrior
                 parameters:
@@ -83,8 +83,8 @@ components:
             type: PowerLawNormSpectralModel
             parameters:
             -   name: norm
-                value: -7.061331318518415e-06
-                error: 0.10077031236480447
+                value: -6.345217538394236e-06
+                error: 0.10014647763283967
                 prior:
                     type: GaussianPrior
                     parameters:
@@ -99,8 +99,8 @@ components:
                     - norm
                     dimension: 1
             -   name: tilt
-                value: -1.243549304726815e-09
-                error: 0.02000000262314982
+                value: -3.969689263484276e-09
+                error: 0.01999999954083904
                 frozen: false
                 prior:
                     type: GaussianPrior

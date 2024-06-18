@@ -6,7 +6,8 @@ from gammapy.modeling.models import (
     Models,
     PowerLawNormSpectralModel,
     MultiVariantePrior,
-    GaussianPrior
+    GaussianPrior,
+    CompoundNormSpectralModel
 )
 from gammapy.modeling.models.IRF import (  
     EffAreaIRFModel,
@@ -16,6 +17,7 @@ from gammapy.modeling.models.IRF import (
 from gammapy.modeling import Parameters, Parameter
 from scipy.stats import norm
 from scipy.linalg import inv
+import operator
 
 class GaussianCovariance_matrix:
     def __init__(
@@ -210,7 +212,7 @@ class Setup:
         compoundnorm = CompoundNormSpectralModel(
             model1=PowerLawNormSpectralModel(),
             model2=piece,
-            operator=operator.mul,
+            operator=operator.add,
         )
         bkg_model = FoVBackgroundModel(spectral_model = compoundnorm,
                                        dataset_name=dataset.name)
@@ -311,8 +313,11 @@ class Setup:
         """
         sets up multidim. prior for the piece wise bkg model
         """
-        modelparameters = dataset_asimov_N.background_model.parameters
-        modelparameters = Parameters([m for m in modelparameters if m.name != "_norm"])
+        if isinstance(dataset_asimov_N.background_model.spectral_model, CompoundNormSpectralModel):
+            modelparameters = dataset_asimov_N.background_model.spectral_model.model2.parameters
+        else:
+            modelparameters = dataset_asimov_N.background_model.parameters
+        modelparameters = Parameters([m for m in modelparameters if m.name != "_norm" and m.name != "tilt" and m.name != "norm"])
         Cov = GaussianCovariance_matrix(size = len(self.emask()),
                                         magnitude = magnitude, 
                                         corrlength = corrlength)

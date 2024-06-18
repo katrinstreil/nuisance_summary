@@ -118,8 +118,8 @@ print(dataset_asimov.models)
 parameter_names = c['parameter_names']
 source = 'Crablog'
 scan_n_sigma = 2
-scan_n_values = 5
-e_reco_n = 1000
+scan_n_values = 3
+e_reco_n = 2000
 
 def computing_surface(dataset_asimov, note, idx):
         
