@@ -1,0 +1,79 @@
+components:
+-   name: msh
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.2581292914548676
+            error: .nan
+        -   name: amplitude
+            value: 2.58022419025696e-12
+            unit: cm-2 s-1 TeV-1
+            error: .nan
+        -   name: reference
+            value: 1.0
+            unit: TeV
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6800010183116
+            unit: deg
+            error: .nan
+        -   name: lat_0
+            value: -30.221671482564545
+            unit: deg
+            error: .nan
+        -   name: sigma
+            value: 0.1449902045861574
+            unit: deg
+            error: .nan
+        -   name: e
+            value: 0.0
+        -   name: phi
+            value: 0.0
+            unit: deg
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.000004415305546
+            error: .nan
+        -   name: tilt
+            value: 1.9548431492261548e-05
+            error: .nan
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+-   name: dataset_N-irf
+    type: IRFModels
+    datasets_names: dataset_N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -2.5675348882091725e-07
+            error: .nan
+        -   name: resolution
+            value: 0.0
+            error: .nan
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormSpectralModel
+            parameters:
+            -   name: norm
+                value: -0.00024889736301636516
+                error: .nan
+            -   name: tilt
+                value: 0.0
+            -   name: reference
+                value: 1.0
+                unit: TeV
+covariance: 0_model_nui_livetime_1.0_covariance.dat

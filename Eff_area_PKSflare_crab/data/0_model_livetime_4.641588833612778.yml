@@ -1,0 +1,55 @@
+components:
+-   name: Crab
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.39
+            error: 0.05590021174741877
+        -   name: amplitude
+            value: 3.76e-11
+            unit: cm-2 s-1 TeV-1
+            error: 1.5354907481166818e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: lambda_
+            value: 0.06993006993006992
+            unit: TeV-1
+            error: 0.02249161864797495
+        -   name: alpha
+            value: 1.0
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            error: 0.0015442899813728557
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            error: 0.0013365865642742778
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   type: FoVBackgroundModel
+    datasets_names:
+    - jP6-P2aR
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0
+            error: 0.007317811857415845
+        -   name: tilt
+            value: 0.0
+            error: 0.007893299375442813
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+covariance: 0_model_livetime_4.641588833612778_covariance.dat

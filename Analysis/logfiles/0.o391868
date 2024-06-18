@@ -1,0 +1,165 @@
+### Starting TaskPrologue of job 391868 on tf090 at Thu 21 Mar 2024 02:21:47 PM CET
+Running on cores 2-3,66-67 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1183: RuntimeWarning: All-NaN axis encountered
+  minx = np.nanmin(masked_verts[..., 0])
+/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1184: RuntimeWarning: All-NaN axis encountered
+  maxx = np.nanmax(masked_verts[..., 0])
+/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
+  miny = np.nanmin(masked_verts[..., 1])
+/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
+  maxy = np.nanmax(masked_verts[..., 1])
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-10.0-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-21.544346900318832-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-46.41588833612777-hr.fits.gz
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-100.0-hr.fits.gz
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : LogParabolaSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    amplitude                     :   3.85e-11   +/- 0.0e+00 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    alpha                         :      2.510   +/-    0.00             
+    beta                          :      0.240   +/-    0.00             
+    lon_0                         :    329.680   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : flCJ7nQ6-bkg
+  Datasets names            : ['flCJ7nQ6']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      1.000   +/-    0.00             
+    tilt                          :      0.000   +/-    0.00             
+    reference             (frozen):      1.000       TeV         
+
+
+read
+0
+1
+2
+3
+0
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully, but uncertainties are unreliable.
+	nfev       : 974
+	total stat : 273849.75
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+saving
+1
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : False
+	message    : Optimization failed. Estimated distance to minimum too large.
+	nfev       : 411
+	total stat : 439287.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+saving
+2
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : False
+	message    : Optimization failed. Estimated distance to minimum too large.
+	nfev       : 427
+	total stat : 621733.60
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+saving
+3
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : False
+	message    : Optimization failed. Estimated distance to minimum too large.
+	nfev       : 527
+	total stat : 639977.77
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+saving
+Traceback (most recent call last):
+  File "0_asimov_livetime.py", line 272, in <module>
+    fig = plotting(parname = "index1")
+  File "0_asimov_livetime.py", line 211, in plotting
+    inputvalue = inputvalues[parname]
+KeyError: 'index1'
+srun: error: tf090: task 0: Exited with exit code 1
+srun: Terminating StepId=391868.0
+slurmstepd-tf090: error: *** STEP 391868.0 ON tf090 CANCELLED AT 2024-03-21T15:33:33 ***
+srun: error: tf090: task 1: Terminated
+srun: Force Terminated StepId=391868.0
+=== JOB_STATISTICS ===
+=== current date     : Thu 21 Mar 2024 03:33:33 PM CET
+= Job-ID             : 391868 on tinyfat
+= Job-Name           : logfiles/0
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/0.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 01:11:48
+= Total RAM usage    : 7.6 GiB of requested  GiB (%)   
+= Node list          : tf090
+= Subm/Elig/Start/End: 2024-03-19T09:01:08 / 2024-03-19T09:01:08 / 2024-03-21T14:21:45 / 2024-03-21T15:33:33
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.3G   104.9G   209.7G        N/A     119K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+    /home/saturn       920.7G     0.0K     0.0K        N/A  20,963                           N/A    
+======================

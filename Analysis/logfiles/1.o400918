@@ -1,0 +1,1908 @@
+### Starting TaskPrologue of job 400918 on tf062 at Wed 08 May 2024 04:18:27 PM CEST
+Running on cores 14-15,78-79 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+nn 10
+shift [0.], tilt [0.],  bias [0.], res [0.]
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 217
+	total stat : 88990.86
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.171   +/-    0.10             
+    amplitude                     :   4.03e-11   +/- 2.8e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.145   +/-    0.04 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.686   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.998   +/-    0.01             
+    tilt                          :      0.016   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.032364317774858e-11   2.8198033455575644e-12   2.1708096584090417   0.09551418662001482   0.1450626101321576   0.043316214033547816   0.9976442983428804   0.010722960124925612   0.01603425178017632   0.011710054858648365   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 247
+	total stat : 88990.80
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.144   +/-    0.13             
+    amplitude                     :   4.07e-11   +/- 3.0e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.150   +/-    0.05 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.686   +/-    0.00 deg         
+    lat_0                         :    -30.222   +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.013   +/-    0.04             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.998   +/-    0.01             
+    tilt                          :      0.016   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.0650609172595926e-11   3.016520127914387e-12   2.1443729434349756   0.12629943965751245   0.14976823562488303   0.04583643154660005   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   -0.01299882501021969   0.04007077983740667   0.0   0.0   2.154434690031884  
+computing Fluxpoints
+
+0.10000000000000002 TeV 0.1778279410038923 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.1778279410038923 TeV 0.316227766016838 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.316227766016838 TeV 0.5623413251903491 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.041   +/-    0.09             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.5623413251903491 TeV 1.0 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.970   +/-    0.07             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+1.0 TeV 1.7782794100389232 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.934   +/-    0.07             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+1.7782794100389232 TeV 3.1622776601683795 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.139   +/-    0.10             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+3.1622776601683795 TeV 5.623413251903489 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.058   +/-    0.14             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+5.623413251903489 TeV 10.000000000000002 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.706   +/-    0.20             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+10.000000000000002 TeV 17.78279410038923 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.250   +/-    0.50             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+17.78279410038923 TeV 31.62277660168379 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.122   +/-    1.13             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+31.62277660168379 TeV 56.234132519034915 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :     -1.265   +/-   12.28             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+56.234132519034915 TeV 100.00000000000004 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          : -624453.704  +/-    1.41             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.10000000000000002 TeV 0.1778279410038923 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.1778279410038923 TeV 0.316227766016838 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.316227766016838 TeV 0.5623413251903491 TeV
+in parameter estimate best fit
+models after fit:
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+nn 55
+shift [0.], tilt [0.],  bias [0.], res [0.]
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 206
+	total stat : 88748.74
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.198   +/-    0.09             
+    amplitude                     :   4.04e-11   +/- 2.8e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.137   +/-    0.04 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.678   +/-    0.00 deg         
+    lat_0                         :    -30.225   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.993   +/-    0.01             
+    tilt                          :     -0.005   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.0371911775884626e-11   2.8255322051031188e-12   2.1984134765248946   0.09455068383428492   0.1367376864998305   0.04314542312213642   0.9929503685765323   0.010705867815931244   -0.005069962238197067   0.011593162903120159   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 306
+	total stat : 88748.58
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.167   +/-    0.13             
+    amplitude                     :   4.08e-11   +/- 3.1e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.143   +/-    0.05 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.678   +/-    0.00 deg         
+    lat_0                         :    -30.225   +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.015   +/-    0.04             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.993   +/-    0.01             
+    tilt                          :     -0.005   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+4.08097161980864e-11   3.0687652646332432e-12   2.166801825646077   0.12732065694072883   0.14291456616034304   0.04626245699253816   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   -0.015311443580931592   0.0403270153580955   0.0   0.0   2.154434690031884  
+computing Fluxpoints
+
+0.10000000000000002 TeV 0.1778279410038923 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.1778279410038923 TeV 0.316227766016838 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.316227766016838 TeV 0.5623413251903491 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.929   +/-    0.08             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.5623413251903491 TeV 1.0 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.034   +/-    0.07             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+1.0 TeV 1.7782794100389232 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.038   +/-    0.07             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+1.7782794100389232 TeV 3.1622776601683795 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.959   +/-    0.09             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+3.1622776601683795 TeV 5.623413251903489 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.047   +/-    0.14             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+5.623413251903489 TeV 10.000000000000002 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.765   +/-    0.20             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+10.000000000000002 TeV 17.78279410038923 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.970   +/-    0.45             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+17.78279410038923 TeV 31.62277660168379 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      2.219   +/-    1.58             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+31.62277660168379 TeV 56.234132519034915 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          : -17001.636   +/-    1.41             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+56.234132519034915 TeV 100.00000000000004 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :  -5036.643   +/- 24523.06             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+in estimate_scan
+
+0.10000000000000002 TeV 0.1778279410038923 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.1778279410038923 TeV 0.316227766016838 TeV
+in parameter estimate best fit
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.316227766016838 TeV 0.5623413251903491 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.964   +/-    0.09             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.007   +/-    0.01             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.5623413251903491 TeV 1.0 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.052   +/-    0.09             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.004   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+1.0 TeV 1.7782794100389232 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.169   +/-    0.13             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.031   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+1.7782794100389232 TeV 3.1622776601683795 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.949   +/-    0.11             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.004   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+3.1622776601683795 TeV 5.623413251903489 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.027   +/-    0.15             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.003   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+5.623413251903489 TeV 10.000000000000002 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.067   +/-    0.10             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.003   +/-    0.01             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+0.5623413251903491 TeV 1.0 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.995   +/-    0.09             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.006   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+1.0 TeV 1.7782794100389232 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.984   +/-    0.13             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.015   +/-    0.03             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+1.7782794100389232 TeV 3.1622776601683795 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.300   +/-    0.19             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.035   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+3.1622776601683795 TeV 5.623413251903489 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.151   +/-    0.17             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.036   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+5.623413251903489 TeV 10.000000000000002 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.721   +/-    0.21             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.018   +/-    0.04             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+10.000000000000002 TeV 17.78279410038923 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      3.448   +/-    1.42             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.137   +/-    0.00             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+17.78279410038923 TeV 31.62277660168379 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.163   +/-    1.35             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.006   +/-    0.10             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+31.62277660168379 TeV 56.234132519034915 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :     -1.334   +/-   13.04             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.000   +/-    0.06             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+56.234132519034915 TeV 100.00000000000004 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          : -3696134.044   +/-    2.00             
+    lon_0                 (frozen):    329.686       deg         
+    lat_0                 (frozen):    -30.222       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.001   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.998                   
+    tilt                  (frozen):      0.016                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+========================================================================================================================
+1
+========================================================================================================================
+nn 26
+shift [0.], tilt [0.],  bias [0.], res [0.]
+fit w/o nui ended:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      0.795   +/-    0.22             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.028   +/-    0.03             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+10.000000000000002 TeV 17.78279410038923 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      1.173   +/-    0.55             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.065   +/-    0.05             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+17.78279410038923 TeV 31.62277660168379 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          :      2.410   +/-    1.97             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :     -0.013   +/-    0.07             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+in estimate_ul
+
+31.62277660168379 TeV 56.234132519034915 TeV
+in parameter estimate best fit
+models after fit:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ScaleSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    norm                          : -37136.488   +/-    2.00             
+    lon_0                 (frozen):    329.678       deg         
+    lat_0                 (frozen):    -30.225       deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.001   +/-    0.02             
+    resolution            (frozen):      0.000                   
+    norm                  (frozen):      0.000                   
+    tilt                  (frozen):      0.000                   
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                  (frozen):      0.993                   
+    tilt                  (frozen):     -0.005                   
+    reference             (frozen):      1.000       TeV         
+
+
+in estimate_ts
+in estimate_errn_errp
+Traceback (most recent call last):
+  File "1_rnd.py", line 243, in <module>
+    fluxpoints_N = esti.run([dataset_N])
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/estimators/points/sed.py", line 136, in run
+    rows = parallel.run_multiprocessing(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/utils/parallel.py", line 171, in run_multiprocessing
+    return run_loop(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/utils/parallel.py", line 201, in run_loop
+    result = func(*arguments)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/estimators/points/sed.py", line 193, in estimate_flux_point
+    return super().run(datasets=datasets_sliced)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/estimators/flux.py", line 190, in run
+    result.update(super().run(datasets, model.norm))
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/estimators/parameter.py", line 330, in run
+    result.update(self.estimate_errn_errp(datasets, parameter))
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/estimators/parameter.py", line 171, in estimate_errn_errp
+    self.fit.optimize(datasets=datasets)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 223, in optimize
+    factors, info, optimizer = compute(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 79, in optimize_iminuit
+    minuit.migrad(**migrad_opts)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/iminuit/minuit.py", line 702, in migrad
+    fm = migrad(ncall, self._tolerance)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 25, in fcn
+    total_stat = self.function()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/core.py", line 235, in stat_sum
+    stat_sum += dataset.stat_sum()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 1245, in stat_sum
+    counts, npred = self.counts.data.astype(float), self.npred().data
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 459, in npred
+    npred_total = self.npred_signal()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 607, in wrapper
+    return function(*args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 639, in npred_signal
+    edisp = self.npred_edisp()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 525, in npred_edisp
+    gaussian = self.irf_model.e_reco_model(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 172, in __call__
+    return self.evaluate(energy_axis, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 227, in evaluate
+    idx = int(bias.value / np.mean(deltae))
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/units/quantity.py", line 1336, in __int__
+    return int(self.to_value(dimensionless_unscaled))
+ValueError: cannot convert float NaN to integer
+srun: error: tf062: task 1: Exited with exit code 1
+srun: Terminating StepId=400918.0
+slurmstepd-tf062: error: *** STEP 400918.0 ON tf062 CANCELLED AT 2024-05-08T16:59:47 ***
+srun: error: tf062: task 0: Terminated
+srun: Force Terminated StepId=400918.0
+=== JOB_STATISTICS ===
+=== current date     : Wed 08 May 2024 04:59:47 PM CEST
+= Job-ID             : 400918 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 00:41:22
+= Total RAM usage    : 3.4 GiB of requested  GiB (%)   
+= Node list          : tf062
+= Subm/Elig/Start/End: 2024-05-08T16:18:25 / 2024-05-08T16:18:25 / 2024-05-08T16:18:25 / 2024-05-08T16:59:47
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.4G   104.9G   209.7G        N/A     125K     500K   1,000K        N/A    
+======================

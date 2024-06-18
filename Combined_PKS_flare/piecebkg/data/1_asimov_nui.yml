@@ -1,0 +1,924 @@
+components:
+-   name: aEaZD8Bs
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3
+            error: 0.07038117465104926
+        -   name: amplitude
+            value: 1.0e-12
+            unit: TeV-1 s-1 cm-2
+            error: 1.2266805766782792e-13
+        -   name: reference
+            value: 1.0
+            unit: TeV
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            error: 0.002646355336830388
+            min: 328.67999999999995
+            max: 330.67999999999995
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            error: 0.0022851266856701064
+            min: -31.221666666666664
+            max: -29.221666666666664
+-   name: -dN4vm86-irf
+    type: IRFModels
+    datasets_names: -dN4vm86
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -1.0796365509857914e-17
+            error: 0.0431778817705648
+            prior:
+                type: GaussianPrior
+                parameters:
+                -   name: mu
+                    value: 0.0
+                    unit: ''
+                -   name: sigma
+                    value: 0.1
+                    unit: ''
+                weight: 1
+                modelparameters:
+                - bias
+                dimension: 1
+        -   name: resolution
+            value: 0.0
+            frozen: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormSpectralModel
+            parameters:
+            -   name: norm
+                value: 7.958413126301337e-17
+                error: 0.10921637095914996
+                prior:
+                    type: GaussianPrior
+                    parameters:
+                    -   name: mu
+                        value: 0.0
+                        unit: ''
+                    -   name: sigma
+                        value: 0.1
+                        unit: ''
+                    weight: 1
+                    modelparameters:
+                    - norm
+                    dimension: 1
+            -   name: tilt
+                value: 0.0
+                error: 0.020000631282947132
+                frozen: false
+                prior:
+                    type: GaussianPrior
+                    parameters:
+                    -   name: mu
+                        value: 0.0
+                        unit: ''
+                    -   name: sigma
+                        value: 0.02
+                        unit: ''
+                    weight: 1
+                    modelparameters:
+                    - tilt
+                    dimension: 1
+            -   name: reference
+                value: 1.0
+                unit: TeV
+-   type: FoVBackgroundModel
+    datasets_names:
+    - -dN4vm86
+    spectral:
+        type: PiecewiseNormSpectralModel
+        parameters:
+        -   name: norm0
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm1
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm2
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm3
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm4
+            value: 5.0383994899637715e-20
+            error: 0.003315112107310201
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm5
+            value: 6.096241710049556e-20
+            error: 0.0031600896199113306
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm6
+            value: 1.2719482890340765e-20
+            error: 0.003524702662065249
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm7
+            value: 9.320169691103825e-21
+            error: 0.003806600931404524
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm8
+            value: 9.600024996890212e-21
+            error: 0.003999298654958135
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm9
+            value: 3.0661637933462407e-21
+            error: 0.004420730135297717
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm10
+            value: 1.852953341118064e-21
+            error: 0.005131213134964243
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm11
+            value: 1.4993943051404946e-21
+            error: 0.005854507561136766
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm12
+            value: 9.698252965039541e-22
+            error: 0.0066316113027253525
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm13
+            value: 7.293228933616986e-22
+            error: 0.007520333209958352
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm14
+            value: 5.762533983967933e-22
+            error: 0.008625177470822228
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm15
+            value: 4.791485312548661e-22
+            error: 0.01004192005023639
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm16
+            value: 4.761484391608812e-22
+            error: 0.011882914764594068
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm17
+            value: 3.608963542258644e-22
+            error: 0.014326364250985062
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm18
+            value: 3.2090883284261704e-22
+            error: 0.017665506697960742
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm19
+            value: 4.16768228093504e-22
+            error: 0.022301637783365406
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm20
+            value: 4.624797711813349e-22
+            error: 0.02860814724704595
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm21
+            value: 9.533521801814342e-22
+            error: 0.03793462921439534
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm22
+            value: 6.0829823506191085e-21
+            error: 0.051822284971009096
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        -   name: norm23
+            value: 2.1460764103677647e-18
+            error: 0.08742930536759065
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: data/1_asimov_nui_bkgsys.dat
+                dimension: 24
+        energy:
+            data:
+            - 0.11547819846894583
+            - 0.1539926526059492
+            - 0.20535250264571459
+            - 0.27384196342643613
+            - 0.36517412725483767
+            - 0.48696752516586306
+            - 0.6493816315762113
+            - 0.8659643233600653
+            - 1.1547819846894583
+            - 1.539926526059492
+            - 2.0535250264571463
+            - 2.7384196342643614
+            - 3.651741272548377
+            - 4.869675251658631
+            - 6.493816315762111
+            - 8.659643233600653
+            - 11.547819846894583
+            - 15.399265260594923
+            - 20.535250264571477
+            - 27.384196342643627
+            - 36.51741272548378
+            - 48.69675251658631
+            - 64.93816315762122
+            - 86.59643233600663
+            unit: TeV
+covariance: 1_asimov_nui_covariance.dat

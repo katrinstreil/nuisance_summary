@@ -1,0 +1,863 @@
+components:
+-   name: msh
+    type: SkyModel
+    spectral:
+        type: PowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.2602920428365803
+            error: 0.03604189641620774
+        -   name: amplitude
+            value: 2.5812037184987425e-12
+            unit: cm-2 s-1 TeV-1
+            error: 1.4584308090362806e-13
+        -   name: reference
+            value: 1.0
+            unit: TeV
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            frozen: true
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            frozen: true
+        -   name: sigma
+            value: 0.1450489972121196
+            unit: deg
+            error: 0.006488073776559182
+        -   name: e
+            value: 0.0
+        -   name: phi
+            value: 0.0
+            unit: deg
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PiecewiseNormSpectralModel
+        parameters:
+        -   name: norm0
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm1
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm2
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm3
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm4
+            value: 0.09990550421406455
+            error: 0.004871074962997914
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm5
+            value: 0.09007811026045193
+            error: 0.0037155029762106643
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm6
+            value: 0.07989562549013275
+            error: 0.003961322282292063
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm7
+            value: 0.07008762261498636
+            error: 0.004073395043418784
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm8
+            value: 0.059950331852425605
+            error: 0.004175153032506098
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm9
+            value: 0.050071217449100106
+            error: 0.004578103702113457
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm10
+            value: 0.03986714234384383
+            error: 0.005279299682332016
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm11
+            value: 0.030052395031145245
+            error: 0.005980837437231113
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm12
+            value: 0.020340786056743467
+            error: 0.006736087194650871
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm13
+            value: 0.00892387750934075
+            error: 0.007594518208366437
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm14
+            value: 0.0016988090407425063
+            error: 0.008685049921437931
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm15
+            value: 0.005905983322294528
+            error: 0.010112565830823782
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm16
+            value: 0.015656081766146746
+            error: 0.012011062588228608
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm17
+            value: 0.02283982104088745
+            error: 0.01452103146826797
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm18
+            value: 0.029378194167926485
+            error: 0.017948035279300875
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm19
+            value: 0.03746133294568439
+            error: 0.02272883160371871
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm20
+            value: 0.045132102295395146
+            error: 0.029243537381255253
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm21
+            value: 0.0525689555522359
+            error: 0.03887869089251054
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm22
+            value: 0.05948566670757692
+            error: 0.053182608234458445
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        -   name: norm23
+            value: 0.06047372022234848
+            error: 0.08937855063094292
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../BKG_PKSflare_msh/data/0_model_nui_livetime_100.0_bkgsys.dat
+                dimension: 24
+        energy:
+            data:
+            - 0.11547819846894583
+            - 0.1539926526059492
+            - 0.20535250264571459
+            - 0.27384196342643613
+            - 0.36517412725483767
+            - 0.48696752516586306
+            - 0.6493816315762113
+            - 0.8659643233600653
+            - 1.1547819846894583
+            - 1.539926526059492
+            - 2.0535250264571463
+            - 2.7384196342643614
+            - 3.651741272548377
+            - 4.869675251658631
+            - 6.493816315762111
+            - 8.659643233600653
+            - 11.547819846894583
+            - 15.399265260594923
+            - 20.535250264571477
+            - 27.384196342643627
+            - 36.51741272548378
+            - 48.69675251658631
+            - 64.93816315762122
+            - 86.59643233600663
+            unit: TeV
+covariance: 0_model_nui_livetime_100.0_covariance.dat

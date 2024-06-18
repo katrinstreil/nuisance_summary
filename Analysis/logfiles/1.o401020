@@ -1,0 +1,200 @@
+### Starting TaskPrologue of job 401020 on tf073 at Mon 13 May 2024 05:45:29 PM CEST
+Running on cores 2-3,66-67 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+nn 75
+shift [-0.29291598], tilt [-0.02808081],  bias [0.09324745], res [0.]
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 219
+	total stat : 88246.35
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.126   +/-    0.10             
+    amplitude                     :   2.67e-11   +/- 1.9e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.104   +/-    0.04 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.683   +/-    0.00 deg         
+    lat_0                         :    -30.218   +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.992   +/-    0.01             
+    tilt                          :      0.003   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+2.6740684384242992e-11   1.869846260821083e-12   2.126377751583589   0.10059806986428496   0.10378350981042786   0.0384334846461879   0.9915902152332082   0.010680713435670392   0.0027730380570780066   0.011635673189182415   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 963
+	total stat : 88245.53
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                         :      2.245   +/-    0.14             
+    amplitude                     :   2.65e-11   +/- 3.3e-12 1 / (cm2 s TeV)
+    reference             (frozen):      1.000       TeV         
+    lambda_                       :      0.090   +/-    0.04 1 / TeV     
+    alpha                 (frozen):      1.000                   
+    lon_0                         :    329.683   +/-    0.00 deg         
+    lat_0                         :    -30.218   +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias                          :      0.052   +/-    0.04             
+    resolution            (frozen):      0.000                   
+    norm                          :     -0.000   +/-    0.10             
+    tilt                          :     -0.000   +/-    0.02             
+    reference             (frozen):      1.000       TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                          :      0.992   +/-    0.01             
+    tilt                          :      0.003   +/-    0.01             
+    reference             (frozen):      1.000       TeV         
+
+
+2.646290820938448e-11   3.28655810825792e-12   2.2452077704632774   0.13709955738959828   0.08972646683760443   0.04077271387044277   -2.5319051536316104e-05   0.10073625425594965   -2.349067104304532e-06   0.02000000929485208   -2.5319051536316104e-05   0.10073625425594965   -2.349067104304532e-06   0.02000000929485208   0.05213001519609757   0.04281051011157101   0.0   0.0   2.154434690031884  
+amplitude index
+Crablog.spectral.amplitude
+Crablog.spectral.index
+success
+amplitude lambda_
+Crablog.spectral.amplitude
+Crablog.spectral.lambda_
+success
+lambda_ index
+Crablog.spectral.lambda_
+Crablog.spectral.index
+success
+N
+amplitude index
+Traceback (most recent call last):
+  File "1_rnd.py", line 258, in <module>
+    computing_contour(dataset_N, "N"+rnds)
+  File "1_rnd.py", line 26, in computing_contour
+    result = fit_cor.stat_contour(dataset,
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/fit.py", line 526, in stat_contour
+    result = contour_iminuit(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 174, in contour_iminuit
+    contour = minuit.mncontour(x=x, y=y, size=numpoints, cl=cl)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/iminuit/minuit.py", line 1894, in mncontour
+    ce = mnc(ix, iy, size)[2]
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/iminuit.py", line 25, in fcn
+    total_stat = self.function()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/core.py", line 235, in stat_sum
+    stat_sum += dataset.stat_sum()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 1245, in stat_sum
+    counts, npred = self.counts.data.astype(float), self.npred().data
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 459, in npred
+    npred_total = self.npred_signal()
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/utils/decorators.py", line 607, in wrapper
+    return function(*args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 639, in npred_signal
+    edisp = self.npred_edisp()
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/datasets/map.py", line 525, in npred_edisp
+    gaussian = self.irf_model.e_reco_model(
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 172, in __call__
+    return self.evaluate(energy_axis, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/gammapy/gammapy/modeling/models/IRF.py", line 227, in evaluate
+    idx = int(bias.value / np.mean(deltae))
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/astropy/units/quantity.py", line 1336, in __int__
+    return int(self.to_value(dimensionless_unscaled))
+ValueError: cannot convert float NaN to integer
+srun: error: tf073: task 0: Exited with exit code 1
+srun: Terminating StepId=401020.0
+slurmstepd-tf073: error: *** STEP 401020.0 ON tf073 CANCELLED AT 2024-05-13T21:10:05 ***
+srun: error: tf073: task 1: Terminated
+srun: Force Terminated StepId=401020.0
+=== JOB_STATISTICS ===
+=== current date     : Mon 13 May 2024 09:10:05 PM CEST
+= Job-ID             : 401020 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 03:24:38
+= Total RAM usage    : 2.8 GiB of requested  GiB (%)   
+= Node list          : tf073
+= Subm/Elig/Start/End: 2024-05-13T17:45:25 / 2024-05-13T17:45:25 / 2024-05-13T17:45:27 / 2024-05-13T21:10:05
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           83.5G   104.9G   209.7G        N/A     128K     500K   1,000K        N/A    
+    /home/vault         75.6G  1048.6G  2097.2G        N/A     135      200K     400K        N/A    
+======================
