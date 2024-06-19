@@ -62,7 +62,7 @@ class GaussianCovariance_matrix:
         # Scale the values to be between -0.1 and 0.1
         values = values / np.max(np.abs(values)) * self.magnitude / 100
         return values
-   
+
 
 class Setup:
     def __init__(
@@ -339,4 +339,4 @@ class Setup:
             GaussianPrior(modelparameters = m, mu = 0., sigma = simgas[m.name])
 
 
-        
+
