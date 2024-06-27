@@ -98,7 +98,7 @@ if sys == "E_reco":
 
     
         
-if sys == "Combined":
+if  "Combined" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False

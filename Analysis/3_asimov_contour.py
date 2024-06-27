@@ -84,11 +84,12 @@ setup = Setup(dataset_input=dataset_input)
 dataset_asimov, dataset_asimov_N = setup.run()
 # irf model
 setup.set_irf_model(dataset_asimov_N)
-if sys == "Eff_area":
+if  "Eff_area" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    e_reco_n = 30# int(2000)
 
 if sys == "E_reco":
     dataset_asimov_N.models.parameters['resolution'].frozen = True
@@ -96,14 +97,16 @@ if sys == "E_reco":
     dataset_asimov_N.irf_model.parameters['norm'].frozen = True
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    
-if sys == "Combined":
+    e_reco_n =  int(2000)
+
+if  "Combined" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    
+    e_reco_n =  int(2000)
+
 if sys == "BKG":
 
     # piece wise model
@@ -131,7 +134,6 @@ if sys == "BKG":
 
         
 numpoints = 50
-e_reco_n = int(2000)
 
 def computing_contour(dataset, note, idx):
         

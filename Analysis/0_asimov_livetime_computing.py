@@ -85,7 +85,7 @@ def set_up(dataset_input):
         dataset_asimov_N.irf_model.parameters['bias'].frozen = False
         setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-    if sys == "Combined":
+    if "Combined" in sys:
         dataset_asimov_N.models.parameters['resolution'].frozen = True
         dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
         dataset_asimov_N.irf_model.parameters['bias'].frozen = False

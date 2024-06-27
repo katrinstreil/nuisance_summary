@@ -7,12 +7,13 @@ from gammapy.modeling.models import (
     PowerLawNormSpectralModel,
     MultiVariantePrior,
     GaussianPrior,
-    CompoundNormSpectralModel
+    CompoundNormSpectralModel,
+    PowerLawNormOneHundredSpectralModel
 )
 from gammapy.modeling.models.IRF import (  
     EffAreaIRFModel,
     ERecoIRFModel,
-    IRFModels,
+    IRFModels
 )
 from gammapy.modeling import Parameters, Parameter
 from scipy.stats import norm
@@ -81,10 +82,9 @@ class Setup:
         self._bkg_sys = False
         self._bkg_sys_V = False
         self._bkg_pl_sys_V = False
-        
          
         
-    def set_up_irf_sys(self, bias, resolution, norm, tilt):
+    def set_up_irf_sys(self, bias, resolution, norm, tilt): # onhunderd is the new eff arae model with e0 = 100 TeV and (1+ alpha)
         """
         Parameters:
         bias, resolution, norm, tilt
@@ -220,18 +220,21 @@ class Setup:
         models.append(bkg_model)
         dataset.models = models
     
-    def set_irf_model(self, dataset):
+    def set_irf_model(self, dataset
+                     ):
         """
         sets the IRF model to the rest of the models
         """
+        # +1 in evaluation of PowerLawNormOneHundredSpectralModel
+        # norm = 0 per default
+        # E_0 = 100 TeV per default
+        eff_area_model = EffAreaIRFModel(spectral_model = PowerLawNormOneHundredSpectralModel())
         # irf model
         IRFmodels = IRFModels(
-            eff_area_model=EffAreaIRFModel(spectral_model = PowerLawNormSpectralModel()), 
+            eff_area_model=eff_area_model, 
             e_reco_model=ERecoIRFModel(), 
             datasets_names=dataset.name
         )
-        # +1 in evaluation 
-        IRFmodels.parameters['norm'].value = 0.
         models = Models(dataset.models.copy())
         models.append(IRFmodels)
         dataset.models = models
@@ -303,6 +306,12 @@ class Setup:
         npred = self.dataset_helper.npred()
 
         if self.rnd:
+            if isinstance(self.rnd, int):
+                print("set seed to:", self.rnd)
+                np.random.seed(self.rnd)
+            else:
+                print("random seed")
+                np.random.seed()
             counts_data = np.random.poisson(npred.data)
         else:
             counts_data = npred.data

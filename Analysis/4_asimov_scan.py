@@ -92,7 +92,7 @@ setup = Setup(dataset_input=dataset_input)
 dataset_asimov, dataset_asimov_N = setup.run()
 # irf model
 setup.set_irf_model(dataset_asimov_N)
-if sys == "Eff_area":
+if  "Eff_area" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
@@ -108,7 +108,7 @@ if sys == "E_reco":
     e_reco_n = 2000
     
     
-if sys == "Combined":
+if  "Combined" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
@@ -159,24 +159,23 @@ def computing_scan(dataset, note):
     
     results = []
     for parname1 in parameter_names_1 :
-        if parname1 == 'lambda_':
-            print("scanning",  parname1)
-            dataset.models.parameters[parname1].scan_n_values=numpoints
-            result = fit_cor.stat_profile(dataset,
-                                 dataset.models.parameters[parname1],
-                                reoptimize = True
-                                )
+        print("scanning",  parname1)
+        dataset.models.parameters[parname1].scan_n_values=numpoints
+        result = fit_cor.stat_profile(dataset,
+                             dataset.models.parameters[parname1],
+                            reoptimize = True
+                            )
 
-            contour_write = dict()
-            for k in result.keys():
-                print(k)
-                if k != "fit_results":
-                    contour_write[k] = [float(_) for _ in result[k]]#.tolist()
-            print(contour_write)
-            with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}_{numpoints}.yml", "w") as outfile:
-                yaml.dump(contour_write, outfile, default_flow_style=False)
+        contour_write = dict()
+        for k in result.keys():
+            print(k)
+            if k != "fit_results":
+                contour_write[k] = [float(_) for _ in result[k]]#.tolist()
+        print(contour_write)
+        with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}_{numpoints}.yml", "w") as outfile:
+            yaml.dump(contour_write, outfile, default_flow_style=False)
 
-            results.append(result)
+        results.append(result)
     return results
         
 def read_in_scan(note):
@@ -193,8 +192,8 @@ def read_in_scan(note):
 
 
 # %%time
-numpoints = 20
-computing = 0
+numpoints = 5
+computing = 1
 if computing:
     results = computing_scan(dataset_asimov, "2.15h")
 else:
@@ -205,8 +204,7 @@ else:
 
 
 # %%time
-computing = 0
-numpoints = 20
+computing = 1
 
 if computing:
     dataset_asimov_N.models.parameters['lon_0'].frozen = True

@@ -1,0 +1,84 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.1518609516989837
+            error: 0.14376408984188
+            frozen: true
+        -   name: amplitude
+            value: 3.965365061250369e-11
+            unit: cm-2 s-1 TeV-1
+            error: 1.7411610338723542e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+        -   name: lambda_
+            value: 0.12946540921987712
+            unit: TeV-1
+            error: 0.044123808808393866
+            frozen: true
+        -   name: alpha
+            value: 1.0
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67945260266265
+            unit: deg
+            error: 0.002197076437062714
+            min: 328.67999999999995
+            max: 330.67999999999995
+            frozen: true
+        -   name: lat_0
+            value: -30.221794869653955
+            unit: deg
+            error: 0.0020248629379874144
+            min: -31.221666666666664
+            max: -29.221666666666664
+            frozen: true
+-   name: dataset_N-irf
+    type: IRFModels
+    datasets_names: dataset_N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -0.0838651964791896
+            error: 0.052774411060727014
+        -   name: resolution
+            value: 0.0
+            error: 1.4142135623730951
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormOneHundredSpectralModel
+            parameters:
+            -   name: norm
+                value: 0.029967315846725736
+                error: 0.04522511250039645
+            -   name: tilt
+                value: 0.0
+            -   name: reference
+                value: 100.0
+                unit: TeV
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 0.9905369805924465
+            error: 0.010604914240917158
+            frozen: true
+        -   name: tilt
+            value: 0.014060319872401462
+            error: 0.011603587898803908
+        -   name: reference
+            value: 1.0
+            unit: TeV
+covariance: 1P_model_N_2.154434690031884_0.0_0.0_0.0_0.0_71_covariance.dat
