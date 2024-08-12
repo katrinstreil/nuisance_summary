@@ -86,13 +86,13 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 1000
+    N = 100
     save_flux = True
     save_fluxpoints = 0
     save_fluxpoints_N = 0
     dataset_N = True
     contour = 0
-    zero_sys =0
+    zero_sys = 0
 
 
     for n in range(N):
@@ -105,7 +105,7 @@ for live in [livetime]:
         shift_rnd = np.random.normal(0, norm, 1)
         tilt_rnd = np.random.normal(0, tilt, 1)
         if zero_sys:
-            nn = 71 #np.random.randint(0,100)
+            nn = 71#np.random.randint(0,100)
             print("nn", nn)
             rnd = nn
         else:
@@ -139,7 +139,7 @@ for live in [livetime]:
             dataset_N.irf_model.parameters['norm'].frozen = True
             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
         
-        if sys == "Combined":
+        if  "Combined"  in sys:
             dataset_N.models.parameters['resolution'].frozen = True
             dataset_N.models.parameters['bias'].frozen = False
             dataset_N.irf_model.parameters['tilt'].frozen = False
@@ -181,18 +181,21 @@ for live in [livetime]:
         print(dataset.models)
 
         stri = ""
-        parameters =  ['amplitude', 'index', 'lambda_', 'norm', 'tilt']
+        parameters =  ['amplitude', 'index', 'lambda_',]# 'norm', 'tilt']
         if "crab_break" in c['model']:
-            parameters =  ['amplitude', 'index1', 'index2', 'ebreak', 'beta', 'norm', 'tilt']
+            parameters =  ['amplitude', 'index1', 'index2', 'ebreak', 'beta',]# 'norm', 'tilt']
         if "crab_log" in c['model']:
-            parameters =  ['amplitude', 'alpha', 'beta', 'norm', 'tilt']
+            parameters =  ['amplitude', 'alpha', 'beta',]# 'norm', 'tilt']
             
         for p in parameters:
             stri += str(dataset.models.parameters[p].value)  + '   ' +  str(dataset.models.parameters[p].error)  + '   '
         stri += str(live) + "  "
         print(stri)
 
-
+        for p in ['norm', 'tilt']:
+            stri += str(dataset.background_model.parameters[p].value)  + '   ' +  str(dataset.background_model.parameters[p].error)  + '   '
+        stri += str(live) + "  "
+        print(stri)
      
         energy_edges = dataset.geoms['geom'].axes[0].edges#[::2]
         energy_bounds = (energy_edges[0], energy_edges[-1] ) #* u.TeV
@@ -230,9 +233,14 @@ for live in [livetime]:
 
 
         stri_N = ""
-        [parameters.append(p) for p in ['norm', 'tilt', 'bias', 'resolution']]
         for p in parameters:
             stri_N += str(dataset_N.models.parameters[p].value)  + '   ' +  str(dataset_N.models.parameters[p].error)  + '   '
+        for p in ['norm', 'tilt']:
+            stri_N += str(dataset_N.background_model.parameters[p].value)  + '   ' +  str(dataset_N.background_model.parameters[p].error)  + '   '
+        parameters_  =  ['norm', 'tilt', 'bias', 'resolution']
+        for p in parameters_:
+            stri_N += str(dataset_N.irf_model.parameters[p].value)  + '   ' +  str(dataset_N.irf_model.parameters[p].error)  + '   '
+        
         stri_N += str(live) + "  "
         print(stri_N)
 
@@ -275,12 +283,12 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti  = FluxPointsEstimator(energy_edges= energy_edges[::2], selection_optional =[ "ul"],# "errn-errp", "all",
+            esti_  = FluxPointsEstimator(energy_edges= energy_edges[::2], selection_optional =[ "ul"],# "errn-errp", "all",
                                         norm_min=0.2,
                                     norm_max=500,
                                     norm_n_values=15,
                                        reoptimize=True)
-            fluxpoints_N = esti.run([dataset_N])
+            fluxpoints_N = esti_.run([dataset_N])
             fluxpoints_N.plot(ax = ax)
             ax.legend(title = f"live: {live:.3} hr\n norm:{shift_rnd[0]:.3}\n tilt:{tilt_rnd[0]:.3}\n bias:{bias_rnd[0]:.3}")
             fig.savefig(f"{path}/data/fluxpoints/plots/{live}_{rnds}_{nn}.png")

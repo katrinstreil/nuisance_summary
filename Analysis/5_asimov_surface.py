@@ -63,7 +63,6 @@ sys = c['sys']
 folder = c['folder']
 nbidx = 0
 print(livetime)
-print("sys", sys)
 
 # %%time
 dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['source'], 
@@ -81,6 +80,8 @@ dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['sour
 setup = Setup(dataset_input=dataset_input)
 #setup.set_up_irf_sys(bias, resolution, norm, tilt)
 dataset_asimov, dataset_asimov_N = setup.run()
+
+
 # irf model
 setup.set_irf_model(dataset_asimov_N)
 if sys == "Eff_area":
@@ -105,11 +106,19 @@ if  "Combined" in sys:
     dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
 
-path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
-dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
-path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
-dataset_asimov.models = Models.read(path)
+try:
+    path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
+    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
+    dataset_asimov.models = Models.read(path)
+except:
+    path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
+    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
+    dataset_asimov.models = Models.read(path)
 print(dataset_asimov.models)
+
+
 ######################################################################
 # Minos
 # -----
@@ -118,7 +127,7 @@ print(dataset_asimov.models)
 parameter_names = c['parameter_names']
 source = 'Crablog'
 scan_n_sigma = 2
-scan_n_values = 3
+scan_n_values = 7
 e_reco_n = 2000
 
 def computing_surface(dataset_asimov, note, idx):
@@ -186,7 +195,7 @@ def computing_surface(dataset_asimov, note, idx):
             if k != "fit_results":
                 contour_write[k] =[float(_) for _ in np.array(result[k]).flatten()]#.tolist()
 
-        with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}_{scan_n_values}_{e_reco_n}.yml", "w") as outfile:
+        with open(f"../{folder}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}_{scan_n_values}_{e_reco_n}.yml", "w") as outfile:
         #with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
         results.append(result)
@@ -195,7 +204,7 @@ def computing_surface(dataset_asimov, note, idx):
 def read_in_surface(note):
     results = []
     for parname1, parname2 in parameter_names :
-        with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}_{scan_n_values}_{e_reco_n}.yml", "r") as stream:
+        with open(f"../{folder}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}_{scan_n_values}_{e_reco_n}.yml", "r") as stream:
         #with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}.yml", "r") as stream:
             contour = yaml.safe_load(stream)
         a = contour[f"{source}.spectral.{parname1}_scan"]
@@ -206,7 +215,7 @@ def read_in_surface(note):
     return results
 
 # %%time
-computing = 1
+computing = 0
 if computing:
     
     results = computing_surface(dataset_asimov, "2.15h", 0)
@@ -218,20 +227,65 @@ else:
     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
     dataset_asimov.models = Models.read(path)
 
+fig, (ax1, ax, ax3) = plt.subplots(1, 3, figsize=(14, 5))
+stat_scan = results[0]["stat_scan"] - np.min(results[0]["stat_scan"])
+
+
+im = ax1.pcolormesh(results[0]['Crablog.spectral.amplitude_scan'],
+                    results[0][ 'Crablog.spectral.index_scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax1)
+
+stat_scan = results[1]["stat_scan"] - np.min(results[0]["stat_scan"])
+
+im = ax.pcolormesh(results[1]['Crablog.spectral.amplitude_scan'],
+                    results[1][ 'Crablog.spectral.lambda__scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax)
+
+
+stat_scan = results[2]["stat_scan"] - np.min(results[2]["stat_scan"])
+
+im = ax3.pcolormesh(results[2]['Crablog.spectral.index_scan'],
+                    results[2][ 'Crablog.spectral.lambda__scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax3)
+
 
 # %%time
 computing = 1
 dataset_asimov_N.e_reco_n = e_reco_n
-
 if computing:
     
     #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
     #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
     results_N = computing_surface(dataset_asimov_N, "N_2.15h", 2)
-    results_N = read_in_surface("N_2.15h")
-    
 else:
     results_N = read_in_surface("N_2.15h")
+
+fig, (ax1, ax, ax3) = plt.subplots(1, 3, figsize=(14, 5))
+stat_scan = results_N[0]["stat_scan"] - np.min(results_N[0]["stat_scan"])
+
+
+im = ax1.pcolormesh(results_N[0]['Crablog.spectral.amplitude_scan'],
+                    results_N[0][ 'Crablog.spectral.index_scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax1)
+
+stat_scan = results_N[1]["stat_scan"] - np.min(results[0]["stat_scan"])
+
+im = ax.pcolormesh(results_N[1]['Crablog.spectral.amplitude_scan'],
+                    results_N[1][ 'Crablog.spectral.lambda__scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax)
+
+
+stat_scan = results_N[2]["stat_scan"] - np.min(results_N[2]["stat_scan"])
+
+im = ax3.pcolormesh(results_N[2]['Crablog.spectral.index_scan'],
+                    results_N[2][ 'Crablog.spectral.lambda__scan'], 
+                    stat_scan)
+fig.colorbar(im, ax=ax3)
 
 
 def compute_errors(Ls_new, x_new, y_new, threshold, find_min):
@@ -264,16 +318,18 @@ def compute_errors(Ls_new, x_new, y_new, threshold, find_min):
 
 
 def plot_surface(contour, parname1, parname2,
-                source = "Crabbreak", note = "", plot_orig = True):
-    amplix__ = contour[f"{source}.spectral.{parname1}_scan"]
-    indexy__ = contour[f"{source}.spectral.{parname2}_scan"]
-    N_new = 110
-    N_new_y = 100
+                source = "Crabbreak", note = "", plot_orig = True, cubic = True):
+    cropidx = 0
+    amplix__ = contour[f"{source}.spectral.{parname1}_scan"]#[cropidx: -cropidx]
+    indexy__ = contour[f"{source}.spectral.{parname2}_scan"]#[cropidx: -cropidx]
+    N_new = int(110 * 1)
+    N_new_y = int(100 *1)
     amplix__new = np.linspace(amplix__[0], amplix__[-1], N_new)
     indexy__new = np.linspace(indexy__[0], indexy__[-1], N_new_y)
     stat_scan = contour["stat_scan"] - np.min(contour["stat_scan"])
-
-    try:
+    stat_scan =stat_scan#[cropidx: -cropidx,cropidx: -cropidx]
+    if cubic:
+    #try:
         f = interp2d(
             x=indexy__,
             y=amplix__,
@@ -282,7 +338,8 @@ def plot_surface(contour, parname1, parname2,
             fill_value=None,
             bounds_error=False,
             )
-    except:
+    else:
+    #except:
         f = interp2d(
             x=indexy__,
             y=amplix__,
@@ -348,52 +405,124 @@ if c['model'] =="crab_log":
     source = "Crablog"
 
 CSs, CS_Ns  = [] , []
+cubic = True
 for i in range(len(parameter_names)):
 #for i in range(1):
     CS, fig  = plot_surface(results[i], parameter_names[i][0], 
-             parameter_names[i][1], source = source,plot_orig=1)
+             parameter_names[i][1], source = source,plot_orig=1, cubic = cubic)
     fig.savefig(f"../{c['folder']}/plots/3_surface_{i}.pdf")
     CSs.append(CS)
     
     CS_N, fig = plot_surface(results_N[i], parameter_names[i][0], 
-             parameter_names[i][1], source = source,plot_orig=1)
+             parameter_names[i][1], source = source,plot_orig=1, cubic = cubic)
     
     CS_Ns.append(CS_N)
 
-fig,axs = plt.subplots(2,2)
-axs = [axs[1][0], axs[1][1], axs[0][0]]
-for i, p in enumerate(parameter_names[:1]):
-    ax = axs[i]
-    dat = CSs[i].allsegs[0][0]
-    ax.plot(
-        dat[:, 0],
-        dat[:, 1],
-        color=awo[0],
-    )
-    
-    dat = CS_Ns[i].allsegs[0][0]
-    ax.plot(
-        dat[:, 0],
-        dat[:, 1],
-        color=aw[0],
-    )
-    
-    ax.set_ylabel(p[0])
-    ax.set_xlabel(p[1])
-    p1 = dataset_asimov.models.parameters[p[0]]
-    p2 = dataset_asimov.models.parameters[p[1]]
-    ax.errorbar(p2.value, p1.value,  xerr = p2.error, 
-               yerr = p1.error, color = awo[0], capsize = 4)
-    p1 = dataset_asimov_N.models.parameters[p[0]]
-    p2 = dataset_asimov_N.models.parameters[p[1]]
-    ax.errorbar(p2.value, p1.value,  xerr = p2.error, 
-               yerr = p1.error, color = aw[0], capsize = 4)
-    
-plt.tight_layout()
+check_constistency = True
+if check_constistency :
+    numpoints = 50      
+    def read_in_contour(note, folder = c['folder'], numpoints = numpoints, numpoints2 =numpoints, numpoints3 =numpoints ):
+        results = []
+        for parname1, parname2 in parameter_names :
+            try:
+                with open(f"../{folder}/data/3_contour_{note}_{parname1}_{parname2}_{numpoints3}.yml", "r") as stream:
+                        contour = yaml.safe_load(stream)
+            except:
+                try:
+                    with open(f"../{folder}/data/3_contour_{note}_{parname1}_{parname2}_{numpoints2}.yml", "r") as stream:
+                            contour = yaml.safe_load(stream)
+                except:    
+                    with open(f"../{folder}/data/3_contour_{note}_{parname1}_{parname2}_{numpoints}.yml", "r") as stream:
+                            contour = yaml.safe_load(stream)
 
-ax = dataset_asimov.models[0].spectral_model.plot((0.1, 100)*u.TeV)
-dataset_asimov.models[0].spectral_model.plot_error((0.1, 100)*u.TeV, ax = ax)
+            results.append(contour)
+        return results
 
 
-results_N[0]
+
+
+
+    numpoints = 50
+    results_contour = read_in_contour("2.15h", numpoints = "5_2000",
+                                      numpoints2 = "10_2000", numpoints3 = "20_2000",)   
+    results_contour_N = read_in_contour("N_2.15h", numpoints = "5_2000",
+                                      numpoints2 = "10_2000", numpoints3 = "20_2000",)
+
+    
+    
+    fig,axs = plt.subplots(2,2)
+    axs = [axs[1][0], axs[1][1], axs[0][0]]
+    for i, p in enumerate(parameter_names):
+        ax = axs[i]
+        dat = CSs[i].allsegs[0][0]
+        ax.plot(
+            dat[:, 0],
+            dat[:, 1],
+            color=awo[0],
+        )
+
+        dat = CS_Ns[i].allsegs[0][0]
+        ax.plot(
+            dat[:, 0],
+            dat[:, 1],
+            color=aw[0],
+        )
+
+        ax.set_ylabel(p[0])
+        ax.set_xlabel(p[1])
+        p1 = dataset_asimov.models.parameters[p[0]]
+        p2 = dataset_asimov.models.parameters[p[1]]
+        ax.errorbar(p2.value, p1.value,  xerr = p2.error, 
+                   yerr = p1.error, color = awo[0], capsize = 4)
+        p1 = dataset_asimov_N.models.parameters[p[0]]
+        p2 = dataset_asimov_N.models.parameters[p[1]]
+        ax.errorbar(p2.value, p1.value,  xerr = p2.error, 
+                   yerr = p1.error, color = aw[0], capsize = 4)
+
+        a = results_contour[i][f'{dataset_asimov.models[0].name}.spectral.{p[0]}']    
+        b = results_contour[i][f'{dataset_asimov.models[0].name}.spectral.{p[1]}']
+        ax.plot(b,a, color = 'pink', linestyle = 'dotted')
+        
+        a = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{p[0]}']    
+        b = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{p[1]}']
+        ax.plot(b,a, color = 'darkblue', linestyle = 'dotted')
+
+    plt.tight_layout()
+
+note = "N_2.15h"
+def write():
+    i = 0
+    for parname1, parname2 in parameter_names :
+        print(parname1, parname2)
+        fig = plt.figure()
+        dat = CS_Ns[i].allsegs[0][0]
+        b, a = dat[:, 0], dat[:, 1]
+     
+        if i ==2:
+            a = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{parname1}']    
+            b = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{parname2}']
+        #if parname1 == "amplitude":
+        #    a *= 1e11
+        plt.plot(
+            a,
+            b,
+            color=aw[0],
+        )
+        
+        plt.title(parname1 +  parname2)
+        result = {}
+        result[f'{dataset_asimov.models[0].name}.spectral.{parname1}'] = [float(_) for _ in a]
+        result[f'{dataset_asimov.models[0].name}.spectral.{parname2}'] = [float(_) for _ in b]
+        
+        scan_n_values = 20
+        with open(f"../{folder}/data/3_contour_surface_{note}_{parname1}_{parname2}_{scan_n_values}_{e_reco_n}.yml", "w") as outfile:
+            yaml.dump(result, outfile, default_flow_style=False)
+     
+        
+        i +=1
+write()
+
+
+
+
 

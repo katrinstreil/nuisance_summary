@@ -92,12 +92,12 @@ setup = Setup(dataset_input=dataset_input)
 dataset_asimov, dataset_asimov_N = setup.run()
 # irf model
 setup.set_irf_model(dataset_asimov_N)
-if  "Eff_area" in sys:
+if "Eff_area" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = True
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 10
+    e_reco_n = 20
     
 if sys == "E_reco":
     dataset_asimov_N.models.parameters['resolution'].frozen = True
@@ -108,7 +108,7 @@ if sys == "E_reco":
     e_reco_n = 2000
     
     
-if  "Combined" in sys:
+if "Combined" in sys:
     dataset_asimov_N.models.parameters['resolution'].frozen = True
     dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
@@ -159,6 +159,7 @@ def computing_scan(dataset, note):
     
     results = []
     for parname1 in parameter_names_1 :
+        #if parname1 == 'lambda_':
         print("scanning",  parname1)
         dataset.models.parameters[parname1].scan_n_values=numpoints
         result = fit_cor.stat_profile(dataset,
@@ -192,8 +193,8 @@ def read_in_scan(note):
 
 
 # %%time
-numpoints = 5
-computing = 1
+numpoints = 20
+computing = 0
 if computing:
     results = computing_scan(dataset_asimov, "2.15h")
 else:
@@ -204,7 +205,8 @@ else:
 
 
 # %%time
-computing = 1
+computing = 0
+numpoints = 20
 
 if computing:
     dataset_asimov_N.models.parameters['lon_0'].frozen = True
@@ -213,8 +215,13 @@ if computing:
     results_N = computing_scan(dataset_asimov_N, "N_2.15h")
 else:
     results_N = read_in_scan("N_2.15h")
-    path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
-    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    try:
+        path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
+        dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    except:
+        path = f'../{folder}/data/0_model_nui_livetime_{livetime}_2000.yml'
+        dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+        
 print(results_N)
 
 import colors as s
@@ -268,8 +275,8 @@ for i, p in enumerate(parameter_names_1):
         if p == 'amplitude':
             factor = 1e11
 
-        ax.fill_between(  [np.nan, np.nan], ylim[0], ymax,  alpha = 0.5, color=colors_[2],
-                        label = f'1$\sigma$ error (Minos): -{er_neg*factor:.2} +{er_pos*factor:.2} ')
+        ax.fill_between(  [min_-er_neg, min_+ er_pos], ylim[0], ymax, alpha = 0.5, color=colors_[2],
+                        label = f'1$\sigma$ error (Scan): -{er_neg*factor:.2} +{er_pos*factor:.2} ')
      
         
         ax.vlines(amplitude-amplitude_err, ylim[0], ymax, color = colors_[0], linestyle ='dotted')
@@ -292,13 +299,13 @@ for i, p in enumerate(parameter_names_1):
 
 
         ax.fill_between(  [min_N-er_negN, min_N+ er_posN], ylim[0], ymax, alpha = 0.5, color = colors_[3],
-                        label = f'1$\sigma$ error (Minos): -{er_negN*factor:.2} +{er_posN*factor:.2} ')
+                        label = f'1$\sigma$ error (Scan): -{er_negN*factor:.5} +{er_posN*factor:.5} ')
         ax.vlines(amplitude_N-amplitude_err_N, ylim[0], ymax,color = colors_[1] ,
                   linestyles='dotted'
                  )
         ax.vlines(amplitude_N+amplitude_err_N, ylim[0], ymax,color = colors_[1],
                   linestyles='dotted',
-                    label = f'1$\sigma$ error (Minuit): $\pm${amplitude_err_N*factor:.2}')
+                    label = f'1$\sigma$ error (Minuit): $\pm${amplitude_err_N*factor:.5}')
                  
         nn = 2
         ax.set_xlim(amplitude_N-amplitude_err_N*nn, 
@@ -308,8 +315,6 @@ for i, p in enumerate(parameter_names_1):
 
         
         
-        ax.fill_between(  [min_-er_neg, min_+ er_pos], ylim[0], ymax,  alpha = 0.5, color=colors_[2],
-                        label = f'')
        
     
     
@@ -329,22 +334,22 @@ for i, p in enumerate(parameter_names_1):
     
     
 
-path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
-dataset_asimov_N.models.write(path, overwrite = 1)
+# path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
+# dataset_asimov_N.models.write(path, overwrite = 1)
 
-path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
-dataset_asimov.models.write(path, overwrite = 1)
+# path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
+# dataset_asimov.models.write(path, overwrite = 1)
+
+print(dataset_asimov_N.models.parameters['index'].error)
+print(dataset_asimov_N.models.parameters['index'].error_n)
+print(dataset_asimov_N.models.parameters['index'].error_p)
+print(dataset_asimov_N.models.parameters['index'].value)
+
 
 print(dataset_asimov.models.parameters['index'].error)
 print(dataset_asimov.models.parameters['index'].error_n)
 print(dataset_asimov.models.parameters['index'].error_p)
 print(dataset_asimov.models.parameters['index'].value)
-
-print(dataset_asimov.models.parameters['amplitude'].error)
-print(dataset_asimov.models.parameters['amplitude'].error_n)
-print(dataset_asimov.models.parameters['amplitude'].error_p)
-print(dataset_asimov.models.parameters['amplitude'].value)
-
 
 
 ######################################################################
@@ -352,55 +357,71 @@ print(dataset_asimov.models.parameters['amplitude'].value)
 # -----
 # 
 
-# %%time
-fit_cor = Fit(store_trace=False)
-result_cor = fit_cor.run(dataset_asimov)
-result_cor.minuit.minos()
-
-
-# %%time
-fit_cor_N = Fit(store_trace=False)
-result_cor_N = fit_cor_N.run(dataset_asimov_N)
-result_cor_N.minuit.minos()
-
-
 lt = c['livetime']
 
-print(dataset_asimov_N.models)
-
 # %%time
-compute_minos = True
+compute_minos = 1
 if compute_minos :
-       
+    fit_cor = Fit(store_trace=False)
+    result_cor = fit_cor.run(dataset_asimov)
+    result_cor.minuit.minos()
+   
+
+    minos_model = Models(dataset_asimov.models.copy() )
+    for p in result_cor.minuit.parameters:
+        p_ = p[8:]
+        factor = 1 
+        if p_ == "amplitude":
+            factor = dataset_asimov.models.parameters['amplitude'].scale
+        
+        minos_model.parameters[p_].error_n = fit_cor.minuit.merrors[p].lower* factor
+        minos_model.parameters[p_].error_p = fit_cor.minuit.merrors[p].upper* factor
+    minos_model.write(f'../{folder}/data/4_minos_error_{lt}.yaml', overwrite = True)
+
+
+    fit_cor_N = Fit(store_trace=False)
+    result_cor_N = fit_cor_N.run(dataset_asimov_N)
+    result_cor_N.minuit.minos()
+
+    minos_model_N = Models(dataset_asimov_N.models.copy() )
     for p in result_cor_N.minuit.parameters:
         p_ = p[8:]
         print(p_)
         factor = 1 
         if p_ == "amplitude":
             factor = dataset_asimov.models.parameters['amplitude'].scale
-        minos_model_N = Models(dataset_asimov_N.models.copy() )
         minos_model_N.parameters[p_].error_n = fit_cor_N.minuit.merrors[p].lower* factor
         minos_model_N.parameters[p_].error_p = fit_cor_N.minuit.merrors[p].upper* factor
         print(fit_cor_N.minuit.merrors[p].lower* factor)
     minos_model_N.write(f'../{folder}/data/4_minos_error_{lt}_nui.yaml', overwrite = True)
     
-    for p in result_cor.minuit.parameters:
-        p_ = p[8:]
-        factor = 1 
-        if p_ == "amplitude":
-            factor = dataset_asimov.models.parameters['amplitude'].scale
-        minos_model = Models(dataset_asimov.models.copy() )
-        
-        minos_model.parameters[p_].error_n = fit_cor.minuit.merrors[p].lower* factor
-        minos_model.parameters[p_].error_p = fit_cor.minuit.merrors[p].upper* factor
-    minos_model.write(f'../{folder}/data/4_minos_error_{lt}.yaml', overwrite = True)
+
     
     
 else:
     minos_model_N = Models.read(f'../{folder}/data/4_minos_error_{lt}_nui.yaml')    
     minos_model = Models.read(f'../{folder}/data/4_minos_error_{lt}.yaml')
 
-minos_model_N.parameters['index'].error_n
+minos_model_N.parameters['index'].value = dataset_asimov_N.models.parameters['index'].value
+minos_model_N.parameters['lambda_'].value = dataset_asimov_N.models.parameters['lambda_'].value
+minos_model_N.parameters['amplitude'].value = dataset_asimov_N.models.parameters['amplitude'].value
+
+
+minos_model_N.parameters['index'].error_p
+
+print(minos_model.parameters['index'].error)
+print(minos_model.parameters['index'].error_n)
+print(minos_model.parameters['index'].error_p)
+print(minos_model.parameters['index'].value)
+
+
+print(dataset_asimov.models.parameters['index'].error)
+print(dataset_asimov.models.parameters['index'].error_n)
+print(dataset_asimov.models.parameters['index'].error_p)
+print(dataset_asimov.models.parameters['index'].value)
+
+
+dataset_asimov_N.models.parameters['index'].error_n
 
 import upper_limit_18_02
 
@@ -452,24 +473,24 @@ for i, p in enumerate(parameter_names_1):
             factor = 1e11
 
         ax.fill_between(  [np.nan, np.nan], ylim[0], ymax,  alpha = 0.5, color=colors_[2],
-                        label = f'1$\sigma$ error (Scan): -{er_neg*factor:.2} +{er_pos*factor:.2} ')
+                        label = f'1$\sigma$ error (Scan): -{er_neg*factor:.4} +{er_pos*factor:.4} ')
      
         
         ax.vlines(amplitude-amplitude_err, ylim[0], ymax, color = colors_[0], linestyle ='dotted')
         ax.vlines(amplitude+amplitude_err, ylim[0], ymax, color = colors_[0], linestyle ='dotted',
-                 label =  f'1$\sigma$ error (Minuit): {amplitude_err*factor:.2}')
+                 label =  f'1$\sigma$ error (Minuit): {amplitude_err*factor:.4}')
          ## minos 
         # without nui      
         par = minos_model.parameters[p]
         value, error_n, error_p  = par.value, par.error_n, par.error_p
         print(value)
         
-        ax.vlines(value-error_n, ylim[0], ymax,color = 'tab:orange' ,
+        ax.vlines(value+error_n, ylim[0], ymax,color = 'tab:orange' ,
                   linestyles='dashed'
                  )
         ax.vlines(value+error_p, ylim[0], ymax,color = 'tab:orange',
                   linestyles='dashed',
-                    label = f'1$\sigma$ error (Minos): -{error_n*factor:.2} +{error_p*factor:.2} ')
+                    label = f'1$\sigma$ error (Minos): {error_n*factor:.4} +{error_p*factor:.4} ')
         
            
         ### POSTERIOR
@@ -487,7 +508,7 @@ for i, p in enumerate(parameter_names_1):
 
 
         ax.fill_between(  [min_N-er_negN, min_N+ er_posN], ylim[0], ymax, alpha = 0.5, color = colors_[3],
-                        label = f'1$\sigma$ error (Scan): -{er_negN*factor:.2} +{er_posN*factor:.2} ')
+                        label = f'1$\sigma$ error (Scan): -{er_negN*factor:.4} +{er_posN*factor:.4} ')
         ax.vlines(amplitude_N-amplitude_err_N, ylim[0], ymax,color = colors_[1] ,
                   linestyles='dotted'
                  )
@@ -504,7 +525,7 @@ for i, p in enumerate(parameter_names_1):
                  )
         ax.vlines(value+error_p, ylim[0], ymax,color = 'purple',
                   linestyles='dashed',
-                    label = f'1$\sigma$ error (Minos): -{error_n*factor:.2} +{error_p*factor:.2} ')
+                    label = f'1$\sigma$ error (Minos): -{error_n*factor:.4} +{error_p*factor:.4} ')
                    
               
             
@@ -607,4 +628,6 @@ for i, m in enumerate([setup.dataset_helper.models[0],dataset_asimov.models[0] ,
     print(f"{str_}")
     str_ = ""
     print()
+
+
 

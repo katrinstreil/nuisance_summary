@@ -133,7 +133,7 @@ if sys == "BKG":
 # 
 
         
-numpoints = 50
+numpoints = 10
 
 def computing_contour(dataset, note, idx):
         
@@ -173,16 +173,16 @@ def read_in_contour(note):
         results.append(contour)
     return results
 
-# %%time
-computing = 1
-if computing:
-    results = computing_contour(dataset_asimov, "2.15h",0)
-    results = computing_contour(dataset_asimov, "2.15h",1)
-    results = computing_contour(dataset_asimov, "2.15h",2)
-else:
-    results = read_in_contour("2.15h")
-    path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
-    dataset_asimov.models = Models.read(path)
+# # %%time
+# computing = 1
+# if computing:
+#     results = computing_contour(dataset_asimov, "2.15h",0)
+#     results = computing_contour(dataset_asimov, "2.15h",1)
+#     results = computing_contour(dataset_asimov, "2.15h",2)
+# else:
+#     results = read_in_contour("2.15h")
+#     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
+#     dataset_asimov.models = Models.read(path)
     
 dataset_asimov_N.e_reco_n = e_reco_n 
 print()
