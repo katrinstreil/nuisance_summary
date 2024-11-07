@@ -4,6 +4,7 @@ Branches:
 - master: works with gammapy-dev(v1.1)/IRF_model
 - gammapy_IRFmodel1: works with gammapy-dev(v1)/IRF_model
 - gammapy_nui: works with gammapy-dev(v0.9)/nui
+- TTPD: uses the master data but everything is for TTPD
 
 
 
