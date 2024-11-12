@@ -127,7 +127,7 @@ def set_model(path, model):
                             spectral_model = model_crab,
                             name = "Crablog")])
     else:
-        skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml").copy()
+        skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml")#.copy()
         
     return skymodel
 
