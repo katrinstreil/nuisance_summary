@@ -86,13 +86,13 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 100
+    N = 1
     save_flux = True
-    save_fluxpoints = 0
-    save_fluxpoints_N = 0
+    save_fluxpoints = 1
+    save_fluxpoints_N = 1
     dataset_N = True
     contour = 0
-    zero_sys = 0
+    zero_sys = 1
 
 
     for n in range(N):
@@ -104,6 +104,8 @@ for live in [livetime]:
         bias_rnd =  np.random.normal(0, bias, 1)
         shift_rnd = np.random.normal(0, norm, 1)
         tilt_rnd = np.random.normal(0, tilt, 1)
+        rnd = "False"
+        
         if zero_sys:
             nn = 71#np.random.randint(0,100)
             print("nn", nn)
@@ -137,6 +139,7 @@ for live in [livetime]:
             dataset_N.models.parameters['bias'].frozen = False
             dataset_N.irf_model.parameters['tilt'].frozen = True
             dataset_N.irf_model.parameters['norm'].frozen = True
+            dataset_N.e_reco_n = 1000
             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
         
         if  "Combined"  in sys:
@@ -144,6 +147,7 @@ for live in [livetime]:
             dataset_N.models.parameters['bias'].frozen = False
             dataset_N.irf_model.parameters['tilt'].frozen = False
             dataset_N.irf_model.parameters['norm'].frozen = False
+            dataset_N.e_reco_n = 1000
             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
             
         if sys == "BKG":
@@ -268,10 +272,10 @@ for live in [livetime]:
             dataset.models.parameters['amplitude'].scan_n_sigma  = 5
             dataset_N.models.parameters['amplitude'].scan_n_sigma  = 5
 
-            esti  = FluxPointsEstimator(energy_edges= energy_edges[::2], 
-                                        selection_optional =  "all",
+            esti  = FluxPointsEstimator(energy_edges= energy_edges[::2][:-1], 
+                                        selection_optional =  [ "ul"],
                                         norm_min=0.2,
-                                    norm_max=500,
+                                    norm_max=200,
                                     norm_n_values=15,
                                        )
             fluxpoints = esti.run([dataset])
@@ -283,9 +287,9 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti_  = FluxPointsEstimator(energy_edges= energy_edges[::2], selection_optional =[ "ul"],# "errn-errp", "all",
+            esti_  = FluxPointsEstimator(energy_edges= energy_edges[::2][:-1], selection_optional =[ "ul"],# "errn-errp", "all",
                                         norm_min=0.2,
-                                    norm_max=500,
+                                    norm_max=200,
                                     norm_n_values=15,
                                        reoptimize=True)
             fluxpoints_N = esti_.run([dataset_N])

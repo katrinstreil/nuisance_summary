@@ -1,0 +1,146 @@
+### Starting TaskPrologue of job 433948 on tf087 at Wed 13 Nov 2024 11:09:01 AM CET
+Running on cores 55-56,119-120 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Combined100
+lambda_
+index
+amplitude
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+MapDataset
+----------
+
+  Name                            : r1UPsU_a 
+
+  Total counts                    : 9812 
+  Total background counts         : 8902.95
+  Total excess counts             : 909.46
+
+  Predicted counts                : 9812.40
+  Predicted background counts     : 8902.95
+  Predicted excess counts         : 909.46
+
+  Exposure min                    : 3.39e-27 m2 s
+  Exposure max                    : 2.74e+09 m2 s
+
+  Number of total bins            : 6000000 
+  Number of fit bins              : 942469 
+
+  Fit statistic type              : cash
+  Fit statistic value (-2 log(L)) : 89284.15
+
+  Number of models                : 2 
+  Number of parameters            : 10
+  Number of free parameters       : 7
+
+  Component 0: SkyModel
+  
+    Name                      : Crablog
+    Datasets names            : None
+    Spectral model type       : ExpCutoffPowerLawSpectralModel
+    Spatial  model type       : PointSpatialModel
+    Temporal model type       : 
+    Parameters:
+      index                      :      2.300  +/-    0.00             
+      amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+      reference  (frozen)        :      1.000      TeV         
+      lambda_                    :      0.100  +/-    0.00 1 / TeV     
+      alpha      (frozen)        :      1.000                  
+      lon_0                      :    329.680  +/-    0.00 deg         
+      lat_0                      :    -30.222  +/-    0.00 deg         
+  
+  Component 1: FoVBackgroundModel
+  
+    Name                      : r1UPsU_a-bkg
+    Datasets names            : ['r1UPsU_a']
+    Spectral model type       : PowerLawNormSpectralModel
+    Parameters:
+      norm                       :      1.000  +/-    0.00             
+      tilt                       :      0.000  +/-    0.00             
+      reference  (frozen)        :      1.000      TeV         
+  
+  
+computing
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.300  +/-    0.00             
+    amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.00 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.00             
+    tilt                       :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+scanning amplitude
+Crablog.spectral.amplitude_scan
+stat_scan
+fit_results
+{'Crablog.spectral.amplitude_scan': [2.66002858385549e-11, 2.7510493226172096e-11, 2.845184604934979e-11, 2.9425410041204705e-11, 3.0432287402061955e-11, 3.147361804728751e-11, 3.2550580897820634e-11, 3.366439521486397e-11, 3.4816321980245756e-11, 3.600766532401338e-11, 3.7239774000878205e-11, 3.851404291717928e-11, 3.983191471009872e-11, 4.119488138091249e-11, 4.260448598412986e-11, 4.406232437442946e-11, 4.5570047013374385e-11, 4.712936083794679e-11, 4.8742031193022597e-11, 5.040988382996882e-11], 'stat_scan': [89290.42513765635, 89289.30650435193, 89288.30137700308, 89287.41067317537, 89286.62986117117, 89285.96053404055, 89285.39792423375, 89284.94311941216, 89284.59175334589, 89284.34400993977, 89284.1968806849, 89284.14853070183, 89284.19461224764, 89284.33428837269, 89284.56372870102, 89284.88214504201, 89285.2861853426, 89285.77407893453, 89286.34372015017, 89286.99178070585]}
+[{'Crablog.spectral.amplitude_scan': array([2.66002858e-11, 2.75104932e-11, 2.84518460e-11, 2.94254100e-11,
+       3.04322874e-11, 3.14736180e-11, 3.25505809e-11, 3.36643952e-11,
+       3.48163220e-11, 3.60076653e-11, 3.72397740e-11, 3.85140429e-11,
+       3.98319147e-11, 4.11948814e-11, 4.26044860e-11, 4.40623244e-11,
+       4.55700470e-11, 4.71293608e-11, 4.87420312e-11, 5.04098838e-11]), 'stat_scan': array([89290.42513766, 89289.30650435, 89288.301377  , 89287.41067318,
+       89286.62986117, 89285.96053404, 89285.39792423, 89284.94311941,
+       89284.59175335, 89284.34400994, 89284.19688068, 89284.1485307 ,
+       89284.19461225, 89284.33428837, 89284.5637287 , 89284.88214504,
+       89285.28618534, 89285.77407893, 89286.34372015, 89286.99178071]), 'fit_results': [<gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7f5f6d0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c809cd00>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c88fbd30>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7fa6940>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d01f9f40>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d011e4c0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d018ad30>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d005d760>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c80b2250>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7e403d0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7e24790>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d01ddb80>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7f5f5e0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7f7a2e0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7faf7c0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7f7db80>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7e69070>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d010a6a0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9d01a8df0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa9c7e65d00>]}]
+Traceback (most recent call last):
+  File "4_asimov_scan.py", line 292, in <module>
+    name=f'{dataset_asimov.models[0].name}.{case}.{p}_scan')
+  File "/home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/../upper_limit_18_02.py", line 37, in interpolate
+    self.likelihood[self.name][0], self.likelihood[self.name][-1], 3000
+KeyError: 'Crablog.spectral.lambda__scan'
+srun: error: tf087: task 1: Exited with exit code 1
+srun: Terminating StepId=433948.0
+slurmstepd: error: *** STEP 433948.0 ON tf087 CANCELLED AT 2024-11-13T14:46:51 ***
+srun: error: tf087: task 0: Terminated
+srun: Force Terminated StepId=433948.0
+=== JOB_STATISTICS ===
+=== current date     : Wed 13 Nov 2024 02:46:52 PM CET
+= Job-ID             : 433948 on tinyfat
+= Job-Name           : logfiles/4
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/4.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 03:37:52
+= Total RAM usage    : 2.7 GiB of requested  GiB (%)   
+= Node list          : tf087
+= Subm/Elig/Start/End: 2024-11-13T11:08:58 / 2024-11-13T11:08:58 / 2024-11-13T11:08:59 / 2024-11-13T14:46:51
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           84.0G   104.9G   209.7G        N/A     171K     500K   1,000K        N/A    
+    /home/woody         14.9G  1000.0G  1500.0G        N/A     152K   5,000K   7,500K        N/A    
+======================

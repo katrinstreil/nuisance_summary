@@ -120,7 +120,7 @@ def set_up(dataset_input):
     return dataset_asimov_N, dataset_asimov, setup
 
 # %%time
-e_reco_n = 2000
+e_reco_n = 1000
 if sys == "Eff_area":
     e_reco_n = 10
 

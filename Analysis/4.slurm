@@ -24,7 +24,7 @@ srun --mpi=pmi2  python 4_asimov_scan.py
 
 
 # log into tiny
-#sbatch.tinyfat elephant.slurm  
+#sbatch.tinyfat 4.slurm  
 # scontrol.tinyfat show job <jpbID>
 # salloc.tinyfat --time=24:00:00 
 

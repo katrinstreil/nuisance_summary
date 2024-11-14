@@ -1,71 +1,82 @@
 components:
--   name: unpzBmlZ
+-   name: 1bpdX3kR
     type: SkyModel
     spectral:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.299090760404461
-            error: 0.1349733346614559
-            error_n: 0.12821081838757697
-            error_p: 0.15031613190267645
+            value: 2.299291793925066
+            error: 0.12906920422752516
+            frozen: false
+            error_n: 0.1282106308253783
+            error_p: 0.15031591200216754
         -   name: amplitude
-            value: 3.852785786275185e-11
+            value: 3.852313989681872e-11
             unit: cm-2 s-1 TeV-1
-            error: 2.621988661586946e-12
-            error_n: 2.5777978083695178e-12
-            error_p: 3.050627569415558e-12
+            error: 2.6065105109712736e-12
+            frozen: false
+            error_n: 2.5777943537497137e-12
+            error_p: 3.0506234811358745e-12
         -   name: reference
             value: 1.0
             unit: TeV
+            frozen: true
         -   name: lambda_
-            value: 0.0999687006990208
+            value: 0.09987507992589095
             unit: TeV-1
-            error: 0.04014201044441326
-            error_n: 0.037137785770731666
-            error_p: 0.04377865530332467
+            error: 0.03983999131789238
+            frozen: false
+            error_n: 0.040844861302477435
+            error_p: 0.04653280617881715
         -   name: alpha
             value: 1.0
+            frozen: true
     spatial:
         type: PointSpatialModel
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.6799988386744
+            value: 329.6799987238532
             unit: deg
-            error: 0.0022829893240218207
+            error: 0.002282906966942655
             min: 328.67999999999995
             max: 330.67999999999995
+            frozen: false
         -   name: lat_0
-            value: -30.22166656367539
+            value: -30.221666766355465
             unit: deg
-            error: 0.0019762512177393062
+            error: 0.001976242352434863
             min: -31.221666666666664
             max: -29.221666666666664
+            frozen: false
 -   type: FoVBackgroundModel
     datasets_names:
-    - lUBilrEW
+    - dataset-fit
     spectral:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 0.9999913052810657
-            error: 0.010740659360515813
+            value: 0.9999901747186922
+            error: 0.010740575282177985
+            frozen: false
         -   name: tilt
-            value: 5.050760683841953e-06
-            error: 0.011584710575658411
+            value: 5.8165184401712016e-06
+            error: 0.011584702374030063
+            frozen: true
         -   name: reference
             value: 1.0
             unit: TeV
--   name: lUBilrEW-irf
+            frozen: true
+-   name: dataset-fit-irf
     type: IRFModels
-    datasets_names: lUBilrEW
+    datasets_names: dataset-fit
     e_reco_model:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -0.001449221311668778
-            error: 0.048465012538911306
+            value: -0.0014227978515934019
+            error: 0.047211083087712435
+            frozen: false
             prior:
                 type: GaussianPrior
                 parameters:
@@ -85,14 +96,16 @@ components:
     eff_area_model:
         type: EffAreaIRFModel
         spectral:
-            type: PowerLawNormSpectralModel
+            type: PowerLawNormOneHundredSpectralModel
             parameters:
             -   name: norm
                 value: 0.0
                 frozen: true
             -   name: tilt
                 value: 0.0
+                frozen: true
             -   name: reference
-                value: 1.0
+                value: 100.0
                 unit: TeV
+                frozen: true
 covariance: 0_model_nui_livetime_2.154434690031884_np_covariance.dat

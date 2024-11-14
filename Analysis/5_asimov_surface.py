@@ -96,6 +96,7 @@ if sys == "E_reco":
     dataset_asimov_N.irf_model.parameters['norm'].frozen = True
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    e_reco_n = 1000
 
     
         
@@ -105,19 +106,19 @@ if  "Combined" in sys:
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+    e_reco_n = 1000
 
-try:
-    path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
-    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
-    path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
-    dataset_asimov.models = Models.read(path)
-except:
-    path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
-    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
-    path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
-    dataset_asimov.models = Models.read(path)
-print(dataset_asimov.models)
-
+# try:
+#     path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
+#     dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+#     path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
+#     dataset_asimov.models = Models.read(path)
+# except:
+#     path = f'../{folder}/data/0_model_nui_livetime_{livetime}_{e_reco_n}.yml'
+#     dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+#     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
+#     dataset_asimov.models = Models.read(path)
+# print(dataset_asimov.models)
 
 ######################################################################
 # Minos
@@ -127,8 +128,8 @@ print(dataset_asimov.models)
 parameter_names = c['parameter_names']
 source = 'Crablog'
 scan_n_sigma = 2
-scan_n_values = 7
-e_reco_n = 2000
+scan_n_values = 5
+e_reco_n = 1000
 
 def computing_surface(dataset_asimov, note, idx):
         
@@ -256,9 +257,9 @@ fig.colorbar(im, ax=ax3)
 computing = 1
 dataset_asimov_N.e_reco_n = e_reco_n
 if computing:
-    
-    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
-    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
+    print("computing!!!")
+    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
+    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
     results_N = computing_surface(dataset_asimov_N, "N_2.15h", 2)
 else:
     results_N = read_in_surface("N_2.15h")

@@ -105,7 +105,7 @@ if  "Combined" in sys:
     dataset_asimov_N.irf_model.parameters['norm'].frozen = False
     dataset_asimov_N.irf_model.parameters['bias'].frozen = False
     setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n =  int(2000)
+    e_reco_n =  int(1000)
 
 if sys == "BKG":
 
@@ -195,8 +195,8 @@ computing = 1
 
 if computing:
     print("starting the contour")
-    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",0)
-    #results_N = computing_contour(dataset_asimov_N, "N_2.15h",1)
+    results_N = computing_contour(dataset_asimov_N, "N_2.15h",0)
+    results_N = computing_contour(dataset_asimov_N, "N_2.15h",1)
     results_N = computing_contour(dataset_asimov_N, "N_2.15h",2)
     
 else:

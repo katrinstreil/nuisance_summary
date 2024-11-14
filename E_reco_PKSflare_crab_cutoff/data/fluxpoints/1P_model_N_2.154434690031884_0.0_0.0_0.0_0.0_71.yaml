@@ -5,38 +5,41 @@ components:
         type: ExpCutoffPowerLawSpectralModel
         parameters:
         -   name: index
-            value: 2.1884576419230544
-            error: 0.12478481740609529
+            value: 2.1889360103234266
+            error: 0.12390688797546792
             frozen: true
         -   name: amplitude
-            value: 4.0451651471152044e-11
+            value: 4.044860077559221e-11
             unit: cm-2 s-1 TeV-1
-            error: 2.7757740400121757e-12
+            error: 2.771756043932122e-12
+            frozen: false
         -   name: reference
             value: 1.0
             unit: TeV
+            frozen: true
         -   name: lambda_
-            value: 0.12326664308410662
+            value: 0.12318770126822304
             unit: TeV-1
-            error: 0.041265381234131385
+            error: 0.041206319582551006
             frozen: true
         -   name: alpha
             value: 1.0
+            frozen: true
     spatial:
         type: PointSpatialModel
         frame: icrs
         parameters:
         -   name: lon_0
-            value: 329.67945914335337
+            value: 329.6794614791054
             unit: deg
-            error: 0.0022029008386049505
+            error: 0.002203924106235404
             min: 328.67999999999995
             max: 330.67999999999995
             frozen: true
         -   name: lat_0
-            value: -30.221794962717826
+            value: -30.221792615615644
             unit: deg
-            error: 0.0020053722939066235
+            error: 0.0020058945847577876
             min: -31.221666666666664
             max: -29.221666666666664
             frozen: true
@@ -47,8 +50,9 @@ components:
         type: ERecoIRFModel
         parameters:
         -   name: bias
-            value: -0.06631293029858742
-            error: 0.043852943802568725
+            value: -0.06624149793980677
+            error: 0.04153521142765795
+            frozen: false
             prior:
                 type: GaussianPrior
                 parameters:
@@ -75,9 +79,11 @@ components:
                 frozen: true
             -   name: tilt
                 value: 0.0
+                frozen: true
             -   name: reference
                 value: 100.0
                 unit: TeV
+                frozen: true
 -   type: FoVBackgroundModel
     datasets_names:
     - dataset_N
@@ -85,13 +91,15 @@ components:
         type: PowerLawNormSpectralModel
         parameters:
         -   name: norm
-            value: 0.9905456662457723
-            error: 0.010689641572303595
+            value: 0.9905196020928524
+            error: 0.01068937797709166
             frozen: true
         -   name: tilt
-            value: 0.014063099434640196
-            error: 0.011739018583593327
+            value: 0.014024464962930328
+            error: 0.011738913960255377
+            frozen: true
         -   name: reference
             value: 1.0
             unit: TeV
+            frozen: true
 covariance: 1P_model_N_2.154434690031884_0.0_0.0_0.0_0.0_71_covariance.dat

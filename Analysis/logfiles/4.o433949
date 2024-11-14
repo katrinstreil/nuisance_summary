@@ -1,0 +1,350 @@
+### Starting TaskPrologue of job 433949 on tf087 at Wed 13 Nov 2024 11:09:10 AM CET
+Running on cores 57-58,121-122 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Combined100
+index
+lambda_
+amplitude
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+MapDataset
+----------
+
+  Name                            : r1UPsU_a 
+
+  Total counts                    : 9812 
+  Total background counts         : 8902.95
+  Total excess counts             : 909.46
+
+  Predicted counts                : 9812.40
+  Predicted background counts     : 8902.95
+  Predicted excess counts         : 909.46
+
+  Exposure min                    : 3.39e-27 m2 s
+  Exposure max                    : 2.74e+09 m2 s
+
+  Number of total bins            : 6000000 
+  Number of fit bins              : 942469 
+
+  Fit statistic type              : cash
+  Fit statistic value (-2 log(L)) : 89284.15
+
+  Number of models                : 2 
+  Number of parameters            : 10
+  Number of free parameters       : 7
+
+  Component 0: SkyModel
+  
+    Name                      : Crablog
+    Datasets names            : None
+    Spectral model type       : ExpCutoffPowerLawSpectralModel
+    Spatial  model type       : PointSpatialModel
+    Temporal model type       : 
+    Parameters:
+      index                      :      2.300  +/-    0.00             
+      amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+      reference  (frozen)        :      1.000      TeV         
+      lambda_                    :      0.100  +/-    0.00 1 / TeV     
+      alpha      (frozen)        :      1.000                  
+      lon_0                      :    329.680  +/-    0.00 deg         
+      lat_0                      :    -30.222  +/-    0.00 deg         
+  
+  Component 1: FoVBackgroundModel
+  
+    Name                      : r1UPsU_a-bkg
+    Datasets names            : ['r1UPsU_a']
+    Spectral model type       : PowerLawNormSpectralModel
+    Parameters:
+      norm                       :      1.000  +/-    0.00             
+      tilt                       :      0.000  +/-    0.00             
+      reference  (frozen)        :      1.000      TeV         
+  
+  
+computing
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.300  +/-    0.00             
+    amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.00 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.00             
+    tilt                       :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+scanning lambda_
+Crablog.spectral.lambda__scan
+stat_scan
+fit_results
+{'Crablog.spectral.lambda__scan': [0.01993574645833024, 0.028341970432895908, 0.036748194407461576, 0.04515441838202725, 0.05356064235659292, 0.06196686633115859, 0.07037309030572426, 0.07877931428028993, 0.0871855382548556, 0.09559176222942127, 0.10399798620398694, 0.11240421017855261, 0.12081043415311829, 0.12921665812768396, 0.13762288210224963, 0.1460291060768153, 0.15443533005138096, 0.16284155402594663, 0.1712477780005123, 0.17965400197507797], 'stat_scan': [89288.65132766798, 89287.61450002038, 89286.7524654874, 89286.04518504847, 89285.46790605113, 89285.0106547731, 89284.65788821863, 89284.40427961176, 89284.23870088901, 89284.15952045703, 89284.15674395469, 89284.22804438938, 89284.36636114909, 89284.5665619629, 89284.82132060784, 89285.12836584625, 89285.48327649292, 89285.88157604005, 89286.32096320625, 89286.79798308194]}
+[{'Crablog.spectral.lambda__scan': array([0.01993575, 0.02834197, 0.03674819, 0.04515442, 0.05356064,
+       0.06196687, 0.07037309, 0.07877931, 0.08718554, 0.09559176,
+       0.10399799, 0.11240421, 0.12081043, 0.12921666, 0.13762288,
+       0.14602911, 0.15443533, 0.16284155, 0.17124778, 0.179654  ]), 'stat_scan': array([89288.65132767, 89287.61450002, 89286.75246549, 89286.04518505,
+       89285.46790605, 89285.01065477, 89284.65788822, 89284.40427961,
+       89284.23870089, 89284.15952046, 89284.15674395, 89284.22804439,
+       89284.36636115, 89284.56656196, 89284.82132061, 89285.12836585,
+       89285.48327649, 89285.88157604, 89286.32096321, 89286.79798308]), 'fit_results': [<gammapy.modeling.fit.OptimizeResult object at 0x7faab172c070>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab17f58e0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab1750730>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab16962b0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab1625850>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab15d5a90>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab9986fd0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab97be760>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab991b790>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab98b7dc0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab5aa5220>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab15ea850>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab99d7130>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab1734790>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab1622250>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab17db760>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab17edbb0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab17fb4c0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab99031f0>, <gammapy.modeling.fit.OptimizeResult object at 0x7faab97b7ac0>]}]
+Traceback (most recent call last):
+  File "4_asimov_scan.py", line 292, in <module>
+    name=f'{dataset_asimov.models[0].name}.{case}.{p}_scan')
+  File "/home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/../upper_limit_18_02.py", line 37, in interpolate
+    self.likelihood[self.name][0], self.likelihood[self.name][-1], 3000
+KeyError: 'Crablog.spectral.index_scan'
+Combined100
+lambda_
+index
+amplitude
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/PKS_flare/HESS_public/dataset-simulated-2.154434690031884-hr.fits.gz
+MapDataset
+----------
+
+  Name                            : r1UPsU_a 
+
+  Total counts                    : 9812 
+  Total background counts         : 8902.95
+  Total excess counts             : 909.46
+
+  Predicted counts                : 9812.40
+  Predicted background counts     : 8902.95
+  Predicted excess counts         : 909.46
+
+  Exposure min                    : 3.39e-27 m2 s
+  Exposure max                    : 2.74e+09 m2 s
+
+  Number of total bins            : 6000000 
+  Number of fit bins              : 942469 
+
+  Fit statistic type              : cash
+  Fit statistic value (-2 log(L)) : 89284.15
+
+  Number of models                : 2 
+  Number of parameters            : 10
+  Number of free parameters       : 7
+
+  Component 0: SkyModel
+  
+    Name                      : Crablog
+    Datasets names            : None
+    Spectral model type       : ExpCutoffPowerLawSpectralModel
+    Spatial  model type       : PointSpatialModel
+    Temporal model type       : 
+    Parameters:
+      index                      :      2.300  +/-    0.00             
+      amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+      reference  (frozen)        :      1.000      TeV         
+      lambda_                    :      0.100  +/-    0.00 1 / TeV     
+      alpha      (frozen)        :      1.000                  
+      lon_0                      :    329.680  +/-    0.00 deg         
+      lat_0                      :    -30.222  +/-    0.00 deg         
+  
+  Component 1: FoVBackgroundModel
+  
+    Name                      : r1UPsU_a-bkg
+    Datasets names            : ['r1UPsU_a']
+    Spectral model type       : PowerLawNormSpectralModel
+    Parameters:
+      norm                       :      1.000  +/-    0.00             
+      tilt                       :      0.000  +/-    0.00             
+      reference  (frozen)        :      1.000      TeV         
+  
+  
+computing
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.300  +/-    0.00             
+    amplitude                  :   3.85e-11  +/- 0.0e+00 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.00 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.00             
+    tilt                       :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+scanning lambda_
+Crablog.spectral.lambda__scan
+stat_scan
+fit_results
+{'Crablog.spectral.lambda__scan': [0.01993574645833024, 0.028341970432895908, 0.036748194407461576, 0.04515441838202725, 0.05356064235659292, 0.06196686633115859, 0.07037309030572426, 0.07877931428028993, 0.0871855382548556, 0.09559176222942127, 0.10399798620398694, 0.11240421017855261, 0.12081043415311829, 0.12921665812768396, 0.13762288210224963, 0.1460291060768153, 0.15443533005138096, 0.16284155402594663, 0.1712477780005123, 0.17965400197507797], 'stat_scan': [89288.65132766798, 89287.61450002038, 89286.7524654874, 89286.04518504847, 89285.46790605113, 89285.0106547731, 89284.65788821863, 89284.40427961176, 89284.23870088901, 89284.15952045703, 89284.15674395469, 89284.22804438938, 89284.36636114909, 89284.5665619629, 89284.82132060784, 89285.12836584625, 89285.48327649292, 89285.88157604005, 89286.32096320625, 89286.79798308194]}
+[{'Crablog.spectral.lambda__scan': array([0.01993575, 0.02834197, 0.03674819, 0.04515442, 0.05356064,
+       0.06196687, 0.07037309, 0.07877931, 0.08718554, 0.09559176,
+       0.10399799, 0.11240421, 0.12081043, 0.12921666, 0.13762288,
+       0.14602911, 0.15443533, 0.16284155, 0.17124778, 0.179654  ]), 'stat_scan': array([89288.65132767, 89287.61450002, 89286.75246549, 89286.04518505,
+       89285.46790605, 89285.01065477, 89284.65788822, 89284.40427961,
+       89284.23870089, 89284.15952046, 89284.15674395, 89284.22804439,
+       89284.36636115, 89284.56656196, 89284.82132061, 89285.12836585,
+       89285.48327649, 89285.88157604, 89286.32096321, 89286.79798308]), 'fit_results': [<gammapy.modeling.fit.OptimizeResult object at 0x7fa08a6b9d00>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa08a6bf0d0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089cddb20>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089cc30d0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089c571c0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089cc32b0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091ff0f10>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa09203c040>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091fd15b0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091e1d6d0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091fbd340>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091fe6220>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa08d510d90>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089bccaf0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089dccf40>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa08d51b9a0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089c6a490>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091f396a0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa089e69ca0>, <gammapy.modeling.fit.OptimizeResult object at 0x7fa091f39d00>]}]
+Traceback (most recent call last):
+  File "4_asimov_scan.py", line 334, in <module>
+    
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/figure.py", line 3343, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/backend_bases.py", line 2366, in print_figure
+    result = print_method(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/backend_bases.py", line 2232, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/backends/backend_pdf.py", line 2815, in print_pdf
+    self.figure.draw(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/artist.py", line 95, in draw_wrapper
+    result = draw(artist, renderer, *args, **kwargs)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/artist.py", line 72, in draw_wrapper
+    return draw(artist, renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/figure.py", line 3140, in draw
+    mimage._draw_list_compositing_images(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/image.py", line 131, in _draw_list_compositing_images
+    a.draw(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/artist.py", line 72, in draw_wrapper
+    return draw(artist, renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3064, in draw
+    mimage._draw_list_compositing_images(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/image.py", line 131, in _draw_list_compositing_images
+    a.draw(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/artist.py", line 72, in draw_wrapper
+    return draw(artist, renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/legend.py", line 726, in draw
+    bbox = self._legend_box.get_window_extent(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 400, in get_window_extent
+    bbox = self.get_bbox(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 367, in get_bbox
+    bbox, offsets = self._get_bbox_and_child_offsets(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 485, in _get_bbox_and_child_offsets
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 485, in <listcomp>
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 367, in get_bbox
+    bbox, offsets = self._get_bbox_and_child_offsets(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 512, in _get_bbox_and_child_offsets
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 512, in <listcomp>
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 367, in get_bbox
+    bbox, offsets = self._get_bbox_and_child_offsets(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 485, in _get_bbox_and_child_offsets
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 485, in <listcomp>
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 367, in get_bbox
+    bbox, offsets = self._get_bbox_and_child_offsets(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 512, in _get_bbox_and_child_offsets
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 512, in <listcomp>
+    bboxes = [c.get_bbox(renderer) for c in self.get_visible_children()]
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/offsetbox.py", line 801, in get_bbox
+    bbox, info, yd = self._text._get_layout(renderer)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/text.py", line 386, in _get_layout
+    w, h, d = _get_text_metrics_with_cache(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/text.py", line 97, in _get_text_metrics_with_cache
+    return _get_text_metrics_with_cache_impl(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/text.py", line 105, in _get_text_metrics_with_cache_impl
+    return renderer_ref().get_text_width_height_descent(text, fontprop, ismath)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/backends/_backend_pdf_ps.py", line 107, in get_text_width_height_descent
+    return super().get_text_width_height_descent(s, prop, ismath)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/backend_bases.py", line 645, in get_text_width_height_descent
+    return self.get_texmanager().get_text_width_height_descent(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/texmanager.py", line 368, in get_text_width_height_descent
+    dvifile = cls.make_dvi(tex, fontsize)
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/texmanager.py", line 300, in make_dvi
+    cls._run_checked_subprocess(
+  File "/home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev/lib/python3.8/site-packages/matplotlib/texmanager.py", line 263, in _run_checked_subprocess
+    raise RuntimeError(
+RuntimeError: latex was not able to process the following string:
+b'1$\\\\sigma$ error (Minuit): $\\\\pm$0.03993'
+
+Here is the full command invocation and its output:
+
+latex -interaction=nonstopmode --halt-on-error --output-directory=tmp0kjakwoh 4890c9d9aa530a570c7fccdf4eb8d89a.tex
+
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./4890c9d9aa530a570c7fccdf4eb8d89a.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+
+! LaTeX Error: File `type1cm.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.8 \usepackage
+               {type1ec}^^M
+No pages of output.
+Transcript written on tmp0kjakwoh/4890c9d9aa530a570c7fccdf4eb8d89a.log.
+
+
+
+srun: error: tf087: tasks 0-1: Exited with exit code 1
+srun: Terminating StepId=433949.0
+=== JOB_STATISTICS ===
+=== current date     : Wed 13 Nov 2024 02:40:43 PM CET
+= Job-ID             : 433949 on tinyfat
+= Job-Name           : logfiles/4
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/4.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 03:31:36
+= Total RAM usage    : 2.7 GiB of requested  GiB (%)   
+= Node list          : tf087
+= Subm/Elig/Start/End: 2024-11-13T11:09:07 / 2024-11-13T11:09:07 / 2024-11-13T11:09:07 / 2024-11-13T14:40:43
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           84.0G   104.9G   209.7G        N/A     171K     500K   1,000K        N/A    
+    /home/woody         14.9G  1000.0G  1500.0G        N/A     152K   5,000K   7,500K        N/A    
+======================
