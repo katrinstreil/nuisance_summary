@@ -75,7 +75,7 @@ class Setup:
         self.dataset_input = dataset_input
         # set the sys parameters here and use npred as counts
         self.dataset_helper = self.set_up_dataset(name = "helper")
-
+        self.dataset_helper.e_reco_n = e_reco_creation 
         self.rnd = rnd
         self.e_reco_creation = e_reco_creation
         self._irf_sys= False
@@ -150,6 +150,7 @@ class Setup:
             self.set_simple_bkg_model(dataset_N)
         
         self.set_simple_bkg_model(dataset)
+        dataset.e_reco_n = self.e_reco_creation
         self.add_counts(dataset)
         if self.rnd:
             dataset_N.counts = dataset.counts

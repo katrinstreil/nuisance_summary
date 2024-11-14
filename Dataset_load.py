@@ -57,7 +57,7 @@ def get_path(source):
     return path_pksflare
 
 
-def create_asimov(model, source, parameters=None, livetime=None):
+def create_asimov(model, source, parameters=None, livetime=None, spatial_model = None):
     path = get_path(source)
     models = set_model(path, model)
 
@@ -75,7 +75,8 @@ def create_asimov(model, source, parameters=None, livetime=None):
         for p in parameters:
             models.parameters[p.name].value = p.value
             models.parameters[p.name].error = p.error
-
+    if spatial_model is not None:
+        models[0].spatial_model = spatial_model
     bkg_model = FoVBackgroundModel(dataset_name=dataset.name)
     bkg_model.parameters["tilt"].frozen = False
     models.append(bkg_model)
