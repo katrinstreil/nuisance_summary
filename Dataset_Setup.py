@@ -111,6 +111,7 @@ class Setup:
         self._bkg_sys = True
         
     def set_up_bkg_sys_V(self, index1, index2, breake, magnitude):
+        print("setup bkg V")
         self.index1 = index1
         self.index2 = index2
         self.breake = breake
@@ -288,6 +289,7 @@ class Setup:
             
       
     def add_bkg_systematic_V(self, index1, index2, breake, magnitude):
+        print("add_bkg_systematic_V")
         self.set_piecewise_bkg_model(self.dataset_helper)
         N = len(self.dataset_helper.background_model.parameters.free_parameters[self.emask()])
         x_values = np.linspace(0, N-1,N)  
@@ -318,6 +320,7 @@ class Setup:
             counts_data = npred.data
 
         dataset.counts.data = counts_data
+        self.dataset_helper.counts.data = counts_data
         
     def set_bkg_prior(self, dataset_asimov_N, magnitude, corrlength):
         """
