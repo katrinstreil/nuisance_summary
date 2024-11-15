@@ -23,7 +23,7 @@ import operator
 class GaussianCovariance_matrix:
     def __init__(
         self,
-        magnitude,  # in percent
+        magnitude,  
         corrlength,
         size
         
@@ -189,9 +189,11 @@ class Setup:
         energy = dataset.geoms['geom'].axes[0].center
         l = len(energy)
         norms = Parameters([Parameter ("norm"+str(i), value = 0, frozen = False) for i in range(l)])
+        
         piece = PiecewiseNormSpectralModel(energy = energy,
                                   norms = norms,
                                   interp="lin")
+        piece.parameters['_norm'].value = 1
         bkg_model = FoVBackgroundModel(spectral_model = piece,
                                        dataset_name=dataset.name)
         models = Models(dataset.models.copy())
