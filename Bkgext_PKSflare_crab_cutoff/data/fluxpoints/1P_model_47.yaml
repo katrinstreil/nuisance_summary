@@ -1,0 +1,74 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.6148000394675
+            error: 0.09531137411176384
+            frozen: false
+        -   name: amplitude
+            value: 2.7524632027593206e-12
+            unit: cm-2 s-1 TeV-1
+            error: 2.5996790077479187e-13
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+        -   name: lambda_
+            value: -0.00552484919045396
+            unit: TeV-1
+            error: 0.013294844175490044
+            frozen: false
+        -   name: alpha
+            value: 1.0
+            frozen: true
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            min: 328.67999999999995
+            max: 330.67999999999995
+            frozen: true
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            min: -31.221666666666664
+            max: -29.221666666666664
+            frozen: true
+        -   name: sigma
+            value: 0.2722319417075443
+            unit: deg
+            error: 0.018514841504889152
+            frozen: false
+        -   name: e
+            value: 0.0
+            frozen: true
+        -   name: phi
+            value: 0.0
+            unit: deg
+            frozen: true
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0397119003028004
+            error: 0.0017563659483838024
+            frozen: false
+        -   name: tilt
+            value: 0.009829717271285022
+            error: 0.0017342804898991698
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+covariance: 1P_model_47_covariance.dat

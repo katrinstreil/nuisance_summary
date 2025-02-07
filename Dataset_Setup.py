@@ -46,7 +46,7 @@ class GaussianCovariance_matrix:
                 cov[i,:] = gau / np.max(gau) * sys_percentage[i] / 100 
                 cov[i,:] += [zero] * (self.size)
         #carefull here it is hardcoded that the first 4 energybins are frozen
-        idx = 4
+        idx = 5
         cov[:idx, :idx] = np.eye(idx)
         cov[idx:, :idx] = 0
         cov[:idx, idx:] = 0

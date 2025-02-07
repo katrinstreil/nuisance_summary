@@ -1,0 +1,902 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.140701040256678
+            error: 0.10504148413432739
+            frozen: true
+        -   name: amplitude
+            value: 3.975525283482565e-12
+            unit: cm-2 s-1 TeV-1
+            error: 4.0524968969915017e-13
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+        -   name: lambda_
+            value: 0.1152861343279505
+            unit: TeV-1
+            error: 0.037550737515254326
+            frozen: true
+        -   name: alpha
+            value: 1.0
+            frozen: true
+    spatial:
+        type: GaussianSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.67999999999995
+            unit: deg
+            min: 328.67999999999995
+            max: 330.67999999999995
+            frozen: true
+        -   name: lat_0
+            value: -30.221666666666664
+            unit: deg
+            min: -31.221666666666664
+            max: -29.221666666666664
+            frozen: true
+        -   name: sigma
+            value: 0.2982836798486076
+            unit: deg
+            error: 0.017946817825981887
+            frozen: true
+        -   name: e
+            value: 0.0
+            frozen: true
+        -   name: phi
+            value: 0.0
+            unit: deg
+            frozen: true
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PiecewiseNormSpectralModel
+        parameters:
+        -   name: norm0
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm1
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm2
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm3
+            value: 0.0
+            frozen: true
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm4
+            value: 0.10732709299459443
+            error: 0.004925329881128265
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm5
+            value: 0.07101934135537187
+            error: 0.0037557807069677684
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm6
+            value: 0.03565882951727664
+            error: 0.003975387565975397
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm7
+            value: 0.0030789962899944075
+            error: 0.004089911883112618
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm8
+            value: 0.00013981828093892696
+            error: 0.004179971062529796
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm9
+            value: 0.018432924294872997
+            error: 0.0046147832314362616
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm10
+            value: 0.02841937468889556
+            error: 0.005357158251750392
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm11
+            value: 0.019320860500363732
+            error: 0.0060718627160406685
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm12
+            value: 0.017505654815427762
+            error: 0.006865551048680005
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm13
+            value: 0.0386940456888619
+            error: 0.007760884382401635
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm14
+            value: 0.04619188224609376
+            error: 0.00892840253298156
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm15
+            value: 0.03619098265924673
+            error: 0.010358921885295875
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm16
+            value: 0.0546469428330456
+            error: 0.012271119144190502
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm17
+            value: 0.09159984761706286
+            error: 0.01496928010195867
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm18
+            value: 0.09373666424482507
+            error: 0.018336929930626245
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm19
+            value: 0.06000397044423196
+            error: 0.02294389214295413
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm20
+            value: 0.03387037844116745
+            error: 0.029162454424850232
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm21
+            value: 0.030940244982511276
+            error: 0.03822040151402556
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm22
+            value: 0.032268421360230816
+            error: 0.05300630902652846
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        -   name: norm23
+            value: 0.031099569592623985
+            error: 0.08757634046743107
+            frozen: false
+            prior:
+                type: MultiVariantePrior
+                name: bkgsys
+                modelparameters:
+                - norm0
+                - norm1
+                - norm2
+                - norm3
+                - norm4
+                - norm5
+                - norm6
+                - norm7
+                - norm8
+                - norm9
+                - norm10
+                - norm11
+                - norm12
+                - norm13
+                - norm14
+                - norm15
+                - norm16
+                - norm17
+                - norm18
+                - norm19
+                - norm20
+                - norm21
+                - norm22
+                - norm23
+                file: ../Bkgext_PKSflare_crab_cutoff/data/fluxpoints/1P_model_N_45_bkgsys.dat
+                dimension: 24
+        energy:
+            data:
+            - 0.11547819846894583
+            - 0.1539926526059492
+            - 0.20535250264571459
+            - 0.27384196342643613
+            - 0.36517412725483767
+            - 0.48696752516586306
+            - 0.6493816315762113
+            - 0.8659643233600653
+            - 1.1547819846894583
+            - 1.539926526059492
+            - 2.0535250264571463
+            - 2.7384196342643614
+            - 3.651741272548377
+            - 4.869675251658631
+            - 6.493816315762111
+            - 8.659643233600653
+            - 11.547819846894583
+            - 15.399265260594923
+            - 20.535250264571477
+            - 27.384196342643627
+            - 36.51741272548378
+            - 48.69675251658631
+            - 64.93816315762122
+            - 86.59643233600663
+            unit: TeV
+        interp: lin
+covariance: 1P_model_N_45_covariance.dat
