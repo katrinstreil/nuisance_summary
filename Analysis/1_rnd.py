@@ -40,14 +40,70 @@ def computing_contour(dataset, note):
         with open(f"{path}/data/contours/{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
         
+def compute_distance(dataset, stat_sum):
+    distances = []
+    print("best-fit stat_sum", stat_sum)
+    for parname1, parname2 in parameter_names :
+        
+        print( parname1, parname2)
+        print(dataset.models)
+        value1, value2 = dataset.models.parameters[parname1].value,dataset.models.parameters[parname2].value
+        print("best-fit values", dataset.models.parameters[parname1].value,dataset.models.parameters[parname2].value)
+        dataset.models.parameters[parname1].value = dataset_asimov.models.parameters[parname1].value
+        dataset.models.parameters[parname2].value = dataset_asimov.models.parameters[parname2].value
+        dataset.models.parameters[parname1].frozen = True
+        dataset.models.parameters[parname2].frozen = True
+        print("input values", dataset_asimov.models.parameters[parname1].value,dataset_asimov.models.parameters[parname2].value)
+        print("input stat_sum before fit", dataset.stat_sum())
+        
+        fit = Fit()
+        fit.run(dataset)
+        print("input stat_sum", dataset.stat_sum())
+        print("distance", dataset.stat_sum() - stat_sum)
+        distances.append(dataset.stat_sum() - stat_sum)
+        print(dataset.models)
+        # reset
+        dataset.models.parameters[parname1].frozen = False
+        dataset.models.parameters[parname2].frozen = False
+        dataset.models.parameters[parname1].value,dataset.models.parameters[parname2].value = value1, value2 
+        print()
+        
+    return distances
 
 
+def compute_distance_1d(dataset,stat_sum ):
+    distances = []
+    print("best-fit stat_sum", stat_sum)
+    for parname in parameters :
+        
+        print( parname)
+        print(dataset.models)
+        value = dataset.models.parameters[parname].value
+        print("best-fit value", dataset.models.parameters[parname].value)
+        dataset.models.parameters[parname].value = dataset_asimov.models.parameters[parname].value
+        dataset.models.parameters[parname].frozen = True
+        print("input value", dataset_asimov.models.parameters[parname].value)
+        print("input stat_sum before fit", dataset.stat_sum())
+        
+        fit = Fit()
+        fit.run(dataset)
+        print("input stat_sum", dataset.stat_sum())
+        print("distance", dataset.stat_sum() - stat_sum)
+        distances.append(dataset.stat_sum() - stat_sum)
+        print(dataset.models)
+        # reset
+        dataset.models.parameters[parname].frozen = False
+        dataset.models.parameters[parname].value= value
+        print()
+        
+    return distances
 
 import gammapy 
 import pyximport
 import numpy as np
 import astropy.units as u
 import sys
+import yaml
 from gammapy.modeling import Fit, Parameter, Parameters
 from gammapy.modeling.models import Models
 from gammapy.maps import MapAxis
@@ -73,7 +129,7 @@ bias =  c['bias']
 resolution = c['resolution'] 
 path = f"../{c['folder']}"
 parameter_names = c['parameter_names']        
-
+print(sys)
 #for live in livetimes[8:]:
 for live in [livetime]:
 
@@ -86,14 +142,15 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 1
+    N = 100
     save_flux = True
-    save_fluxpoints = 1
-    save_fluxpoints_N = 1
+    save_fluxpoints = 0
+    save_fluxpoints_N = 0
     dataset_N = True
     contour = 0
-    zero_sys = 1
-
+    zero_sys = 0
+    distance = 1
+    distance_1d = 1
 
     for n in range(N):
         print()
@@ -107,7 +164,7 @@ for live in [livetime]:
         rnd = "False"
         
         if zero_sys:
-            nn = 71#np.random.randint(0,100)
+            nn = 72# 71#np.random.randint(0,100)
             print("nn", nn)
             rnd = nn
         else:
@@ -118,7 +175,7 @@ for live in [livetime]:
             bias_rnd, res_rnd = np.array([0.]), np.array([0.])
         
         print(f"shift {shift_rnd}, tilt {tilt_rnd},  bias {bias_rnd}, res {res_rnd}")
-        setup = Setup(dataset_input=dataset_asimov, rnd = rnd)
+        setup = Setup(dataset_input=dataset_asimov, rnd = rnd, e_reco_creation=10,)
         setup.set_up_irf_sys(bias_rnd, res_rnd, shift_rnd, tilt_rnd)
 
         dataset, dataset_N = setup.run()
@@ -287,7 +344,8 @@ for live in [livetime]:
             dataset_N.models[0].parameters.freeze_all()
             dataset_N.models[0].parameters['amplitude'].frozen = False
             dataset_N.background_model.parameters.freeze_all()
-            esti_  = FluxPointsEstimator(energy_edges= energy_edges[::2][:-1], selection_optional =[ "ul"],# "errn-errp", "all",
+            esti_  = FluxPointsEstimator(energy_edges= energy_edges[::2][:-1],
+                                         selection_optional =[ "ul"],# "errn-errp", "all",
                                         norm_min=0.2,
                                     norm_max=200,
                                     norm_n_values=15,
@@ -308,8 +366,12 @@ for live in [livetime]:
             with open(f"{path}/data/fluxpoints/1P_draw_fluxpoints.txt", "a") as myfile:
                 myfile.write(str(nn) + '\n')
         if contour:
+            print("computing contour")
             computing_contour(dataset, rnds)
-            print("N")
+            print("computing contour N")
+            dataset_N.models.parameters['lon_0'].frozen = True
+            dataset_N.models.parameters['lat_0'].frozen = True
+            
             computing_contour(dataset_N, "N"+rnds)
             with open(f"{path}/data/contours/1_P_draw_info.txt", "a") as myfile:
                 info = str(float(shift_rnd[0])) + '    '+ str(float(tilt_rnd[0])) + '    '
@@ -321,6 +383,48 @@ for live in [livetime]:
 
             with open(f"{path}/data/contours/1_N_P_draw_par.txt", "a") as myfile:
                 myfile.write(stri_N + '\n')
-
+                
+                
         if zero_sys == False and contour ==False: # else only the fluxpoints and models are saved but not the info
             save()
+                
+        stat_sum = dataset.stat_sum()    
+        stat_sum_N = dataset_N.stat_sum()    
+                
+        if distance_1d:
+            print("-----")
+            print("without nuisance")
+            distances = compute_distance_1d(dataset, stat_sum)
+            print(distances)
+
+            print("-----")
+            print("with nuisance")
+            distances_N = compute_distance_1d(dataset_N, stat_sum_N)
+            print(distances_N)
+
+            with open(f"{path}/data/1_P_distances_1d.txt", "a") as myfile:
+                info = str(float(distances[0])) + '    '+ str(float(distances[1])) + '    '+ str(float(distances[2])) + '    '
+                info += str(float(distances_N[0])) + '    '+ str(float(distances_N[1])) + '    '+ str(float(distances_N[2])) + '    '
+                myfile.write(info+ '\n')
+                
+                
+        if distance:
+            print("-----")
+            print("without nuisance")
+            distances = compute_distance(dataset, stat_sum)
+            print(distances)
+
+            print("-----")
+            print("with nuisance")
+            distances_N = compute_distance(dataset_N, stat_sum_N)
+            print(distances_N)
+
+            with open(f"{path}/data/1_P_distances.txt", "a") as myfile:
+                info = str(float(distances[0])) + '    '+ str(float(distances[1])) + '    '+ str(float(distances[2])) + '    '
+                info += str(float(distances_N[0])) + '    '+ str(float(distances_N[1])) + '    '+ str(float(distances_N[2])) + '    '
+                myfile.write(info+ '\n')
+
+
+
+                
+                

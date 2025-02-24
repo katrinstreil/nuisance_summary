@@ -1,0 +1,1738 @@
+### Starting TaskPrologue of job 463326 on tf092 at Tue 18 Feb 2025 01:59:29 PM CET
+Running on cores 18-19,82-83 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Combined100
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/Dataset/datasets/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+shift [0.18105271], tilt [-0.02033397],  bias [0.0535815], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 204
+	total stat : 89144.58
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.245  +/-    0.08             
+    amplitude                  :   4.04e-11  +/- 2.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.079  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.995  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.03821488937445e-11   2.1525415654430134e-12   2.245053221015696   0.07584085156251714   0.07874635750190812   0.028282318804391048   2.154434690031884  
+4.03821488937445e-11   2.1525415654430134e-12   2.245053221015696   0.07584085156251714   0.07874635750190812   0.028282318804391048   2.154434690031884  0.9954265045177997   0.010706558381709917   0.0061245142095816794   0.011647746420625868   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 444
+	total stat : 89144.43
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.285  +/-    0.13             
+    amplitude                  :   4.02e-11  +/- 6.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.074  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :      0.017  +/-    0.05             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.001  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.995  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.016803223603839e-11   5.992175469496075e-12   2.2846399892738662   0.1263770697018593   0.07411798291138859   0.030203500234093465   0.9953281691996239   0.010705584008189592   0.006022762509344792   0.011647878068887244   0.001457679780615598   0.10076100318954523   -8.311965910170742e-05   0.020482197277866   0.017425357088526598   0.04643780107544375   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 89144.5811718691
+amplitude index
+best-fit values 4.03821488937445e-11 2.245053221015696
+input values 3.85e-11 2.3
+input stat_sum before fit 89148.35282496324
+input stat_sum 89145.4477172951
+distance 0.8665454260044498
+
+amplitude lambda_
+best-fit values 4.03821488937445e-11 0.056853333060770284
+input values 3.85e-11 0.1
+input stat_sum before fit 89151.53216674959
+input stat_sum 89149.88552219173
+distance 5.30435032263631
+
+lambda_ index
+best-fit values 0.056853333060770284 2.1840447327376378
+input values 0.1 2.3
+input stat_sum before fit 89150.96271996897
+input stat_sum 89149.78673518034
+distance 5.205563311246806
+
+[0.8665454260044498, 5.30435032263631, 5.205563311246806]
+-----
+with nuisance
+best-fit stat_sum 89144.43238385479
+amplitude index
+best-fit values 4.016803223603839e-11 2.2846399892738662
+input values 3.85e-11 2.3
+input stat_sum before fit 89146.12076417287
+input stat_sum 89144.52924533816
+distance 0.09686148336913902
+
+amplitude lambda_
+best-fit values 4.016803223603839e-11 0.06948382604151025
+input values 3.85e-11 0.1
+input stat_sum before fit 89148.40838467093
+input stat_sum 89145.36412425827
+distance 0.9317404034809442
+
+lambda_ index
+best-fit values 0.06948382604151025 2.1985277643531362
+input values 0.1 2.3
+input stat_sum before fit 89150.90428940675
+input stat_sum 89146.03338930225
+distance 1.6010054474609205
+
+[0.09686148336913902, 0.9317404034809442, 1.6010054474609205]
+
+========================================================================================================================
+1
+========================================================================================================================
+shift [0.09455407], tilt [0.02218243],  bias [-0.05935779], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 88693.12
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.371  +/-    0.09             
+    amplitude                  :   5.06e-11  +/- 3.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.133  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.993  +/-    0.01             
+    tilt                       :      0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+5.058510910636217e-11   3.5029687392381666e-12   2.3709284089434384   0.08694457885887633   0.13253966907974837   0.0442952085021645   2.154434690031884  
+Combined100
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/Dataset/datasets/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+shift [-0.01844042], tilt [0.00424169],  bias [0.03437043], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 196
+	total stat : 89911.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.376  +/-    0.08             
+    amplitude                  :   3.87e-11  +/- 2.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.072  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.008  +/-    0.01             
+    tilt                       :     -0.004  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.8684400535312256e-11   2.2551197712037483e-12   2.376025613132338   0.07977671941880714   0.07222499245365964   0.0319326351599976   2.154434690031884  
+3.8684400535312256e-11   2.2551197712037483e-12   2.376025613132338   0.07977671941880714   0.07222499245365964   0.0319326351599976   2.154434690031884  1.0082386727191677   0.010787270242004477   -0.004263947577414246   0.011509775873918061   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 543
+	total stat : 89908.35
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.565  +/-    0.12             
+    amplitude                  :   3.71e-11  +/- 5.7e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.045  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :      0.072  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.008  +/-    0.01             
+    tilt                       :     -0.004  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.7067454424720634e-11   5.6715631809778565e-12   2.5648442586266476   0.12103079282831589   0.04548426613392353   0.03333402676607154   1.0083378728223857   0.01078669702660644   -0.0042699896133737425   0.011509073293574349   -0.0001249341700366969   0.10095432692864101   -5.1927223616034224e-06   0.020525645735848516   0.0723562059463727   0.03581804941535744   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 89911.29752948291
+amplitude index
+best-fit values 3.8684400535312256e-11 2.376025613132338
+input values 3.85e-11 2.3
+input stat_sum before fit 89913.8700861161
+input stat_sum 89912.85421767687
+distance 1.5566881939594168
+
+amplitude lambda_
+best-fit values 3.8684400535312256e-11 0.08683492320775975
+input values 3.85e-11 0.1
+input stat_sum before fit 89914.69711749091
+input stat_sum 89913.43075949413
+distance 2.13323001122626
+
+lambda_ index
+best-fit values 0.08683492320775975 2.319042201738091
+input values 0.1 2.3
+input stat_sum before fit 89913.26942192117
+input stat_sum 89912.09268862725
+distance 0.7951591443415964
+
+[1.5566881939594168, 2.13323001122626, 0.7951591443415964]
+-----
+with nuisance
+best-fit stat_sum 89908.34946088964
+amplitude index
+best-fit values 3.7067454424720634e-11 2.5648442586266476
+input values 3.85e-11 2.3
+input stat_sum before fit 89940.65881226618
+input stat_sum 89911.93311415204
+distance 3.583653262394364
+
+amplitude lambda_
+best-fit values 3.7067454424720634e-11 0.10082600360283114
+input values 3.85e-11 0.1
+input stat_sum before fit 89932.33556014736
+input stat_sum 89910.27387585214
+distance 1.9244149625010323
+
+lambda_ index
+best-fit values 0.10082600360283114 2.422298263270078
+input values 0.1 2.3
+input stat_sum before fit 89917.30320705374
+input stat_sum 89911.91526854206
+distance 3.5658076524123317
+
+[3.583653262394364, 1.9244149625010323, 3.5658076524123317]
+
+========================================================================================================================
+1
+========================================================================================================================
+shift [0.26570756], tilt [-0.00970482],  bias [-0.19042846], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 197
+	total stat : 89523.36
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.481  +/-    0.07             
+    amplitude                  :   4.27e-11  +/- 2.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.048  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :      0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.272923310538332e-11   2.2037203855056926e-12   2.48136168580013   0.07079732483246931   0.04841034311741825   0.026556098126513918   2.154434690031884  
+4.272923310538332e-11   2.2037203855056926e-12   2.48136168580013   0.07079732483246931   0.04841034311741825   0.026556098126513918   2.154434690031884  1.0022534176458364   0.010758486681404831   0.003007780628211737   0.011593862658109917   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 506
+	total stat : 89511.91
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.230  +/-    0.11             
+    amplitude                  :   4.62e-11  +/- 6.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.086  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :     -0.134  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.001  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :      0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.619156969896137e-11   6.8650844540938055e-12   2.2299558586289328   0.10692523883503079   0.08637691255715815   0.03068248362914558   1.001805535758758   0.01075869413905404   0.0028646034314324447   0.011594878166096481   -0.0006365386849429575   0.10035887578415628   0.0002450755520484403   0.020454332490667596   -0.1340418089280775   0.03731848374499347   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 89523.35511425241
+amplitude index
+best-fit values 4.272923310538332e-11 2.48136168580013
+input values 3.85e-11 2.3
+input stat_sum before fit 89548.72401166319
+input stat_sum 89547.6626389134
+distance 24.307524660995114
+
+amplitude lambda_
+best-fit values 4.272923310538332e-11 0.06038264432729696
+input values 3.85e-11 0.1
+input stat_sum before fit 89557.14710252403
+input stat_sum 89553.55254994574
+distance 30.197435693335137
+
+lambda_ index
+best-fit values 0.06038264432729695 2.3821779436744204
+input values 0.1 2.3
+input stat_sum before fit 89533.902021769
+input stat_sum 89529.06119072909
+distance 5.7060764766793
+
+[24.307524660995114, 30.197435693335137, 5.7060764766793]
+-----
+with nuisance
+best-fit stat_sum 89511.91367392949
+amplitude index
+best-fit values 4.619156969896137e-11 2.2299558586289328
+input values 3.85e-11 2.3
+input stat_sum before fit 89545.34629472127
+input stat_sum 89513.6860172935
+distance 1.772343364005792
+
+amplitude lambda_
+best-fit values 4.619156969896137e-11 0.06394868072593073
+input values 3.85e-11 0.1
+input stat_sum before fit 89517.06037698725
+input stat_sum 89514.26092432179
+distance 2.3472503922967007
+
+lambda_ index
+best-fit values 0.06394868072593073 2.1685790411479076
+input values 0.1 2.3
+input stat_sum before fit 89546.14061544654
+input stat_sum 89514.15645217543
+distance 2.242778245941736
+
+[1.772343364005792, 2.3472503922967007, 2.242778245941736]
+
+========================================================================================================================
+2
+========================================================================================================================
+shift [-0.15739725], tilt [-0.02887369],  bias [0.01049263], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 222
+	total stat : 90448.54
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.102  +/-    0.12             
+    amplitude                  :   2.78e-11  +/- 2.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.137  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.025  +/-    0.01             
+    tilt                       :      0.009  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.778237559584605e-11   2.294340805755518e-12   2.102338614691956   0.11516741366756518   0.1365978552094253   0.0502715154349263   2.154434690031884  
+2.778237559584605e-11   2.294340805755518e-12   2.102338614691956   0.11516741366756518   0.1365978552094253   0.0502715154349263   2.154434690031884  1.0246009212464626   0.010852560384307963   0.008651605311768349   0.01148606394933561   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 537
+	total stat : 90447.58
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+5.058510910636217e-11   3.5029687392381666e-12   2.3709284089434384   0.08694457885887633   0.13253966907974837   0.0442952085021645   2.154434690031884  0.9925997548732287   0.01070750350453265   0.0053463674367635805   0.011665446177016942   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 514
+	total stat : 88692.61
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.316  +/-    0.10             
+    amplitude                  :   5.18e-11  +/- 8.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.144  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :     -0.026  +/-    0.01             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :      0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+5.1798576727290796e-11   8.105763452816654e-12   2.3157156753499484   0.09997896491999878   0.14430168842999433   0.04888467646088178   0.992248115868508   0.010579714615754753   0.005276291212011719   0.011539077760041427   0.0001672539247053349   0.10036640663354231   -3.118402038446356e-05   0.01986021358770716   -0.02554195244494364   0.011629157602008744   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 88693.11637955955
+amplitude index
+best-fit values 5.058510910636217e-11 2.3709284089434384
+input values 3.85e-11 2.3
+input stat_sum before fit 88761.27456017332
+input stat_sum 88741.8492226519
+distance 48.732843092351686
+
+amplitude lambda_
+best-fit values 5.058510910636217e-11 0.06712519344119999
+input values 3.85e-11 0.1
+input stat_sum before fit 88741.61910896702
+input stat_sum 88739.51893142398
+distance 46.40255186443392
+
+lambda_ index
+best-fit values 0.06712519344119999 2.4477286362709627
+input values 0.1 2.3
+input stat_sum before fit 88703.98385571601
+input stat_sum 88701.59906085684
+distance 8.482681297289673
+
+[48.732843092351686, 46.40255186443392, 8.482681297289673]
+-----
+with nuisance
+best-fit stat_sum 88692.60977460636
+amplitude index
+best-fit values 5.1798576727290796e-11 2.3157156753499484
+input values 3.85e-11 2.3
+input stat_sum before fit 88769.35375169684
+input stat_sum 88696.94284989164
+distance 4.333075285278028
+
+amplitude lambda_
+best-fit values 5.1798576727290796e-11 0.12656890079074568
+input values 3.85e-11 0.1
+input stat_sum before fit 88699.01109739722
+input stat_sum 88696.37415321186
+distance 3.764378605497768
+
+lambda_ index
+best-fit values 0.12656890079074568 2.390813092771825
+input values 0.1 2.3
+input stat_sum before fit 88787.89022144506
+input stat_sum 88696.14416533713
+distance 3.5343907307687914
+
+[4.333075285278028, 3.764378605497768, 3.5343907307687914]
+
+========================================================================================================================
+2
+========================================================================================================================
+shift [0.08076887], tilt [-0.0024307],  bias [-0.15454972], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 254
+	total stat : 89524.63
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.752  +/-    0.07             
+    amplitude                  :   3.30e-11  +/- 1.6e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :     -0.008  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :     -0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.304569198732966e-11   1.5838216562237984e-12   2.7521684861694102   0.06607086983097586   -0.008419038985399425   0.018524612221608578   2.154434690031884  
+3.304569198732966e-11   1.5838216562237984e-12   2.7521684861694102   0.06607086983097586   -0.008419038985399425   0.018524612221608578   2.154434690031884  1.002418069122427   0.01075696376185453   -0.012037210495758023   0.011490574534186126   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 861
+	total stat : 89520.58
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.237  +/-    0.15             
+    amplitude                  :   2.73e-11  +/- 4.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.118  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :      0.054  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.001  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.025  +/-    0.01             
+    tilt                       :      0.009  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.7268940783934336e-11   4.46304305637553e-12   2.237107255826818   0.15356151033560986   0.11773379699977647   0.05279626768475301   1.024658598700169   0.01085219665111275   0.008745334959542814   0.011486835180364589   -0.0010716014353084327   0.10075300215810577   0.00023988866515988115   0.020397535700086896   0.05378852156821765   0.043426680791363054   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 90448.54441722964
+amplitude index
+best-fit values 2.778237559584605e-11 2.102338614691956
+input values 3.85e-11 2.3
+input stat_sum before fit 90515.52835311145
+input stat_sum 90502.73663279193
+distance 54.192215562288766
+
+amplitude lambda_
+best-fit values 2.778237559584605e-11 0.22051955624605665
+input values 3.85e-11 0.1
+input stat_sum before fit 90539.5288885907
+input stat_sum 90530.19289821212
+distance 81.64848098247603
+
+lambda_ index
+best-fit values 0.22051955624605665 2.2403593773323114
+input values 0.1 2.3
+input stat_sum before fit 90454.33414827082
+input stat_sum 90453.27203588227
+distance 4.727618652628735
+
+[54.192215562288766, 81.64848098247603, 4.727618652628735]
+-----
+with nuisance
+best-fit stat_sum 90447.5764924606
+amplitude index
+best-fit values 2.7268940783934336e-11 2.237107255826818
+input values 3.85e-11 2.3
+input stat_sum before fit 90516.28391321254
+input stat_sum 90452.72083162252
+distance 5.144339161910466
+
+amplitude lambda_
+best-fit values 2.7268940783934336e-11 0.13348388414541298
+input values 3.85e-11 0.1
+input stat_sum before fit 90458.1596102399
+input stat_sum 90453.68065077697
+distance 6.104158316360554
+
+lambda_ index
+best-fit values 0.13348388414541298 2.3211892091191197
+input values 0.1 2.3
+input stat_sum before fit 90496.57696592576
+input stat_sum 90447.68526559768
+distance 0.10877313707896974
+
+[5.144339161910466, 6.104158316360554, 0.10877313707896974]
+
+========================================================================================================================
+3
+========================================================================================================================
+shift [0.10020565], tilt [0.00243849],  bias [-0.1701786], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 197
+	total stat : 89947.40
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.464  +/-    0.09             
+    amplitude                  :   4.19e-11  +/- 3.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.108  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.011  +/-    0.01             
+    tilt                       :     -0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.193223599202792e-11   3.0433072345817338e-12   2.464278365088843   0.09111761379581934   0.10848579122982947   0.045166146948708165   2.154434690031884  
+4.193223599202792e-11   3.0433072345817338e-12   2.464278365088843   0.09111761379581934   0.10848579122982947   0.045166146948708165   2.154434690031884  1.0113491591494168   0.010806352315986333   -0.0030825196579427477   0.011500864693891298   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 529
+	total stat : 89946.33
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.374  +/-    0.09             
+    amplitude                  :   4.36e-11  +/- 2.8e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.128  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :     -0.041  +/-    0.00             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.001  +/-    0.05             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.011  +/-    0.01             
+    tilt                       :     -0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.596  +/-    0.12             
+    amplitude                  :   3.56e-11  +/- 5.6e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.019  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :     -0.081  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :     -0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.5648282189834194e-11   5.627318073875528e-12   2.5964443837638367   0.12209776327709763   0.018916018446375023   0.03828025641425576   1.0022811514269767   0.010757829138200612   -0.012235678381962784   0.011495638531135844   0.00029423130110613595   0.10080860762151511   -3.417229414937018e-05   0.020494101847835396   -0.08136217276281497   0.037668816001711236   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 89524.62512809894
+amplitude index
+best-fit values 3.304569198732966e-11 2.7521684861694102
+input values 3.85e-11 2.3
+input stat_sum before fit 89658.400898204
+input stat_sum 89553.77057663049
+distance 29.145448531548027
+
+amplitude lambda_
+best-fit values 3.304569198732966e-11 0.12745209635540805
+input values 3.85e-11 0.1
+input stat_sum before fit 89546.63980706171
+input stat_sum 89532.88907619612
+distance 8.263948097184766
+
+lambda_ index
+best-fit values 0.12745209635540805 2.5542951433897185
+input values 0.1 2.3
+input stat_sum before fit 89576.79422408142
+input stat_sum 89555.99268049633
+distance 31.36755239739432
+
+[29.145448531548027, 8.263948097184766, 31.36755239739432]
+-----
+with nuisance
+best-fit stat_sum 89520.58118236285
+amplitude index
+best-fit values 3.5648282189834194e-11 2.5964443837638367
+input values 3.85e-11 2.3
+input stat_sum before fit 89568.74743442038
+input stat_sum 89525.26358001861
+distance 4.682397655764362
+
+amplitude lambda_
+best-fit values 3.5648282189834194e-11 0.09624200037002056
+input values 3.85e-11 0.1
+input stat_sum before fit 89547.99244935856
+input stat_sum 89523.9494534833
+distance 3.368271120460122
+
+lambda_ index
+best-fit values 0.09624200037002056 2.393218357497445
+input values 0.1 2.3
+input stat_sum before fit 89531.60082208486
+input stat_sum 89525.25346791101
+distance 4.672285548163927
+
+[4.682397655764362, 3.368271120460122, 4.672285548163927]
+
+========================================================================================================================
+3
+========================================================================================================================
+shift [-0.11356028], tilt [-0.01579692],  bias [0.02338706], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 88726.79
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.249  +/-    0.10             
+    amplitude                  :   3.50e-11  +/- 2.8e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.146  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.997  +/-    0.01             
+    tilt                       :      0.009  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.502232715483014e-11   2.751275844163258e-12   2.249446501008496   0.10369960371970999   0.14644580473480137   0.04873070662482481   2.154434690031884  
+3.502232715483014e-11   2.751275844163258e-12   2.249446501008496   0.10369960371970999   0.14644580473480137   0.04873070662482481   2.154434690031884  0.9969421573466101   0.010718474113909283   0.00938488175795386   0.011650406215987688   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 720
+	total stat : 88719.98
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      1.987  +/-    0.14             
+    amplitude                  :   3.79e-11  +/- 6.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.196  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :     -0.116  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.997  +/-    0.01             
+    tilt                       :      0.009  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.786461051407883e-11   6.0939107560121424e-12   1.9874113836237237   0.14045517523714957   0.19553788056319427   0.05282941972391084   0.9967458963369096   0.010719428907288763   0.009315745354765806   0.01165055677685097   -0.00014357118667910287   0.10079271434253989   2.4823134721873322e-05   0.02043139527409766   -0.1158892225505595   0.03721687726288325   0.0   0.0   2.154434690031884  
+4.363188814927081e-11   2.7660897622693356e-12   2.3739927352982018   0.09228666039674026   0.12804828706321458   0.04504546575800792   1.0112682279894873   0.010745562868852377   -0.0031133354079778256   0.011413590389677306   0.0013848033081084142   0.051794266387093835   8.969996804456513e-05   0.017047697852549254   -0.04054320789004865   0.0001053305604899758   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 89947.39518841219
+amplitude index
+best-fit values 4.193223599202792e-11 2.464278365088843
+input values 3.85e-11 2.3
+input stat_sum before fit 89964.33516772962
+input stat_sum 89964.1805006186
+distance 16.785312206411618
+
+amplitude lambda_
+best-fit values 4.193223599202792e-11 0.11377014805099513
+input values 3.85e-11 0.1
+input stat_sum before fit 89951.94335225316
+input stat_sum 89951.66666700516
+distance 4.271478592971107
+
+lambda_ index
+best-fit values 0.11377014805099513 2.491054314921777
+input values 0.1 2.3
+input stat_sum before fit 89960.38000542905
+input stat_sum 89960.2465809004
+distance 12.851392488213605
+
+[16.785312206411618, 4.271478592971107, 12.851392488213605]
+-----
+with nuisance
+best-fit stat_sum 89946.3263407647
+amplitude index
+best-fit values 4.363188814927081e-11 2.3739927352982018
+input values 3.85e-11 2.3
+input stat_sum before fit 89960.7486453681
+input stat_sum 89947.75665897568
+distance 1.430318210972473
+
+amplitude lambda_
+best-fit values 4.363188814927081e-11 0.14020126192727714
+input values 3.85e-11 0.1
+input stat_sum before fit 89950.02871140976
+input stat_sum 89946.99639852713
+distance 0.6700577624287689
+
+lambda_ index
+best-fit values 0.14020126192727714 2.430923652225753
+input values 0.1 2.3
+input stat_sum before fit 89966.00982281202
+input stat_sum 89949.96615954585
+distance 3.6398187811428215
+
+[1.430318210972473, 0.6700577624287689, 3.6398187811428215]
+
+========================================================================================================================
+4
+========================================================================================================================
+shift [-0.06151721], tilt [0.00020769],  bias [0.08521717], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 202
+	total stat : 88585.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.158  +/-    0.09             
+    amplitude                  :   3.64e-11  +/- 2.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.102  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.686  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :      0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.64180136388936e-11   2.1964458032590124e-12   2.1578035405004017   0.08618197986846626   0.10188092079059806   0.033601521025069955   2.154434690031884  
+3.64180136388936e-11   2.1964458032590124e-12   2.1578035405004017   0.08618197986846626   0.10188092079059806   0.033601521025069955   2.154434690031884  0.9920422249660802   0.01069466665561315   0.009765338522336388   0.011701896594919424   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 504
+	total stat : 88583.03
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.333  +/-    0.12             
+    amplitude                  :   3.56e-11  +/- 5.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.079  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.686  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :      0.073  +/-    0.03             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.001  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :      0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.5630717241831956e-11   5.447100975222922e-12   2.3333862304738897   0.11785420854245367   0.07887946895482685   0.03559279696454157   0.992217360432205   0.01069472058143856   0.009821061608477665   0.011701743783933214   -0.0005866181185800246   0.10082965000340546   -0.0002668355951454965   0.02046757966623012   0.07285811609232558   0.03353645781546568   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 88585.30110241928
+amplitude index
+best-fit values 3.64180136388936e-11 2.1578035405004017
+input values 3.85e-11 2.3
+input stat_sum before fit 88594.82227819799
+input stat_sum 88593.683024308
+distance 8.38192188872199
+
+amplitude lambda_
+best-fit values 3.64180136388936e-11 0.0855428005844351
+input values 3.85e-11 0.1
+input stat_sum before fit 88587.85134654336
+input stat_sum 88587.70760070402
+distance 2.4064982847339706
+
+lambda_ index
+best-fit values 0.0855428005844351 2.174527648090717
+input values 0.1 2.3
+input stat_sum before fit 88593.0477385108
+input stat_sum 88592.95940008368
+distance 7.65829766439856
+
+[8.38192188872199, 2.4064982847339706, 7.65829766439856]
+-----
+with nuisance
+best-fit stat_sum 88583.03313162924
+amplitude index
+best-fit values 3.5630717241831956e-11 2.3333862304738897
+input values 3.85e-11 2.3
+input stat_sum before fit 88588.14491054123
+input stat_sum 88583.31315713178
+distance 0.2800255025358638
+
+amplitude lambda_
+best-fit values 3.5630717241831956e-11 0.09024982669483493
+input values 3.85e-11 0.1
+input stat_sum before fit 88584.55312993123
+input stat_sum 88583.41640069977
+distance 0.3832690705312416
+
+lambda_ index
+best-fit values 0.09024982669483493 2.2798875297095935
+input values 0.1 2.3
+input stat_sum before fit 88587.48329844011
+input stat_sum 88583.38043580356
+distance 0.34730417431273963
+
+[0.2800255025358638, 0.3832690705312416, 0.34730417431273963]
+
+========================================================================================================================
+5
+========================================================================================================================
+-----
+without nuisance
+best-fit stat_sum 88726.79366959189
+amplitude index
+best-fit values 3.502232715483014e-11 2.249446501008496
+input values 3.85e-11 2.3
+input stat_sum before fit 88733.388792576
+input stat_sum 88732.05693445019
+distance 5.2632648582948605
+
+amplitude lambda_
+best-fit values 3.502232715483014e-11 0.1694635194824992
+input values 3.85e-11 0.1
+input stat_sum before fit 88748.51776816392
+input stat_sum 88744.82440793268
+distance 18.030738340792595
+
+lambda_ index
+best-fit values 0.1694635194824992 2.3422790493309664
+input values 0.1 2.3
+input stat_sum before fit 88731.05795825116
+input stat_sum 88728.18261289535
+distance 1.3889433034637477
+
+[5.2632648582948605, 18.030738340792595, 1.3889433034637477]
+-----
+with nuisance
+best-fit stat_sum 88719.98381545223
+amplitude index
+best-fit values 3.786461051407883e-11 1.9874113836237237
+input values 3.85e-11 2.3
+input stat_sum before fit 88747.6816680148
+input stat_sum 88724.66086835858
+distance 4.677052906350582
+
+amplitude lambda_
+best-fit values 3.786461051407883e-11 0.11425468750750514
+input values 3.85e-11 0.1
+input stat_sum before fit 88760.6877175916
+input stat_sum 88724.38881914424
+distance 4.405003692008904
+
+lambda_ index
+best-fit values 0.11425468750750514 2.23954287285684
+input values 0.1 2.3
+input stat_sum before fit 88725.71568200196
+input stat_sum 88724.21365610338
+distance 4.229840651154518
+
+[4.677052906350582, 4.405003692008904, 4.229840651154518]
+
+========================================================================================================================
+4
+========================================================================================================================
+shift [0.08464831], tilt [-0.01928357],  bias [0.11609098], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 199
+	total stat : 88596.23
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.128  +/-    0.08             
+    amplitude                  :   4.19e-11  +/- 2.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.109  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :      0.016  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.18772600817673e-11   2.433750712720623e-12   2.1280150908408273   0.08278903126091208   0.10859659012614052   0.033305098787165206   2.154434690031884  
+4.18772600817673e-11   2.433750712720623e-12   2.1280150908408273   0.08278903126091208   0.10859659012614052   0.033305098787165206   2.154434690031884  0.9916762967781519   0.010691273679264934   0.01561211062008213   0.011735705594007051   2.154434690031884  
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 488
+	total stat : 88595.33
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.235  +/-    0.12             
+    amplitude                  :   4.14e-11  +/- 6.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.095  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias               [prior] :      0.046  +/-    0.04             
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :    100.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :      0.016  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.135946360468865e-11   6.262110351923675e-12   2.234891900436844   0.11563495290260742   0.09485786624604398   0.035293141619201336   0.9917465100449487   0.0106910535817916   0.015694509838831097   0.011736645188199743   -0.0004672655676067508   0.10070384890266973   0.0003423640662224574   0.020475571485582836   0.04550809234934598   0.03600875281591121   0.0   0.0   2.154434690031884  
+-----
+without nuisance
+best-fit stat_sum 88596.22517787499
+amplitude index
+best-fit values 4.18772600817673e-11 2.1280150908408273
+input values 3.85e-11 2.3
+input stat_sum before fit 88618.01343508917
+input stat_sum 88600.68775517636
+distance 4.462577301368583
+
+amplitude lambda_
+best-fit values 4.18772600817673e-11 0.051788250610993916
+input values 3.85e-11 0.1
+input stat_sum before fit 88600.3568229629
+input stat_sum 88600.34076114633
+distance 4.1155832713411655
+
+lambda_ index
+best-fit values 0.051788250610993916 2.128012932103506
+input values 0.1 2.3
+input stat_sum before fit 88607.59857711647
+input stat_sum 88607.54824719108
+distance 11.32306931608764
+
+[4.462577301368583, 4.1155832713411655, 11.32306931608764]
+-----
+with nuisance
+best-fit stat_sum 88595.32821651208
+amplitude index
+best-fit values 4.135946360468865e-11 2.234891900436844
+input values 3.85e-11 2.3
+input stat_sum before fit 88602.02326914658
+input stat_sum 88595.71891419907
+distance 0.3906976869911887
+
+amplitude lambda_
+best-fit values 4.135946360468865e-11 0.07719228626211827
+input values 3.85e-11 0.1
+input stat_sum before fit 88596.69349454892
+input stat_sum 88595.67690670192
+distance 0.34869018984318245
+
+lambda_ index
+best-fit values 0.07719228626211827 2.2120890471022117
+input values 0.1 2.3
+input stat_sum before fit 88602.26143039219
+input stat_sum 88596.2045157269
+distance 0.876299214825849
+
+[0.3906976869911887, 0.34869018984318245, 0.876299214825849]
+
+========================================================================================================================
+5
+========================================================================================================================
+shift [-0.12330437], tilt [0.01109412],  bias [-0.00797694], res [0.]
+random seed
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 198
+	total stat : 88991.89
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+slurmstepd: error: *** JOB 463326 ON tf092 CANCELLED AT 2025-02-18T15:59:46 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 463326.0 ON tf092 CANCELLED AT 2025-02-18T15:59:46 DUE TO TIME LIMIT ***
+=== JOB_STATISTICS ===
+=== current date     : Tue 18 Feb 2025 03:59:50 PM CET
+= Job-ID             : 463326 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 02:00:00
+= Elapsed runtime    : 02:00:19
+= Total RAM usage    : 4.3 GiB of requested  GiB (%)   
+= Node list          : tf092
+= Subm/Elig/Start/End: 2025-02-18T13:59:17 / 2025-02-18T13:59:17 / 2025-02-18T13:59:24 / 2025-02-18T15:59:43
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           84.0G   104.9G   209.7G        N/A     177K     500K   1,000K        N/A    
+    /home/vault        515.7G  1048.6G  2097.2G        N/A  13,976      200K     400K        N/A    
+======================

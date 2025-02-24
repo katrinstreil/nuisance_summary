@@ -64,13 +64,13 @@ def create_asimov(model, source, parameters=None, livetime=None, spatial_model =
     if livetime is not None:
         model = livetime
     if source == "MSH":
-        dataset = MapDataset.read(f"{path}/HESS_public/dataset-msh-simulated-{model}.fits.gz")
+        dataset = MapDataset.read(f"{path}/Dataset/datasets/dataset-msh-simulated-{model}.fits.gz")
         print("loaded dataset:")
-        print(f"{path}/HESS_public/dataset-MSH-simulated-{model}.fits.gz")
+        print(f"{path}/Dataset/datasets/dataset-MSH-simulated-{model}.fits.gz")
     if source == "PKSflare":
-        dataset = MapDataset.read(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
+        dataset = MapDataset.read(f"{path}/Dataset/datasets/dataset-simulated-{model}.fits.gz")
         print("loaded dataset:")
-        print(f"{path}/HESS_public/dataset-simulated-{model}.fits.gz")
+        print(f"{path}/Dataset/datasets/dataset-simulated-{model}.fits.gz")
     if parameters is not None:
         for p in parameters:
             models.parameters[p.name].value = p.value
@@ -88,7 +88,7 @@ def create_asimov(model, source, parameters=None, livetime=None, spatial_model =
 def set_model(path, model):
     if model == 'crab':
         model_crab =create_crab_spectral_model(reference="hess_ecpl")
-        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodelpl = Models.read(f"{path}/Dataset/models/model-pl.yaml").copy()[0]
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crab")])
@@ -100,7 +100,7 @@ def set_model(path, model):
                                                ebreak = 0.33*u.TeV,
                                                beta = 1.73
                                               )
-        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodelpl = Models.read(f"{path}/Dataset/models/model-pl.yaml").copy()[0]
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crabbreak")])
@@ -115,7 +115,7 @@ def set_model(path, model):
                                    alpha = 2.51,
                                    beta = 0.24,
                                    reference = 1*u.TeV)
-        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodelpl = Models.read(f"{path}/Dataset/models/model-pl.yaml").copy()[0]
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crablog")])
@@ -123,12 +123,12 @@ def set_model(path, model):
         model_crab = ExpCutoffPowerLawSpectralModel(amplitude =  3.85e-11*u.Unit(" 1 / (cm2 s TeV)"),
                                              index = 2.3,
                                              cutoff = 1/10 /u.TeV)
-        skymodelpl = Models.read(f"{path}/HESS_public/model-pl.yaml").copy()[0]
+        skymodelpl = Models.read(f"{path}/Dataset/models/model-pl.yaml").copy()[0]
         skymodel = Models([SkyModel(spatial_model = skymodelpl.spatial_model,
                             spectral_model = model_crab,
                             name = "Crablog")])
     else:
-        skymodel = Models.read(f"{path}/HESS_public/model-{model}.yaml")#.copy()
+        skymodel = Models.read(f"{path}/Dataset/models/model-{model}.yaml")#.copy()
         
     return skymodel
 

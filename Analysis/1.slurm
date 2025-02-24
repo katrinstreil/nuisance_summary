@@ -4,7 +4,7 @@
 # start 2 MPI processes
 #SBATCH --ntasks=2
 # allocate nodes for 6 hours
-#SBATCH --time=12:00:00
+#SBATCH --time=4:00:00
 # job name 
 #SBATCH --job-name=logfiles/1
 # do not export environment variables
