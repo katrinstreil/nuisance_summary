@@ -123,12 +123,13 @@ awo, aw, ewo, ew = c['_colors']
 livetimes = c['livetimes']
 livetime = c['livetime']
 sys = c['sys']
-norm = c['norm'] 
-tilt = c['tilt'] 
-bias =  c['bias'] 
-resolution = c['resolution'] 
 path = f"../{c['folder']}"
-parameter_names = c['parameter_names']        
+parameter_names = c['parameter_names']     
+resolution = c['resolution']
+bias = c['bias']
+tilt = c['tilt']
+norm = c['norm']
+
 print(sys)
 #for live in livetimes[8:]:
 for live in [livetime]:
@@ -142,15 +143,28 @@ for live in [livetime]:
     ebins = dataset_asimov.counts.geom.axes[0].center[mask]
 
 
-    N = 100
-    save_flux = True
-    save_fluxpoints = 0
-    save_fluxpoints_N = 0
-    dataset_N = True
-    contour = 0
-    zero_sys = 0
-    distance = 1
-    distance_1d = 1
+    
+    case1 = 0
+    if case1:
+        N = 1
+        save_flux = True
+        save_fluxpoints = 1
+        save_fluxpoints_N = 1
+        dataset_N = True
+        contour = 0
+        zero_sys = 1
+        distance = 0
+        distance_1d = 0
+    else:
+        N = 100
+        save_flux = True
+        save_fluxpoints = 0
+        save_fluxpoints_N = 0
+        dataset_N = True
+        contour = 0
+        zero_sys = 0
+        distance = 1
+        distance_1d = 1
 
     for n in range(N):
         print()
@@ -179,60 +193,62 @@ for live in [livetime]:
         setup.set_up_irf_sys(bias_rnd, res_rnd, shift_rnd, tilt_rnd)
 
         dataset, dataset_N = setup.run()
+        dataset, dataset_N = setup.apply_config_settings(dataset, dataset_N,c)
+        
         # irf model
         # happens in set_up_irf_sys
         # setup.set_irf_model(dataset_N)
-        if  "Eff_area" in sys:
-            dataset_N.models.parameters['resolution'].frozen = True
-            dataset_N.models.parameters['bias'].frozen = True
-            dataset_N.irf_model.parameters['tilt'].frozen = False
-            dataset_N.irf_model.parameters['norm'].frozen = False
-            dataset_N.e_reco_n = 10
-            setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
-            print(dataset_N.irf_model)
+#         if  "Eff_area" in sys:
+#             dataset_N.models.parameters['resolution'].frozen = True
+#             dataset_N.models.parameters['bias'].frozen = True
+#             dataset_N.irf_model.parameters['tilt'].frozen = False
+#             dataset_N.irf_model.parameters['norm'].frozen = False
+#             dataset_N.e_reco_n = 10
+#             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
+#             print(dataset_N.irf_model)
             
-        if sys == "E_reco":
-            dataset_N.models.parameters['resolution'].frozen = True
-            dataset_N.models.parameters['bias'].frozen = False
-            dataset_N.irf_model.parameters['tilt'].frozen = True
-            dataset_N.irf_model.parameters['norm'].frozen = True
-            dataset_N.e_reco_n = 1000
-            setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
+#         if sys == "E_reco":
+#             dataset_N.models.parameters['resolution'].frozen = True
+#             dataset_N.models.parameters['bias'].frozen = False
+#             dataset_N.irf_model.parameters['tilt'].frozen = True
+#             dataset_N.irf_model.parameters['norm'].frozen = True
+#             dataset_N.e_reco_n = 1000
+#             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
         
-        if  "Combined"  in sys:
-            dataset_N.models.parameters['resolution'].frozen = True
-            dataset_N.models.parameters['bias'].frozen = False
-            dataset_N.irf_model.parameters['tilt'].frozen = False
-            dataset_N.irf_model.parameters['norm'].frozen = False
-            dataset_N.e_reco_n = 1000
-            setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
+#         if  "Combined"  in sys:
+#             dataset_N.models.parameters['resolution'].frozen = True
+#             dataset_N.models.parameters['bias'].frozen = False
+#             dataset_N.irf_model.parameters['tilt'].frozen = False
+#             dataset_N.irf_model.parameters['norm'].frozen = False
+#             dataset_N.e_reco_n = 1000
+#             setup.set_irf_prior(dataset_N, bias, resolution, norm, tilt)
             
-        if sys == "BKG":
-            magnitude = c['magnitude']
-            corrlength = c['corrlength']
-            # piece wise model
-            # remove old bkg model
-            setup.set_up_bkg_sys_V( breake = 10,
-                                index1 = 2,
-                                index2 = 1.5, 
-                                magnitude = magnitude )
+#         if sys == "BKG":
+#             magnitude = c['magnitude']
+#             corrlength = c['corrlength']
+#             # piece wise model
+#             # remove old bkg model
+#             setup.set_up_bkg_sys_V( breake = 10,
+#                                 index1 = 2,
+#                                 index2 = 1.5, 
+#                                 magnitude = magnitude )
 
-            dataset_asimov, dataset_asimov_N = setup.run()
+#             dataset_asimov, dataset_asimov_N = setup.run()
 
-            setup.unset_model(dataset_asimov_N, FoVBackgroundModel)
-            setup.set_piecewise_bkg_model(dataset_asimov_N)
-            # energy of the following parameters smaller than ethrshold
-            dataset_asimov_N.background_model.parameters['norm0'].frozen = True
-            dataset_asimov_N.background_model.parameters['norm1'].frozen = True
-            dataset_asimov_N.background_model.parameters['norm2'].frozen = True
-            dataset_asimov_N.background_model.parameters['norm3'].frozen = True
-            setup.set_bkg_prior(dataset_asimov_N, magnitude, corrlength)
-            frozen_pos = 1
-            if frozen_pos:
-                dataset_asimov.models.parameters['lon_0'].frozen = True
-                dataset_asimov.models.parameters['lat_0'].frozen = True
-                dataset_asimov_N.models.parameters['lon_0'].frozen = True
-                dataset_asimov_N.models.parameters['lat_0'].frozen = True
+#             setup.unset_model(dataset_asimov_N, FoVBackgroundModel)
+#             setup.set_piecewise_bkg_model(dataset_asimov_N)
+#             # energy of the following parameters smaller than ethrshold
+#             dataset_asimov_N.background_model.parameters['norm0'].frozen = True
+#             dataset_asimov_N.background_model.parameters['norm1'].frozen = True
+#             dataset_asimov_N.background_model.parameters['norm2'].frozen = True
+#             dataset_asimov_N.background_model.parameters['norm3'].frozen = True
+#             setup.set_bkg_prior(dataset_asimov_N, magnitude, corrlength)
+#             frozen_pos = 1
+#             if frozen_pos:
+#                 dataset_asimov.models.parameters['lon_0'].frozen = True
+#                 dataset_asimov.models.parameters['lat_0'].frozen = True
+#                 dataset_asimov_N.models.parameters['lon_0'].frozen = True
+#                 dataset_asimov_N.models.parameters['lat_0'].frozen = True
         
         fit_cor = Fit(store_trace=False)
         dataset.plot_residuals()
@@ -285,6 +301,7 @@ for live in [livetime]:
         for f in fluxes:
             ff += str(f) + "  "
         #print(ff)
+        print("fitting nui....")
         fit_cor = Fit(store_trace=False)
         result_cor = fit_cor.run([dataset_N])
         print()

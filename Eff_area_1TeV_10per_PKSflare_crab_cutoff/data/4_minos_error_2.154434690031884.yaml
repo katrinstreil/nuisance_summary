@@ -1,0 +1,78 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.3026114784838456
+            error: 0.0881902135063954
+            frozen: false
+            error_n: -0.09571183332800573
+            error_p: 0.09000986743820563
+        -   name: amplitude
+            value: 3.850469727980077e-11
+            unit: cm-2 s-1 TeV-1
+            error: 2.5024882674961325e-12
+            frozen: false
+            error_n: -2.424085313081577e-12
+            error_p: 2.802084947250679e-12
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+        -   name: lambda_
+            value: 0.10003403025494313
+            unit: TeV-1
+            error: 0.03804593631645236
+            frozen: false
+            error_n: -0.3694739677340688
+            error_p: 0.43505503451369953
+        -   name: alpha
+            value: 1.0
+            frozen: true
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.68000007133855
+            unit: deg
+            error: 0.0022829435536152365
+            min: 328.67999999999995
+            max: 330.67999999999995
+            frozen: false
+            error_n: -2.2874322439209384e-05
+            error_p: 2.2757626726625576e-05
+        -   name: lat_0
+            value: -30.221666736119055
+            unit: deg
+            error: 0.001976645265515813
+            min: -31.221666666666664
+            max: -29.221666666666664
+            frozen: false
+            error_n: -0.0001973353357101592
+            error_p: 0.0001977673861042818
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 0.9975660543817426
+            error: 0.01074016762302916
+            frozen: false
+            error_n: -0.010702927305386155
+            error_p: 0.010778781801525621
+        -   name: tilt
+            value: -0.011584424063690276
+            error: 0.011584447202498632
+            frozen: false
+            error_n: -0.011561030959634906
+            error_p: 0.011609317775701686
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+covariance: 4_minos_error_2.154434690031884_covariance.dat

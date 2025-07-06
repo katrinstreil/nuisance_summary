@@ -1,0 +1,107 @@
+### Starting TaskPrologue of job 512944 on tf090 at Thu Jun 26 10:17:24 AM CEST 2025
+Running on cores 0-1,64-65 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+ERROR: Unable to locate a modulefile for 'python/3.8-anaconda'
+Eff_area_1TeV_20per
+lambda_
+index
+amplitude
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/Dataset/datasets/dataset-simulated-2.154434690031884-hr.fits.gz
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.300  +/-    0.09             
+    amplitude                  :   3.85e-11  +/- 2.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.01             
+    tilt                       :      0.000  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+scanning amplitude
+Crablog.spectral.amplitude_scan
+stat_scan
+fit_results
+{'Crablog.spectral.amplitude_scan': [3.349899930267296e-11, 3.3962824656026255e-11, 3.443307211042399e-11, 3.4909830585934115e-11, 3.5393190233806716e-11, 3.588324245352129e-11, 3.638007991006998e-11, 3.688379655147912e-11, 3.739448762657435e-11, 3.791224970299188e-11, 3.8437180685437844e-11, 3.8969379834201824e-11, 3.9508947783925937e-11, 4.00559865626346e-11, 4.061059961102636e-11, 4.117289180203416e-11, 4.174296946065639e-11, 4.232094038406126e-11, 4.290691386197078e-11, 4.350100069732709e-11], 'stat_scan': [89289.19275300659, 89288.18788245608, 89287.30673487647, 89286.54451804669, 89285.89647432925, 89285.35790242467, 89284.92419284777, 89284.59083499885, 89284.3534339498, 89284.20772392293, 89284.1495700596, 89284.17497326763, 89284.28007167456, 89284.46114008661, 89284.71459158846, 89285.03697448225, 89285.42497064153, 89285.87539133475, 89286.38518560908, 89286.9514169135]}
+Traceback (most recent call last):
+  File "4_asimov_scan.py", line 132, in read_in_scan
+    with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}_{numpoints}.yml", "r") as stream:
+FileNotFoundError: [Errno 2] No such file or directory: '../Eff_area_1TeV_20per_PKSflare_crab_cutoff/data/4_scan_N_2.15h_lambda__20.yml'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "4_asimov_scan.py", line 158, in <module>
+    results_N = read_in_scan("N_2.15h")
+  File "4_asimov_scan.py", line 135, in read_in_scan
+    with open(f"../{c['folder']}/data/4_scan_{note}_{parname1}.yml", "r") as stream:
+FileNotFoundError: [Errno 2] No such file or directory: '../Eff_area_1TeV_20per_PKSflare_crab_cutoff/data/4_scan_N_2.15h_lambda_.yml'
+srun: error: tf090: task 1: Exited with exit code 1
+srun: Terminating StepId=512944.0
+slurmstepd: error: *** STEP 512944.0 ON tf090 CANCELLED AT 2025-06-26T10:21:08 ***
+srun: error: tf090: task 0: Terminated
+srun: Force Terminated StepId=512944.0
+=== JOB_STATISTICS ===
+=== current date     : Thu Jun 26 10:21:08 AM CEST 2025
+= Job-ID             : 512944 on tinyfat
+= Job-Name           : logfiles/4
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/4.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 1-00:00:00
+= Elapsed runtime    : 00:03:46
+= Total RAM usage    : 2.7 GiB of requested  GiB (%)   
+= Node list          : tf090
+= Subm/Elig/Start/End: 2025-06-26T10:17:22 / 2025-06-26T10:17:22 / 2025-06-26T10:17:22 / 2025-06-26T10:21:08
+======================
+=== Quota infos ======
+    Path                 Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc              84.0G   104.9G   209.7G        N/A     181K     500K   1,000K        N/A    
+    /home/saturn          963.0G     0.0K     0.0K        N/A  28,299                           N/A    
+======================

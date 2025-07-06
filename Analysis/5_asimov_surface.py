@@ -62,7 +62,7 @@ corrlength = c['corrlength']
 sys = c['sys'] 
 folder = c['folder']
 nbidx = 0
-print(livetime)
+print(sys)
 
 # %%time
 dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['source'], 
@@ -80,45 +80,23 @@ dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['sour
 setup = Setup(dataset_input=dataset_input)
 #setup.set_up_irf_sys(bias, resolution, norm, tilt)
 dataset_asimov, dataset_asimov_N = setup.run()
-
-
-# irf model
 setup.set_irf_model(dataset_asimov_N)
-if sys == "Eff_area":
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = True
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    
-if sys == "E_reco":
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
-    dataset_asimov_N.irf_model.parameters['norm'].frozen = True
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 1000
 
-    
-        
-if  "Combined" in sys:
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
-    dataset_asimov_N.irf_model.parameters['norm'].frozen = False
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 1000
+dataset_asimov, dataset_asimov_N = setup.apply_config_settings(dataset_asimov, dataset_asimov_N , c)
+e_reco_n = 1000
 
-# try:
-#     path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
-#     dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
-#     path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
-#     dataset_asimov.models = Models.read(path)
-# except:
-#     path = f'../{folder}/data/0_model_nui_livetime_{livetime}_{e_reco_n}.yml'
-#     dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
-#     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
-#     dataset_asimov.models = Models.read(path)
-# print(dataset_asimov.models)
+try:
+    path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
+    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
+    dataset_asimov.models = Models.read(path)
+except:
+    path = f'../{folder}/data/0_model_nui_{e_reco_n}.yml'
+    dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+    path = f'../{folder}/data/0_model.yml'
+    dataset_asimov.models = Models.read(path)
+print(dataset_asimov.models)
+
 
 ######################################################################
 # Minos
@@ -130,6 +108,13 @@ source = 'Crablog'
 scan_n_sigma = 2
 scan_n_values = 5
 e_reco_n = 1000
+
+if "Eff_area" in sys:
+    scan_n_sigma = 2
+    scan_n_values = 5
+    e_reco_n = 10
+
+
 
 def computing_surface(dataset_asimov, note, idx):
         
@@ -195,7 +180,7 @@ def computing_surface(dataset_asimov, note, idx):
             print(k)
             if k != "fit_results":
                 contour_write[k] =[float(_) for _ in np.array(result[k]).flatten()]#.tolist()
-
+                
         with open(f"../{folder}/data/3_surface_{note}_{parname1}_{parname2}_{scan_n_sigma}_{scan_n_values}_{e_reco_n}.yml", "w") as outfile:
         #with open(f"../{c['folder']}/data/3_surface_{note}_{parname1}_{parname2}.yml", "w") as outfile:
             yaml.dump(contour_write, outfile, default_flow_style=False)
@@ -223,10 +208,26 @@ if computing:
     results = computing_surface(dataset_asimov, "2.15h", 1)
     results = computing_surface(dataset_asimov, "2.15h", 2)
     
-else:
+
+
+# %%time
+computing = 1
+scan_n_values = 5
+
+dataset_asimov_N.e_reco_n = e_reco_n
+if computing:
+    
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
+    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
+    #results_N = computing_surface(dataset_asimov_N, "N_2.15h", 2)
+
+
+if computing == 0 :
     results = read_in_surface("2.15h")
     path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
     dataset_asimov.models = Models.read(path)
+    
+    results_N = read_in_surface("N_2.15h")
 
 fig, (ax1, ax, ax3) = plt.subplots(1, 3, figsize=(14, 5))
 stat_scan = results[0]["stat_scan"] - np.min(results[0]["stat_scan"])
@@ -253,16 +254,11 @@ im = ax3.pcolormesh(results[2]['Crablog.spectral.index_scan'],
 fig.colorbar(im, ax=ax3)
 
 
-# %%time
-computing = 1
-dataset_asimov_N.e_reco_n = e_reco_n
-if computing:
-    print("computing!!!")
-    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 0)
-    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 1)
-    results_N = computing_surface(dataset_asimov_N, "N_2.15h", 2)
-else:
-    results_N = read_in_surface("N_2.15h")
+idx = 1
+for parname1, parname2 in parameter_names[idx:idx+1] :
+        print( parname1, parname2)
+
+
 
 fig, (ax1, ax, ax3) = plt.subplots(1, 3, figsize=(14, 5))
 stat_scan = results_N[0]["stat_scan"] - np.min(results_N[0]["stat_scan"])
@@ -419,7 +415,7 @@ for i in range(len(parameter_names)):
     
     CS_Ns.append(CS_N)
 
-check_constistency = True
+check_constistency = 0
 if check_constistency :
     numpoints = 50      
     def read_in_contour(note, folder = c['folder'], numpoints = numpoints, numpoints2 =numpoints, numpoints3 =numpoints ):
@@ -490,20 +486,15 @@ if check_constistency :
 
     plt.tight_layout()
 
-note = "N_2.15h"
-def write():
+def write(note, CS_Ns):
     i = 0
+    
     for parname1, parname2 in parameter_names :
         print(parname1, parname2)
         fig = plt.figure()
         dat = CS_Ns[i].allsegs[0][0]
         b, a = dat[:, 0], dat[:, 1]
      
-        if i ==2:
-            a = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{parname1}']    
-            b = results_contour_N[i][f'{dataset_asimov.models[0].name}.spectral.{parname2}']
-        #if parname1 == "amplitude":
-        #    a *= 1e11
         plt.plot(
             a,
             b,
@@ -521,9 +512,13 @@ def write():
      
         
         i +=1
-write()
+write("N_2.15h", CS_Ns)
+
+write("2.15h", CSs)
 
 
+
+parameter_names
 
 
 

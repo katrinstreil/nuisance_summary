@@ -17,7 +17,9 @@ unset SLURM_EXPORT_ENV
 
 module use -a  /apps/modules/data/tools
 module load python/3.8-anaconda
-source activate /home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev
+# source activate /home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev
+source /home/wecapstor1/caph/mppi045h/anaconda3/etc/profile.d/conda.sh
+conda activate  /home/wecapstor1/caph/mppi045h/anaconda3/envs/gammapy-dev
 
 
 srun --mpi=pmi2  python 4_asimov_scan.py

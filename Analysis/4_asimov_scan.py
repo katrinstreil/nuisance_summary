@@ -2,11 +2,8 @@
 Runnning with gammapy-dev/IRF_model
 -----------------------------------
 
-Fitting asimov datasets with nuisance parameters based on the different
-livetimes
-
 """
-print("start")
+
 
 ######################################################################
 # Setup
@@ -74,74 +71,21 @@ parameter_names_1  = set(list(np.array(parameter_names).ravel()))
 for p in parameter_names_1:
     print(p)
 
-# %%time
-dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['source'], 
-                                               livetime = f"{livetime}-hr",
-                                        parameters = None)
 
-
-print(dataset_input)
 ######################################################################
 # Datasets
 # --------
 # 
 
-    
+dataset_input  = Dataset_load.create_asimov(model = c['model'], source = c['source'], 
+                                               livetime = f"{livetime}-hr",
+                                        parameters = None) 
 setup = Setup(dataset_input=dataset_input)
 #setup.set_up_irf_sys(bias, resolution, norm, tilt)
 dataset_asimov, dataset_asimov_N = setup.run()
 # irf model
 setup.set_irf_model(dataset_asimov_N)
-if "Eff_area" in sys:
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = True
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 20
-    
-if sys == "E_reco":
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
-    dataset_asimov_N.irf_model.parameters['norm'].frozen = True
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 1000
-    
-    
-if "Combined" in sys:
-    dataset_asimov_N.models.parameters['resolution'].frozen = True
-    dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
-    dataset_asimov_N.irf_model.parameters['bias'].frozen = False
-    dataset_asimov_N.irf_model.parameters['norm'].frozen = False
-    setup.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
-    e_reco_n = 1000
-
-    
-if sys == "BKG":
-        
-    # piece wise model
-    # remove old bkg model
-    setup.set_up_bkg_sys_V( breake = 10,
-                        index1 = 2,
-                        index2 = 1.5, 
-                        magnitude = magnitude )
-
-    dataset_asimov, dataset_asimov_N = setup.run()
-
-    setup.unset_model(dataset_asimov_N, FoVBackgroundModel)
-    setup.set_piecewise_bkg_model(dataset_asimov_N)
-    # energy of the following parameters smaller than ethrshold
-    dataset_asimov_N.background_model.parameters['norm0'].frozen = True
-    dataset_asimov_N.background_model.parameters['norm1'].frozen = True
-    dataset_asimov_N.background_model.parameters['norm2'].frozen = True
-    dataset_asimov_N.background_model.parameters['norm3'].frozen = True
-    setup.set_bkg_prior(dataset_asimov_N, magnitude, corrlength)
-    frozen_pos = 1
-    if frozen_pos:
-        dataset_asimov.models.parameters['lon_0'].frozen = True
-        dataset_asimov.models.parameters['lat_0'].frozen = True
-        dataset_asimov_N.models.parameters['lon_0'].frozen = True
-        dataset_asimov_N.models.parameters['lat_0'].frozen = True
+dataset_asimov, dataset_asimov_N = setup.apply_config_settings(dataset_asimov, dataset_asimov_N, c)
 
 
 
@@ -151,6 +95,8 @@ if sys == "BKG":
 # ----
 # 
 
+parameter_names_1
+
 def computing_scan(dataset, note):
         
     fit_cor = Fit(store_trace=False)
@@ -159,8 +105,7 @@ def computing_scan(dataset, note):
     
     results = []
     for parname1 in parameter_names_1 :
-        #if parname1 == 'lambda_':
-        if True:
+        if parname1 == 'amplitude':
             print("scanning",  parname1)
             dataset.models.parameters[parname1].scan_n_values=numpoints
             result = fit_cor.stat_profile(dataset,
@@ -195,22 +140,16 @@ def read_in_scan(note):
 
 # %%time
 numpoints = 20
-computing = 0
+computing = 1
 if computing:
     results = computing_scan(dataset_asimov, "2.15h")
-else:
-    results = read_in_scan("2.15h")
-    path = f'../{folder}/data/0_model_livetime_{livetime}.yml'
-    dataset_asimov.models = Models.read(path)
-    
 
 
 # %%time
 computing = 1
-numpoints = 3
+numpoints = 20
 
 if computing:
-    print("computing")
     dataset_asimov_N.models.parameters['lon_0'].frozen = True
     dataset_asimov_N.models.parameters['lat_0'].frozen = True
     
@@ -221,10 +160,16 @@ else:
         path = f'../{folder}/data/0_model_nui_livetime_{livetime}.yml'
         dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
     except:
-        path = f'../{folder}/data/0_model_nui_livetime_{livetime}_2000.yml'
-        dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)        
+        path = f'../{folder}/data/0_model_nui_1000.yml'
+        dataset_asimov_N = Dataset_load.load_dataset_N(dataset_asimov_N, path,bkg_sys = False)   
+        
+    results = read_in_scan("2.15h")
+    path = f'../{folder}/data/0_model.yml'
+    dataset_asimov.models = Models.read(path)
         
 print(results_N)
+
+print(dataset_asimov_N.models)
 
 import colors as s
 s.blue
@@ -310,8 +255,8 @@ for i, p in enumerate(parameter_names_1):
                     label = f'1$\sigma$ error (Minuit): $\pm${amplitude_err_N*factor:.5}')
                  
         nn = 2
-        ax.set_xlim(amplitude_N-amplitude_err_N*nn, 
-                   amplitude_N+amplitude_err_N*nn)
+        #ax.set_xlim(amplitude_N-amplitude_err_N*nn, 
+        #           amplitude_N+amplitude_err_N*nn)
         ax.set_ylim(np.min(stat_profile['stat_scan'])-0.5,
                     np.min(stat_profile['stat_scan'])+ 3)
 
@@ -336,11 +281,11 @@ for i, p in enumerate(parameter_names_1):
     
     
 
-# path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
-# dataset_asimov_N.models.write(path, overwrite = 1)
+path = f'../{folder}/data/0_model_nui_livetime_{livetime}_np.yml'
+dataset_asimov_N.models.write(path, overwrite = 1)
 
-# path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
-# dataset_asimov.models.write(path, overwrite = 1)
+path = f'../{folder}/data/0_model_livetime_{livetime}_np.yml'
+dataset_asimov.models.write(path, overwrite = 1)
 
 print(dataset_asimov_N.models.parameters['index'].error)
 print(dataset_asimov_N.models.parameters['index'].error_n)
@@ -403,13 +348,20 @@ if compute_minos :
 else:
     minos_model_N = Models.read(f'../{folder}/data/4_minos_error_{lt}_nui.yaml')    
     minos_model = Models.read(f'../{folder}/data/4_minos_error_{lt}.yaml')
+    
+minos_model_N.parameters['lambda_'].error_n *= 0.01
+minos_model_N.parameters['lambda_'].error_p *= 0.01
+
+minos_model.parameters['lambda_'].error_n *= 0.1
+minos_model.parameters['lambda_'].error_p *= 0.1
 
 minos_model_N.parameters['index'].value = dataset_asimov_N.models.parameters['index'].value
 minos_model_N.parameters['lambda_'].value = dataset_asimov_N.models.parameters['lambda_'].value
 minos_model_N.parameters['amplitude'].value = dataset_asimov_N.models.parameters['amplitude'].value
 
 
-minos_model_N.parameters['index'].error_p
+
+
 
 print(minos_model.parameters['index'].error)
 print(minos_model.parameters['index'].error_n)
@@ -522,18 +474,18 @@ for i, p in enumerate(parameter_names_1):
         par = minos_model_N.parameters[p]
         value, error_n, error_p  = par.value, par.error_n, par.error_p
         print(value)
-        ax.vlines(value-error_n, ylim[0], ymax,color = 'purple' ,
+        ax.vlines(value+error_n, ylim[0], ymax,color = 'purple' ,
                   linestyles='dashed'
                  )
         ax.vlines(value+error_p, ylim[0], ymax,color = 'purple',
                   linestyles='dashed',
-                    label = f'1$\sigma$ error (Minos): -{error_n*factor:.4} +{error_p*factor:.4} ')
+                    label = f'1$\sigma$ error (Minos): {error_n*factor:.4} +{error_p*factor:.4} ')
                    
               
             
-        nn = 2
-        ax.set_xlim(amplitude_N-amplitude_err_N*nn, 
-                   amplitude_N+amplitude_err_N*nn)
+        nn = 5
+        #ax.set_xlim(value-error_n*nn, 
+        #           value+error_p*nn)
         ax.set_ylim(np.min(stat_profile['stat_scan'])-0.5,
                     np.min(stat_profile['stat_scan'])+ 3)
 
@@ -633,3 +585,7 @@ for i, m in enumerate([setup.dataset_helper.models[0],dataset_asimov.models[0] ,
 
 
 
+
+######################################################################
+# 
+# 

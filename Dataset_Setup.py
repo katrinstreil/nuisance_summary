@@ -159,6 +159,85 @@ class Setup:
             self.add_counts(dataset_N)
         
         return dataset, dataset_N
+    
+    
+    def apply_config_settings(self, dataset_asimov, dataset_asimov_N, c):
+                             
+                             
+        livetime = c['livetime']
+        zero = c['zero'] 
+        norm = c['norm'] 
+        tilt = c['tilt'] 
+        bias = c['bias'] 
+        resolution = c['resolution'] 
+        magnitude = c['magnitude'] 
+        corrlength = c['corrlength']
+        reference = 100
+        onehundred = True
+        if 'reference' in c.keys():
+            reference = c['reference']
+            onehundred = False
+            print("reference", reference)
+        sys = c['sys'] 
+        folder = c['folder']
+        nbidx = 0
+        sys
+        livetimes = livetime#[7:8]
+
+
+
+        if  "Eff_area" in sys:
+            dataset_asimov_N.models.parameters['resolution'].frozen = True
+            dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
+            dataset_asimov_N.irf_model.parameters['bias'].frozen = True
+            self.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+            dataset_asimov_N.irf_model.parameters['reference'].value = reference
+
+            print(dataset_asimov_N.irf_model)
+
+        if sys == "E_reco":
+            dataset_asimov_N.models.parameters['resolution'].frozen = True
+            dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
+            dataset_asimov_N.irf_model.parameters['norm'].frozen = True
+            dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+            self.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+            e_reco_n = 3000
+
+        if  "Combined" in sys:
+            dataset_asimov_N.models.parameters['resolution'].frozen = True
+            dataset_asimov_N.irf_model.parameters['tilt'].frozen = False
+            dataset_asimov_N.irf_model.parameters['bias'].frozen = False
+            self.set_irf_prior(dataset_asimov_N, bias, resolution, norm, tilt)
+            dataset_asimov_N.irf_model.parameters['reference'].value = reference
+            e_reco_n = 1000
+
+        if sys == "BKG":
+
+            # piece wise model
+            # remove old bkg model
+            setup.set_up_bkg_sys_V( breake = 10,
+                                index1 = 2,
+                                index2 = 1.5, 
+                                magnitude = magnitude )
+
+            dataset_asimov, dataset_asimov_N = setup.run()
+
+            self.unset_model(dataset_asimov_N, FoVBackgroundModel)
+            self.set_piecewise_bkg_model(dataset_asimov_N)
+            # energy of the following parameters smaller than ethrshold
+            dataset_asimov_N.background_model.parameters['norm0'].frozen = True
+            dataset_asimov_N.background_model.parameters['norm1'].frozen = True
+            dataset_asimov_N.background_model.parameters['norm2'].frozen = True
+            dataset_asimov_N.background_model.parameters['norm3'].frozen = True
+            self.set_bkg_prior(dataset_asimov_N, magnitude, corrlength)
+            frozen_pos = 1
+            if frozen_pos:
+                dataset_asimov.models.parameters['lon_0'].frozen = True
+                dataset_asimov.models.parameters['lat_0'].frozen = True
+                dataset_asimov_N.models.parameters['lon_0'].frozen = True
+                dataset_asimov_N.models.parameters['lat_0'].frozen = True
+                
+        return dataset_asimov, dataset_asimov_N
         
     def set_up_dataset(self, name=None):
         """
