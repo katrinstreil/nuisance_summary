@@ -195,7 +195,7 @@ class Setup:
 
             print(dataset_asimov_N.irf_model)
 
-        if sys == "E_reco":
+        if  "E_reco"  in sys:
             dataset_asimov_N.models.parameters['resolution'].frozen = True
             dataset_asimov_N.irf_model.parameters['tilt'].frozen = True
             dataset_asimov_N.irf_model.parameters['norm'].frozen = True

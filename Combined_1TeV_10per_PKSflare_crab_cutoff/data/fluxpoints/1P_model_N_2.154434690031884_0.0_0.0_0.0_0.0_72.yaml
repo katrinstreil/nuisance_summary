@@ -1,0 +1,133 @@
+components:
+-   name: Crablog
+    type: SkyModel
+    spectral:
+        type: ExpCutoffPowerLawSpectralModel
+        parameters:
+        -   name: index
+            value: 2.291847535230026
+            error: 0.10403318808245393
+            frozen: true
+        -   name: amplitude
+            value: 4.090175558738452e-11
+            unit: cm-2 s-1 TeV-1
+            error: 4.7959921935618115e-12
+            frozen: false
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+        -   name: lambda_
+            value: 0.07881865279517643
+            unit: TeV-1
+            error: 0.03206640973076705
+            frozen: true
+        -   name: alpha
+            value: 1.0
+            frozen: true
+    spatial:
+        type: PointSpatialModel
+        frame: icrs
+        parameters:
+        -   name: lon_0
+            value: 329.6764276113964
+            unit: deg
+            error: 0.002090825566081931
+            min: 328.67999999999995
+            max: 330.67999999999995
+            frozen: true
+        -   name: lat_0
+            value: -30.222522903901847
+            unit: deg
+            error: 0.0019298291021673634
+            min: -31.221666666666664
+            max: -29.221666666666664
+            frozen: true
+-   name: dataset_N-irf
+    type: IRFModels
+    datasets_names: dataset_N
+    e_reco_model:
+        type: ERecoIRFModel
+        parameters:
+        -   name: bias
+            value: -0.00616058531163027
+            error: 0.03688864099176828
+            frozen: false
+            prior:
+                type: GaussianPrior
+                parameters:
+                -   name: mu
+                    value: 0.0
+                    unit: ''
+                -   name: sigma
+                    value: 0.1
+                    unit: ''
+                weight: 1
+                modelparameters:
+                - bias
+                dimension: 1
+        -   name: resolution
+            value: 0.0
+            frozen: true
+    eff_area_model:
+        type: EffAreaIRFModel
+        spectral:
+            type: PowerLawNormOneHundredSpectralModel
+            parameters:
+            -   name: norm
+                value: -9.437152885764626e-05
+                error: 0.10087731754241662
+                frozen: false
+                prior:
+                    type: GaussianPrior
+                    parameters:
+                    -   name: mu
+                        value: 0.0
+                        unit: ''
+                    -   name: sigma
+                        value: 0.1
+                        unit: ''
+                    weight: 1
+                    modelparameters:
+                    - norm
+                    dimension: 1
+            -   name: tilt
+                value: -0.00013060788334765298
+                error: 0.019982488684022262
+                frozen: false
+                prior:
+                    type: GaussianPrior
+                    parameters:
+                    -   name: mu
+                        value: 0.0
+                        unit: ''
+                    -   name: sigma
+                        value: 0.02
+                        unit: ''
+                    weight: 1
+                    modelparameters:
+                    - tilt
+                    dimension: 1
+            -   name: reference
+                value: 1.0
+                unit: TeV
+                frozen: true
+-   type: FoVBackgroundModel
+    datasets_names:
+    - dataset_N
+    spectral:
+        type: PowerLawNormSpectralModel
+        parameters:
+        -   name: norm
+            value: 1.0073344827115471
+            error: 0.010781028675557384
+            frozen: true
+        -   name: tilt
+            value: 0.0025345231148549354
+            error: 0.011567267042987129
+            frozen: true
+        -   name: reference
+            value: 1.0
+            unit: TeV
+            frozen: true
+covariance: 1P_model_N_2.154434690031884_0.0_0.0_0.0_0.0_72_covariance.dat

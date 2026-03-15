@@ -1,0 +1,4311 @@
+### Starting TaskPrologue of job 513469 on tf088 at Sun Jul  6 05:10:20 PM CEST 2025
+Running on cores 0-1,64-65 with governor ondemand
+No GPU known
+### Finished TaskPrologue
+
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+ERROR: Unable to locate a modulefile for 'python/3.8-anaconda'
+Eff_area_1TeV_10per
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/Dataset/datasets/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+shift [0.05886785], tilt [0.00169012],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 220
+	total stat : 89703.68
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.377  +/-    0.08             
+    amplitude                  :   3.67e-11  +/- 2.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.071  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.684  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.01             
+    tilt                       :     -0.025  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.6679949499659657e-11   2.2352718740629073e-12   2.3765823627088194   0.08385489411834851   0.07086933202924572   0.03366842213046211   2.154434690031884  
+3.6679949499659657e-11   2.2352718740629073e-12   2.3765823627088194   0.08385489411834851   0.07086933202924572   0.03366842213046211   2.154434690031884  0.9996699675838364   0.010746018060079713   -0.02505217622171112   0.011419757518273859   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 300
+	total stat : 89703.57
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.378  +/-    0.09             
+    amplitude                  :   3.66e-11  +/- 4.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.070  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.684  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.01             
+    tilt                       :     -0.025  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.664087804960524e-11   4.316994651255947e-12   2.3778166529331273   0.08607679723020965   0.07031288219669073   0.033574176837238165   0.99968744569415   0.01074613014110877   -0.02501267898359857   0.01141992389466184   -6.484123687831118e-05   0.10065041013572748   0.00015668815633682759   0.01998608618096744   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+1
+========================================================================================================================
+shift [0.10991058], tilt [-0.0217595],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 90080.05
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.285  +/-    0.08             
+    amplitude                  :   3.97e-11  +/- 2.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.099  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.226  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.005  +/-    0.01             
+    tilt                       :     -0.021  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.9745903896563526e-11   2.4473664044570513e-12   2.285321119524824   0.0844704989514343   0.09933316454633959   0.03540975954825395   2.154434690031884  
+3.9745903896563526e-11   2.4473664044570513e-12   2.285321119524824   0.0844704989514343   0.09933316454633959   0.03540975954825395   2.154434690031884  1.0050435288708202   0.010773775411247176   -0.02056700995548345   0.011413054073271176   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+Eff_area_1TeV_10per
+loaded dataset:
+/home/wecapstor1/caph/mppi045h/nuisance_summary/Dataset/datasets/dataset-simulated-2.154434690031884-hr.fits.gz
+
+========================================================================================================================
+0
+========================================================================================================================
+shift [0.00520355], tilt [0.00269601],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 201
+	total stat : 89285.24
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.266  +/-    0.09             
+    amplitude                  :   3.96e-11  +/- 2.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.089  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.675  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :     -0.011  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.963139958544239e-11   2.4978475783522897e-12   2.26575201376546   0.08747936676277974   0.08915652968587381   0.03669397598538837   2.154434690031884  
+3.963139958544239e-11   2.4978475783522897e-12   2.26575201376546   0.08747936676277974   0.08915652968587381   0.03669397598538837   2.154434690031884  0.9919468546743057   0.01070107688796167   -0.01083232709075238   0.011564778943586922   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 274
+	total stat : 89285.31
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.267  +/-    0.09             
+    amplitude                  :   3.96e-11  +/- 4.7e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.089  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.675  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :     -0.011  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.9599796187326794e-11   4.719541378610689e-12   2.266848084358102   0.08958559898025731   0.08868469734443699   0.03662006154646958   0.9919889527503684   0.010701528096261417   -0.010838801991032748   0.011564500009937652   0.0001647037288585422   0.10087026880392229   1.0278555502264534e-05   0.01998335971345686   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+1
+========================================================================================================================
+shift [-0.11031069], tilt [5.32511444e-05],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 219
+	total stat : 89084.89
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.079  +/-    0.11             
+    amplitude                  :   3.82e-11  +/- 3.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.212  +/-    0.06 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.004  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.82348341063005e-11   3.2788754433255625e-12   2.07891306715469   0.11250194745665426   0.21231650699229365   0.056468912386717224   2.154434690031884  
+3.82348341063005e-11   3.2788754433255625e-12   2.07891306715469   0.11250194745665426   0.21231650699229365   0.056468912386717224   2.154434690031884  1.0042004252255088   0.010752787403112907   0.006487753070163457   0.011589524280239922   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 324
+	total stat : 89084.67
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.081  +/-    0.11             
+    amplitude                  :   3.82e-11  +/- 5.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.211  +/-    0.06 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.004  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.816107868753276e-11   5.060405053389427e-12   2.0814265186135885   0.11405830040187692   0.21107469201206053   0.05630345815554194   1.0041844159520663   0.010752603547225658   0.00647727423090082   0.01158955285547817   8.855642326765882e-05   0.10075165340560115   -3.3017203918023674e-05   0.019990392721390998   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+2
+========================================================================================================================
+shift [-0.04387015], tilt [0.02735728],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 189
+	total stat : 89209.62
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.242  +/-    0.08             
+    amplitude                  :   3.96e-11  +/- 2.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.080  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.01             
+    tilt                       :      0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.9646935790895975e-11   2.143876529539636e-12   2.242279390395623   0.07763734934299354   0.0803750663369661   0.028553012994105478   2.154434690031884  
+3.9646935790895975e-11   2.143876529539636e-12   2.242279390395623   0.07763734934299354   0.0803750663369661   0.028553012994105478   2.154434690031884  0.9999262056510776   0.01074138809553825   0.01224118275602943   0.011667273304032043   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 278
+	total stat : 89209.61
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.245  +/-    0.08             
+    amplitude                  :   3.96e-11  +/- 4.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.079  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.000  +/-    0.01             
+    tilt                       :      0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.956105515457298e-11   4.5261795188784355e-12   2.245210865237605   0.07987642924698271   0.0792102819335165   0.028367862138320345   0.9998926964285697   0.010740998321503215   0.01223325514990491   0.01166742553528307   0.0003800202325455607   0.10074246508001874   -4.9922584998355585e-05   0.019980159251736716   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+3
+========================================================================================================================
+shift [-0.01287851], tilt [0.02123504],  bias [0.], res [0.]
+random seed
+reference 1.0
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 289
+	total stat : 90079.94
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.285  +/-    0.09             
+    amplitude                  :   3.96e-11  +/- 4.7e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.226  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.004  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.005  +/-    0.01             
+    tilt                       :     -0.021  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.958541204058198e-11   4.6686604271562965e-12   2.2848794099450083   0.08683667501205619   0.09954474765787262   0.03547478024556451   1.005127430655135   0.010774598848811932   -0.02050897635814261   0.011412965931213449   0.004153787907777006   0.10070267114935748   2.265367591206702e-05   0.019985751020233356   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+2
+========================================================================================================================
+shift [0.20880229], tilt [0.00119575],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 231
+	total stat : 88730.02
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.248  +/-    0.07             
+    amplitude                  :   4.62e-11  +/- 2.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.076  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.986  +/-    0.01             
+    tilt                       :      0.002  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.623509741583146e-11   2.301757266676106e-12   2.248047013907312   0.07073436076319028   0.07598226828715782   0.026499355218174432   2.154434690031884  
+4.623509741583146e-11   2.301757266676106e-12   2.248047013907312   0.07073436076319028   0.07598226828715782   0.026499355218174432   2.154434690031884  0.9861541842964421   0.010673330409227324   0.00227844691619983   0.011694600815853343   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 371
+	total stat : 88729.84
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.250  +/-    0.07             
+    amplitude                  :   4.62e-11  +/- 5.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.075  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.986  +/-    0.01             
+    tilt                       :      0.002  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.618356798195457e-11   5.191005534872941e-12   2.2495674293990118   0.07334374663087004   0.07541757906944409   0.026426764437748076   0.9861105764905432   0.010673017020842853   0.0020093886586603433   0.011693052836326046   0.00012296686982971584   0.10065981208118101   2.6760167614185092e-05   0.019977498111107463   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+3
+========================================================================================================================
+shift [0.07483387], tilt [-0.03341865],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 231
+	total stat : 90648.55
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.468  +/-    0.07             
+    amplitude                  :   3.69e-11  +/- 1.8e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.030  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.018  +/-    0.01             
+    tilt                       :     -0.004  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.69099397786955e-11   1.8428081819065264e-12   2.467636817928772   0.07049008774062154   0.029723545133217774   0.02317041786950098   2.154434690031884  
+3.69099397786955e-11   1.8428081819065264e-12   2.467636817928772   0.07049008774062154   0.029723545133217774   0.02317041786950098   2.154434690031884  1.0176514474931113   0.010838051380271505   -0.0036444741336226364   0.011463111172829664   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 331
+	total stat : 90648.61
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.469  +/-    0.07             
+    amplitude                  :   3.69e-11  +/- 4.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.029  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.018  +/-    0.01             
+    tilt                       :     -0.004  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.688871535715817e-11   4.158216100021286e-12   2.4691429740945217   0.0732598159555103   0.029288481215723028   0.023183542141706155   1.0176605630650595   0.010838145341567974   -0.0036780666706972332   0.0114628546512632   -0.00015724437457249494   0.10082997573289378   -4.0902505356466955e-06   0.01998210331644393   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+4
+========================================================================================================================
+shift [-0.08047829], tilt [0.00287627],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 220
+	total stat : 87844.95
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.149  +/-    0.10             
+    amplitude                  :   3.97e-11  +/- 3.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.149  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.987  +/-    0.01             
+    tilt                       :      0.031  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.966439502902125e-11   2.9577757504361446e-12   2.149167824711944   0.10114931275174281   0.14873498140045557   0.04724686378220443   2.154434690031884  
+3.966439502902125e-11   2.9577757504361446e-12   2.149167824711944   0.10114931275174281   0.14873498140045557   0.04724686378220443   2.154434690031884  0.9868873713673559   0.01066504410358796   0.031172784907620984   0.011870900088867814   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 320
+	total stat : 87845.02
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 204
+	total stat : 88582.92
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.369  +/-    0.08             
+    amplitude                  :   3.53e-11  +/- 2.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.067  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.990  +/-    0.01             
+    tilt                       :     -0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.528201790238728e-11   2.066934312862406e-12   2.3692931191340176   0.08115595109542974   0.06732265165702059   0.030925576531828872   2.154434690031884  
+3.528201790238728e-11   2.066934312862406e-12   2.3692931191340176   0.08115595109542974   0.06732265165702059   0.030925576531828872   2.154434690031884  0.9898993920529697   0.010685642561765438   -0.004745571323621542   0.011606679626753184   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 322
+	total stat : 88582.83
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.371  +/-    0.08             
+    amplitude                  :   3.52e-11  +/- 4.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.067  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.990  +/-    0.01             
+    tilt                       :     -0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.524919984218989e-11   4.1136629911738655e-12   2.3708710497494927   0.08343477701042586   0.0667329542705294   0.03083386946416695   0.9898822131614151   0.010685462125315178   -0.004764354951108466   0.011606673602619785   -7.77917792567414e-05   0.10073011837282528   4.8463637216520326e-05   0.01998551063087661   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+4
+========================================================================================================================
+shift [0.03982927], tilt [-0.04133082],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 222
+	total stat : 88543.01
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.275  +/-    0.10             
+    amplitude                  :   3.24e-11  +/- 2.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.100  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :     -0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.238668498917999e-11   2.271394381531846e-12   2.275232201607393   0.09608044801649127   0.0997517814704443   0.04094220093291114   2.154434690031884  
+3.238668498917999e-11   2.271394381531846e-12   2.275232201607393   0.09608044801649127   0.0997517814704443   0.04094220093291114   2.154434690031884  0.9921743674364131   0.010694150168190962   -0.004839330252248764   0.011598626896042836   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 346
+	total stat : 88542.94
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.151  +/-    0.10             
+    amplitude                  :   3.96e-11  +/- 5.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.148  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.987  +/-    0.01             
+    tilt                       :      0.031  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.9610829118420475e-11   4.9762676164557275e-12   2.1509355006198687   0.10291474625430334   0.1478637198231376   0.04711842580506043   0.9869016973011919   0.010665195620149615   0.03116848817604896   0.011870818022619604   -2.2934995569497997e-05   0.10077575486450972   4.512701841446608e-05   0.019986755350712447   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+5
+========================================================================================================================
+shift [-0.19240435], tilt [-0.00774881],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 221
+	total stat : 89762.03
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.165  +/-    0.10             
+    amplitude                  :   2.97e-11  +/- 2.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.112  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.015  +/-    0.01             
+    tilt                       :      0.008  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.9712138849592263e-11   2.0782093740812135e-12   2.164746166964062   0.09896840125063654   0.1115381111241895   0.03983837242113919   2.154434690031884  
+2.9712138849592263e-11   2.0782093740812135e-12   2.164746166964062   0.09896840125063654   0.1115381111241895   0.03983837242113919   2.154434690031884  1.0149342199327986   0.010802718364631637   0.007963778718485855   0.011533672201692845   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 336
+	total stat : 89762.07
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.166  +/-    0.10             
+    amplitude                  :   2.97e-11  +/- 3.6e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.111  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.223  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.015  +/-    0.01             
+    tilt                       :      0.008  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.967784349190793e-11   3.6446299877615175e-12   2.166021076441375   0.10078658492895295   0.11089457337618301   0.03972827254010105   1.0149678098251584   0.010803031178224566   0.00799249565564013   0.011533684939095314   -3.198234063043733e-05   0.1006842368104537   9.684773306091685e-06   0.01998493538444393   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+6
+========================================================================================================================
+shift [-0.00086983], tilt [-0.02273136],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.277  +/-    0.10             
+    amplitude                  :   3.23e-11  +/- 4.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.099  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.992  +/-    0.01             
+    tilt                       :     -0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.23459486368397e-11   3.978842861748337e-12   2.277017277437265   0.0979394176013187   0.09902777497625354   0.04080589155976929   0.9921581160110055   0.01069396321143964   -0.004843788394763167   0.011598701557778911   5.394630018953992e-05   0.1007808221544003   -1.7373410474939884e-05   0.01998676906232412   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+5
+========================================================================================================================
+shift [0.05160236], tilt [0.04834714],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 237
+	total stat : 90497.40
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.398  +/-    0.07             
+    amplitude                  :   4.89e-11  +/- 2.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.065  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.011  +/-    0.01             
+    tilt                       :     -0.005  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.8938141897286225e-11   2.437860320054303e-12   2.3977652785840204   0.06862927821656972   0.06470989275163246   0.0266470706567575   2.154434690031884  
+4.8938141897286225e-11   2.437860320054303e-12   2.3977652785840204   0.06862927821656972   0.06470989275163246   0.0266470706567575   2.154434690031884  1.0108549725672902   0.010811895916111158   -0.004569515166732943   0.01150095532087103   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 344
+	total stat : 90497.29
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.399  +/-    0.07             
+    amplitude                  :   4.89e-11  +/- 5.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.064  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.224  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.001  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.011  +/-    0.01             
+    tilt                       :     -0.004  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.885966714099042e-11   5.495701097535875e-12   2.39908437331552   0.07134722625628304   0.06408967138158847   0.026556823998558098   1.0109508692692044   0.010812765758678847   -0.004403662783774964   0.01150152661210923   0.0005030333647832949   0.10075732271988666   3.453400178527488e-05   0.019983076419053794   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+6
+========================================================================================================================
+shift [0.08963238], tilt [0.0053453],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 220
+	total stat : 89127.29
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.144  +/-    0.11             
+    amplitude                  :   3.78e-11  +/- 3.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.168  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.997  +/-    0.01             
+    tilt                       :     -0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.7844460267542184e-11   3.162537483756443e-12   2.144403189523861   0.11000662172417737   0.16849575817132031   0.05450575492794041   2.154434690031884  
+3.7844460267542184e-11   3.162537483756443e-12   2.144403189523861   0.11000662172417737   0.16849575817132031   0.05450575492794041   2.154434690031884  0.9966750523884086   0.010723292861244389   -0.012530036763672805   0.011521354993387646   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 322
+	total stat : 89127.31
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.146  +/-    0.11             
+    amplitude                  :   3.78e-11  +/- 5.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.168  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.997  +/-    0.01             
+    tilt                       :     -0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.7780890368258276e-11   4.953392156752556e-12   2.1461982787005476   0.1116135332614145   0.1675898814871314   0.05436049057865662   0.996682712087593   0.010723329874323164   -0.012530910761034747   0.011521322016400671   9.616384337365978e-05   0.10069288391728429   1.9112954117100352e-05   0.019988919813744028   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+7
+========================================================================================================================
+shift [0.04196541], tilt [-0.03232951],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 89657.56
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.116  +/-    0.09             
+    amplitude                  :   3.68e-11  +/- 2.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.109  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.007  +/-    0.01             
+    tilt                       :      0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.68099015591435e-11   2.236643403726148e-12   2.1161939208450407   0.08724858426968565   0.1085148370348868   0.034361357702803214   2.154434690031884  
+3.68099015591435e-11   2.236643403726148e-12   2.1161939208450407   0.08724858426968565   0.1085148370348868   0.034361357702803214   2.154434690031884  1.0066694202667628   0.010771530319788267   0.012179493520559378   0.011627448865910276   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 254
+	total stat : 89657.50
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 221
+	total stat : 90979.82
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.443  +/-    0.08             
+    amplitude                  :   4.16e-11  +/- 2.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.076  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.020  +/-    0.01             
+    tilt                       :     -0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.158766626037747e-11   2.471175989779046e-12   2.4432898969609047   0.0792913796797152   0.07628320857212764   0.03375103431341802   2.154434690031884  
+4.158766626037747e-11   2.471175989779046e-12   2.4432898969609047   0.0792913796797152   0.07628320857212764   0.03375103431341802   2.154434690031884  1.0203818573426757   0.010858237229411745   -0.01428390309136823   0.011378508281160877   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 336
+	total stat : 90980.03
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.446  +/-    0.08             
+    amplitude                  :   4.15e-11  +/- 4.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.075  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.676  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.020  +/-    0.01             
+    tilt                       :     -0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.1526894244028635e-11   4.867191637274382e-12   2.4456342019972315   0.08160866365134452   0.07534314233941278   0.03360745558075838   1.020366987816771   0.010858143546691009   -0.01436483610664554   0.01137808710029056   4.671096400520481e-05   0.10082556661400846   4.228505182581916e-05   0.019988763466644414   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+7
+========================================================================================================================
+shift [0.18358815], tilt [-0.03154135],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 201
+	total stat : 88372.08
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.331  +/-    0.09             
+    amplitude                  :   4.23e-11  +/- 3.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.123  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.683  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.988  +/-    0.01             
+    tilt                       :      0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.225738867276516e-11   3.0695686631308297e-12   2.3305035509106267   0.09331578056616407   0.12264582776087088   0.045665241657072246   2.154434690031884  
+4.225738867276516e-11   3.0695686631308297e-12   2.3305035509106267   0.09331578056616407   0.12264582776087088   0.045665241657072246   2.154434690031884  0.987737063757198   0.010673793759287935   0.010257053425650708   0.01172647423054062   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 290
+	total stat : 88371.93
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.116  +/-    0.09             
+    amplitude                  :   3.70e-11  +/- 4.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.109  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.004  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.007  +/-    0.01             
+    tilt                       :      0.012  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.695491118569113e-11   4.379894740092762e-12   2.1163160246169954   0.08945539253073624   0.10851297109959068   0.03439233124446901   1.0066472533935709   0.01077130022034654   0.012184554494902872   0.011627632577281563   -0.0038700486820150387   0.10098599724618433   6.539354899285618e-06   0.019980032521718677   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+8
+========================================================================================================================
+shift [0.13028163], tilt [-0.01316286],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 213
+	total stat : 88882.15
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.256  +/-    0.11             
+    amplitude                  :   4.13e-11  +/- 3.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.135  +/-    0.06 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.683  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.995  +/-    0.01             
+    tilt                       :     -0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.133872207456479e-11   3.519405735517669e-12   2.255578077795534   0.10942357564039311   0.1351717290936288   0.055990897961369114   2.154434690031884  
+4.133872207456479e-11   3.519405735517669e-12   2.255578077795534   0.10942357564039311   0.1351717290936288   0.055990897961369114   2.154434690031884  0.9952329707250257   0.010716767809568492   -0.005821836462769214   0.011576096687174955   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 322
+	total stat : 88881.93
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.258  +/-    0.11             
+    amplitude                  :   4.13e-11  +/- 5.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.134  +/-    0.06 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.683  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.995  +/-    0.01             
+    tilt                       :     -0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.1250313992466214e-11   5.4448867050263504e-12   2.2583292253708787   0.11063368650369683   0.1338098012479879   0.05551560179313342   0.995265765474866   0.010717123208958765   -0.00584870376252883   0.011575591261754725   0.00014782468146508696   0.10078526559845893   2.6650530136569867e-05   0.019988761045296642   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+9
+========================================================================================================================
+shift [0.09758998], tilt [-0.00769092],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.333  +/-    0.10             
+    amplitude                  :   4.22e-11  +/- 5.2e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.122  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.683  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.988  +/-    0.01             
+    tilt                       :      0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.217642629395526e-11   5.246309037057333e-12   2.332921966030289   0.09520105365844773   0.12157732856853094   0.04547083667801026   0.9878031026974308   0.010674442821420438   0.010325247650723195   0.011726542558022416   0.00023889641099623157   0.1007581977392344   -1.1386541607788799e-05   0.019989973839658413   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+8
+========================================================================================================================
+shift [-0.00231146], tilt [0.01034131],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 212
+	total stat : 89192.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.161  +/-    0.09             
+    amplitude                  :   4.17e-11  +/- 2.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.147  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.685  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.999  +/-    0.01             
+    tilt                       :      0.018  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.171084469483029e-11   2.921104750741044e-12   2.161379580985131   0.09423778303550989   0.1470965517248361   0.043638500062872815   2.154434690031884  
+4.171084469483029e-11   2.921104750741044e-12   2.161379580985131   0.09423778303550989   0.1470965517248361   0.043638500062872815   2.154434690031884  0.999355890576338   0.010729451977021373   0.018118166711647034   0.011703826259107718   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 313
+	total stat : 89192.22
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.163  +/-    0.10             
+    amplitude                  :   4.17e-11  +/- 5.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.146  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.685  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.999  +/-    0.01             
+    tilt                       :      0.018  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.16707545661168e-11   5.1232385932166774e-12   2.163227874440696   0.09620723042086983   0.1464152119976174   0.04357457067787001   0.9994096839635238   0.010729990421307657   0.01817081803670856   0.011703865105845255   0.00010214100364333263   0.10073793481503196   -0.00010012485498579196   0.019986211453208422   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+9
+========================================================================================================================
+shift [0.20272848], tilt [-0.02932825],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 212
+	total stat : 89393.30
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.508  +/-    0.07             
+    amplitude                  :   3.40e-11  +/- 1.8e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.034  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.003  +/-    0.01             
+    tilt                       :      0.001  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.403826946916157e-11   1.821837118532221e-12   2.507747182189641   0.07445207226516824   0.03408446229872438   0.025338381379719898   2.154434690031884  
+3.403826946916157e-11   1.821837118532221e-12   2.507747182189641   0.07445207226516824   0.03408446229872438   0.025338381379719898   2.154434690031884  1.0033875393439369   0.010758059747784833   0.0006660276342687358   0.011572918987391741   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 325
+	total stat : 89393.11
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.509  +/-    0.08             
+    amplitude                  :   3.40e-11  +/- 3.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.034  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.003  +/-    0.01             
+    tilt                       :      0.001  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.40204237354908e-11   3.892719955225376e-12   2.509462755376235   0.07702903941717489   0.03354647236691473   0.025297483047183465   1.0034103615339887   0.010758344698492048   0.000600491679158624   0.011572364438003094   -0.00023878594565633572   0.10087415407768803   -2.4261052409669178e-05   0.01998600357227501   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+10
+========================================================================================================================
+shift [-0.12378164], tilt [-0.03634101],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 220
+	total stat : 88969.69
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.248  +/-    0.10             
+    amplitude                  :   2.76e-11  +/- 2.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.102  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.226  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.006  +/-    0.01             
+    tilt                       :      0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.7563484454594975e-11   2.074654999412941e-12   2.248159288502917   0.10367594790962109   0.10205323394632107   0.04353429876435308   2.154434690031884  
+2.7563484454594975e-11   2.074654999412941e-12   2.248159288502917   0.10367594790962109   0.10205323394632107   0.04353429876435308   2.154434690031884  1.0064583135494354   0.010756767485711798   0.013914124759392093   0.011631531079388661   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 340
+	total stat : 88969.72
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 210
+	total stat : 88149.06
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.236  +/-    0.08             
+    amplitude                  :   4.24e-11  +/- 2.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.096  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.980  +/-    0.01             
+    tilt                       :     -0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.2371461488365063e-11   2.4293992257913546e-12   2.2356592714924295   0.08028853801649867   0.096307908353393   0.03240771278706064   2.154434690031884  
+4.2371461488365063e-11   2.4293992257913546e-12   2.2356592714924295   0.08028853801649867   0.096307908353393   0.03240771278706064   2.154434690031884  0.9802412638472056   0.010640299006616673   -0.006420907586182117   0.011666709469562655   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 316
+	total stat : 88149.03
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.237  +/-    0.08             
+    amplitude                  :   4.23e-11  +/- 4.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.096  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.679  +/-    0.00 deg         
+    lat_0                      :    -30.219  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.980  +/-    0.01             
+    tilt                       :     -0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.230197167388136e-11   4.9072251779459116e-12   2.237057489840951   0.08253631451259924   0.09553791585471705   0.03227072365168759   0.9802532144037438   0.010640347413605714   -0.006366786337874923   0.011667026666038869   0.00011506792114260984   0.10071157652127959   -3.4934016810463206e-05   0.019982429427418947   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+10
+========================================================================================================================
+shift [0.08016925], tilt [-0.00443167],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 216
+	total stat : 89553.87
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.285  +/-    0.10             
+    amplitude                  :   4.44e-11  +/- 3.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.155  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.007  +/-    0.01             
+    tilt                       :      0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.443486261750575e-11   3.3815904150515486e-12   2.284882332939422   0.09691514426387593   0.1551188907254693   0.04902738769859778   2.154434690031884  
+4.443486261750575e-11   3.3815904150515486e-12   2.284882332939422   0.09691514426387593   0.1551188907254693   0.04902738769859778   2.154434690031884  1.0065085503591495   0.010774741845934972   0.012914962552351632   0.011624978707042636   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 336
+	total stat : 89553.90
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.250  +/-    0.11             
+    amplitude                  :   2.75e-11  +/- 3.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.101  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.226  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.006  +/-    0.01             
+    tilt                       :      0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.752344811295726e-11   3.4693117430126786e-12   2.2499386710608635   0.10536973255969849   0.10128671414245145   0.043384724520289686   1.0064389814092805   0.01075656378616479   0.01390238483048608   0.011631588209198313   0.0002574478442572256   0.10079830566116169   1.7809835813586824e-05   0.019987655663569085   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+11
+========================================================================================================================
+shift [-0.10871957], tilt [-0.05186959],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 217
+	total stat : 89036.78
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.318  +/-    0.09             
+    amplitude                  :   2.58e-11  +/- 1.7e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.060  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.003  +/-    0.01             
+    tilt                       :      0.002  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.5822916674588544e-11   1.6573174260132221e-12   2.3183425078904993   0.09104742352883376   0.06000056967767057   0.03205745540290933   2.154434690031884  
+2.5822916674588544e-11   1.6573174260132221e-12   2.3183425078904993   0.09104742352883376   0.06000056967767057   0.03205745540290933   2.154434690031884  1.0031971615892037   0.010742800466073923   0.001549271005165627   0.011568755195179534   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 305
+	total stat : 89036.59
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.320  +/-    0.09             
+    amplitude                  :   2.58e-11  +/- 3.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.060  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.680  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.003  +/-    0.01             
+    tilt                       :      0.002  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+2.5805149580049316e-11   3.0891261597858613e-12   2.3195380609071625   0.0930663383807248   0.05959224801162556   0.03199183543002636   1.003126768862382   0.010742043793408556   0.0015393626735136865   0.011569095871416591   2.7332536650433864e-06   0.10077491573342363   3.162053413805681e-06   0.01998489151075246   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+12
+========================================================================================================================
+shift [-0.05215794], tilt [0.01510589],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.288  +/-    0.10             
+    amplitude                  :   4.43e-11  +/- 5.6e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.154  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.222  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :     -0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.006  +/-    0.01             
+    tilt                       :      0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.434571337878703e-11   5.610313617719511e-12   2.2877846490342595   0.09874374497048043   0.15371261217467763   0.04883027453716614   1.0064278245786853   0.01077386063034781   0.01294125125510089   0.011625650778328287   -6.111022687450725e-06   0.10077336192793211   -6.538899051991055e-06   0.019991326985229554   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+11
+========================================================================================================================
+shift [0.04018084], tilt [-0.0029424],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 218
+	total stat : 88276.70
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.389  +/-    0.07             
+    amplitude                  :   3.60e-11  +/- 1.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.045  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.218  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.982  +/-    0.01             
+    tilt                       :     -0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.6022413676951035e-11   1.8553830414332845e-12   2.3886235138767757   0.07315303176315434   0.04515225413526697   0.024851727898625536   2.154434690031884  
+3.6022413676951035e-11   1.8553830414332845e-12   2.3886235138767757   0.07315303176315434   0.04515225413526697   0.024851727898625536   2.154434690031884  0.9816262802520751   0.010646684732340714   -0.014189436494796488   0.0116050540278094   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 326
+	total stat : 88276.62
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.390  +/-    0.08             
+    amplitude                  :   3.60e-11  +/- 4.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.045  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.218  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.982  +/-    0.01             
+    tilt                       :     -0.014  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.599283061834996e-11   4.080931281562198e-12   2.3900822875251753   0.07572276903183585   0.04460877093104748   0.02479227957093019   0.9816206490453757   0.010646600810339484   -0.014186396218449348   0.011605126603792735   -6.638484439072667e-05   0.10081316817664415   2.6359872094230228e-05   0.01998186644676053   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+12
+========================================================================================================================
+shift [-0.0504694], tilt [-0.004266],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 89604.17
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.284  +/-    0.08             
+    amplitude                  :   4.28e-11  +/- 2.6e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.104  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :     -0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.28339663502584e-11   2.582085821563641e-12   2.2839350154934523   0.08225637494584111   0.10367265423471848   0.03513906523234233   2.154434690031884  
+4.28339663502584e-11   2.582085821563641e-12   2.2839350154934523   0.08225637494584111   0.10367265423471848   0.03513906523234233   2.154434690031884  1.0019620386021943   0.010759604682048686   -0.012934363454530057   0.01149271025133363   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 319
+	total stat : 89604.15
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.285  +/-    0.08             
+    amplitude                  :   4.28e-11  +/- 5.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.103  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.002  +/-    0.01             
+    tilt                       :     -0.013  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.2793636719122326e-11   5.029949543473306e-12   2.284650973627699   0.0845490070929704   0.10318789877838275   0.0350778170276847   1.0020715336300283   0.010760699812655717   -0.012865031139479392   0.011492567375686324   3.89906624930483e-05   0.10069772576204038   0.0003016112274080105   0.019985428932329314   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+13
+========================================================================================================================
+shift [-0.1505655], tilt [0.01430542],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 204
+	total stat : 89655.24
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.278  +/-    0.10             
+    amplitude                  :   3.49e-11  +/- 2.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.113  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.010  +/-    0.01             
+    tilt                       :      0.008  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.493708953451971e-11   2.5026739794202235e-12   2.2784066219595105   0.09605295005070479   0.11346857617085332   0.04284321800763586   2.154434690031884  
+3.493708953451971e-11   2.5026739794202235e-12   2.2784066219595105   0.09605295005070479   0.11346857617085332   0.04284321800763586   2.154434690031884  1.0104275846603124   0.010783598696733308   0.007813443417771335   0.011563642940075653   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 323
+	total stat : 89655.23
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 196
+	total stat : 88385.87
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.198  +/-    0.09             
+    amplitude                  :   3.72e-11  +/- 2.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.124  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.988  +/-    0.01             
+    tilt                       :     -0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.7165579935169823e-11   2.476039965711571e-12   2.1980253911573615   0.09200497997883471   0.12418516944971779   0.03940203979497643   2.154434690031884  
+3.7165579935169823e-11   2.476039965711571e-12   2.1980253911573615   0.09200497997883471   0.12418516944971779   0.03940203979497643   2.154434690031884  0.988314112843173   0.010675744997527999   -0.010022427195164626   0.011579082749322083   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 278
+	total stat : 88386.00
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.199  +/-    0.09             
+    amplitude                  :   3.72e-11  +/- 4.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.124  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.001  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.988  +/-    0.01             
+    tilt                       :     -0.010  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.7152401528128505e-11   4.498068478948996e-12   2.1991274604333357   0.09403374376706085   0.12368317518776789   0.039338606308120944   0.988288702337303   0.010675445423940283   -0.010013921466632825   0.01157931397514235   -0.0005243462220288292   0.10075242830476311   5.1470351618938223e-05   0.01998606414628185   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+13
+========================================================================================================================
+shift [-0.05841667], tilt [0.00616747],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 235
+	total stat : 89761.95
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.170  +/-    0.10             
+    amplitude                  :   4.65e-11  +/- 3.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.187  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.218  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.010  +/-    0.01             
+    tilt                       :     -0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.646669059430512e-11   3.543520114377587e-12   2.169976105797994   0.0981450162343259   0.1874655268875215   0.0501222591768383   2.154434690031884  
+4.646669059430512e-11   3.543520114377587e-12   2.169976105797994   0.0981450162343259   0.1874655268875215   0.0501222591768383   2.154434690031884  1.0099548373295633   0.010793304562626354   -0.00257379665478246   0.011506599723468187   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 335
+	total stat : 89762.05
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.280  +/-    0.10             
+    amplitude                  :   3.49e-11  +/- 4.3e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.113  +/-    0.04 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.677  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.001  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.010  +/-    0.01             
+    tilt                       :      0.008  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.487457388518015e-11   4.3146945147245894e-12   2.2796760607299786   0.0980074767501951   0.11291020619531873   0.04276636158167088   1.0104360255434277   0.01078366821108261   0.007789290275305162   0.01156345687290921   0.0006089210527394731   0.10066131952855362   3.514849882477663e-05   0.019988235552626   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+14
+========================================================================================================================
+shift [0.21951079], tilt [0.00772481],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 203
+	total stat : 88162.29
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.353  +/-    0.07             
+    amplitude                  :   4.39e-11  +/- 2.4e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.075  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.675  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.981  +/-    0.01             
+    tilt                       :     -0.001  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.391984921176456e-11   2.390424622756945e-12   2.3530037373403383   0.07489543943672806   0.07494856486322442   0.029862357076943756   2.154434690031884  
+4.391984921176456e-11   2.390424622756945e-12   2.3530037373403383   0.07489543943672806   0.07494856486322442   0.029862357076943756   2.154434690031884  0.9808654949997762   0.010642565728722488   -0.001361499543280089   0.011693668755079463   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 320
+	total stat : 88162.23
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.354  +/-    0.08             
+    amplitude                  :   4.39e-11  +/- 5.0e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.074  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.675  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.981  +/-    0.01             
+    tilt                       :     -0.001  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.38542987065513e-11   5.0217224463377216e-12   2.354432982271106   0.07734407329334753   0.0742381900398561   0.029742211989401825   0.9808648697046503   0.01064253521632752   -0.0013770328191843387   0.01169358137221072   0.00022417820327625976   0.10064876885180017   0.0001495746694233697   0.019984000876271134   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+15
+========================================================================================================================
+shift [0.06185452], tilt [-0.0049162],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.172  +/-    0.10             
+    amplitude                  :   4.64e-11  +/- 5.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.186  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.218  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.010  +/-    0.01             
+    tilt                       :     -0.003  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.639806207773975e-11   5.8824972047167345e-12   2.171933513883346   0.10003209319148541   0.18644553570474431   0.050012444399188186   1.010005268878295   0.010793813116349114   -0.002521686989117302   0.01150668377852829   6.574320223623101e-05   0.10086935067967648   6.737057083516812e-05   0.01998997897073889   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+14
+========================================================================================================================
+shift [-0.00514056], tilt [0.00138271],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 199
+	total stat : 88311.88
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.376  +/-    0.07             
+    amplitude                  :   3.61e-11  +/- 1.9e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.049  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.987  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.606278417397996e-11   1.8986545523170468e-12   2.3755026221639515   0.07437254851712581   0.04943473298281181   0.025597709046425773   2.154434690031884  
+3.606278417397996e-11   1.8986545523170468e-12   2.3755026221639515   0.07437254851712581   0.04943473298281181   0.025597709046425773   2.154434690031884  0.986667723977487   0.010670668747439388   0.006192517879211612   0.01170892692024939   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 328
+	total stat : 88311.91
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.377  +/-    0.08             
+    amplitude                  :   3.60e-11  +/- 4.1e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.049  +/-    0.03 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.681  +/-    0.00 deg         
+    lat_0                      :    -30.220  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :     -0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      0.987  +/-    0.01             
+    tilt                       :      0.006  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.603918473691205e-11   4.102629332023378e-12   2.3766267767058213   0.07696291467631304   0.049070597921031606   0.0255858790826252   0.9866643442191597   0.010670608765812663   0.0061874051522527885   0.011708938642363016   -0.000113515193445284   0.10072593033844458   2.601882857119563e-05   0.01998214264714467   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+15
+========================================================================================================================
+shift [0.07373142], tilt [0.01383991],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 90055.86
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.076  +/-    0.10             
+    amplitude                  :   4.49e-11  +/- 3.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.202  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.016  +/-    0.01             
+    tilt                       :      0.016  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.486260983445255e-11   3.5031262727660987e-12   2.075575613497962   0.1029711095719437   0.2022070802818993   0.05146486503549601   2.154434690031884  
+4.486260983445255e-11   3.5031262727660987e-12   2.075575613497962   0.1029711095719437   0.2022070802818993   0.05146486503549601   2.154434690031884  1.01571832790632   0.010819236587929677   0.016147784549558012   0.011598825685087633   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 350
+	total stat : 90055.88
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.078  +/-    0.10             
+    amplitude                  :   4.48e-11  +/- 5.7e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.201  +/-    0.05 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.682  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.10             
+    tilt               [prior] :      0.000  +/-    0.02             
+    reference  (frozen)        :      1.000      TeV         
+
+Component 2: FoVBackgroundModel
+
+  Name                      : dataset_N-bkg
+  Datasets names            : ['dataset_N']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.016  +/-    0.01             
+    tilt                       :      0.016  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+4.478020615188915e-11   5.720945775432059e-12   2.0778775360422843   0.10472774589499756   0.20094962475514408   0.05133642540440715   1.0157129532276883   0.010819146433140003   0.016180129821919468   0.011599107028695705   2.0140715766996543e-05   0.10075720034059053   7.587783449169515e-08   0.019988142508668785   0.0   0.0   0.0   0.0   2.154434690031884  
+
+========================================================================================================================
+16
+========================================================================================================================
+shift [-0.02861354], tilt [0.00095599],  bias [0.], res [0.]
+random seed
+reference 1.0
+IRFModels
+
+  Name                      : dataset_N-irf
+  Datasets names            : dataset_N
+  EReco  model type         : ERecoIRFModel
+  Eff area  model type      : EffAreaIRFModel
+  PSF model type            : 
+  Parameters:
+    bias       (frozen)        :      0.000                  
+    resolution (frozen)        :      0.000                  
+    norm               [prior] :      0.000  +/-    0.00             
+    tilt               [prior] :      0.000  +/-    0.00             
+    reference  (frozen)        :      1.000      TeV         
+
+
+shift 1.0
+fit w/o nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 200
+	total stat : 89640.26
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+DatasetModels
+
+Component 0: SkyModel
+
+  Name                      : Crablog
+  Datasets names            : None
+  Spectral model type       : ExpCutoffPowerLawSpectralModel
+  Spatial  model type       : PointSpatialModel
+  Temporal model type       : 
+  Parameters:
+    index                      :      2.498  +/-    0.06             
+    amplitude                  :   3.35e-11  +/- 1.5e-12 1 / (cm2 s TeV)
+    reference  (frozen)        :      1.000      TeV         
+    lambda_                    :      0.008  +/-    0.02 1 / TeV     
+    alpha      (frozen)        :      1.000                  
+    lon_0                      :    329.678  +/-    0.00 deg         
+    lat_0                      :    -30.221  +/-    0.00 deg         
+
+Component 1: FoVBackgroundModel
+
+  Name                      : dataset-bkg
+  Datasets names            : ['dataset']
+  Spectral model type       : PowerLawNormSpectralModel
+  Parameters:
+    norm                       :      1.009  +/-    0.01             
+    tilt                       :      0.017  +/-    0.01             
+    reference  (frozen)        :      1.000      TeV         
+
+
+3.349252395263866e-11   1.4997442211582076e-12   2.4979337160609476   0.0634218155831686   0.007629029934824415   0.016298844556912145   2.154434690031884  
+3.349252395263866e-11   1.4997442211582076e-12   2.4979337160609476   0.0634218155831686   0.007629029934824415   0.016298844556912145   2.154434690031884  1.009458776241252   0.010780241124337822   0.016566126290482944   0.011644932070703645   2.154434690031884  
+fitting nui....
+
+fit with nui ended:
+OptimizeResult
+
+	backend    : minuit
+	method     : migrad
+	success    : True
+	message    : Optimization terminated successfully.
+	nfev       : 321
+	total stat : 89640.16
+
+CovarianceResult
+
+	backend    : minuit
+	method     : hesse
+	success    : True
+	message    : Hesse terminated successfully.
+
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 513469 ON tf088 CANCELLED AT 2025-07-06T21:10:25 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 513469.0 ON tf088 CANCELLED AT 2025-07-06T21:10:25 DUE TO TIME LIMIT ***
+=== JOB_STATISTICS ===
+=== current date     : Sun Jul  6 09:10:31 PM CEST 2025
+= Job-ID             : 513469 on tinyfat
+= Job-Name           : logfiles/1
+= Job-Command        : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis/1.slurm
+= Initial workdir    : /home/wecapstor1/caph/mppi045h/nuisance_summary/Analysis
+= Queue/Partition    : work
+= Slurm account      : caph with QOS=normal
+= Requested resources:  for 04:00:00
+= Elapsed runtime    : 04:00:07
+= Total RAM usage    : 6.3 GiB of requested  GiB (%)   
+= Node list          : tf088
+= Subm/Elig/Start/End: 2025-07-06T17:10:18 / 2025-07-06T17:10:18 / 2025-07-06T17:10:18 / 2025-07-06T21:10:25
+======================
+=== Quota infos ======
+    Path                 Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc              84.0G   104.9G   209.7G        N/A     181K     500K   1,000K        N/A    
+    /home/woody            14.9G  1000.0G  1500.0G        N/A     152K   5,000K   7,500K        N/A    
+    /home/vault           515.7G  1048.6G  2097.2G        N/A  13,976      200K     400K        N/A    
+======================

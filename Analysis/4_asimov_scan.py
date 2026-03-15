@@ -105,7 +105,7 @@ def computing_scan(dataset, note):
     
     results = []
     for parname1 in parameter_names_1 :
-        if parname1 == 'amplitude':
+        if  True: #parname1 == 'amplitude':
             print("scanning",  parname1)
             dataset.models.parameters[parname1].scan_n_values=numpoints
             result = fit_cor.stat_profile(dataset,
